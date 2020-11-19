@@ -1,0 +1,1334 @@
+************************************************************************************************************************************
+NAME    : Preksha Sheth
+ROLL NO : 36
+CLASS   : MCA-III
+SUBJECT : DATA STRUCTURE(DS)
+*****************************************************************************************************************************************
+Q(1):Evaluate the postfix expression..				
+*****************************************************************************************************************************************
+#include<stdio.h>
+#include<ctype.h>
+#define MAX 100 
+#define PSIZE 100 
+void push(int stk[],int n,int *top)
+{
+	(*top)++;
+	stk[*top]=n;
+}
+int pop(int stk[],int *top)
+{
+	int c;
+	c=stk[*top];
+	(*top)--;
+	return c;
+}
+void ev_postfix(char exp[],int a[])
+{
+	int i,num,op1,op2,stk[MAX],top=-1;
+	for(i=0;exp[i]!='\0';i++)
+	{
+		if(isalpha(exp[i]))
+		{
+			printf("\n Enter the value for %c:",exp[i]);
+			scanf("%d",&num);
+			push(stk,num,&top);
+		}
+		else if(isdigit(exp[i]))
+			push(stk,exp[i]-'0',&top);
+		else
+		{
+			op2=pop(stk,&top);
+			op1=pop(stk,&top);
+			switch(exp[i])
+			{
+				case '+':push(stk,op1+op2,&top);break;
+				case '-':push(stk,op1-op2,&top);break;
+				case '*':push(stk,op1*op2,&top);break;
+				case '/':push3(stk,op1/op2,&top);break;
+				case '%':push(stk,op1%op2,&top);break;
+				case '^':push(stk,op1^op2,&top);break;
+			}
+		}
+	}
+	printf("%d\n",stk[top]);
+}
+void main()
+{
+	char exp[PSIZE];
+	int a[20];
+	printf("\n Enter PostFix Expression:");
+	scanf("%s",exp);
+	ev_postfix(exp,a);
+}
+
+*****************************************************************************************************************************************
+OUTPUT :
+*****************************************************************************************************************************************
+Enter PostFix Expression:ab-
+
+ Enter the value for a:15
+
+ Enter the value for b:10
+5
+
+*****************************************************************************************************************************************
+Q(2):Queue using LinkList
+*****************************************************************************************************************************************
+#include<stdio.h>
+#define MAX 5
+struct node
+{
+	int data;
+	struct node *nxt;
+}*frt=NULL,*rer=NULL;
+int count=0;
+
+void enque(int x)
+{
+	struct node *nn;
+	nn=(struct node *)malloc(sizeof(struct node));
+	nn->data=x;
+	nn->nxt=NULL;
+	
+	if(frt==NULL && rer==NULL) 
+		frt=rer=nn;
+	else
+	{
+		rer->nxt=nn;
+		rer=nn;
+	}
+	count++;
+}
+void disp()
+{
+	struct node *tmp;
+	if(frt==NULL && rer==NULL)
+		printf("\n Queue is Empty");
+	else
+	{
+		for(tmp=frt;tmp!=NULL;tmp=tmp->nxt)
+			printf(" %d  ",tmp->data);
+	}
+}
+void deque()
+{
+	struct node *tmp;
+	if(frt==NULL && rer==NULL)
+		printf("\n Queue is Empty");
+	else
+	{
+		tmp=frt;
+		if(frt->nxt!=NULL)
+		{
+			printf("%d is deleted from queue",frt->data);
+			frt=frt->nxt;
+			free(tmp);
+		}
+		else  
+		{
+			printf("%d is deleted from queue",frt->data);
+			free(tmp);
+			frt=rer=NULL;
+		}
+	}
+}
+void peek()
+{
+	if(frt==NULL && rer==NULL)
+		printf("\n Queue is Empty");
+	else
+		printf("%d is front in queue",frt->data);
+}
+void main()
+{
+	int ch,val;
+    while(1)
+	{
+      printf("\n****** MENU ******\n");
+      printf("1. Insert\n2. Delete\n3. Display\n4. Peek\n5. Exit\n");
+      printf("Enter your choice: ");
+      scanf("%d",&ch);
+      switch(ch)
+	  {
+			case 1: if(count==MAX) //if queue is full when inserting
+				printf("\n OverFlow");
+			  else
+		      {
+				printf("Enter the value to be inserted: ");
+				scanf("%d", &val);
+				enque(val);
+			  }
+			  break;
+			case 2: deque(); break;
+			case 3: disp(); break;
+			case 4: peek();break;
+			case 5: exit(0);
+			default: printf("\nPlease try again!!!\n");
+     }
+   }
+}
+
+*****************************************************************************************************************************************
+OUTPUT:
+
+****** MENU ******
+1. Insert
+2. Delete
+3. Display
+4. Peek
+5. Exit
+Enter your choice: 1
+Enter the value to be inserted: 1
+
+****** MENU ******
+1. Insert
+2. Delete
+3. Display
+4. Peek
+5. Exit
+Enter your choice: 1
+Enter the value to be inserted: 2
+
+****** MENU ******
+1. Insert
+2. Delete
+3. Display
+4. Peek
+5. Exit
+Enter your choice: 3
+ 1   2
+****** MENU ******
+1. Insert
+2. Delete
+3. Display
+4. Peek
+5. Exit
+Enter your choice: 2
+1 is deleted from queue
+****** MENU ******
+1. Insert
+2. Delete
+3. Display
+4. Peek
+5. Exit
+Enter your choice: 3
+ 2
+****** MENU ******
+1. Insert
+2. Delete
+3. Display
+4. Peek
+5. Exit
+Enter your choice: 4
+2 is front in queue
+****** MENU ******
+1. Insert
+2. Delete
+3. Display
+4. Peek
+5. Exit
+Enter your choice: 5
+
+*****************************************************************************************************************************************
+Q(3): Bubble Sort..
+*****************************************************************************************************************************************
+#include<stdio.h>
+#include<conio.h>
+
+int bubble_sort(int arr[],int n)
+{
+	int i,temp,j;
+	for(i = 0; i < n-1; i++)
+	{
+		for(j = 0; j < n-i-1; j++)	
+		{
+			if(arr[j] > arr[j+1])
+			{
+				temp = arr[j];
+				arr[j] = arr[j+1];
+				arr[j+1] = temp;
+			}
+		}
+	}	
+		
+	printf("\n\n\t\t*** SORTED ARRAY ***");
+	for(i = 0; i < n ; i++)
+	{
+		printf("\n%d",arr[i]);
+	}
+}
+
+void main()
+{
+	int arr[100],i,n;
+	printf("Enter How Many element you want : ");
+	scanf("%d",&n);
+	for(i = 0; i < n; i++)
+	{
+		printf("Enter Number %d = ",i+1);
+		scanf("%d",&arr[i]);
+	}
+	
+	for(i = 0; i < n; i++)
+	{
+		printf("Number %d = %d\n",i+1,arr[i]);
+		
+	}
+ 	 bubble_sort(arr,n);
+}
+*****************************************************************************************************************************************
+OUTPUT:
+
+Enter How Many element you want : 7
+Enter Number 1 = 5
+Enter Number 2 = 1
+Enter Number 3 = 9
+Enter Number 4 = 35
+Enter Number 5 = 12
+Enter Number 6 = 66
+Enter Number 7 = 50
+Number 1 = 5
+Number 2 = 1
+Number 3 = 9
+Number 4 = 35
+Number 5 = 12
+Number 6 = 66
+Number 7 = 50
+
+
+                *** SORTED ARRAY ***
+1
+5
+9
+12
+35
+50
+66
+*****************************************************************************************************************************************
+Q(4): Selection Sort..
+*****************************************************************************************************************************************
+#include<stdio.h>
+#include<conio.h>
+
+void selection(int arr[], int n)
+{
+	int i=0,j,min,loc,temp;
+	
+	for(i=0; i<n-1; i++)
+	{
+		min=arr[i];
+		loc=i;
+		for(j=i+1;j<n;j++)
+		{
+			if(min>arr[j]){
+				min=arr[j];
+				loc=j;
+			}
+		}
+		temp=arr[i];
+		arr[i]=arr[loc];
+		arr[loc]=temp;
+	}
+		
+}
+
+void display(int arr[],int n)
+{
+	int i;
+	printf("\n\t\t** SORTED ARAY **\n");
+	for(i = 0; i < n; i++)
+	{
+		printf("\n%d",arr[i]);
+	}	
+}
+
+void main()
+{
+	int arr[100],n,i;
+	printf("Enter how many Element you want :");
+	scanf("%d",&n);
+	for(i = 0; i < n; i++)
+	{
+		printf("Enter Number %d = ",i+1);
+		scanf("%d",&arr[i]);
+	}
+	
+	for(i = 0; i < n; i++)
+	{
+		printf("Number %d = %d\n",i+1,arr[i]);
+		
+	}
+	selection(arr,n);
+	display(arr,n);
+}
+*****************************************************************************************************************************************
+OUTPUT :
+
+Enter how many Element you want :5
+Enter Number 1 = 5
+Enter Number 2 = 1
+Enter Number 3 = 9
+Enter Number 4 = 2
+Enter Number 5 = 4
+Number 1 = 5
+Number 2 = 1
+Number 3 = 9
+Number 4 = 2
+Number 5 = 4
+
+                ** SORTED ARAY **
+
+1
+2
+4
+5
+9
+
+*****************************************************************************************************************************************
+Q(5): Insertion Sort..
+*****************************************************************************************************************************************
+#include<stdio.h>
+void insertion_sort(int arr[],int n)
+{
+	int i,temp,j;
+	for(i=1;i<n;i++)
+	{
+		temp=arr[i];
+		j=i-1;
+
+		while(j>=0 && arr[j]>temp)
+		{
+			arr[j+1]=arr[j];
+			j--;
+		}
+		arr[j+1]=temp;
+	}
+}
+void display(int arr[],int n)
+{
+	int i;
+	printf("\n\t\t*** SORTED ARRAY\n");
+	for(i=0;i<n;i++)
+	{
+		printf("\n%d",arr[i]);
+	}
+}
+void main()
+{
+	int n,i,arr[100],ele;
+	printf("\n Enter How Many Number of Elements you want:");
+	scanf("%d",&n);
+	for(i=0;i<n;i++)
+	{
+		printf("\n Enter Number %d:",i+1);
+		scanf("%d",&arr[i]);
+	}
+
+	for(i=0;i<n;i++)
+	{
+		printf("\nNumber %d = %d",i+1,arr[i]);
+	}
+
+	insertion_sort(arr,n);
+	display(arr,n);
+}
+
+*****************************************************************************************************************************************
+OUTPUT:
+
+
+ Enter How Many Number of Elements you want:5
+
+ Enter Number 1:2
+
+ Enter Number 2:7
+
+ Enter Number 3:1
+
+ Enter Number 4:10
+
+ Enter Number 5:55
+
+Number 1 = 2
+Number 2 = 7
+Number 3 = 1
+Number 4 = 10
+Number 5 = 55
+                *** SORTED ARRAY
+
+1
+2
+7
+10
+55Press any key to continue . . .
+
+*****************************************************************************************************************************************
+Q(6):Doubly LinkedList..
+*****************************************************************************************************************************************
+#include<stdio.h>
+#include<malloc.h>
+
+struct node
+{
+	int val;
+	struct node *next,*prev;
+};
+
+struct node * create_node()
+{
+	struct node *node=NULL;
+	node=(struct node *)malloc(sizeof(struct node));
+	
+	printf("\n\nEnter the value to insert: ");
+	scanf("%d",&node->val);
+	
+	node->prev=node->next=NULL;
+
+	if(node)
+		return node;
+	else
+		printf("Error, Could not allocate memory.");
+}
+
+void insbeg(struct node **head)
+{
+	struct node *nd,*temp;
+
+	if(*head==NULL)
+	{
+		*head=create_node();
+		printf("\n\nNode Inserted Successfully!");
+	}
+	else
+	{
+		nd=*head;
+		temp=create_node();
+		temp->next=nd;
+		nd->prev=temp;
+		*head=temp;
+		printf("\n\nValue %d inserted successfully.",temp->val);
+	}
+}
+
+void insmid(struct node **head)
+{
+	int key;
+	struct node *nd,*temp;
+
+	if(*head==NULL)
+	{
+		*head=create_node();
+		printf("\n\nNode Inserted Successfully!");
+	}
+	else
+	{
+		printf("\n\nEnter a value after which you want to insert: ");
+		scanf("%d",&key);
+
+		temp=*head;
+
+		while(temp!=NULL)
+		{
+			if(temp->val==key)
+			{
+				break;
+			}
+			else
+			{
+				temp=temp->next;
+			}
+		}
+
+		if(temp==NULL)
+		{
+			printf("\n\nNo such value found in the linked list, Exiting...");
+		}
+		else
+		{
+			if(temp->next!=NULL)
+			{
+				nd=create_node();
+				nd->next=temp->next;
+				temp->next->prev=nd;
+				nd->prev=temp;
+				temp->next=nd;
+				printf("\n\n%d value inserted successfully!",nd->val);
+			}
+			else
+			{
+				nd=create_node();
+				temp->next=nd;
+				nd->prev=temp;
+				printf("\n\n%d value inserted successfully!",nd->val);
+			}
+		}
+	}
+}
+
+void insend(struct node **head)
+{
+	struct node *nd,*temp;
+
+	if(*head==NULL)
+	{
+		*head=create_node();
+		printf("\n\nNode Inserted Successfully!");
+	}
+	else
+	{
+		nd=*head;
+		while(nd->next!=NULL)
+		{
+			nd=nd->next;
+		}
+		temp=create_node();
+		nd->next=temp;
+		temp->prev=nd;
+		printf("\n\nValue %d inserted successfully.",temp->val);
+	}
+}
+
+void delbeg(struct node **head)
+{
+	struct node *temp,*tmp;
+	temp=tmp=*head;
+
+	if(temp)
+	{
+		tmp=tmp->next;
+		tmp->prev=NULL;
+		*head=tmp;
+		printf("\n\n%d Node Deleted Successfully!",temp->val);
+		free(temp);
+	}
+	else
+	{
+		printf("\n\nNothing to delete, List is already empty!");
+	}
+
+}
+
+void delmid(struct node **head)
+{
+	int key;
+	struct node *temp=*head;
+	
+	if(temp==NULL)
+	{
+		printf("\n\nNothing to delete, List is already empty!");
+	}
+	else
+	{
+		printf("\n\nEnter a value you want to delete: ");
+		scanf("%d",&key);
+		
+		temp=*head;
+
+		while(temp!=NULL)
+		{
+			if(temp->val==key)
+			{
+				break;
+			}
+			else
+			{
+				temp=temp->next;
+			}
+		}
+
+		if(temp==NULL)
+		{
+			printf("\n\nNo such value found in the linked list, Exiting...");
+		}
+		else
+		{
+			if(temp->next==NULL)
+			{
+				if(temp->prev)
+				{
+					temp->prev->next=NULL;
+					printf("\n\n%d node deleted successfully!",temp->val);
+					free(temp);
+				}
+				else
+				{
+					*head=NULL;
+					printf("\n\n%d node deleted successfully!",temp->val);
+					free(temp);
+				}
+			}
+			else
+			{
+				temp->prev->next=temp->next;
+				temp->next->prev=temp->prev;
+				printf("\n\n%d node deleted successfully!",temp->val);
+				free(temp);
+			}
+		}
+	}
+}
+
+void delend(struct node **head)
+{
+	struct node *temp=*head,*slast;
+	
+	if(*head)
+	{
+		while(temp->next!=NULL)
+		{
+			temp=temp->next;
+		}
+
+		slast=temp->prev;
+
+		if(slast==NULL)
+			*head=NULL;
+		else
+		slast->next=NULL;
+
+		printf("\n\n%d Node Deleted Successfully!",temp->val);
+		free(temp);
+	}
+	else
+	{
+		printf("\n\nLinked List is already empty!");
+	}
+	
+}
+
+void forward_traverse(struct node *head)
+{
+	struct node *tmp=head;
+
+	if(tmp)
+	{
+		printf("\n\nForward Traversal: ");
+		while(tmp!=NULL)
+		{
+			printf(" %d ",tmp->val);
+			tmp=tmp->next;
+		}
+	}
+	else
+	{
+		printf("\n\nLinked List is Empty.");
+	}
+}
+
+void backward_traverse(struct node *head)
+{
+	struct node *tmp=head;
+
+	if(tmp)
+	{
+		printf("\n\nBackward Traversal: ");
+		while(tmp->next!=NULL)
+		{
+			tmp=tmp->next;
+		}
+
+		while(tmp!=NULL)
+		{
+			printf(" %d ",tmp->val);
+			tmp=tmp->prev;
+		}
+	}
+	else
+	{
+		printf("\n\nLinked List is Empty.");
+	}
+}
+
+void main()
+{	
+	struct node *head=NULL;
+	int input=-1,val;
+
+	while(input!=9)
+	{
+		printf("************************* Doubly Linked List *************************\n\n");
+		printf("1. Insert at Beginning");
+		printf("\n2. Insert at Middle");
+		printf("\n3. Insert at End");
+		printf("\n4. Delete from Beginning");
+		printf("\n5. Delete from Middle");
+		printf("\n6. Delete from End");
+		printf("\n7. Forward Traversal.");
+		printf("\n8. Backward Traversal.");
+		printf("\n9. Exit");
+		printf("\n\nEnter your choice: ");
+		scanf("%d",&input);
+
+		switch(input)
+		{
+		case 1:
+			insbeg(&head);
+			break;
+		case 2:
+			insmid(&head);
+			break;
+		case 3:
+			insend(&head);
+			break;
+		case 4:
+			delbeg(&head);
+			break;
+		case 5:
+			delmid(&head);
+			break;
+		case 6:
+			delend(&head);
+			break;
+		case 7:
+			forward_traverse(head);
+			break;
+		case 8:
+			backward_traverse(head);
+			break;
+		case 9:
+			break;
+		default:
+			printf("\n\nInvalid Choice, Please try again!");
+			break;
+		}
+		printf("\n\n");
+	}
+}
+*****************************************************************************************************************************************
+OUTPUT:
+
+************************* Doubly Linked List *************************
+
+1. Insert at Beginning
+2. Insert at Middle
+3. Insert at End
+4. Delete from Beginning
+5. Delete from Middle
+6. Delete from End
+7. Forward Traversal.
+8. Backward Traversal.
+9. Exit
+
+Enter your choice: 1
+
+
+Enter the value to insert: 20
+
+
+Node Inserted Successfully!
+
+************************* Doubly Linked List *************************
+
+1. Insert at Beginning
+2. Insert at Middle
+3. Insert at End
+4. Delete from Beginning
+5. Delete from Middle
+6. Delete from End
+7. Forward Traversal.
+8. Backward Traversal.
+9. Exit
+
+Enter your choice: 2
+
+
+Enter a value after which you want to insert: 40
+
+
+No such value found in the linked list, Exiting...
+
+************************* Doubly Linked List *************************
+
+1. Insert at Beginning
+2. Insert at Middle
+3. Insert at End
+4. Delete from Beginning
+5. Delete from Middle
+6. Delete from End
+7. Forward Traversal.
+8. Backward Traversal.
+9. Exit
+
+Enter your choice: 3
+
+
+Enter the value to insert: 30
+
+
+Value 30 inserted successfully.
+
+************************* Doubly Linked List *************************
+
+1. Insert at Beginning
+2. Insert at Middle
+3. Insert at End
+4. Delete from Beginning
+5. Delete from Middle
+6. Delete from End
+7. Forward Traversal.
+8. Backward Traversal.
+9. Exit
+
+Enter your choice: 1
+
+
+Enter the value to insert: 50
+
+
+Value 50 inserted successfully.
+
+************************* Doubly Linked List *************************
+
+1. Insert at Beginning
+2. Insert at Middle
+3. Insert at End
+4. Delete from Beginning
+5. Delete from Middle
+6. Delete from End
+7. Forward Traversal.
+8. Backward Traversal.
+9. Exit
+
+Enter your choice: 7
+
+
+Forward Traversal:  50  20  30
+
+************************* Doubly Linked List *************************
+
+1. Insert at Beginning
+2. Insert at Middle
+3. Insert at End
+4. Delete from Beginning
+5. Delete from Middle
+6. Delete from End
+7. Forward Traversal.
+8. Backward Traversal.
+9. Exit
+
+Enter your choice: 8
+
+
+Backward Traversal:  30  20  50
+
+************************* Doubly Linked List *************************
+
+1. Insert at Beginning
+2. Insert at Middle
+3. Insert at End
+4. Delete from Beginning
+5. Delete from Middle
+6. Delete from End
+7. Forward Traversal.
+8. Backward Traversal.
+9. Exit
+
+Enter your choice: 4
+
+
+50 Node Deleted Successfully!
+
+************************* Doubly Linked List *************************
+
+1. Insert at Beginning
+2. Insert at Middle
+3. Insert at End
+4. Delete from Beginning
+5. Delete from Middle
+6. Delete from End
+7. Forward Traversal.
+8. Backward Traversal.
+9. Exit
+
+Enter your choice:9
+
+*****************************************************************************************************************************************
+Q(7):Doubly Circular LinkedList..
+*****************************************************************************************************************************************
+#include<stdio.h>
+struct list
+{
+	struct list *prev;
+	int num;
+	struct list *nxt;
+};
+void ad_begg(struct list **lst,int n)
+{
+	struct list *nn;
+	nn=(struct list *)malloc(sizeof(struct list));
+	nn->num=n;
+	if(*lst==NULL)
+	{
+		*lst=nn;
+		nn->prev=nn;
+		nn->nxt=nn;
+	}
+	else
+	{
+		nn->nxt=(*lst)->nxt;
+		nn->prev=(*lst);
+		(*lst)->nxt->prev=nn;
+		(*lst)->nxt=nn;
+	}
+}
+void ad_endd(struct list **lst,int n)
+{
+	struct list *nn;
+	nn=(struct list *)malloc(sizeof(struct list));
+	nn->num=n;
+	if(*lst!=NULL)
+	{
+		nn->prev=*lst;
+		nn->nxt=(*lst)->nxt;
+		(*lst)->nxt=nn;
+		*lst=nn;
+		(*lst)->nxt->prev=nn;
+	}
+	else
+	{
+		*lst=nn;
+		nn->prev=nn;
+		nn->nxt=nn;
+	}
+}
+
+int srch1(struct list *lst,int n)
+{
+	int flag=0;
+	struct list *p;
+	
+	for(p=lst->nxt;p!=lst;p=p->nxt)
+	{
+		if(p->num==n)
+		{
+			flag=1;
+			break;
+		}
+	}
+	if(p->num==n) //checking last node value is equal to n
+			flag=1;
+	if(flag==1)
+		return 1;
+	else
+		return 0;
+}
+
+
+void ad_bf(struct list **lst,int n,int val)
+{
+	struct list *tmp,*nn;
+	if(srch1(*lst,val))
+	{
+		if((*lst)->nxt->num==val)
+			ad_begg(&(*lst),n);
+		else
+		{
+			for(tmp=(*lst)->nxt;tmp->num!=val;tmp=tmp->nxt);
+			nn=(struct list *)malloc(sizeof(struct list));
+			nn->num=n;
+			nn->nxt=tmp;
+			nn->prev=tmp->prev;
+			tmp->prev->nxt=nn;
+			tmp->prev=nn;
+		}
+
+	}
+	else
+		printf("\n Value Before Insertion not found");
+}
+void ad_af(struct list **lst,int n,int val)
+{
+	struct list *tmp,*nn;
+	if(srch1(*lst,val))
+	{
+		if((*lst)->num==val)
+			ad_endd(&(*lst),n);
+		else
+		{
+			for(tmp=(*lst)->nxt;tmp->num!=val;tmp=tmp->nxt);
+			nn=(struct list *)malloc(sizeof(struct list));
+			nn->num=n;
+			nn->prev=tmp;
+			nn->nxt=tmp->nxt;
+			tmp->nxt=nn;
+			tmp->nxt->prev=nn;
+			if(tmp==*lst)
+				(*lst)=nn;
+		}
+	}
+	else
+		printf("\n Value After Insertion not found");
+}
+void dl_begg(struct list **lst)
+{
+	struct list *tmp;
+	
+	if(*lst==NULL)
+		printf("\n LinkList is Empty");
+	else 
+	{
+		tmp=(*lst)->nxt;
+		if((*lst)->nxt==*lst)
+			*lst=NULL;
+		else
+		{
+			(*lst)->nxt=tmp->nxt;
+			tmp->nxt->prev=*lst;
+		}
+		free(tmp);
+	}
+}
+
+void dl_end(struct list **lst)
+{
+	struct list *tmp;
+	
+	if(*lst==NULL)
+		printf("\n LinkList is Empty");
+	else 
+	{
+		tmp=*lst;
+		if((*lst)->nxt==*lst)
+			*lst=NULL;
+		else
+		{
+			(*lst)->prev->nxt=(*lst)->nxt;
+			(*lst)->nxt->prev=(*lst)->prev;
+			*lst=(*lst)->prev;
+		}
+		free(tmp);
+	}	
+
+}
+void dl_val(struct list **lst,int n)
+{
+	struct list *tmp;
+	
+	if(*lst==NULL)
+		printf("\n LinkList is Empty");
+	else if(srch1(*lst,n))
+	{
+		tmp=(*lst)->nxt;
+		if(tmp->num==n && tmp->prev==tmp) //There is only one node in list.deletion of first/last node
+			*lst=NULL;
+		else
+		{
+			for(;tmp->num!=n;tmp=tmp->nxt);
+			tmp->prev->nxt=tmp->nxt;
+			tmp->nxt->prev=tmp->prev;
+			if(tmp==*lst) //deletion of last node
+				*lst=(*lst)->prev;
+		}
+		free(tmp);
+	}
+	else
+		printf("\n Deletion Number is Not Present");
+}
+void cr(struct list **lst)
+{
+	struct list *nn;
+	int i,n,no;
+	printf("\n How Many nodes u want to enter:");
+	scanf("%d",&n);
+
+	for(i=0;i<n;i++)
+	{
+		printf("\n Enter Number:");
+		scanf("%d",&no);
+		ad_endd(&(*lst),no);
+	}
+}
+void dis(struct list **lst)
+{
+	struct list *t;
+	if(*lst==NULL)
+		printf("\n List is Empty");
+	else
+	{
+		for(t=(*lst)->nxt;t!=(*lst);t=t->nxt)
+			printf("%d  ",t->num);
+		printf("%d  ",t->num);
+	}
+}
+
+void main()
+{
+	int ch,n,val;
+	struct list *last=NULL;
+
+	while(1)
+	{
+		printf("\n************************* Doubly Circular Linked List *************************\n\n");
+		printf("\n 1.Create List");
+		printf("\n 2.Display");
+		printf("\n 3.Add At Beginning");
+		printf("\n 4.Add to End");
+		printf("\n 5.Delete from beginning");
+		printf("\n 6.Delete from end");
+		printf("\n 7.Add After");
+		printf("\n 8.Add Before");
+		printf("\n 9.Delete Any Number");
+		printf("\n 10.Exit");
+		printf("\n Enter Your Choice:");
+		scanf("%d",&ch);
+		switch(ch)
+		{
+			case 1:cr(&last);
+					break;
+			case 2:dis(&last);
+					break;
+			case 3:printf("\n Enter Number To be Inserted:");
+					scanf("%d",&n);
+					ad_begg(&last,n);
+				    break;
+			case 4:printf("\n Enter Number To be Inserted:");
+					scanf("%d",&n);
+					ad_endd(&last,n);
+					break;
+			case 5:dl_begg(&last);
+				    break;
+			case 6:dl_end(&last);
+				   break;
+			case 7:if(last==NULL)
+						printf("\n List is Empty");
+					else
+					{
+						printf("\n After which number you want to insert value:");
+						scanf("%d",&val);
+						printf("\n Enter Number To be Inserted:");
+						scanf("%d",&n);	
+						ad_af(&last,n,val);
+					}
+					break;
+			case 8:if(last==NULL)
+						printf("\n List is Empty");
+					else
+					{
+						printf("\n Before which number you want to insert value:");
+						scanf("%d",&val);
+						printf("\n Enter Number To be Inserted:");
+						scanf("%d",&n);	
+						ad_bf(&last,n,val);
+					}
+					break;  
+			case 9:if(last==NULL)
+						printf("\n List is Empty");
+					else
+					{
+						printf("\n Enter Number To be Deleted:");
+						scanf("%d",&n);
+						dl_val(&last,n);
+				    }
+				   break;
+			case 10:exit(0);
+			default:printf("\n Invalid Option");
+		}
+	}
+}
+
+*****************************************************************************************************************************************
+OUTPUT:
+
+************************* Doubly Circular Linked List *************************
+
+
+ 1.Create List
+ 2.Display
+ 3.Add At Beginning
+ 4.Add to End
+ 5.Delete from beginning
+ 6.Delete from end
+ 7.Add After
+ 8.Add Before
+ 9.Delete Any Number
+ 10.Exit
+ Enter Your Choice:1
+
+ How Many nodes u want to enter:3
+
+ Enter Number:4
+
+ Enter Number:2
+
+ Enter Number:6
+
+************************* Doubly Circular Linked List *************************
+
+
+ 1.Create List
+ 2.Display
+ 3.Add At Beginning
+ 4.Add to End
+ 5.Delete from beginning
+ 6.Delete from end
+ 7.Add After
+ 8.Add Before
+ 9.Delete Any Number
+ 10.Exit
+ Enter Your Choice:2
+4  2  6
+************************* Doubly Circular Linked List *************************
+
+
+ 1.Create List
+ 2.Display
+ 3.Add At Beginning
+ 4.Add to End
+ 5.Delete from beginning
+ 6.Delete from end
+ 7.Add After
+ 8.Add Before
+ 9.Delete Any Number
+ 10.Exit
+ Enter Your Choice:3
+
+ Enter Number To be Inserted:8
+
+************************* Doubly Circular Linked List *************************
+
+
+ 1.Create List
+ 2.Display
+ 3.Add At Beginning
+ 4.Add to End
+ 5.Delete from beginning
+ 6.Delete from end
+ 7.Add After
+ 8.Add Before
+ 9.Delete Any Number
+ 10.Exit
+ Enter Your Choice:9
+
+ Enter Number To be Deleted:6
+
+************************* Doubly Circular Linked List *************************
+
+
+ 1.Create List
+ 2.Display
+ 3.Add At Beginning
+ 4.Add to End
+ 5.Delete from beginning
+ 6.Delete from end
+ 7.Add After
+ 8.Add Before
+ 9.Delete Any Number
+ 10.Exit
+ Enter Your Choice:2
+8  4  2
+************************* Doubly Circular Linked List *************************
+
+
+ 1.Create List
+ 2.Display
+ 3.Add At Beginning
+ 4.Add to End
+ 5.Delete from beginning
+ 6.Delete from end
+ 7.Add After
+ 8.Add Before
+ 9.Delete Any Number
+ 10.Exit
+ Enter Your Choice:10
+
+*****************************************************************************************************************************************

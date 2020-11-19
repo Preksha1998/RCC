@@ -1,0 +1,1986 @@
+*****************************************************************************************************************************************
+NAME    : Preksha Sheth
+ROLL NO : 36
+CLASS   : MCA-III
+SUBJECT : DATA STRUCTURE(DS)
+*****************************************************************************************************************************************
+Q(1): Polynomial Addition using Array.
+*****************************************************************************************************************************************
+#include<stdio.h>
+#include<conio.h>
+
+void main()
+{
+	int i,term1,term2,min,max;
+	int t1[50],t2[50],ans[50];
+
+	printf("Enter Highest degree of first equation: ");
+	scanf("%d",&term1);
+	printf("\nEnter Highest degree of second equation: ");
+	scanf("%d",&term2);
+
+	for(i=0; i<50; i++)
+	{
+		t1[i]=0;
+		t2[i]=0;
+	}
+
+	max=term1>term2?term1:term2;
+
+	printf("\n\nEnter Equation 1:-\n");
+	
+	for(i=0; i<=term1; i++)
+	{
+		printf("\nEnter the Co-Effecient of X^%d: ",i);
+		scanf("%d",&t1[i]);
+	}
+
+	printf("\n\nEnter Equation 2:-\n");
+	
+	for(i=0; i<=term2; i++)
+	{
+		printf("\nEnter the Co-Effecient of X^%d: ",i);
+		scanf("%d",&t2[i]);
+	}
+
+	for(i=0; i<=max; i++)
+	{
+		ans[i]=t1[i]+t2[i];
+	}
+
+	printf("\n\nResult is: ");
+	
+	for(i=max; i>=0; i--)
+	{
+		if(ans[i]!=0)
+		{
+			if(i==0)
+			{
+				if(ans[i]*1<0)
+				printf("%d",ans[i]);
+				else
+				printf("+%d",ans[i]);
+			}
+			else if(i==1)
+			{
+				if(ans[i]*1<0)
+				printf("%dx",ans[i]);
+				else
+				printf("+%dx",ans[i]);
+			}
+			else
+			{
+				if(ans[i]*1<0 || i==max)
+				printf("%dx^%d",ans[i],i);
+				else
+				printf("+%dx^%d",ans[i],i);
+			}
+		}
+	}
+	printf("\n\n");
+}
+
+*****************************************************************************************************************************************
+Output:
+
+Enter Highest degree of first equation: 3
+
+Enter Highest degree of second equation: 2
+
+
+Enter Equation 1:-
+
+Enter the Co-Effecient of X^0: 1
+
+Enter the Co-Effecient of X^1: 2
+
+Enter the Co-Effecient of X^2: 3
+
+Enter the Co-Effecient of X^3: 4
+
+
+Enter Equation 2:-
+
+Enter the Co-Effecient of X^0: 1
+
+Enter the Co-Effecient of X^1: 2
+
+Enter the Co-Effecient of X^2: 3
+
+
+Result is: 4x^3+6x^2+4x+2
+
+Press any key to continue . . .
+
+
+*****************************************************************************************************************************************
+Q(2):Polynomial Addition using linklist
+
+*****************************************************************************************************************************************
+#include<stdio.h>
+#include<malloc.h>
+
+struct mynode
+{
+	int coeff;
+	int power;
+	struct mynode *next;
+};
+
+struct mynode * create_node()
+{
+	struct mynode *node=NULL;
+	node=(struct mynode *)malloc(sizeof(struct mynode));
+	node->next=NULL;
+
+	if(node)
+		return node;
+	else
+		printf("Error.");
+}
+
+void insert_node(struct mynode **head,struct mynode *value)
+{
+	if(*head==NULL)
+	{
+		*head=value;
+	}
+	else
+	{
+		struct mynode *temp=NULL;
+		temp=*head;
+
+		while(temp->next!=NULL)
+		{
+			temp=temp->next;
+		}
+
+		temp->next=value;
+	}
+}
+
+void display(struct mynode *head)
+{
+	struct mynode *anshead=head,*prev,*curr,*forw;
+	prev=NULL;
+	curr=anshead;
+
+	while(curr!=NULL)
+	{
+		forw=curr->next;
+		curr->next=prev;
+		prev=curr;
+		curr=forw;
+	}
+	anshead=prev;
+	head=anshead;
+
+	while(anshead!=NULL)
+	{
+		if(anshead->coeff!=0)
+		{
+			if(anshead->power==0)
+			{
+				if(anshead->coeff>=0 && anshead!=head)
+				{
+					printf("+%d",anshead->coeff);
+				}
+				else
+				{
+					printf("%d",anshead->coeff);
+				}
+			}
+			else if(anshead->power==1)
+			{
+				if(anshead->coeff>=0 && anshead!=head)
+				{
+					printf("+%dx",anshead->coeff);
+				}
+				else
+				{
+					printf("%dx",anshead->coeff);
+				}
+			}
+			else
+			{
+				if(anshead->coeff>=0 && anshead!=head)
+				{
+					printf("+%dx%d",anshead->coeff,anshead->power);
+				}
+				else
+				{
+					printf("%dx%d",anshead->coeff,anshead->power);
+				}
+			}
+		}
+		anshead=anshead->next;
+	}
+}
+
+void getdata(struct mynode **head,int terms)
+{
+	int i;
+	struct mynode *crn,*poly1=*head;
+
+	for(i=0; i<=terms; i++)
+	{
+		if(poly1==NULL)
+		{
+			poly1=create_node();
+			poly1->power=i;
+			printf("\nEnter the Co-Effecient of X^%d: ",i);
+			scanf("%d",&poly1->coeff);
+		}
+		else
+		{
+			crn=create_node();
+			printf("\nEnter the Co-Effecient of X^%d: ",i);
+			scanf("%d",&crn->coeff);
+			crn->power=i;
+			insert_node(&poly1,crn);		
+		}
+	}
+	*head=poly1;
+}
+
+
+void main()
+{
+	int term1,term2;
+	struct mynode *poly1=NULL,*poly2=NULL,*crn=NULL,*p,*q,*ans=NULL;
+
+	printf("Enter Highest Power in Polynomial 1: ");
+	scanf("%d",&term1);
+	printf("\n\nEnter Highest Power in Polynomial 2: ");
+	scanf("%d",&term2);
+
+	printf("\n\nPolynomial 1:-\n");
+	getdata(&poly1,term1);
+
+	printf("\n\nPolynomial 2:-\n");
+	getdata(&poly2,term2);
+
+	p=poly1;
+	q=poly2;
+
+	while(p!=NULL && q!=NULL)
+	{
+		crn=create_node();
+
+		if(p->power==q->power)
+		{
+			crn->coeff=p->coeff+q->coeff;
+			crn->power=p->power;
+			crn->next=NULL;
+			p=p->next;
+			q=q->next;
+		}
+		else if(p->power>q->power)
+		{
+			crn->coeff=p->coeff;
+			crn->power=p->power;
+			crn->next=NULL;
+			p=p->next;
+		}
+		else if(p->power<q->power)
+		{
+			crn->coeff=q->coeff;
+			crn->power=q->power;
+			crn->next=NULL;
+			q=q->next;
+		}
+
+		if(ans==NULL)
+		{
+			ans=crn;
+		}
+		else
+		{
+			insert_node(&ans,crn);
+		}
+	}
+
+	while(p!=NULL || q!=NULL)
+	{
+		crn=create_node();
+
+		if(p!=NULL)
+		{
+			crn->coeff=p->coeff;
+			crn->power=p->power;
+			crn->next=NULL;
+			insert_node(&ans,crn);
+			p=p->next;
+		}
+		
+		if(q!=NULL)
+		{
+			crn->coeff=q->coeff;
+			crn->power=q->power;
+			crn->next=NULL;
+			insert_node(&ans,crn);
+			q=q->next;
+		}
+	}
+
+	printf("\n\nAnswer: ");
+	display(ans);
+	printf("\n\n");
+}
+
+*****************************************************************************************************************************************
+Output:
+Enter Highest Power in Polynomial 1: 3
+
+
+Enter Highest Power in Polynomial 2: 2
+
+
+Polynomial 1:-
+
+Enter the Co-Effecient of X^0: 1
+
+Enter the Co-Effecient of X^1: 2
+
+Enter the Co-Effecient of X^2: 3
+
+Enter the Co-Effecient of X^3: 4
+
+
+Polynomial 2:-
+
+Enter the Co-Effecient of X^0: 5
+
+Enter the Co-Effecient of X^1: 6
+
+Enter the Co-Effecient of X^2: 7
+
+
+Answer: 4x3+10x2+8x+6
+
+Press any key to continue . . .
+
+*****************************************************************************************************************************************
+Q(3):Polynomial Mutliplication using Array..
+
+*****************************************************************************************************************************************
+
+#include<stdio.h>
+#include<conio.h>
+
+void display(int arr[],int pos)
+{
+	int i;
+
+	for(i=pos; i>=0; i--)
+	{
+		if(arr[i]!=0)
+		{
+			if(i==0)
+			{
+				if(arr[i]*1<0)
+				printf("%d",arr[i]);
+				else
+				printf("+%d",arr[i]);
+			}
+			else if(i==1)
+			{
+				if(arr[i]*1<0)
+				printf("%dx",arr[i]);
+				else
+				printf("+%dx",arr[i]);
+			}
+			else
+			{
+				if(arr[i]*1<0 || i==pos)
+				printf("%dx^%d",arr[i],i);
+				else
+				printf("+%dx^%d",arr[i],i);
+			}
+		}
+	}
+}
+
+void main()
+{
+	int i,j,term1,term2,sum,max;
+	int t1[50],t2[50],ans[50];
+
+	printf("******************* Polynomial Multiplication *******************\n");
+	printf("\nNote:- Enter 0 wherever missing terms are there.\n\n");
+	printf("\nEnter Highest degree of first equation: ");
+	scanf("%d",&term1);
+	printf("\nEnter Highest degree of second equation: ");
+	scanf("%d",&term2);
+
+	for(i=0; i<50; i++)
+	{
+		t1[i]=0;
+		t2[i]=0;
+		ans[i]=0;
+	}
+
+	max=term1>term2?term1:term2;
+
+	printf("\n\nTerm 1:-\n");
+	
+	for(i=0; i<=term1; i++)
+	{
+		printf("\nEnter the Co-Effecient of X^%d: ",i);
+		scanf("%d",&t1[i]);
+	}
+
+	printf("\n\nTerm 2:-\n");
+	
+	for(i=0; i<=term2; i++)
+	{
+		printf("\nEnter the Co-Effecient of X^%d: ",i);
+		scanf("%d",&t2[i]);
+	}
+
+	for(i=0; i<=term1; i++)
+	{
+		for(j=0; j<=term2; j++) 
+		{
+			ans[i+j]+=t1[i]*t2[j];
+		}
+	}
+
+	printf("\n\nAnswer: ");
+
+	display(ans,term1+term2);
+
+	printf("\n\n");
+}
+
+*****************************************************************************************************************************************
+Output:
+
+******************* Polynomial Multiplication *******************
+
+Note:- Enter 0 wherever missing terms are there.
+
+
+Enter Highest degree of first equation: 2
+
+Enter Highest degree of second equation: 3
+
+
+Term 1:-
+
+Enter the Co-Effecient of X^0: 1
+
+Enter the Co-Effecient of X^1: 2
+
+Enter the Co-Effecient of X^2: 3
+
+
+Term 2:-
+
+Enter the Co-Effecient of X^0: 2
+
+Enter the Co-Effecient of X^1: 3
+
+Enter the Co-Effecient of X^2: 4
+
+Enter the Co-Effecient of X^3: 5
+
+
+Answer: 15x^5+22x^4+22x^3+16x^2+7x+2
+
+Press any key to continue . . .
+
+*****************************************************************************************************************************************
+Q(4): Polynomial Multiplication using linked list ..
+
+*****************************************************************************************************************************************
+#include<stdio.h>
+#include<malloc.h>
+
+struct mynode
+{
+	int coeff;
+	int power;
+	struct mynode *next;
+};
+
+struct mynode * create_node()
+{
+	struct mynode *node=NULL;
+	node=(struct mynode *)malloc(sizeof(struct mynode));
+	node->next=NULL;
+	if(node)
+		return node;
+	else
+		printf("Error.");
+}
+
+void insert_node(struct mynode **head,struct mynode *value)
+{
+	if(*head==NULL)
+	{
+		*head=value;
+	}
+	else
+	{
+		struct mynode *temp=NULL;
+		temp=*head;
+
+		while(temp->next!=NULL)
+		{
+			temp=temp->next;
+		}
+
+		temp->next=value;
+	}
+}
+
+void multiply(struct mynode **poly1,struct mynode **poly2,struct mynode **head)
+{
+	struct mynode *crn=NULL,*p,*q;
+
+	p=*poly1;
+	
+	while(p!=NULL)
+	{
+		q=*poly2;
+
+		while(q!=NULL)
+		{
+			crn=create_node();
+			crn->coeff=p->coeff*q->coeff;
+			crn->power=p->power+q->power;
+			
+			if(*head==NULL)
+			{
+				crn->next=NULL;
+				*head=crn;
+			}
+			else
+			{
+				int flag=0;
+				struct mynode *temp=*head;
+		
+				while(temp!=NULL)
+				{
+					if(temp->power==crn->power)
+					{
+						temp->coeff+=crn->coeff;
+						flag=1;
+					}
+					temp=temp->next;
+				}
+
+				if(flag!=1)
+				{
+					crn->next=*head;
+					*head=crn;
+				}
+			}
+			q=q->next;
+		}
+		p=p->next;
+	}
+}
+
+void display(struct mynode *head)
+{
+	struct mynode *anshead=head;
+
+	while(anshead!=NULL)
+	{
+		if(anshead->coeff!=0)
+		{
+			if(anshead->power==0)
+			{
+				if(anshead->coeff>=0 && anshead!=head)
+				{
+					printf("+%d",anshead->coeff);
+				}
+				else
+				{
+					printf("%d",anshead->coeff);
+				}
+			}
+			else if(anshead->power==1)
+			{
+				if(anshead->coeff>=0 && anshead!=head)
+				{
+					printf("+%dx",anshead->coeff);
+				}
+				else
+				{
+					printf("%dx",anshead->coeff);
+				}
+			}
+			else
+			{
+				if(anshead->coeff>=0 && anshead!=head)
+				{
+					printf("+%dx^%d",anshead->coeff,anshead->power);
+				}
+				else
+				{
+					printf("%dx^%d",anshead->coeff,anshead->power);
+				}
+			}
+		}
+		anshead=anshead->next;
+	}
+}
+
+void getdata(struct mynode **head,int terms)
+{
+	int i;
+	struct mynode *crn,*poly1=*head;
+
+	for(i=0; i<=terms; i++)
+	{
+		if(poly1==NULL)
+		{
+			poly1=create_node();
+			poly1->power=i;
+			printf("\nEnter the Co-Effecient of X^%d: ",i);
+			scanf("%d",&poly1->coeff);
+		}
+		else
+		{
+			crn=create_node();
+			printf("\nEnter the Co-Effecient of X^%d: ",i);
+			scanf("%d",&crn->coeff);
+			crn->power=i;
+			insert_node(&poly1,crn);		
+		}
+	}
+	*head=poly1;
+}
+
+
+void main()
+{
+	int term1,term2;
+	struct mynode *poly1=NULL,*poly2=NULL,*ans=NULL;
+
+	printf("Enter Highest Power in Polynomial 1: ");
+	scanf("%d",&term1);
+	printf("\n\nEnter Highest Power in Polynomial 2: ");
+	scanf("%d",&term2);
+
+	printf("\n\nPolynomial 1:-\n");
+	getdata(&poly1,term1);
+
+	printf("\n\nPolynomial 2:-\n");
+	getdata(&poly2,term2);
+
+	multiply(&poly1,&poly2,&ans);
+
+	printf("\nAnswer: ");
+	display(ans);
+	printf("\n\n");
+}
+
+*****************************************************************************************************************************************
+Ouput:
+
+Enter Highest Power in Polynomial 1: 2
+
+
+Enter Highest Power in Polynomial 2: 3
+
+
+Polynomial 1:-
+
+Enter the Co-Effecient of X^0: 1
+
+Enter the Co-Effecient of X^1: 2
+
+Enter the Co-Effecient of X^2: 3
+
+
+Polynomial 2:-
+
+Enter the Co-Effecient of X^0: 4
+
+Enter the Co-Effecient of X^1: 5
+
+Enter the Co-Effecient of X^2: 6
+
+Enter the Co-Effecient of X^3: 7
+
+Answer: 21x^5+32x^4+34x^3+28x^2+13x+4
+
+Press any key to continue . . .
+*****************************************************************************************************************************************
+Q(5): Singly Linked List (3 Insertions, 3 Deletions, Counting, Display List)..
+
+*****************************************************************************************************************************************
+#include<stdio.h>
+#include<malloc.h>
+
+struct mynode
+{
+	int value;
+	struct mynode *next;
+};
+
+struct mynode * create_node()
+{
+	struct mynode *node=NULL;
+	node=(struct mynode *)malloc(sizeof(struct mynode));
+	
+	printf("\n\nEnter the value to insert: ");
+	scanf("%d",&node->value);
+	
+	node->next=NULL;
+	if(node)
+		return node;
+	else
+		printf("Error.");
+}
+
+void ins_beg(struct mynode **head)
+{
+	struct mynode *temp;
+
+	temp=create_node();
+	temp->next=*head;
+	*head=temp;
+	printf("\n\nValue %d Inserted Successfully!",temp->value);
+}
+
+void ins_end(struct mynode **head)
+{
+	struct mynode *temp=*head;
+
+	while(temp->next!=NULL)
+	{
+		temp=temp->next;
+	}
+
+	temp->next=create_node();
+	printf("\n\nValue %d Inserted Successfully!",temp->next->value);
+}
+
+void ins_mid(struct mynode **head)
+{
+	int pos,i,total=0,val;
+	struct mynode *temp,*cur;
+
+	printf("\nEnter position number to insert (starting from 1): ");
+	scanf("%d",&pos);
+
+	total=get_count(*head);
+
+	if(*head==NULL || pos<2)
+	{
+		ins_beg(head);
+	}
+	else if(pos>total)
+	{
+		ins_end(head);
+	}
+	else
+	{
+		cur=*head;
+
+		for(i=1; i<pos-1; i++)
+		{
+			cur=cur->next;
+		}
+
+		temp=cur->next;
+		cur->next=create_node();
+		cur=cur->next;
+		cur->next=temp;
+		printf("\n\nValue inserted successfully.");
+	}
+}
+
+void del_beg(struct mynode **head)
+{
+	int val;
+	struct mynode *temp=*head;
+
+	if(*head==NULL)
+	{
+		printf("\n\nLinked List is already empty!");
+	}
+	else
+	{
+		*head=temp->next;
+		val=temp->value;
+		free(temp);
+		printf("\n\nValue %d deleted successfully!",val);
+	}
+}
+
+void del_end(struct mynode **head)
+{
+	int val;
+	struct mynode *cur,*prev;
+
+	if(*head==NULL)
+	{
+		printf("\n\nLinked List is already empty!");
+	}
+	else
+	{
+		cur=prev=*head;
+
+		while(cur->next!=NULL)
+		{
+			prev=cur;
+			cur=cur->next;
+		}
+		prev->next=NULL;
+		val=cur->value;
+		free(cur);
+		printf("\n\nValue %d deleted successfully!",val);
+	}
+}
+
+void del_mid(struct mynode **head)
+{
+	int pos,i,total=0,val;
+	struct mynode *temp,*cur;
+
+	total=get_count(*head);
+
+	printf("\nEnter position number to delete (starting from 1): ");
+	scanf("%d",&pos);
+
+	if(*head==NULL)
+	{
+		printf("\n\nLinked List is already empty!");	
+	}
+	else if(pos<2)
+	{
+		del_beg(head);
+	}
+	else if(pos<=total)
+	{
+		cur=*head;
+
+		for(i=1; i<pos-1; i++)
+		{
+			cur=cur->next;
+		}
+
+		temp=cur->next;
+		cur->next=temp->next;
+		printf("\n\nValue %d deleted successfully.",temp->value);
+		free(temp);
+	}
+	else
+	{
+		printf("\n\nInvalid Position, Please Try Again!");
+	}
+}
+
+int get_count(struct mynode *head)
+{
+	int count=0;
+
+	if(head==NULL)
+	{
+		return count;
+	}
+	else
+	{
+		while(head)
+		{
+			count++;
+			head=head->next;
+		}
+		return count;
+	}
+}
+
+void display(struct mynode *head)
+{
+	int i=1;
+
+	if(head==NULL)
+	{
+		printf("\n\nList is empty!");
+	}
+	else
+	{
+		printf("\n\n//========================= Displaying Data =========================//\n\n");
+		while(head!=NULL)
+		{
+			printf("\nValue %d: %d",i,head->value);
+			i++;
+			head=head->next;
+		}
+		printf("\n\n//==================================================================//");
+	}
+}
+
+void main()
+{
+	int input=0,cnt=0;
+	struct mynode *head=NULL;
+
+	while(input!=9)
+	{
+		printf("\n\t\t\t*** LINKED LIST ***\n");
+		printf("*******************************************************************\n");
+		printf("\n1. Insert at Beginning.");
+		printf("\n2. Insert at Middle.");
+		printf("\n3. Insert at End.");
+		printf("\n4. Delete from Beginning.");
+		printf("\n5. Delete from Middle.");
+		printf("\n6. Delete from End.");
+		printf("\n7. Count no of Nodes.");
+		printf("\n8. Display Nodes.");
+		printf("\n9. Exit.");
+		printf("\n\nEnter your choice: ");
+		scanf("%d",&input);
+
+		switch(input)
+		{
+			case 1:
+				ins_beg(&head);
+				break;
+			case 2:
+				ins_mid(&head);
+				break;
+			case 3:
+				ins_end(&head);
+				break;
+			case 4:
+				del_beg(&head);
+				break;
+			case 5:
+				del_mid(&head);
+				break;
+			case 6:
+				del_end(&head);
+				break;
+			case 7:
+				cnt=get_count(head);
+				printf("\n\nTotal Nodes in Linked List: %d\n",cnt);
+				break;
+			case 8:
+				display(head);
+				break;
+			case 9:
+				exit(0);
+				break;
+		}
+		printf("\n\n");
+	}
+}
+*****************************************************************************************************************************************
+output:
+
+
+                        *** LINKED LIST ***
+*******************************************************************
+
+1. Insert at Beginning.
+2. Insert at Middle.
+3. Insert at End.
+4. Delete from Beginning.
+5. Delete from Middle.
+6. Delete from End.
+7. Count no of Nodes.
+8. Display Nodes.
+9. Exit.
+
+Enter your choice: 1
+
+
+Enter the value to insert: 11
+
+
+Value 11 Inserted Successfully!
+
+
+                        *** LINKED LIST ***
+*******************************************************************
+
+1. Insert at Beginning.
+2. Insert at Middle.
+3. Insert at End.
+4. Delete from Beginning.
+5. Delete from Middle.
+6. Delete from End.
+7. Count no of Nodes.
+8. Display Nodes.
+9. Exit.
+
+Enter your choice: 3
+
+
+Enter the value to insert: 12
+
+
+Value 12 Inserted Successfully!
+
+
+                        *** LINKED LIST ***
+*******************************************************************
+
+1. Insert at Beginning.
+2. Insert at Middle.
+3. Insert at End.
+4. Delete from Beginning.
+5. Delete from Middle.
+6. Delete from End.
+7. Count no of Nodes.
+8. Display Nodes.
+9. Exit.
+
+Enter your choice: 8
+
+
+//========================= Displaying Data =========================//
+
+
+Value 1: 11
+Value 2: 12
+
+//==================================================================//
+
+
+                        *** LINKED LIST ***
+*******************************************************************
+
+1. Insert at Beginning.
+2. Insert at Middle.
+3. Insert at End.
+4. Delete from Beginning.
+5. Delete from Middle.
+6. Delete from End.
+7. Count no of Nodes.
+8. Display Nodes.
+9. Exit.
+
+Enter your choice: 2
+
+Enter position number to insert (starting from 1): 2
+
+
+Enter the value to insert: 13
+
+
+Value inserted successfully.
+
+
+                        *** LINKED LIST ***
+*******************************************************************
+
+1. Insert at Beginning.
+2. Insert at Middle.
+3. Insert at End.
+4. Delete from Beginning.
+5. Delete from Middle.
+6. Delete from End.
+7. Count no of Nodes.
+8. Display Nodes.
+9. Exit.
+
+Enter your choice: 8
+
+
+//========================= Displaying Data =========================//
+
+
+Value 1: 11
+Value 2: 13
+Value 3: 12
+
+//==================================================================//
+
+
+                        *** LINKED LIST ***
+*******************************************************************
+
+1. Insert at Beginning.
+2. Insert at Middle.
+3. Insert at End.
+4. Delete from Beginning.
+5. Delete from Middle.
+6. Delete from End.
+7. Count no of Nodes.
+8. Display Nodes.
+9. Exit.
+
+Enter your choice: 7
+
+
+Total Nodes in Linked List: 3
+
+
+
+                        *** LINKED LIST ***
+*******************************************************************
+
+1. Insert at Beginning.
+2. Insert at Middle.
+3. Insert at End.
+4. Delete from Beginning.
+5. Delete from Middle.
+6. Delete from End.
+7. Count no of Nodes.
+8. Display Nodes.
+9. Exit.
+
+Enter your choice: 5
+
+Enter position number to delete (starting from 1): 2
+
+
+Value 13 deleted successfully.
+
+
+                        *** LINKED LIST ***
+*******************************************************************
+
+1. Insert at Beginning.
+2. Insert at Middle.
+3. Insert at End.
+4. Delete from Beginning.
+5. Delete from Middle.
+6. Delete from End.
+7. Count no of Nodes.
+8. Display Nodes.
+9. Exit.
+
+Enter your choice: 6
+
+
+Value 12 deleted successfully!
+
+
+                        *** LINKED LIST ***
+*******************************************************************
+
+1. Insert at Beginning.
+2. Insert at Middle.
+3. Insert at End.
+4. Delete from Beginning.
+5. Delete from Middle.
+6. Delete from End.
+7. Count no of Nodes.
+8. Display Nodes.
+9. Exit.
+
+Enter your choice: 4
+
+
+Value 11 deleted successfully!
+
+
+                        *** LINKED LIST ***
+*******************************************************************
+
+1. Insert at Beginning.
+2. Insert at Middle.
+3. Insert at End.
+4. Delete from Beginning.
+5. Delete from Middle.
+6. Delete from End.
+7. Count no of Nodes.
+8. Display Nodes.
+9. Exit.
+
+Enter your choice: 9
+Press any key to continue . . .
+*****************************************************************************************************************************************
+Q(6): Stack using Array...
+*****************************************************************************************************************************************
+#include<stdio.h>
+#include<conio.h>
+int top = -1,ch=0,n;
+int stack[100];
+	
+void push()
+{
+	int val;
+	if(top >= n-1)
+	{
+		printf("STACK IS OVERFLOW..");
+	}
+	else
+	{
+		printf("Enter Value :");
+		scanf("%d",&val);
+		top++;
+		stack[top] = val;
+	}
+}
+
+void pop()
+{
+	if(top <= -1)
+	{
+		printf("\nStack is Underflow..");
+	}
+	else
+	{
+		printf("poped element = %d",stack[top]);
+		top--;
+	}
+}
+
+void display()
+{
+	int i;
+	if(top>= 0)
+	{
+		printf("\nElements in the STACK\n\n");
+		for(i = top; i >= 0; i--)
+		{
+			printf("%d\n",stack[i]);
+		}
+	}
+	else
+	{
+		printf("Stack is already empty...");
+	}
+}
+
+void main()
+{
+	printf("Enter The Size of stack :");
+	scanf("%d",&n);
+	while(ch != 4)
+	{
+		printf("\n1.PUSH\n2.POP\n3.DISPLAY\n4.EXIT\n");
+		printf("Enter Your Choice : ");
+		scanf("%d",&ch);
+		switch(ch)
+		{
+			case 1 :
+				{
+					push();
+					break;
+				}
+			case 2 :
+				{
+					pop();
+					break;
+				}
+			case 3 : 
+				{
+					display();
+					break;
+				}
+			case 4 :
+				{
+					printf("TATA...Exiting...");
+					break;
+				}
+			default :
+			    {
+			        printf("Enter Valid Choice Between 1 to 4...");
+			    }
+		}
+	}
+}
+*****************************************************************************************************************************************
+output:
+
+Enter The Size of stack :5
+
+1.PUSH
+2.POP
+3.DISPLAY
+4.EXIT
+Enter Your Choice : 1
+Enter Value :11
+
+1.PUSH
+2.POP
+3.DISPLAY
+4.EXIT
+Enter Your Choice : 1
+Enter Value :22
+
+1.PUSH
+2.POP
+3.DISPLAY
+4.EXIT
+Enter Your Choice : 1
+Enter Value :33
+
+1.PUSH
+2.POP
+3.DISPLAY
+4.EXIT
+Enter Your Choice : 3
+
+Elements in the STACK
+
+33
+22
+11
+
+1.PUSH
+2.POP
+3.DISPLAY
+4.EXIT
+Enter Your Choice : 1
+Enter Value :44
+
+1.PUSH
+2.POP
+3.DISPLAY
+4.EXIT
+Enter Your Choice : 1
+Enter Value :55
+
+1.PUSH
+2.POP
+3.DISPLAY
+4.EXIT
+Enter Your Choice : 1
+STACK IS OVERFLOW..
+1.PUSH
+2.POP
+3.DISPLAY
+4.EXIT
+Enter Your Choice : 2
+poped element = 55
+1.PUSH
+2.POP
+3.DISPLAY
+4.EXIT
+Enter Your Choice : 2
+poped element = 44
+1.PUSH
+2.POP
+3.DISPLAY
+4.EXIT
+Enter Your Choice : 2
+poped element = 33
+1.PUSH
+2.POP
+3.DISPLAY
+4.EXIT
+Enter Your Choice : 3
+
+Elements in the STACK
+
+22
+11
+
+1.PUSH
+2.POP
+3.DISPLAY
+4.EXIT
+Enter Your Choice : 4
+TATA...Exiting...Press any key to continue . . .
+*****************************************************************************************************************************************
+Q(7):Stack with LL.
+*****************************************************************************************************************************************
+/*2.  Write a program to create a singly linked list and display 
+its elements in LIFO pattern.Also display the number of elements in the list.*/
+
+#include<stdio.h>
+#include<stdlib.h>
+struct stack {
+	int no;
+	struct stack *next;
+};
+
+struct stack *insert_node(struct stack *first)
+{
+	struct stack *temp = (struct stack*)malloc(sizeof(struct stack));
+	printf("Enter the elements:\n");
+	scanf("%d",&temp->no);
+	temp->next = NULL;
+	if(first == NULL)
+	{
+		first = temp ;
+	}
+	else
+	{
+		temp->next = first ;
+		first = temp;
+	}
+	return first;
+}
+
+struct stack* delete_first(struct stack *first )
+{
+	struct stack *temp;
+	if(first == NULL)
+	{
+		printf("Linkedlist is empty:\n");
+	}
+	else{
+		if(first->next == NULL)
+		{
+			free(first);
+			first = NULL;
+			printf("Now stack is empty:\n");
+		}
+		else
+		{
+			temp = first->next;
+			free(first);
+			first = temp;
+			printf("Node deleted successfully:\n");
+		}
+		return(temp);	
+	}	
+}
+
+void display(struct stack *first)
+{
+	struct stack *temp =first;
+	if(first ==  NULL)
+	{
+		printf("Linkedlist is empty:\n\n");
+	}
+	else
+	{
+		printf("\n========================\n");
+		printf("NO");
+		printf("\n========================\n");
+		while(temp != NULL){
+			printf("%d\n",temp->no);
+			temp = temp->next;	
+		}
+	}
+}
+void main()
+{
+	struct stack *first = NULL;
+	int i,n,no = 1,cnt = 0;	
+	printf("\n\t\t\t*** STACK USING LINKED LIST ***\n");
+		while(no != 0)
+		{
+			printf("\n\n1-> Enter the linked list in LIFO paattern:\n");
+			printf("2-> Display the linkedlist:\n");
+			printf("3-> Delete the first node from the list:\n");
+			printf("0-> Exit\n");
+			printf("\nEnter your choice:");
+			scanf("%d",&no);
+			if(no == 1)
+			{
+				first = insert_node(first);
+				cnt++;
+				printf("\nNode inserted successfully:\n");
+			}
+			if(no == 2)
+			{
+				display(first);
+				printf("\n Total no. of element in the list is %d ",cnt);
+			}
+			if(no == 3)
+			{
+				first = delete_first(first);
+				if(first != NULL)
+				{
+					cnt--;
+				}
+			}
+			if(no == 0){
+				exit(0);
+			}
+		}
+		
+}
+
+*****************************************************************************************************************************************
+
+                        *** STACK USING LINKED LIST ***
+
+
+1-> Enter the linked list in LIFO paattern:
+2-> Display the linkedlist:
+3-> Delete the first node from the list:
+0-> Exit
+
+Enter your choice:1
+Enter the elements:
+11
+
+Node inserted successfully:
+
+
+1-> Enter the linked list in LIFO paattern:
+2-> Display the linkedlist:
+3-> Delete the first node from the list:
+0-> Exit
+
+Enter your choice:1
+Enter the elements:
+12
+
+Node inserted successfully:
+
+
+1-> Enter the linked list in LIFO paattern:
+2-> Display the linkedlist:
+3-> Delete the first node from the list:
+0-> Exit
+
+Enter your choice:2
+
+========================
+NO
+========================
+12
+11
+
+ Total no. of element in the list is 2
+
+1-> Enter the linked list in LIFO paattern:
+2-> Display the linkedlist:
+3-> Delete the first node from the list:
+0-> Exit
+
+Enter your choice:3
+Node deleted successfully:
+
+
+1-> Enter the linked list in LIFO paattern:
+2-> Display the linkedlist:
+3-> Delete the first node from the list:
+0-> Exit
+
+Enter your choice:2
+
+========================
+NO
+========================
+11
+
+ Total no. of element in the list is 1
+
+1-> Enter the linked list in LIFO paattern:
+2-> Display the linkedlist:
+3-> Delete the first node from the list:
+0-> Exit
+
+Enter your choice:0
+Press any key to continue . . .
+*****************************************************************************************************************************************
+Q(8): Factorial with Recursion..
+*****************************************************************************************************************************************
+#include<stdio.h>
+#include<conio.h>
+
+int factorial(int n)
+{
+	if(n >= 1)
+	{
+		return n * factorial(n-1);
+	}
+	else
+	{
+		return 1;
+	}
+}
+
+void main()
+{
+	int n;
+	printf("Enter Number :");
+	scanf("%d",&n);
+	printf("\nFactorial of %d is %d..\n",n,factorial(n));
+}
+*****************************************************************************************************************************************
+output:
+
+Enter Number :5
+
+Factorial of 5 is 120..
+Press any key to continue . . .
+*****************************************************************************************************************************************
+Q(9): Fibonacci Series with Recursion..
+*****************************************************************************************************************************************
+#include<stdio.h>
+#include<conio.h>
+
+int febonacci(int n)
+{
+	if(n <= 1)
+	{
+		return n;
+	}
+	else
+	{
+		return febonacci(n - 1) + febonacci(n - 2);
+	}
+}
+void main()
+{
+	int n,m= 0,i;
+	printf("Enter Number of Terms :");
+	scanf("%d",&n);
+	printf("\nFebonacci Series : \n");
+	for(i = 0; i <= n; i++)
+	{
+		printf("\t%d",febonacci(m));
+		m++;
+	}
+}
+
+*****************************************************************************************************************************************
+output:
+
+Enter Number of Terms :10
+
+Febonacci Series :
+        0       1       1       2       3       5       8       13      21      34      55Press any key to continue . . .
+*****************************************************************************************************************************************
+Q(10):Any other Series with Recursion(Sum of Nth first odd numbers)..
+*****************************************************************************************************************************************
+#include<stdio.h>
+#include<conio.h>
+
+int sum_odd_no(int n)
+{
+	if(n == 1)
+	{
+		return 1;
+	}
+	else
+	{
+		return(2 * n - 1 + sum_odd_no(n - 1));//1+3+5+7+9 if n = 5 sum = 25
+	}
+}
+
+void main()
+{
+	int n;
+	printf("Enter Nth term : ");
+	scanf("%d",&n);
+	printf("\nSum of Nth Odd Numbers = %d\n",sum_odd_no(n));
+}
+*****************************************************************************************************************************************
+output:
+
+Enter Nth term : 5
+
+Sum of Nth Odd Numbers = 25
+Press any key to continue . . .
+*****************************************************************************************************************************************
+Q(11): Infix to Postfix Conversion
+*****************************************************************************************************************************************
+#include<stdio.h>
+#include<stdlib.h>
+
+int prec(char c)
+{
+	if(c=='/' || c=='*')
+	{
+		return 2;
+	}
+	else if(c=='+' || c=='-')
+	{
+		return 1;
+	}
+	else
+	{
+		return 0;
+	}
+}
+
+void main()
+{
+	int i=0,top=0;
+	char str[50],stack[50];
+
+	printf("Enter Infix Equation: ");
+	scanf("%s",str);
+
+	printf("\n\nPostfix is: ");
+	while(str[i])
+	{
+		if((str[i]>='A' && str[i]<='Z') || (str[i]>='a' && str[i]<='z'))
+		{
+			printf("%c",str[i]);
+		}
+		else if(str[i]=='(' || str[i]=='[' || str[i]=='{')
+		{
+			top++;
+			stack[top]=str[i];
+		}
+		else if(str[i]==')' || str[i]==']' || str[i]=='}')
+		{
+			switch(str[i])
+			{
+				case ')':
+					while(stack[top]!='(')
+					{
+						printf("%c",stack[top]);
+						top--;
+					}
+					top--;
+					break;
+				case ']':
+					while(stack[top]!=']')
+					{
+						printf("%c",stack[top]);
+						top--;
+					}
+					top--;
+					break;
+				case '}':
+					while(stack[top]!='}')
+					{
+						printf("%c",stack[top]);
+						top--;
+					}
+					top--;
+					break;
+			}
+		}
+		else if(str[i]=='+' || str[i]=='-' || str[i]=='*' || str[i]=='/')
+		{
+			while(prec(str[i])<=prec(stack[top]))
+			{
+				printf("%c",stack[top]);
+				top--;
+			}
+			top++;
+			stack[top]=str[i];			
+		}
+		else
+		{
+			printf("\n\nReason: %d",str[i]);
+			printf("\n\nError, Invalid Character Found, Exiting...");
+			exit(0);
+		}
+		i++;
+	}
+
+	// Print Left out elements in stack.
+	while(top!=0)
+	{
+		printf("%c",stack[top]);
+		top--;
+	}
+	printf("\n\n");
+}
+
+*****************************************************************************************************************************************
+Output:
+
+Enter Infix Equation: (A+((B+C)+(D+E)*F)/G)
+
+Postfix is: ABC+DE+F*+G/+
+*****************************************************************************************************************************************
+Q(13): Simple queue using array..
+*****************************************************************************************************************************************
+#include<stdio.h>
+#include<conio.h>
+int rear = -1,front = -1,val = 0,max = 10;
+	int arr[100];
+	
+void push()
+{
+	if(rear == max - 1)
+	{
+		printf("\n\t QUEUE is OVERFLOW....\n");
+	}
+	else
+	{
+		if(front == -1)
+		{
+			front++;
+		}
+		rear++;
+		//printf("\nvalue of front is %d",front);
+		//printf("\nValue of rear is %d",rear);
+		printf("\nEnter value to Insert =  ");
+		scanf("%d",&val);
+		//printf("val = %d",val);
+		arr[rear]=val;
+		//printf("\narr[rear] = %d",arr[rear]);
+	}
+}
+
+void pop()
+{
+	if(front==-1)
+	{
+		printf("\n\tQUEUE is UNDERFLOW..\n");
+	}
+	else if(front==rear)
+	{
+		printf("\n\tQUEUE is EMPTY..\n");
+	}
+	else
+	{
+		val = arr[front];
+		front++;
+		printf("\nPOPED Element = %d",arr[front-1]);
+	}			
+}
+
+void display()
+{
+	int i = front;
+	printf("\n\t\t*** Display Data ***\n\n");
+	for(i = front; i <= rear; i++)
+	{
+		printf("\nElement of %d is  %d",i,arr[i]);
+	}
+	/*while(i <= rear)
+	{
+		printf("%d\n",arr[i]);
+		i++;
+	}*/
+}
+void main()
+{
+	int choice = -1;
+
+	printf("\n\t\t\t*** Queue using Array ***\n");
+	//printf("Enter Max Value :");
+	//scanf("%d",&max);
+
+	while(choice != 4)
+	{
+		printf("\n1. Insert Element..\n2. Delete Element\n3. Display Element\n4.Exit\n");
+		printf("\nEnter Your Choice : ");
+		scanf("%d",&choice);
+		switch(choice)
+		{
+			case 1 :
+				{
+					push();
+					break;
+				}
+			case 2 :
+				{
+					pop();
+					break;
+				}
+			case 3 : 
+				{
+					display();
+					break;
+				}
+			case 4 :
+				{
+					exit(0);
+					break;
+				}
+			default :
+				{
+					printf("\nInvalid Input..\n");
+				}
+		}
+	}
+}
+*****************************************************************************************************************************************
+output:
+
+
+                        *** Queue using Array ***
+
+1. Insert Element..
+2. Delete Element
+3. Display Element
+4.Exit
+
+Enter Your Choice : 2
+
+        QUEUE is UNDERFLOW..
+
+1. Insert Element..
+2. Delete Element
+3. Display Element
+4.Exit
+
+Enter Your Choice : 1
+
+Enter value to Insert =  11
+
+1. Insert Element..
+2. Delete Element
+3. Display Element
+4.Exit
+
+Enter Your Choice : 1
+
+Enter value to Insert =  12
+
+1. Insert Element..
+2. Delete Element
+3. Display Element
+4.Exit
+
+Enter Your Choice : 1
+
+Enter value to Insert =  13
+
+1. Insert Element..
+2. Delete Element
+3. Display Element
+4.Exit
+
+Enter Your Choice : 3
+
+                *** Display Data ***
+
+
+Element of 0 is  11
+Element of 1 is  12
+Element of 2 is  13
+1. Insert Element..
+2. Delete Element
+3. Display Element
+4.Exit
+
+Enter Your Choice : 2
+
+POPED Element = 11
+1. Insert Element..
+2. Delete Element
+3. Display Element
+4.Exit
+
+Enter Your Choice : 3
+
+                *** Display Data ***
+
+
+Element of 1 is  12
+Element of 2 is  13
+1. Insert Element..
+2. Delete Element
+3. Display Element
+4.Exit
+
+Enter Your Choice : 2
+
+POPED Element = 12
+1. Insert Element..
+2. Delete Element
+3. Display Element
+4.Exit
+
+Enter Your Choice : 3
+
+                *** Display Data ***
+
+
+Element of 2 is  13
+1. Insert Element..
+2. Delete Element
+3. Display Element
+4.Exit
+
+Enter Your Choice : 2
+
+        QUEUE is EMPTY..
+
+1. Insert Element..
+2. Delete Element
+3. Display Element
+4.Exit
+
+Enter Your Choice :4
+
+*****************************************************************************************************************************************

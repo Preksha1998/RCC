@@ -1,0 +1,224 @@
+*****************************************************************************************************************************************
+NAME    : Preksha Sheth
+ROLL NO : 36
+CLASS   : MCA-III
+SUBJECT : DATA STRUCTURE(DS)
+
+*****************************************************************************************************************************************
+Q(13): Simple queue using array..
+*****************************************************************************************************************************************
+#include<stdio.h>
+#include<conio.h>
+int rear = -1,front = -1,val = 0,max = 10;
+	int arr[100];
+	
+void push()
+{
+	if(rear == max - 1)
+	{
+		printf("\n\t QUEUE is OVERFLOW....\n");
+	}
+	else
+	{
+		if(front == -1)
+		{
+			front++;
+		}
+		rear++;
+		//printf("\nvalue of front is %d",front);
+		//printf("\nValue of rear is %d",rear);
+		printf("\nEnter value to Insert =  ");
+		scanf("%d",&val);
+		//printf("val = %d",val);
+		arr[rear]=val;
+		//printf("\narr[rear] = %d",arr[rear]);
+	}
+}
+
+void pop()
+{
+	if(front==-1)
+	{
+		printf("\n\tQUEUE is UNDERFLOW..\n");
+	}
+	else if(front==rear)
+	{
+		printf("\n\tQUEUE is EMPTY..\n");
+	}
+	else
+	{
+		val = arr[front];
+		front++;
+		printf("\nPOPED Element = %d",arr[front-1]);
+	}			
+}
+
+void display()
+{
+	int i = front;
+	printf("\n\t\t*** Display Data ***\n\n");
+	for(i = front; i <= rear; i++)
+	{
+		printf("\nElement of %d is  %d",i,arr[i]);
+	}
+	/*while(i <= rear)
+	{
+		printf("%d\n",arr[i]);
+		i++;
+	}*/
+}
+void main()
+{
+	int choice = -1;
+
+	printf("\n\t\t\t*** Queue using Array ***\n");
+	//printf("Enter Max Value :");
+	//scanf("%d",&max);
+
+	while(choice != 4)
+	{
+		printf("\n1. Insert Element..\n2. Delete Element\n3. Display Element\n4.Exit\n");
+		printf("\nEnter Your Choice : ");
+		scanf("%d",&choice);
+		switch(choice)
+		{
+			case 1 :
+				{
+					push();
+					break;
+				}
+			case 2 :
+				{
+					pop();
+					break;
+				}
+			case 3 : 
+				{
+					display();
+					break;
+				}
+			case 4 :
+				{
+					exit(0);
+					break;
+				}
+			default :
+				{
+					printf("\nInvalid Input..\n");
+				}
+		}
+	}
+}
+*****************************************************************************************************************************************
+output:
+
+
+                        *** Queue using Array ***
+
+1. Insert Element..
+2. Delete Element
+3. Display Element
+4.Exit
+
+Enter Your Choice : 2
+
+        QUEUE is UNDERFLOW..
+
+1. Insert Element..
+2. Delete Element
+3. Display Element
+4.Exit
+
+Enter Your Choice : 1
+
+Enter value to Insert =  11
+
+1. Insert Element..
+2. Delete Element
+3. Display Element
+4.Exit
+
+Enter Your Choice : 1
+
+Enter value to Insert =  12
+
+1. Insert Element..
+2. Delete Element
+3. Display Element
+4.Exit
+
+Enter Your Choice : 1
+
+Enter value to Insert =  13
+
+1. Insert Element..
+2. Delete Element
+3. Display Element
+4.Exit
+
+Enter Your Choice : 3
+
+                *** Display Data ***
+
+
+Element of 0 is  11
+Element of 1 is  12
+Element of 2 is  13
+1. Insert Element..
+2. Delete Element
+3. Display Element
+4.Exit
+
+Enter Your Choice : 2
+
+POPED Element = 11
+1. Insert Element..
+2. Delete Element
+3. Display Element
+4.Exit
+
+Enter Your Choice : 3
+
+                *** Display Data ***
+
+
+Element of 1 is  12
+Element of 2 is  13
+1. Insert Element..
+2. Delete Element
+3. Display Element
+4.Exit
+
+Enter Your Choice : 2
+
+POPED Element = 12
+1. Insert Element..
+2. Delete Element
+3. Display Element
+4.Exit
+
+Enter Your Choice : 3
+
+                *** Display Data ***
+
+
+Element of 2 is  13
+1. Insert Element..
+2. Delete Element
+3. Display Element
+4.Exit
+
+Enter Your Choice : 2
+
+        QUEUE is EMPTY..
+
+1. Insert Element..
+2. Delete Element
+3. Display Element
+4.Exit
+
+Enter Your Choice :4
+
+*****************************************************************************************************************************************
+
+

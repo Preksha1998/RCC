@@ -1,0 +1,194 @@
+*****************************************************************************************************************************************
+NAME    : Preksha Sheth
+ROLL NO : 36
+CLASS   : MCA-III
+SUBJECT : DATA STRUCTURE(DS)
+
+*****************************************************************************************************************************************
+Q(7): Stack using Array...
+*****************************************************************************************************************************************
+#include<stdio.h>
+#include<conio.h>
+int top = -1,ch=0,n;
+int stack[100];
+	
+void push()
+{
+	int val;
+	if(top >= n-1)
+	{
+		printf("STACK IS OVERFLOW..");
+	}
+	else
+	{
+		printf("Enter Value :");
+		scanf("%d",&val);
+		top++;
+		stack[top] = val;
+	}
+}
+
+void pop()
+{
+	if(top <= -1)
+	{
+		printf("\nStack is Underflow..");
+	}
+	else
+	{
+		printf("poped element = %d",stack[top]);
+		top--;
+	}
+}
+
+void display()
+{
+	int i;
+	if(top>= 0)
+	{
+		printf("\nElements in the STACK\n\n");
+		for(i = top; i >= 0; i--)
+		{
+			printf("%d\n",stack[i]);
+		}
+	}
+	else
+	{
+		printf("Stack is already empty...");
+	}
+}
+
+void main()
+{
+	printf("Enter The Size of stack :");
+	scanf("%d",&n);
+	while(ch != 4)
+	{
+		printf("\n1.PUSH\n2.POP\n3.DISPLAY\n4.EXIT\n");
+		printf("Enter Your Choice : ");
+		scanf("%d",&ch);
+		switch(ch)
+		{
+			case 1 :
+				{
+					push();
+					break;
+				}
+			case 2 :
+				{
+					pop();
+					break;
+				}
+			case 3 : 
+				{
+					display();
+					break;
+				}
+			case 4 :
+				{
+					printf("TATA...Exiting...");
+					break;
+				}
+			default :
+			    {
+			        printf("Enter Valid Choice Between 1 to 4...");
+			    }
+		}
+	}
+}
+*****************************************************************************************************************************************
+output:
+
+Enter The Size of stack :5
+
+1.PUSH
+2.POP
+3.DISPLAY
+4.EXIT
+Enter Your Choice : 1
+Enter Value :11
+
+1.PUSH
+2.POP
+3.DISPLAY
+4.EXIT
+Enter Your Choice : 1
+Enter Value :22
+
+1.PUSH
+2.POP
+3.DISPLAY
+4.EXIT
+Enter Your Choice : 1
+Enter Value :33
+
+1.PUSH
+2.POP
+3.DISPLAY
+4.EXIT
+Enter Your Choice : 3
+
+Elements in the STACK
+
+33
+22
+11
+
+1.PUSH
+2.POP
+3.DISPLAY
+4.EXIT
+Enter Your Choice : 1
+Enter Value :44
+
+1.PUSH
+2.POP
+3.DISPLAY
+4.EXIT
+Enter Your Choice : 1
+Enter Value :55
+
+1.PUSH
+2.POP
+3.DISPLAY
+4.EXIT
+Enter Your Choice : 1
+STACK IS OVERFLOW..
+1.PUSH
+2.POP
+3.DISPLAY
+4.EXIT
+Enter Your Choice : 2
+poped element = 55
+1.PUSH
+2.POP
+3.DISPLAY
+4.EXIT
+Enter Your Choice : 2
+poped element = 44
+1.PUSH
+2.POP
+3.DISPLAY
+4.EXIT
+Enter Your Choice : 2
+poped element = 33
+1.PUSH
+2.POP
+3.DISPLAY
+4.EXIT
+Enter Your Choice : 3
+
+Elements in the STACK
+
+22
+11
+
+1.PUSH
+2.POP
+3.DISPLAY
+4.EXIT
+Enter Your Choice : 4
+TATA...Exiting...Press any key to continue . . .
+*****************************************************************************************************************************************
+
+

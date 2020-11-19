@@ -1,0 +1,294 @@
+*****************************************************************************************************************************************
+NAME    : Preksha Sheth
+ROLL NO : 36
+CLASS   : MCA-III
+SUBJECT : JAVA
+*****************************************************************************************************************************************
+
+					 	ASSIGNMENT - 2
+
+*****************************************************************************************************************************************
+Q 1 : Write a java program to add two matrices of same size.
+*****************************************************************************************************************************************
+import java.util.Scanner;
+class a2_p1{
+	public static void main(String args[]){
+		Scanner sc = new Scanner(System.in);
+		int r,c,i,j,r1,c1;
+
+		System.out.println("Enter rows and colmns for 1st Matrix:");
+		System.out.print("Enter Rows :");
+		r = sc.nextInt();
+		System.out.print("Enter Cols :");
+		c = sc.nextInt();
+
+		System.out.println("Enter rows and colmns for 2nd Matrix:");
+		System.out.print("Enter Rows :");
+		r1 = sc.nextInt();
+		System.out.print("Enter Cols :");
+		c1 = sc.nextInt();
+
+		if(r == r1 && c == c1)
+		{
+			int first[][] = new int[r][c];//declare matrix
+			int second[][] = new int[r1][c1];
+			int add[][] = new int[r1][c1];
+
+			System.out.println("Enter Elements for Matrix 1 :");
+			for(i = 0; i < r; i++)
+			{
+				for(j = 0; j < c; j++)
+				{
+					first[i][j] = sc.nextInt();
+				}
+			}
+
+			System.out.println("Enter Elements for Matrix 2 :");
+			for(i = 0; i < r1; i++)
+			{
+				for(j = 0; j < c1; j++)
+				{
+					second[i][j] = sc.nextInt();
+				}
+			}	
+			
+			System.out.println(" \t\t: Matrix 1 :");
+			for(i = 0; i < r; i++)
+			{
+				for(j = 0; j < c; j++)
+				{
+					System.out.print(first[i][j] + "   ");
+				}
+				System.out.println();
+			}
+
+			System.out.println(" \t\t: Matrix 2 :");
+			for(i = 0; i < r; i++)
+			{
+				for(j = 0; j < c; j++)
+				{
+					System.out.print(second[i][j] + "   ");
+				}
+				System.out.println();
+			}	
+			for(i = 0; i < r; i++)
+			{
+				for(j = 0; j < c1; j++)
+				{
+					for(int k = 0; k < c; k++)
+					{
+						add[i][j] = first[i][j] + second[i][j];
+					}
+				}
+			}
+			System.out.println("\t\t*** Matrix After Addition ***\n");
+			for(i = 0; i < r; i++)
+			{
+				for(j = 0; j < c; j++)
+				{
+					System.out.print(add[i][j] + "  ");
+				}
+				System.out.println();
+			}
+		}
+		else
+		{
+			System.out.println("Enter same rows and cols for both matrix..!");
+		}
+	}
+}
+*****************************************************************************************************************************************
+OUTPUT :
+
+D:\MCA-III\java Assignment2>java a2_p1
+Enter rows and colmns for 1st Matrix:
+Enter Rows :2
+Enter Cols :3
+Enter rows and colmns for 2nd Matrix:
+Enter Rows :2
+Enter Cols :3
+Enter Elements for Matrix 1 :
+1
+2
+3
+4
+5
+6
+Enter Elements for Matrix 2 :
+1
+2
+3
+4
+5
+6
+                : Matrix 1 :
+1   2   3
+4   5   6
+                : Matrix 2 :
+1   2   3
+4   5   6
+                *** Matrix After Addition ***
+
+2  4  6
+8  10  12
+*****************************************************************************************************************************************
+Q 2 : Write a java program to get environment variables USERNAME,TEMPNAME and PATH.
+*****************************************************************************************************************************************
+class a2_p2{
+	public static void main(String args[]){
+		System.out.println("\nEnvironment Variable PATH : ");
+		System.out.println(System.getenv("PATH"));
+		System.out.println("\nEnvironment Variable TEMPNAME : ");
+		System.out.println(System.getenv("TEMPNAME"));
+		System.out.println("\nEnvironment Variable USERNAME : ");
+		System.out.println(System.getenv("USERNAME"));
+	}
+}
+*****************************************************************************************************************************************
+OUTPUT:
+D:\MCA-III\java Assignment2>java a2_p2
+
+Environment Variable PATH :
+C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;
+C:\Program Files (x86)\Microsoft SQL Server\90\Tools\binn\;C:\ProgramData\chocolatey\bin;C:\Program Files\nodejs\;
+C:\Program Files\Git\cmd;C:\Program Files\Sublime Text 3;C:\Program Files\Java\jdk-14.0.2\bin;C:\Program Files\Git\bin\;
+C:\Program Files\Git\bin\bash.exe;C:\Program Files\Git\bin\sh.exe;C:\Program Files\Git\bin;C:\Program Files\Git\bin\git.exe;
+C:\Users\preksha\AppData\Local\Programs\Python\Python36\Scripts\;C:\Users\preksha\AppData\Local\Programs\Python\Python36\;
+C:\Users\preksha\AppData\Local\Microsoft\WindowsApps;C:\Users\preksha\AppData\Local\Programs\Microsoft VS Code\bin;
+C:\Users\preksha\AppData\Roaming\npm
+
+Environment Variable TEMPNAME :
+null
+
+Environment Variable USERNAME :
+preksha
+*****************************************************************************************************************************************
+Q 3 : Write an application that defines a Circle class with two constructors .The first form accepts a
+double value that represents the radius of the circle .This constructor assumes that the circle is
+centered at origin .The second form accepts three double values .The first two arguments defines
+the coordinates of the center and the third argument defines the radius .Create 10 objects of the
+Circle type and save them in the array. Randomly select a radius between 1 and 10 cm for each circle
+created .After all circles have been created display each circle and total area of all circles.
+*****************************************************************************************************************************************
+
+*****************************************************************************************************************************************
+OUTPUT:
+*****************************************************************************************************************************************
+Q 4 : Write a program to remove duplicate characters from the string.
+*****************************************************************************************************************************************
+
+*****************************************************************************************************************************************
+OUTPUT:
+*****************************************************************************************************************************************
+Q 5 : Write a program to print the pattern using for loop.
+	1 1 1
+	2 4 8
+	3 9 27
+	...........................
+	10 100 1000
+*****************************************************************************************************************************************
+class a2_p3{
+	public static void main(String args[]){
+		int i;
+		for(i = 1; i <= 10; i++)
+		{
+			System.out.println(i + "  " + (i*i) + "  " + (i*i*i));
+		}
+	}
+}
+*****************************************************************************************************************************************
+OUTPUT:
+
+D:\MCA-III\java Assignment2>java a2_p3
+1  1  1
+2  4  8
+3  9  27
+4  16  64
+5  25  125
+6  36  216
+7  49  343
+8  64  512
+9  81  729
+10  100  1000
+*****************************************************************************************************************************************
+Q 6 : Write a java program to accept distance in metres , time in hours ,minutes and seconds .Calculate
+the speed in m/sec ,km/hr and miles/hr .(1 mile=1609 m).
+*****************************************************************************************************************************************
+
+*****************************************************************************************************************************************
+OUTPUT:
+*****************************************************************************************************************************************
+Q 7 :Write a program to get java version, runtime version ,java vendor name , java vendor url.
+*****************************************************************************************************************************************
+
+*****************************************************************************************************************************************
+OUTPUT:
+*****************************************************************************************************************************************
+Q 8 :Create an abstract class “Monster” which is extended by three classes “Ware wolf “,”Zombie” and
+“Vampire” .Create 6 types of Monsters in single dimension array and print them.
+*****************************************************************************************************************************************
+
+*****************************************************************************************************************************************
+OUTPUT:
+*****************************************************************************************************************************************
+Q 9:Write a program to accept a string from user and a point from where you want to print next three
+words. Print the old and the new string.
+
+Old String = “The quick brown fox jumps over the lazy dog”
+New String = “brown fox jumps”
+*****************************************************************************************************************************************
+
+*****************************************************************************************************************************************
+OUTPUT:
+*****************************************************************************************************************************************
+Q 10:Convert Minutes into years and days
+For Eg. Input => 3456789
+Output => 6 Years and 210 days
+*****************************************************************************************************************************************
+
+*****************************************************************************************************************************************
+OUTPUT:
+*****************************************************************************************************************************************
+Q 11(a):Create a class Inventory having item_id, Description, price as member variable. Create
+necessary constructors and methods.
+
+Create a class Bill_Item having quantity, amount(amount=quantity*price) as member variable.
+Create necessary constructors and methods.
+
+Create a Main class which will create 5 instances. Generate invoice.
+*****************************************************************************************************************************************
+
+*****************************************************************************************************************************************
+OUTPUT:
+*****************************************************************************************************************************************
+Q 11(b):Take a string from user. Find the occurrences of a word. And print that word in reverse order.
+*****************************************************************************************************************************************
+
+*****************************************************************************************************************************************
+OUTPUT:
+*****************************************************************************************************************************************
+
+*****************************************************************************************************************************************
+Q 12(a):Write a program Addition of two binary numbers
+
+Example:
+Input: Binary number 1: 101
+Binary number 2: 011
+Output: 1000
+*****************************************************************************************************************************************
+
+*****************************************************************************************************************************************
+OUTPUT:
+
+*****************************************************************************************************************************************
+Q 12(b):(B)Print following pattern
+J a v v a
+J a a v v a a
+JJ aaaaa v v aaaaa
+JJ a a v a a
+*****************************************************************************************************************************************
+
+*****************************************************************************************************************************************
+OUTPUT:
+*****************************************************************************************************************************************
+*****************************************************************************************************************************************

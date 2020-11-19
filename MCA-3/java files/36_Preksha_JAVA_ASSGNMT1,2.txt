@@ -1,0 +1,1359 @@
+*****************************************************************************************************************************************
+NAME    : Preksha Sheth
+ROLL NO : 36
+CLASS   : MCA-III
+SUBJECT : JAVA
+*****************************************************************************************************************************************
+
+					 	ASSIGNMENT - 1
+
+*****************************************************************************************************************************************
+Q1 : Write a program to generate first 50 prime numbers .(Use all types of loops)
+*****************************************************************************************************************************************
+FOR LOOP :
+
+//import java.lang.*;
+import java.util.Scanner;
+
+public class p1{ 
+	public static void main(String args[]){
+		
+		Scanner scn = new Scanner(System.in);
+		System.out.println("Enter Number :");
+
+		int n = scn.nextInt();
+		
+		int i,j;
+		for(i = 2; i <= n; i++)
+		{
+			for(j = 2; j <= i; j++)
+			{
+				if(i % j == 0)
+				{
+					break;
+				}
+			}
+
+			if(i == j)
+			{
+				System.out.print(i + "  ");
+			}
+		}
+	}
+}
+*****************************************************************************************************************************************
+OUTPUT :
+
+D:\MCA-III\Java Assignment1>java p1.java
+Enter Number :
+50
+2  3  5  7  11  13  17  19  23  29  31  37  41  43  47
+*****************************************************************************************************************************************
+WHILE LOOP :
+
+public class p1_b{
+	public static void main(String args[])
+	{
+		int i = 2;
+		System.out.print("Prime Numbers : ");
+		while(i <= 50)
+		{
+			int j= 2;
+			while(j <= i)
+			{
+				if(i % j == 0)
+				{
+					break;
+				}
+				j++;
+			}
+			if(i == j)
+			{
+				System.out.print(i + "  ");
+			}
+			i++;
+		}
+	}
+}
+*****************************************************************************************************************************************
+OUTPUT :
+
+D:\MCA-III\Java Assignment1>java p1_b
+Prime Numbers : 2  3  5  7  11  13  17  19  23  29  31  37  41  43  47
+*****************************************************************************************************************************************
+using Do While Loop:
+*****************************************************************************************************************************************
+class p1_c{
+	public static void main(String args[]){
+		int i= 2;
+		System.out.print("Prime Numbers : ");
+		do{
+			int j = 2;
+			while(j <= i)
+			{
+				if(i % j == 0)
+				{
+					break;
+				}
+				j++;
+			}
+			if(i == j)
+			{
+				System.out.print(i + "  ");
+			}
+			i++;
+		}while(i <= 50);
+	}
+}
+*****************************************************************************************************************************************
+OUTPUT:
+
+D:\MCA-III\Java Assignment1>java p1_c
+Prime Numbers : 2  3  5  7  11  13  17  19  23  29  31  37  41  43  47
+*****************************************************************************************************************************************
+Q2 : 2.Write a program that accepts two command line arguments of type double,multiply them and
+display their product.
+*****************************************************************************************************************************************
+public class p2{
+	public static void main(String args[]){
+		double first_no = Double.parseDouble(args[0]);
+		double second_no = Double.parseDouble(args[1]);
+
+		double mul = first_no * second_no;
+
+		System.out.println("Product = "+ mul);
+	}
+}
+
+*****************************************************************************************************************************************
+OUTPUT:
+D:\MCA-III\Java Assignment1>java p2.java 4 5
+Product = 20.0
+****************************************************************************************************************************************
+Q3 : Write a program that accepts radius of a circle and display area of circle.
+*****************************************************************************************************************************************
+public class p3{
+	public static void main(String args[])
+	{
+		int r = Integer.parseInt(args[0]);
+
+		double area = 3.14 * r * r;
+
+		System.out.println("Area of Circle = " + area);
+	}
+}
+*****************************************************************************************************************************************
+OUTPUT :
+*****************************************************************************************************************************************
+D:\MCA-III\Java Assignment1>java p3.java 2
+Area of Circle = 12.56
+
+*****************************************************************************************************************************************
+Q4 : Write a program that displays number of milliseconds between current date and midnight.
+*****************************************************************************************************************************************
+
+*****************************************************************************************************************************************
+OUTPUT:
+*****************************************************************************************************************************************
+Q5 : Write a program to accept one command line argument ,convert it to double and then display the
+square root.
+*****************************************************************************************************************************************
+import java.lang.Math;
+public class p5{
+	public static void main(String args[])
+	{
+		double no = Double.parseDouble(args[0]);
+		double  sqroot = Math.sqrt(no);
+		System.out.println("Sqrt is "+ sqroot);
+	}
+}
+*****************************************************************************************************************************************
+OUTPUT:
+
+D:\MCA-III\Java Assignment1>java p5.java 25
+Sqrt is 5.0
+
+*****************************************************************************************************************************************
+Q6: Write a program that prints numbers between 17 and 100 that are evenly divisible by 17.
+*****************************************************************************************************************************************
+public class p6{
+	public static void main(String args[])
+	{
+		for(int i = 17; i <= 100; i++)
+		{
+			if(i % 17 == 0)
+			{
+				System.out.println(i + "  ");
+			}
+		}
+	}
+}
+*****************************************************************************************************************************************
+OUTPUT:
+
+D:\MCA-III\Java Assignment1>java p6.java
+17
+34
+51
+68
+85
+*****************************************************************************************************************************************
+Q7 : Write a program that displays all the possible factors of a particular number.
+*****************************************************************************************************************************************
+import java.util.Scanner;
+public class p7{
+	public static void main(String args[]){
+		Scanner sc = new Scanner(System.in);
+
+		System.out.println("Enter Positive Number For Factors:");
+
+		int no = sc.nextInt();
+
+		System.out.print("Factors = ");
+		for(int i = 1; i <= no; i++)
+		{
+			if(no % i == 0)
+			{
+				System.out.print(i + "  ");
+			}
+		}
+	}
+}
+*****************************************************************************************************************************************
+OUTPUT:
+D:\MCA-III\Java Assignment1>java p7.java
+Enter Positive Number For Factors:
+50
+Factors = 1  2  5  10  25  50
+*****************************************************************************************************************************************
+Q8 : Write a program that prints numbers from 1 to 100 using five columns.
+*****************************************************************************************************************************************
+public class p8{
+	public static void main(String args[]){
+		//int n = 1;
+		for(int i = 1; i <= 20; i++)
+		{
+			System.out.println(i + "  " + (i+20) +"  " + (i+40) + "  " + (i+60) + "  " + (i+80));	
+		}
+	}	
+}
+*****************************************************************************************************************************************
+OUTPUT:
+D:\MCA-III\Java Assignment1>java p8.java
+1  21  41  61  81
+2  22  42  62  82
+3  23  43  63  83
+4  24  44  64  84
+5  25  45  65  85
+6  26  46  66  86
+7  27  47  67  87
+8  28  48  68  88
+9  29  49  69  89
+10  30  50  70  90
+11  31  51  71  91
+12  32  52  72  92
+13  33  53  73  93
+14  34  54  74  94
+15  35  55  75  95
+16  36  56  76  96
+17  37  57  77  97
+18  38  58  78  98
+19  39  59  79  99
+20  40  60  80  100
+*****************************************************************************************************************************************
+Q9 : Write a program that accepts one command line argument,convert it to integer and decrement its
+value in a loop.Sound the bell when value reaches 0.(Bell character:\v0007).
+*****************************************************************************************************************************************
+import java.util.Scanner;
+public class p9{
+	public static void main(String args[]){
+		int no = Integer.parseInt(args[0]);
+		for(int i = no ; i >= 0; i--)
+		{
+			System.out.println(no);
+			no--;
+			if(no == 0)
+			{
+				System.out.print("\007");//for beep sound
+			}
+		}
+
+	}
+}
+*****************************************************************************************************************************************
+OUTPUT:
+
+D:\MCA-III\Java Assignment1>java p9.java 5
+5
+4
+3
+2
+1
+0
+*****************************************************************************************************************************************
+Q10 : Write a program that declares a class Person.It should have instance variable to record name ,
+age and salary of type string , integer and float .Set and display these properties.
+*****************************************************************************************************************************************
+import java.util.Scanner;
+class person{
+	int age;
+	float salary;
+	String name;
+
+	Scanner sc = new Scanner(System.in);
+		
+	void getdata()
+	{
+		System.out.println("Enter Name :");
+		name = sc.nextLine();
+		System.out.println("Enter Age :");
+		age = sc.nextInt();
+		System.out.println("Enter Salary :");
+		salary = sc.nextFloat();	
+	}
+	
+
+	void display()
+	{
+		System.out.println("\n\t\t**** DISPLAY DATA ****\n");
+		System.out.println("Name = " +name);
+		System.out.println("Age = " +age);
+		System.out.println("Salary = " +salary);
+	}
+}
+
+public class p10{
+	public static void main(String args[]){
+
+		person p = new person();
+		p.getdata();
+		p.display();
+	}
+}
+*****************************************************************************************************************************************
+OUTPUT :
+D:\MCA-III\Java Assignment1>java p10
+Enter Name :
+preksha
+Enter Age :
+20
+Enter Salary :
+20000
+
+                **** DISPLAY DATA ****
+
+Name = preksha
+Age = 20
+Salary = 20000.0
+
+*****************************************************************************************************************************************
+
+
+					 	ASSIGNMENT - 2
+
+*****************************************************************************************************************************************
+Q 1 : Write a java program to add two matrices of same size.
+*****************************************************************************************************************************************
+import java.util.Scanner;
+class a2_p1{
+	public static void main(String args[]){
+		Scanner sc = new Scanner(System.in);
+		int r,c,i,j,r1,c1;
+
+		System.out.println("Enter rows and colmns for 1st Matrix:");
+		System.out.print("Enter Rows :");
+		r = sc.nextInt();
+		System.out.print("Enter Cols :");
+		c = sc.nextInt();
+
+		System.out.println("Enter rows and colmns for 2nd Matrix:");
+		System.out.print("Enter Rows :");
+		r1 = sc.nextInt();
+		System.out.print("Enter Cols :");
+		c1 = sc.nextInt();
+
+		if(r == r1 && c == c1)
+		{
+			int first[][] = new int[r][c];//declare matrix
+			int second[][] = new int[r1][c1];
+			int add[][] = new int[r1][c1];
+
+			System.out.println("Enter Elements for Matrix 1 :");
+			for(i = 0; i < r; i++)
+			{
+				for(j = 0; j < c; j++)
+				{
+					first[i][j] = sc.nextInt();
+				}
+			}
+
+			System.out.println("Enter Elements for Matrix 2 :");
+			for(i = 0; i < r1; i++)
+			{
+				for(j = 0; j < c1; j++)
+				{
+					second[i][j] = sc.nextInt();
+				}
+			}	
+			
+			System.out.println(" \t\t: Matrix 1 :");
+			for(i = 0; i < r; i++)
+			{
+				for(j = 0; j < c; j++)
+				{
+					System.out.print(first[i][j] + "   ");
+				}
+				System.out.println();
+			}
+
+			System.out.println(" \t\t: Matrix 2 :");
+			for(i = 0; i < r; i++)
+			{
+				for(j = 0; j < c; j++)
+				{
+					System.out.print(second[i][j] + "   ");
+				}
+				System.out.println();
+			}	
+			for(i = 0; i < r; i++)
+			{
+				for(j = 0; j < c1; j++)
+				{
+					for(int k = 0; k < c; k++)
+					{
+						add[i][j] = first[i][j] + second[i][j];
+					}
+				}
+			}
+			System.out.println("\t\t*** Matrix After Addition ***\n");
+			for(i = 0; i < r; i++)
+			{
+				for(j = 0; j < c; j++)
+				{
+					System.out.print(add[i][j] + "  ");
+				}
+				System.out.println();
+			}
+		}
+		else
+		{
+			System.out.println("Enter same rows and cols for both matrix..!");
+		}
+	}
+}
+*****************************************************************************************************************************************
+OUTPUT :
+
+D:\MCA-III\java Assignment2>java a2_p1
+Enter rows and colmns for 1st Matrix:
+Enter Rows :2
+Enter Cols :3
+Enter rows and colmns for 2nd Matrix:
+Enter Rows :2
+Enter Cols :3
+Enter Elements for Matrix 1 :
+1
+2
+3
+4
+5
+6
+Enter Elements for Matrix 2 :
+1
+2
+3
+4
+5
+6
+                : Matrix 1 :
+1   2   3
+4   5   6
+                : Matrix 2 :
+1   2   3
+4   5   6
+                *** Matrix After Addition ***
+
+2  4  6
+8  10  12
+*****************************************************************************************************************************************
+Q 2 : Write a java program to get environment variables USERNAME,TEMPNAME and PATH.
+*****************************************************************************************************************************************
+class a2_p2{
+	public static void main(String args[]){
+		System.out.println("\nEnvironment Variable PATH : ");
+		System.out.println(System.getenv("PATH"));
+		System.out.println("\nEnvironment Variable TEMPNAME : ");
+		System.out.println(System.getenv("TEMPNAME"));
+		System.out.println("\nEnvironment Variable USERNAME : ");
+		System.out.println(System.getenv("USERNAME"));
+	}
+}
+*****************************************************************************************************************************************
+OUTPUT:
+D:\MCA-III\java Assignment2>java a2_p2
+
+Environment Variable PATH :
+C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;
+C:\Program Files (x86)\Microsoft SQL Server\90\Tools\binn\;C:\ProgramData\chocolatey\bin;C:\Program Files\nodejs\;
+C:\Program Files\Git\cmd;C:\Program Files\Sublime Text 3;C:\Program Files\Java\jdk-14.0.2\bin;C:\Program Files\Git\bin\;
+C:\Program Files\Git\bin\bash.exe;C:\Program Files\Git\bin\sh.exe;C:\Program Files\Git\bin;C:\Program Files\Git\bin\git.exe;
+C:\Users\preksha\AppData\Local\Programs\Python\Python36\Scripts\;C:\Users\preksha\AppData\Local\Programs\Python\Python36\;
+C:\Users\preksha\AppData\Local\Microsoft\WindowsApps;C:\Users\preksha\AppData\Local\Programs\Microsoft VS Code\bin;
+C:\Users\preksha\AppData\Roaming\npm
+
+Environment Variable TEMPNAME :
+null
+
+Environment Variable USERNAME :
+preksha
+*****************************************************************************************************************************************
+Q 3 : Write an application that defines a Circle class with two constructors .The first form accepts a
+double value that represents the radius of the circle .This constructor assumes that the circle is
+centered at origin .The second form accepts three double values .The first two arguments defines
+the coordinates of the center and the third argument defines the radius .Create 10 objects of the
+Circle type and save them in the array. Randomly select a radius between 1 and 10 cm for each circle
+created .After all circles have been created display each circle and total area of all circles.
+*****************************************************************************************************************************************
+class circle
+{	
+	double area;
+	public static int totalarea=0;
+	
+	circle(double radius)
+	{
+		area=3.14*radius*radius;
+		System.out.println("Area = " + Math.round(area));
+		totalarea+=area;
+	}
+	
+	circle(double x,double y,double radius)
+	{
+		
+		
+		area=(3.14*radius*radius);
+		System.out.println("Area for Origin(" + Math.round(x) + "," + Math.round(y) + ") = " + Math.round(area));
+		totalarea+=area;
+	}
+}
+
+class a2_p3
+{
+	public static void main(String[] args)
+	{
+		circle[] cir=new circle[10];
+		
+		for(int i=0; i<5; i++)
+		cir[i]=new circle(((Math.random()*10)+1));
+	
+		System.out.println();
+	
+		for(int i=5; i<10; i++)
+		cir[i]=new circle(((Math.random()*10)+1),((Math.random()*10)+1),((Math.random()*10)+1));
+	
+		System.out.println();
+	
+		System.out.println("Total Area is: " + cir[0].totalarea);
+	}
+}
+
+*****************************************************************************************************************************************
+OUTPUT:
+
+D:\MCA-III\java Assignment2>java a2_p3
+Area = 167
+Area = 134
+Area = 325
+Area = 74
+Area = 25
+
+Area for Origin(8,5) = 38
+Area for Origin(4,4) = 86
+Area for Origin(9,4) = 176
+Area for Origin(6,4) = 31
+Area for Origin(6,5) = 76
+
+Total Area is: 1127
+*****************************************************************************************************************************************
+Q 4 : Write a program to remove duplicate characters from the string.
+*****************************************************************************************************************************************
+
+class a2_p4
+{
+	public static void main(String[] args)
+	{
+		String name=System.console().readLine("Enter a String: ");
+		char[] arr=name.toCharArray();
+		char[] newstr=new char[50];
+		int ctr=0;
+		
+		for(int i=0; i<arr.length; i++)
+		{
+			int flag=0;
+			for(int j=0; j<i; j++)
+			{
+				if(arr[i]==arr[j])
+				{
+					flag=1;
+				}
+			}
+			
+			if(flag==0)
+			{
+				newstr[ctr]=arr[i];
+				ctr++;
+			}
+		}
+		
+		String str=new String(newstr);
+		System.out.println("\nFinal String: " + str);
+	}
+}
+*****************************************************************************************************************************************
+OUTPUT:
+
+D:\MCA-III\java Assignment2>java a2_p4
+Enter a String: Preksha Shethpj
+
+Final String: Preksha Stpj
+
+*****************************************************************************************************************************************
+Q 5 : Write a program to print the pattern using for loop.
+	1 1 1
+	2 4 8
+	3 9 27
+	...........................
+	10 100 1000
+*****************************************************************************************************************************************
+class a2_p3{
+	public static void main(String args[]){
+		int i;
+		for(i = 1; i <= 10; i++)
+		{
+			System.out.println(i + "  " + (i*i) + "  " + (i*i*i));
+		}
+	}
+}
+*****************************************************************************************************************************************
+OUTPUT:
+
+D:\MCA-III\java Assignment2>java a2_p3
+1  1  1
+2  4  8
+3  9  27
+4  16  64
+5  25  125
+6  36  216
+7  49  343
+8  64  512
+9  81  729
+10  100  1000
+*****************************************************************************************************************************************
+Q 6 : Write a java program to accept distance in metres , time in hours ,minutes and seconds .Calculate
+the speed in m/sec ,km/hr and miles/hr .(1 mile=1609 m).
+*****************************************************************************************************************************************
+import java.util.Scanner ;
+
+public class a2_p6 {
+    public static void main(String[] args) {
+        double dis_m ;
+        double dis_km;
+        double dis_mile;
+        int hr; 
+        int min;
+        int sec;
+        int t_m;
+        int t_s;
+
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("Enter Distance in meter : ");
+        dis_m = sc.nextDouble();
+
+        dis_km = dis_m / 1000 ;
+        dis_mile = dis_m / 1609;
+
+        
+        System.out.println("Distance in meter =  " + dis_m);
+        System.out.println("Distance in k_m = " + dis_km);
+        System.out.println("Distance in mile =  " + dis_mile);
+        
+
+        System.out.println("Enter Hours : ");
+        hr = sc.nextInt();
+        System.out.println("Enter Minutes : ");
+        min = sc.nextInt();
+        System.out.println("Enter Seconds : ");
+        sec = sc.nextInt();
+
+        t_m = (hr*60) + min ;
+        t_s = (t_m * 60)+ sec ;
+
+        System.out.println("The Speed in m/sec is : "  + dis_m / t_s);
+        System.out.println("The Speed in km/hr is : " + dis_km / hr);
+        System.out.println("The Speed in mile/hr is : " + dis_mile /hr);
+
+
+
+
+    }
+}
+
+*****************************************************************************************************************************************
+OUTPUT:
+
+D:\MCA-III\java Assignment2>java a2_p6
+Enter Distance in meter :
+1000
+Distance in meter =  1000.0
+Distance in k_m = 1.0
+Distance in mile =  0.6215040397762586
+Enter Hours :
+1
+Enter Minutes :
+0
+Enter Seconds :
+0
+The Speed in m/sec is : 0.2777777777777778
+The Speed in km/hr is : 1.0
+The Speed in mile/hr is : 0.6215040397762586
+
+*****************************************************************************************************************************************
+Q 7 :Write a program to get java version, runtime version ,java vendor name , java vendor url.
+*****************************************************************************************************************************************
+class a2_p7
+{
+	public static void main(String[] args)
+	{
+		System.out.println("Java Version: " + System.getProperty("java.version"));
+		System.out.println("Vendor Name: " + System.getProperty("java.vendor"));
+		System.out.println("Vendor URL: " + System.getProperty("java.vendor.url"));
+	}
+}
+
+*****************************************************************************************************************************************
+OUTPUT:
+
+D:\MCA-III\java Assignment2>java a2_p7
+Java Version: 14.0.2
+Vendor Name: Oracle Corporation
+Vendor URL: https://java.oracle.com/
+
+*****************************************************************************************************************************************
+Q 8 :Create an abstract class “Monster” which is extended by three classes “Ware wolf “,”Zombie” and
+“Vampire” .Create 6 types of Monsters in single dimension array and print them.
+*****************************************************************************************************************************************
+import java.util.*;
+
+abstract class monster
+{
+	abstract void getdata();
+}
+
+class warewolf extends monster
+{
+	void getdata()
+	{
+		System.out.println("I'm WareWolf");
+	}
+}
+
+class zombie extends monster
+{
+	void getdata()
+	{
+		System.out.println("I'm Zombie");
+	}
+}
+
+class vampire extends monster
+{
+	void getdata()
+	{
+		System.out.println("I'm Vampire");
+	}
+}
+
+public class a2_p8
+{
+	public static void main(String[] args)
+	{
+		Scanner sc=new Scanner(System.in);
+		monster[] m1=new monster[6];
+		String mtype;
+		
+		for(int i=0; i<6; i++)
+		{
+			System.out.println("What type of monster you are? (warewolf/zombie/vampire): ");
+			mtype=sc.nextLine();
+			
+			if(mtype.equals("warewolf"))
+			{
+				m1[i]=new warewolf();
+			}
+			else if(mtype.equals("zombie"))
+			{
+				m1[i]=new zombie();
+			}
+			else if(mtype.equals("vampire"))
+			{
+				m1[i]=new vampire();
+			}
+			else
+			{
+				System.out.println("\nYou're not a monster!");
+			}
+		}
+		
+		System.out.println("\n\nDisplaying Data:-\n");
+		for(int i=0; i<6; i++)
+		{
+			m1[i].getdata();
+		}
+		
+	}
+}
+*****************************************************************************************************************************************
+OUTPUT:
+
+D:\MCA-III\java Assignment2>java a2_p8
+What type of monster you are? (warewolf/zombie/vampire):
+zombie
+What type of monster you are? (warewolf/zombie/vampire):
+warewolf
+What type of monster you are? (warewolf/zombie/vampire):
+zombie
+What type of monster you are? (warewolf/zombie/vampire):
+vampire
+What type of monster you are? (warewolf/zombie/vampire):
+zombie
+What type of monster you are? (warewolf/zombie/vampire):
+vampire
+
+
+Displaying Data:-
+
+I'm Zombie
+I'm WareWolf
+I'm Zombie
+I'm Vampire
+I'm Zombie
+I'm Vampire
+*****************************************************************************************************************************************
+Q 9:Write a program to accept a string from user and a point from where you want to print next three
+words. Print the old and the new string.
+
+Old String = “The quick brown fox jumps over the lazy dog”
+New String = “brown fox jumps”
+*****************************************************************************************************************************************
+class a2_p9
+{
+	public static void main(String[] args)
+	{
+		int flag=0,count=0;
+		String org=System.console().readLine("Enter a String: ");
+		String[] arr=org.split(" ");
+		
+		String find=System.console().readLine("Enter a string to print next 3 words: ");
+		
+		for(int i=0; i<arr.length; i++)
+		{
+			if(arr[i].equals(find))
+			{
+				flag=1;
+			}
+			
+			if(flag==1 && count<3)
+			{
+				System.out.println("\nString " + (count+1) + ": " + arr[i]);
+				count++;
+			}
+		}
+		
+	}
+}
+*****************************************************************************************************************************************
+OUTPUT:
+
+D:\MCA-III\java Assignment2>java a2_p9
+Enter a String: preksha sheth is good girl .
+Enter a string to print next 3 words: sheth
+
+String 1: sheth
+
+String 2: is
+
+String 3: good
+*****************************************************************************************************************************************
+Q 10:Convert Minutes into years and days
+For Eg. Input => 3456789
+Output => 6 Years and 210 days
+*****************************************************************************************************************************************
+import java.util.*;
+
+class a2_p10
+{
+	public static void main(String[] args)
+	{
+		int years=0,days=0,min;
+		
+		Scanner sc=new Scanner(System.in);
+		
+		System.out.print("Enter minutes: ");
+		min=sc.nextInt();
+		
+		days=min/1440; // 1 Day= 1440 mins
+		
+		while(days>=365)
+		{
+			years++;
+			days=days-365;
+		}
+		
+		System.out.println("\n" + years + " years and " + days + " days");
+	}
+}
+
+*****************************************************************************************************************************************
+OUTPUT:
+
+D:\MCA-III\java Assignment2>java a2_p10
+Enter minutes: 3456789
+
+6 years and 210 days
+*****************************************************************************************************************************************
+Q 11(a):Create a class Inventory having item_id, Description, price as member variable. Create
+necessary constructors and methods.
+
+Create a class Bill_Item having quantity, amount(amount=quantity*price) as member variable.
+Create necessary constructors and methods.
+
+Create a Main class which will create 5 instances. Generate invoice.
+*****************************************************************************************************************************************
+import java.util.Scanner;
+
+class inventory {
+    int item_id ;
+    String name ;
+    double price ;
+    inventory(){
+
+    }
+}
+
+class bill_item extends inventory{
+    int quantity ; 
+    double amount ;
+
+    public void get_data(){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter item id :");
+        item_id = sc.nextInt();
+        System.out.println("ENter name of the product :");
+        name = sc.next();
+        System.out.println("Enter the price of the product :");
+        price = sc.nextDouble();
+        System.out.println("Enter the quantity of the product :");
+        quantity = sc.nextInt();
+
+    }
+
+    public void calculate_amount(){
+        amount = (quantity * price );
+    }
+
+    public void generate_bill(){
+        System.out.print(item_id + "\t\t" );
+        System.out.print(name+ "\t"  );
+        System.out.print(price + "\t" );
+        System.out.print(quantity + "\t\t" );
+        System.out.print(amount+ "\t" );
+
+    }
+}
+
+public class a2_p11_a{
+    public static void main(String args[]){
+        int i = 0;
+        bill_item[] b1 = new bill_item[10];
+        for(i = 0 ; i < 2 ;i++){
+            b1[i] = new bill_item();
+            b1[i].get_data();
+            b1[i].calculate_amount();
+        }
+        
+        System.out.println("Item id " + "\t" + "Name" +   "\t" + "Price"  + "\t" + "Quantity" + "\t" + "Amount" ) ;
+        for(i = 0 ; i < 2 ;i++){
+            b1[i].generate_bill();
+            System.out.println();
+        }
+    }
+}
+
+*****************************************************************************************************************************************
+OUTPUT:
+
+D:\MCA-III\java Assignment2>java a2_p11_a
+Enter item id :
+1
+ENter name of the product :
+TV
+Enter the price of the product :
+250000
+Enter the quantity of the product :
+2
+Enter item id :
+2
+ENter name of the product :
+AC
+Enter the price of the product :
+30000
+Enter the quantity of the product :
+3
+Item id         Name    Price   Quantity        Amount
+1               TV      250000.0        2               500000.0
+2               AC      30000.0 3               90000.0
+*****************************************************************************************************************************************
+Q 11(b):Take a string from user. Find the occurrences of a word. And print that word in reverse order.
+*****************************************************************************************************************************************
+class a2_p11_b
+{
+	public static void main(String[] args)
+	{
+		int count=0;
+		String org=System.console().readLine("\nEnter a String: ");
+		String[] arr=org.split(" ");
+		
+		String find=System.console().readLine("\nEnter a string to find total occurrences: ");
+		String rev = new StringBuffer(find).reverse().toString();
+		
+		for(int i=0; i<arr.length; i++)
+		{
+			if(arr[i].equals(find))
+			{
+				count++;
+			}
+		}
+		
+		System.out.println("\nThe word " + find + " occurs total " + count + " times.");
+		System.out.println("\nReversed String: " + rev);
+	}
+		
+}
+
+
+*****************************************************************************************************************************************
+OUTPUT:
+
+D:\MCA-III\java Assignment2>java a2_p11_b
+
+Enter a String: Quick Brown ABC Fox ABC Jumps Over ABC
+
+Enter a string to find total occurrences: ABC
+
+The word ABC occurs total 3 times.
+
+Reversed String: CBA
+
+*****************************************************************************************************************************************
+Q 12(a):Write a program Addition of two binary numbers
+
+Example:
+Input: Binary number 1: 101
+Binary number 2: 011
+Output: 1000
+*****************************************************************************************************************************************
+import java.util.*;
+
+public class a2_p12_a 
+{
+   public static void main(String[] args)
+   {	 
+	long b1, b2;
+	int i = 0, carry = 0;
+
+	int[] sum = new int[10];
+
+	Scanner scanner = new Scanner(System.in);
+
+	System.out.print("\nEnter first binary number: ");
+	b1 = scanner.nextLong();
+
+	System.out.print("\nEnter second binary number: ");
+	b2 = scanner.nextLong();
+
+	while (b1 != 0 || b2 != 0) 
+	{
+		sum[i++] = (int)((b1 % 10 + b2 % 10 + carry) % 2);
+		carry = (int)((b1 % 10 + b2 % 10 + carry) / 2);
+		b1 = b1 / 10;
+		b2 = b2 / 10;
+	}
+	if (carry != 0) 
+	{
+		sum[i++] = carry;
+	}
+	--i;
+	
+	System.out.print("\nOutput: ");
+	
+	while (i >= 0) 
+	{
+		System.out.print(sum[i--]);
+	}
+	
+	System.out.print("\n");  
+   }
+}
+
+*****************************************************************************************************************************************
+OUTPUT:
+
+D:\MCA-III\java Assignment2>java a2_p12_a
+
+Enter first binary number: 11
+
+Enter second binary number: 11
+
+Output: 110
+
+*****************************************************************************************************************************************
+Q 12(b):(B)Print following pattern
+J a v v a
+J a a v v a a
+JJ aaaaa v v aaaaa
+JJ a a v a a
+*****************************************************************************************************************************************
+
+*****************************************************************************************************************************************
+OUTPUT:
+*****************************************************************************************************************************************
+Q13(a):Print Face
++””””””+
+[| 0 0 |]
+|   ^  |
+|  ‘_’ |
++------+
+*****************************************************************************************************************************************
+public class a2_p13_a {
+    public static void main(String[] args)
+    {
+        System.out.println(" +\"\"\"\"\"+ ");
+        System.out.println("[| o o |]");
+        System.out.println(" |  ^  | ");
+        System.out.println(" | '-' | ");
+        System.out.println(" +-----+ ");
+    }
+}
+
+
+*****************************************************************************************************************************************
+OUTPUT:
+	D:\MCA-III\java Assignment2>java a2_p13_a
+ +"""""+
+[| o o |]
+ |  ^  |
+ | '-' |
+ +-----+
+
+
+
+*****************************************************************************************************************************************
+Q13(b):B.Print following pattern.
+1
+01
+101
+0101
+10101
+010101
+*****************************************************************************************************************************************
+class a2_p13_b{
+	public static void main(String args[])
+	{
+        int i,j;
+		for(i = 0; i <= 5; i++)
+		{
+			for(j = 0 ; j <= i; j++)
+			{
+				if((i+j) % 2 == 0 ){
+                     System.out.print(1);
+                }
+                else{
+                    System.out.print(0);
+                }
+			}
+			System.out.println();
+		}
+	}
+}
+
+*****************************************************************************************************************************************
+OUTPUT:
+
+D:\MCA-III\java Assignment2>java a2_p13_b
+1
+01
+101
+0101
+10101
+010101
+
+*****************************************************************************************************************************************
+Q14:Create an employee class which has attributes : empid , fname , lname, salary, designation, bonus
+
+.It has all the necessary constructors (at least 2) and methods.It must have one abstract method-
+calculate_bonus().
+
+-Create 2 subclasses :Clerk & Manager
+- Clerk has the additional attribute-No. of hrs worked ,
+- Manager has the attribute – No. of projects managed
+- Both the subclasses must have necessary constructor (at least 2) and methods
+- Create an array of five employees ,read the details and display the details
+- Calculate the bonus on the following criteria :
+- Clerk –No. of hrs worked>250 then for each extra hour 200 Rs Bonus
+- Manager –No. of projects managed *1000
+*****************************************************************************************************************************************
+abstract class employee {
+    int emp_id ;
+    String fname;
+    String lname ;
+    float salary;
+    String designation;
+    float bonus;
+
+    employee(int emp_id,String fname,String lname,float salary,String designation){
+     this.emp_id = emp_id ;
+     this.fname =fname;
+     this.lname = lname;
+     this.salary =salary;
+     this.designation = designation ;
+    }
+
+    abstract void calculate_bonus();
+	abstract void display();
+}
+
+class clerk extends employee{
+
+    int no_of_hrs_worked ; 
+
+    clerk(int emp_id,String fname,String lname,float salary,String designation, int c_n_w){
+        super(emp_id,fname,lname,salary,designation);
+        this.no_of_hrs_worked = c_n_w ;
+    }
+    void calculate_bonus(){
+        if(no_of_hrs_worked > 250 ){
+            this.bonus = ( no_of_hrs_worked - 250 ) * 200 ;
+        }
+        else{
+            this.bonus = 0 ;
+        }
+    }
+    void display(){
+        calculate_bonus();
+        System.out.println("Employee id is : " + this.emp_id);
+        System.out.println("Employee first name is : " + this.fname);
+        System.out.println("Employee last name is : " + this.lname);
+        System.out.println("Employee designation is : " + this.designation);
+        System.out.println("Employee basic salary is : " + this.salary);
+        System.out.println("Employee bonus is : " + this.bonus);
+        System.out.println("Employee total salary is : " + (this.salary + this.bonus));
+    }
+}
+
+class meneger extends employee{
+    int no_project;
+    meneger(int emp_id,String fname,String lname,float salary,String designation, int n_o_p){
+        super(emp_id,fname,lname,salary,designation);
+        this.no_project = n_o_p ;
+    }
+
+    void calculate_bonus(){
+        this.bonus = (no_project * 1000) ;
+    }
+	
+    void display(){
+        calculate_bonus();
+        System.out.println("Employee id is : " + this.emp_id);
+        System.out.println("Employee first name is : " + this.fname);
+        System.out.println("Employee last name is : " + this.lname);
+        System.out.println("Employee designation is : " + this.designation);
+        System.out.println("Employee basic salary is : " + this.salary);
+        System.out.println("Employee bonus is : " + this.bonus);
+        System.out.println("Employee total salary is : " + (this.salary+this.bonus));
+    }
+}
+
+public class a2_p14{
+    public static void main(String[] args){
+		
+		employee[] emp=new employee[5];
+		
+		emp[0] = new clerk(1,"Kriya","pandya",750000,"Clerk",260);
+		emp[1] = new clerk(2,"ravi","shah",650000,"Clerk",400);
+		emp[2] = new clerk(3,"pushti","sampat",850000,"Clerk",200);
+		emp[3] = new meneger(1,"Preksha","Sheth",950000,"Manager",3);
+		emp[4] = new meneger(2,"abhi","Patel",350000,"Manager",5);
+		
+		for(int i=0; i<5; i++)
+		{
+			System.out.println("\n*************************************\n");
+			emp[i].display();
+		}
+    }
+}
+*****************************************************************************************************************************************
+OUTPUT:
+
+D:\MCA-III\java Assignment2>java a2_p14
+
+*************************************
+
+Employee id is : 1
+Employee first name is : Kriya
+Employee last name is : pandya
+Employee designation is : Clerk
+Employee basic salary is : 750000.0
+Employee bonus is : 2000.0
+Employee total salary is : 752000.0
+
+*************************************
+
+Employee id is : 2
+Employee first name is : ravi
+Employee last name is : shah
+Employee designation is : Clerk
+Employee basic salary is : 650000.0
+Employee bonus is : 30000.0
+Employee total salary is : 680000.0
+
+*************************************
+
+Employee id is : 3
+Employee first name is : pushti
+Employee last name is : sampat
+Employee designation is : Clerk
+Employee basic salary is : 850000.0
+Employee bonus is : 0.0
+Employee total salary is : 850000.0
+
+*************************************
+
+Employee id is : 1
+Employee first name is : Preksha
+Employee last name is : Sheth
+Employee designation is : Manager
+Employee basic salary is : 950000.0
+Employee bonus is : 3000.0
+Employee total salary is : 953000.0
+
+*************************************
+
+Employee id is : 2
+Employee first name is : abhi
+Employee last name is : Patel
+Employee designation is : Manager
+Employee basic salary is : 350000.0
+Employee bonus is : 5000.0
+Employee total salary is : 355000.0
+
+*****************************************************************************************************************************************

@@ -1,0 +1,1690 @@
+﻿*****************************************************************************************************************************************
+NAME    : Preksha Sheth
+ROLL NO : 36
+CLASS   : MCA-III
+SUBJECT : JAVA
+*****************************************************************************************************************************************
+
+					ASSIGNMENT - 1
+
+*****************************************************************************************************************************************
+
+					  Part - I
+
+*****************************************************************************************************************************************
+Q(1).Write a first program in java (Hello World)
+*****************************************************************************************************************************************
+class hello{
+	public static void main(String[] args){
+		System.out.println("Hello World..");
+	}
+}
+
+*****************************************************************************************************************************************
+OUTPUT:
+
+D:\MCA-III\java>java hello.java
+Hello World..
+
+*****************************************************************************************************************************************
+Q(2).Write a program to illustrate the command line Argument.(command line Arguments)
+*****************************************************************************************************************************************
+class cldemo{
+	public static void main(String[] args){
+		System.out.println("There are " + args.length + "command -line arg.");
+		System.out.println("They are :");
+		for(int i = 0; i < args.length; i++)
+		System.out.println("arg [" + i + "] i : " + args[i]);
+	}
+}
+
+*****************************************************************************************************************************************
+OUTPUT :
+
+D:\MCA-III\java>java cldemo.java preksha sheth 36
+There are 3command -line arg.
+They are :
+arg [0] i : preksha
+arg [1] i : sheth
+arg [2] i : 36
+*****************************************************************************************************************************************
+Q(3).	Arithmetic Demo..
+*****************************************************************************************************************************************
+public class arithmetic{
+	public static void main(String args[])
+	{
+		float i = 5 / 2f;
+		//int j = 4 / 2;
+		System.out.println(i);
+		System.out.print(5/2);
+		System.out.print("  "+5 % 2);
+		System.out.print("  "+4 / 2);
+		System.out.print("  "+4 % 2);
+		//System.out.println(j);
+		//System.out.println(" "+4 % 2);
+	}
+}
+*****************************************************************************************************************************************
+OUTPUT :
+
+D:\MCA-III\java>java arithmetic.java
+2.5
+2  1  2  0
+*****************************************************************************************************************************************
+Q(4) : Floating Point 
+*****************************************************************************************************************************************
+class floating_4{
+	public static void main(String[] args){
+		float price;
+		price = 45.35f;
+		System.out.print("The price is ");
+		System.out.println(price);
+	}
+}
+*****************************************************************************************************************************************
+OUTPUT:
+
+D:\MCA-III\java>java floating_4.java
+The price is 45.35
+
+*****************************************************************************************************************************************
+Q(5-1) :Converting Gallons to Liters..
+*****************************************************************************************************************************************
+class galTolit{
+	public static void main(String[] args){
+		double gallons;
+		double liters;
+		
+		gallons = 10;
+		
+		liters = gallons * 3.7854; // convert gallons to liters
+		System.out.println(gallons +" Gallons is" + liters + " liters..");
+		
+	}
+}
+*****************************************************************************************************************************************
+OUTPUT:
+
+D:\MCA-III\java>java galTolit.java
+10.0 Gallons is37.854 liters..
+
+*****************************************************************************************************************************************
+Q(5-2): Improving the Gallons-to-Liters Converter (create a table).
+*****************************************************************************************************************************************
+class galTolit2{
+	public static void main(String[] args){
+		double gallons,liters;
+		int counter;
+		
+		counter = 0;
+		for(gallons = 1; gallons <= 20; gallons++)//generate table upto 50
+		{
+			liters = gallons * 3.7854;
+			System.out.println(gallons + "gallons is " + liters + "liters..");
+			counter++;
+			if(counter == 100)
+			{
+				System.out.println();
+				counter = 0;
+			}
+		}
+	}
+}
+*****************************************************************************************************************************************
+OUTPUT:
+
+D:\MCA-III\java>java galTolit2.java
+1.0gallons is 3.7854liters..
+2.0gallons is 7.5708liters..
+3.0gallons is 11.356200000000001liters..
+4.0gallons is 15.1416liters..
+5.0gallons is 18.927liters..
+6.0gallons is 22.712400000000002liters..
+7.0gallons is 26.4978liters..
+8.0gallons is 30.2832liters..
+9.0gallons is 34.0686liters..
+10.0gallons is 37.854liters..
+11.0gallons is 41.6394liters..
+12.0gallons is 45.424800000000005liters..
+13.0gallons is 49.2102liters..
+14.0gallons is 52.9956liters..
+15.0gallons is 56.781liters..
+16.0gallons is 60.5664liters..
+17.0gallons is 64.3518liters..
+18.0gallons is 68.1372liters..
+19.0gallons is 71.9226liters..
+20.0gallons is 75.708liters..
+
+*****************************************************************************************************************************************
+Q(6): Write a program that illustrates the if statement:(If Demo).
+*****************************************************************************************************************************************
+class ifdemo{
+	public static void main(String[] args){
+		int a,b,c;
+		a = 2;
+		b = 3;
+		
+		if(a < b)
+			System.out.println("a is less than b..");
+		else
+			System.out.println("b is less than a..");
+		System.out.println();
+		
+		c = a - b;//c contain -1
+		System.out.println("c contain -1");
+		if(c >= 0)
+			System.out.println("c is positive..");
+		if(c < 0)
+			System.out.println("c is negative..");
+		
+		System.out.println();
+		
+		c = b - a;//c contain 1
+		System.out.println("c contain 1");
+		if(c >= 0)
+			System.out.println("c is positive..");
+		if(c < 0)
+			System.out.println("c is negative..");
+	}
+}
+*****************************************************************************************************************************************
+OUTPUT:
+
+D:\MCA-III\java>java ifdemo.java
+a is less than b..
+
+c contain -1
+c is negative..
+
+c contain 1
+c is positive..
+*****************************************************************************************************************************************
+Q(7): Take a list of an array and calculte the min, max and sum of the elements . 
+*****************************************************************************************************************************************
+public class Array {
+    public static void main(String[] args) {
+        double[] myList = {1.9, 2.9, 3.4, 3.5};
+
+        for(int i = 0; i < myList.length; i++){
+            System.out.println(myList[i] + "  ");
+        }
+
+        double total = 0;
+        for(int i = 0; i < myList.length; i++){
+            total +=  myList[i];
+        }
+        System.out.println("Total: " + total);
+
+        double max = myList[0];
+        for(int i = 0; i < myList.length; i++){
+            if (myList[i] >  max){
+                max = myList[i];
+            }
+        }
+        System.out.println("Max: " + max);
+		
+		double min = myList[0];
+		for(int i = 0; i < myList.length; i++){
+            if (myList[i] <  min){
+                min = myList[i];
+            }
+        }
+		System.out.println("Min: " + min);
+    }
+}
+*****************************************************************************************************************************************
+OUTPUT:
+
+D:\MCA-III\java>java array.java
+1.9
+2.9
+3.4
+3.5
+Total: 11.7
+Max: 3.5
+Min: 1.9
+*****************************************************************************************************************************************
+Q(8): Character arithmatic demo .. 
+*****************************************************************************************************************************************
+class charArithdemo{
+	public static void main(String[] args){
+		char ch;
+
+		ch = 'X';
+		System.out.println("Ch Contains :" + ch);
+
+		ch++;
+		System.out.println("Ch is now :" + ch);
+
+		ch = 90;
+		System.out.println("Ch is now :" + ch);
+	}
+}
+*****************************************************************************************************************************************
+OUTPUT:
+D:\MCA-III\java>java charArithdemo.java
+Ch Contains :X
+Ch is now :Y
+Ch is now :Z
+*****************************************************************************************************************************************
+Q(9): sound Demo..
+*****************************************************************************************************************************************
+class sound{
+	public static void main(String args[]){
+		double dist;
+		//light reaches in 7.2 sec. so its distance is in feet 
+		dist = 7.2 * 1100;
+		System.out.println("So Light is " + dist + "Feet away..");
+	}
+}
+*****************************************************************************************************************************************
+OUTPUT:
+
+D:\MCA-III\java>java sound.java
+So Light is 7920.0Feet away..
+*****************************************************************************************************************************************
+Q(10): Write a program to understand the effect of nested scopes (ScopeDemo) .
+*****************************************************************************************************************************************
+class scope{
+	public static void main(String[] args){
+		int x = 10;
+		if(x == 10){
+			//start new scope
+			int y = 20;//y's scope upto if
+			// we can access x and y both here because x is global and y is local var 
+			System.out.println("X and Y : " + x + " : " + y);
+
+			x = y * 2;
+
+			System.out.println("Now X is " + x);
+		}
+		//here y is not accessible & x is accessible
+	}
+}
+*****************************************************************************************************************************************
+OUTPUT:
+
+D:\MCA-III\java>javac scope.java
+
+D:\MCA-III\java>java scope.java
+X and Y : 10 : 20
+Now X is 40
+*****************************************************************************************************************************************
+Q(11): Boolean Demo..
+*****************************************************************************************************************************************
+class bool_demo{
+	public static void main(String[] args){
+		boolean b;
+		b = false;
+		System.out.println("\nB = " + b);
+
+		b = true;
+		System.out.println("\nB = " + b);
+
+		//a boolean val can becontrol using if statement
+		if(b)	System.out.println("\nThis is executed..");		
+		
+		b = false;
+		if(!b)	System.out.println("\nThis is not executed..");
+
+		//outcome of the relational operator is boolean:
+
+		System.out.println("\n10 > 9 is " + (10 > 9));
+	}
+}
+*****************************************************************************************************************************************
+OUTPUT:
+
+D:\MCA-III\java>javac bool_demo.java
+
+D:\MCA-III\java>java bool_demo.java
+
+B = false
+
+B = true
+
+This is executed..
+
+This is not executed..
+
+10 > 9 is true
+
+*****************************************************************************************************************************************
+
+						Part - II
+
+*****************************************************************************************************************************************
+Q(12.)	Write a program to generate a multiplication table  
+*****************************************************************************************************************************************
+class multiplication_table{
+	public static void main(String[] args) {
+		int num ;
+		num = Integer.parseInt(args[0]);
+		System.out.println("num : " + num);
+
+		for(int i=1 ;i <= 10 ;i++){
+			System.out.println(num + " * " + i + " = "+ num * i);
+		}
+	}
+}
+
+*****************************************************************************************************************************************
+OUTPUT:
+
+D:\MCA-III\java>javac multiplication_table.java
+
+D:\MCA-III\java>java multiplication_table 13
+num : 13
+13 * 1 = 13
+13 * 2 = 26
+13 * 3 = 39
+13 * 4 = 52
+13 * 5 = 65
+13 * 6 = 78
+13 * 7 = 91
+13 * 8 = 104
+13 * 9 = 117
+13 * 10 = 130
+
+
+*****************************************************************************************************************************************
+Q(13.)	BitDemo
+*****************************************************************************************************************************************
+
+public class BitDemo{
+    public static void main(String[] args){
+        int bitmask = 0x000F;
+        int val = 0x2222;
+        System.out.println(val & bitmask);
+    }
+}
+
+*****************************************************************************************************************************************
+OUTPUT:
+
+
+D:\MCA-III\java>javac BitDemo.java
+
+D:\MCA-III\java>java BitDemo
+2
+
+*****************************************************************************************************************************************
+Q(14.)	Write a program to calculate the radius of the pond that will accommodate 20 fish averaging
+	10 inches in length.
+*****************************************************************************************************************************************
+
+public class PondRadius{
+	public static void main(String[] args) {
+		//calculate the radius of pond: 
+		//which can hold 20 fishes aveg. 10 inches long 
+
+		int fishcount = 20 ;
+		int fishlength = 10 ;
+		int lengthpersqft = 2 ;
+		double radius = 0.0;
+
+		int feet = 0 ;
+		int inches = 0 ;
+		double pondarea = (double) (fishcount * fishlength) /lengthpersqft ;
+		radius = Math.sqrt(pondarea / Math.PI);
+		feet = (int)Math.floor(radius) ; 
+		inches = (int)Math.round(12.0 * (radius - feet) );
+
+		System.out.println("To hold " + fishcount + " fish averaging " + fishlength + " inches long you need a pond with an area of " + pondarea + " Square feet \n");
+		System.out.println("The radius of a pond with area " + pondarea + " Square feet is " + feet + " feet " + inches + " inches \n");
+	}
+}
+
+
+*****************************************************************************************************************************************
+OUTPUT:
+
+D:\MCA-III\java>javac PondRadius.java
+
+D:\MCA-III\java>java PondRadius
+To hold 20 fish averaging 10 inches long you need a pond with an area of 100.0 Square feet
+
+The radius of a pond with area 100.0 Square feet is 5 feet 8 inches
+*****************************************************************************************************************************************
+Q(16.)	Arithmetic with Character Code
+*****************************************************************************************************************************************
+
+public class CharCodeCalcs{
+	public static void main(String[] args) {
+		char letter1 = 'A';
+		char letter2 = (char)(letter1+1);
+		char letter3 = letter2 ; 
+
+		System.out.println("Here\'s a sequence of letters : " + letter1 + " " + letter2 + " " + (++letter3) + "\n");
+
+		//letter3 is become c now 
+
+		System.out.println("Here are the decimal codes for the letters : \n" + 
+							letter1 + " : " + (int)letter1 + 
+							"\n"  + letter2 + " : " + (int)letter2 +  
+							"\n"  + letter3 + " : " + (int)letter3 );
+	}
+}
+
+*****************************************************************************************************************************************
+OUTPUT:
+
+D:\MCA-III\java>java CharCodeCalcs
+Here's a sequence of letters : A B C
+
+Here are the decimal codes for the letters :
+A : 65
+B : 66
+C : 67
+
+*****************************************************************************************************************************************
+Q(17.) Shift Operators (pg 103 ivor horton)
+*****************************************************************************************************************************************
+import static java.lang.Long.toHexString;
+class packchar
+{
+	public static void main(String[] args)
+	{
+		char letterA = 'A';
+		char letterB = 'B';
+		char letterC = 'C';
+		char letterD = 'D';
+		long packed = 0L;
+		packed = letterD;
+		packed = (packed << 16) | letterC;
+		packed = (packed << 16) | letterB;
+		packed = (packed << 16) | letterA;
+		System.out.println("packed now contains 0x" + toHexString(packed));
+
+		long mask = 0xFFFF;
+		char letter = (char)(packed & mask);
+		
+		System.out.println(“From right to left the letters in packed are:”);
+		System.out.println(“ “ + letter + “ 0x” + toHexString(letter));
+		packed >>= 16;
+		letter = (char)(packed & mask);
+
+		System.out.println(“ “ + letter + “ 0x” + toHexString(letter));
+		packed >>= 16;
+		letter = (char)(packed & mask);
+
+		System.out.println(“ “ + letter + “ 0x” + toHexString(letter));
+		packed >>= 16;
+		letter = (char)(packed & mask);
+		System.out.println(“ “ + letter + “ 0x” + toHexString(letter));
+	}
+}
+
+*****************************************************************************************************************************************
+OUTPUT:
+D:\MCA-III\java>java packchar.java
+packed now contains 0x44004300420041
+From right to left the letters in packed are:
+A 0x41
+B 0x42
+C 0x43
+D 0x44 
+
+*****************************************************************************************************************************************
+Q(18.)	 Bitwise Operators (Indicators & Masking)
+*****************************************************************************************************************************************
+
+import static java.lang.Integer.toBinaryString;
+public class BitWiseOPs{
+	public static void main(String[] args) {
+		int indecators = 0xFF07 ;
+		int selectBit3 = 0x4; //MAsk to select the 3rd bit 
+
+		//Try bitwise AND to select the 3rd bit in indecators 
+
+		System.out.println("indecators 		=" + toBinaryString(indecators));
+		System.out.println("selectBit3 		=" + toBinaryString(selectBit3));
+
+		indecators &= selectBit3 ; 
+
+		System.out.println("indecators &= selectBit3		=" + toBinaryString(indecators));
+
+		// Try the bitwise OR to switch the third bit on
+
+		indecators = 0xFF09;
+
+		System.out.println("indecators 		=" + toBinaryString(indecators));
+		System.out.println("selectBit3 		=" + toBinaryString(selectBit3));
+
+		indecators |= selectBit3 ; 
+
+		System.out.println("indecators &= selectBit3		=" + toBinaryString(indecators));
+
+		//Now switch the 3rd bit off again
+
+		indecators &= ~selectBit3 ;
+
+		System.out.println("\nThe third bit in the previous value of indicators" + " has been switched off");
+		System.out.println("indicators & ~selectBit3 = " + toBinaryString(indecators));
+
+	}
+}
+
+
+*****************************************************************************************************************************************
+OUTPUT:
+
+D:\MCA-III\java>javac BitWiseOPs.java
+
+D:\MCA-III\java>java BitWiseOPs
+indecators              =1111111100000111
+selectBit3              =100
+indecators &= selectBit3                =100
+indecators              =1111111100001001
+selectBit3              =100
+indecators &= selectBit3                =1111111100001101
+
+The third bit in the previous value of indicators has been switched off
+indicators & ~selectBit3 = 1111111100001001
+
+*****************************************************************************************************************************************
+Q(19.)	Methods for operation in bits.
+*****************************************************************************************************************************************
+
+import static java.lang.Long.*;
+public class TryBitMEthods{
+	public static void main(String[] args) {
+		long number = 0xF00000000000000FL;
+		System.out.println("Numbers:\n " + toBinaryString(number));
+		long result = rotateLeft(number,2);
+		System.out.println("Number rotated left 2 bits: \n" + toBinaryString(result));
+		result = rotateRight(number, 3);
+		System.out.println("Number rotated right 3 bits: \n" + toBinaryString(result));
+		result = reverse(result);
+		System.out.println("Previous result reversed : \n" + toBinaryString(result));
+		System.out.println("Bit count in number :\n" + bitCount(number));
+	}
+}
+
+*****************************************************************************************************************************************
+OUTPUT:
+
+D:\MCA-III\java>javac TryBitMEthods.java
+
+D:\MCA-III\java>java TryBitMEthods
+Numbers:
+1111000000000000000000000000000000000000000000000000000000001111
+Number rotated left 2 bits:
+1100000000000000000000000000000000000000000000000000000000111111
+Number rotated right 3 bits:
+1111111000000000000000000000000000000000000000000000000000000001
+Previous result reversed :
+1000000000000000000000000000000000000000000000000000000001111111
+Bit count in number :
+8
+
+*****************************************************************************************************************************************
+Q(20.)A. Deciphering Characters the Hard Way
+*****************************************************************************************************************************************
+
+public class LetterCheck{
+	public static void main(String[] args) {
+		char symbol ='A';
+		symbol = (char)(128.0 * Math.random());
+
+		if(symbol >= 'A'){
+			if(symbol<='Z'){
+				System.out.println("You have capital letter" + symbol);
+			}
+			else{
+				if(symbol >= 'a'){
+					if(symbol<='z'){
+						System.out.println("You have small letter" + symbol);
+					}
+					else{
+						System.out.println("The code is greater than a but not a letter :\n");
+					}
+				}else{
+					System.out.println("The code is less than a but not a letter :\n");
+				}
+			}
+		}
+		else{
+			System.out.println("The code is less than A so it is not a letter");
+		}
+	}
+}
+
+*****************************************************************************************************************************************
+OUTPUT:
+
+
+D:\MCA-III\java>javac LetterCheck.java
+
+D:\MCA-III\java>java LetterCheck
+The code is less than A so it is not a letter
+
+*****************************************************************************************************************************************
+Q(20.) B.	 Deciphering Characters the Easy Way
+*****************************************************************************************************************************************
+
+public class LetterCheck2{
+	public static void main(String[] args) {
+		char symbol ='A';
+		symbol = (char) (128.0 * Math.random());
+
+		if(symbol >= 'A' && symbol <= 'Z'){
+			System.out.println("You have capital letter : " + symbol);
+		}
+		else{
+			if(symbol >= 'a' && symbol <= 'z'){
+				System.out.println("You have small letter : " + symbol);
+			}
+			else{
+				System.out.println("The code is not a letter :");
+			}
+		}
+	}
+}
+
+*****************************************************************************************************************************************
+OUTPUT:
+
+D:\MCA-III\java>javac LetterCheck2.java
+
+D:\MCA-III\java>java LetterCheck2
+The code is not a letter :
+
+*****************************************************************************************************************************************
+Q(20.)C.	 Deciphering Characters the trivally
+*****************************************************************************************************************************************
+
+import static java.lang.Character.isLowerCase;
+import static java.lang.Character.isUpperCase;
+
+public class LetterCheck3{
+	public static void main(String[] args) {
+		char symbol ='A';
+		symbol = (char) (128.0 * Math.random());
+
+		if(isUpperCase(symbol)){
+			System.out.println("You have capital letter :" + symbol);
+		}
+		else{
+			if(isLowerCase(symbol)){
+				System.out.println("You have small letter :" + symbol);
+			}
+			else{
+				System.out.println("The code is not a letter :");
+			}
+		}
+	}
+}
+
+*****************************************************************************************************************************************
+OUTPUT:
+
+D:\MCA-III\java>javac LetterCheck3.java
+
+D:\MCA-III\java>java LetterCheck3
+You have capital letter :L
+*****************************************************************************************************************************************
+Q(21.)	 Ternary Operator
+*****************************************************************************************************************************************
+
+class ternaryop
+{
+	public static void main(String args[])
+	{
+		int Tales = 10;
+		System.out.println("I have " +Tales+ " tales" + (Tales == 10 ? "." :"s."));
+		Tales++;
+		System.out.println("I have " +Tales+ " tales " + (Tales == 10 ? "." :"s."));
+	}
+} 
+
+*****************************************************************************************************************************************
+OUTPUT:
+
+D:\MCA-III\java>java  ternaryop.java
+I have 10 tales.
+I have 11 tales.
+
+*****************************************************************************************************************************************
+Q(22.)	Switch case demo 
+*****************************************************************************************************************************************
+
+public class tryswitch{
+
+	enum Washchoice {cotton,linen,wool,synthetic}
+
+	public static void main(String[] args) {
+		Washchoice wash = Washchoice.cotton;
+
+		System.out.println("\n1.Shirts \n2.Sweaters \n3.Socks \n4.Sheets \n5.Pants\n");
+
+		int clothes = 1 ;
+
+		switch(clothes){
+			case 1: 
+				System.out.println("Washing shirts : ");
+				wash = Washchoice.cotton;
+				break;
+			case 2: 
+				System.out.println("Washing sweaters : ");
+				wash = Washchoice.wool;
+				break;
+			case 3: 
+				System.out.println("Washing socks : ");
+				wash = Washchoice.wool;
+				break;
+			case 4: 
+				System.out.println("Washing sheets : ");
+				wash = Washchoice.linen;
+				break;
+			case 5: 
+				System.out.println("Washing pants : ");
+				wash = Washchoice.synthetic;
+				break;
+			default: 
+				System.out.println("Unknown washing - default synthetic : ");
+				wash = Washchoice.synthetic;
+				break;
+		}
+
+		// Now select the wash temperature 
+		System.out.println("Wash is : " + wash);
+		switch(wash){
+			case wool : 
+				System.out.println("TEmperature is 120 : ");
+				break;
+			case cotton : 
+				System.out.println("TEmperature is 170 : ");
+				break;
+			case synthetic : 
+				System.out.println("TEmperature is 130 : ");
+				break;
+			case linen : 
+				System.out.println("TEmperature is 180 : ");
+				break;
+		}
+	}
+}
+
+*****************************************************************************************************************************************
+OUTPUT:
+
+D:\MCA-III\java>javac tryswitch.java
+
+D:\MCA-III\java>java tryswitch
+
+1.Shirts
+2.Sweaters
+3.Socks
+4.Sheets
+5.Pants
+
+Washing shirts :
+Wash is : cotton
+TEmperature is 170 :
+
+D:\MCA-III\java>
+
+*****************************************************************************************************************************************
+Q(23.)	Demonstrate numeric for loop
+*****************************************************************************************************************************************
+
+public class ForLoop{
+	public static void main(String[] args) {
+		int limit = 20 ;
+		int sum = 0 ;
+
+		for (int i = 1 ; i <= limit ; i++ ) {
+			sum += i;
+		}
+
+		System.out.println("Sum = " + sum);
+	}
+}
+
+
+*****************************************************************************************************************************************
+OUTPUT:
+
+
+D:\MCA-III\java>javac ForLoop.java
+
+D:\MCA-III\java>java ForLoop
+Sum = 210
+
+*****************************************************************************************************************************************
+Q(24.)	Demonstrate Collection-Based for loop 
+*****************************************************************************************************************************************
+
+public class CollectionForLoop{
+	enum Season { spring , summer , fall , winter }
+	public static void main(String[] args) {
+		for (Season season : Season.values() ) {
+			System.out.println("The season is now : " + season) ;
+		}
+	}
+}
+
+*****************************************************************************************************************************************
+OUTPUT:
+
+D:\MCA-III\java>javac CollectionForLoop.java
+
+D:\MCA-III\java>java CollectionForLoop
+The season is now : spring
+The season is now : summer
+The season is now : fall
+The season is now : winter
+
+*****************************************************************************************************************************************
+Q(25.)	Demonstrate while loop 
+*****************************************************************************************************************************************
+
+public class WhileLoop{
+	public static void main(String[] args) {
+		int limit = 20 ;
+		int sum = 0 ; 
+		int i = 1 ;
+		while(i <= limit){
+			sum += i ;
+			i++;
+		}
+		System.out.println("sum = " + sum);
+	}
+}
+
+*****************************************************************************************************************************************
+OUTPUT:
+
+
+D:\MCA-III\java>javac WhileLoop.java
+
+D:\MCA-III\java>java WhileLoop
+sum = 210
+
+*****************************************************************************************************************************************
+Q(26.)	Demonstrate Do-While loop 
+*****************************************************************************************************************************************
+
+public class DoWhileLoop{
+	public static void main(String[] args) {
+		int limit = 20 ;
+		int sum = 0 ;
+		int i = 1 ;
+
+		do{
+			sum += i ;
+			i++;
+		}while(i <= limit);
+
+		System.out.println("Sum = " + sum );
+	}
+}
+
+*****************************************************************************************************************************************
+OUTPUT:
+
+D:\MCA-III\java>javac DoWhileLoop.java
+
+D:\MCA-III\java>java DoWhileLoop
+Sum = 210
+
+*****************************************************************************************************************************************
+Q(27.)	CAlculate factorial 
+*****************************************************************************************************************************************
+
+public class Factorial{
+	public static void main(String[] args) {
+		long limit = 20L;	//Max limit calculate factorials till here 
+		long factorial = 1L;	//Sores factorial in this var.
+
+		for(long i=1l ; i<= limit ; i++ ){
+			factorial =1L;
+
+			for(long factor=2 ;factor <= i ; factor++){
+				factorial *= factor;
+			}
+			System.out.println(i + "! is " + factorial );
+		}
+
+		
+	}
+}
+
+*****************************************************************************************************************************************
+OUTPUT:
+
+D:\MCA-III\java>javac Factorial.java
+
+D:\MCA-III\java>java Factorial
+1! is 1
+2! is 2
+3! is 6
+4! is 24
+5! is 120
+6! is 720
+7! is 5040
+8! is 40320
+9! is 362880
+10! is 3628800
+11! is 39916800
+12! is 479001600
+13! is 6227020800
+14! is 87178291200
+15! is 1307674368000
+16! is 20922789888000
+17! is 355687428096000
+18! is 6402373705728000
+19! is 121645100408832000
+20! is 2432902008176640000
+
+*****************************************************************************************************************************************
+Q(28.)	Labled continue example
+*****************************************************************************************************************************************
+
+public class Factorial2{
+	public static void main(String[] args) {
+		long limit = 20L;	//Max limit calculate factorials till here 
+		long factorial = 1L;	//Sores factorial in this var.
+
+		outerloop:
+		for(long i=1l ; i<= limit ; i++ ){
+			factorial =1L;
+
+			for(long j=2L ;j <= i ; j++){
+				if(i>10L && i % 2L == 1L){
+					continue outerloop;
+				}
+				factorial *= j;
+			}
+			System.out.println(i + "! is " + factorial );
+		}
+
+
+	}
+}
+
+*****************************************************************************************************************************************
+OUTPUT:
+
+D:\MCA-III\java>javac Factorial2.java
+
+D:\MCA-III\java>java Factorial2
+1! is 1
+2! is 2
+3! is 6
+4! is 24
+5! is 120
+6! is 720
+7! is 5040
+8! is 40320
+9! is 362880
+10! is 3628800
+12! is 479001600
+14! is 87178291200
+16! is 20922789888000
+18! is 6402373705728000
+20! is 2432902008176640000
+
+*****************************************************************************************************************************************
+Q(29.A.)	Write a program to find all prime no's. from 2 to 50 
+*****************************************************************************************************************************************
+
+public class Primes {
+	public static void main(String[] args) {
+		int max = 50; // The maximum value to be checked
+		boolean isPrime = true; // Is true if we find a prime
+		// Check all values from 2 to nValues
+		for(int i = 2; i <= max; i++) {
+			isPrime=true; // Assume the current i is prime
+			for(int j = 2; j < i; j++) {
+				if(i % j == 0) { // This is true if j divides exactly
+					isPrime = false; // If we got here, it was an exact division
+					break; // so exit the loop
+				}
+			}
+			// We can get here through the break, or through completing the loop
+			if(isPrime) // So is it prime?
+				System.out.println(i); // Yes, so output the value
+		}
+	}
+}
+
+*****************************************************************************************************************************************
+OUTPUT:
+
+D:\MCA-III\java>javac Primes.java
+
+D:\MCA-III\java>java Primes
+2
+3
+5
+7
+11
+13
+17
+19
+23
+29
+31
+37
+41
+43
+47
+
+*****************************************************************************************************************************************
+Q(29.B.)	Write a program to find all prime no's. from 2 to 50 
+*****************************************************************************************************************************************
+
+public class Primes2{
+	public static void main(String[] args) {
+		int nvalues = 50 ;
+		int i ;
+		Outerloop : 
+		for( i = 2 ; i <= nvalues ; i++){
+			for (int j =2 ;j < i ; j++){
+				if(i%j == 0 ){
+					continue Outerloop;
+				}
+			}
+			System.out.println(i);
+		}
+	}
+}
+
+*****************************************************************************************************************************************
+OUTPUT:
+
+D:\MCA-III\java>javac Primes2.java
+
+D:\MCA-III\java>java Primes2
+2
+3
+5
+7
+11
+13
+17
+19
+23
+29
+31
+37
+41
+43
+47
+
+*****************************************************************************************************************************************
+Q(30.A.)	Write a program to display a random choice from a set of six choices for breakfast 
+	(you could use any set; for example, scrambled eggs, waffles, fruit, cereal, toast, or yogurt).
+
+*****************************************************************************************************************************************
+
+public class Choiceeg_1{
+	public static void main(String[] args) {
+		int choices = 0 ;
+
+		choices = (int)(Math.random() * 6.0) ;
+		//System.out.println("Choices = " +choices );
+		switch(choices){
+			case 0 :
+				System.out.println("Your breakfast choice is Scrambled eggs \n ");
+				break;
+			case 1 :
+				System.out.println("Your breakfast choice is Waffles \n ");
+				break;
+			case 2 :
+				System.out.println("Your breakfast choice is Fruits \n ");
+				break;
+			case 3 :
+				System.out.println("Your breakfast choice is Cereal \n ");
+				break;
+			case 4 :
+				System.out.println("Your breakfast choice is Toast \n ");
+				break;
+			case 5 :
+				System.out.println("Your breakfast choice is Yogurt \n ");
+				break;
+		}
+	}
+}
+
+
+*****************************************************************************************************************************************
+OUTPUT:
+
+D:\MCA-III\java>javac Choiceeg_1.java
+
+D:\MCA-III\java>java Choiceeg_1
+Your breakfast choice is Toast
+
+
+D:\MCA-III\java>java Choiceeg_1
+Your breakfast choice is Scrambled eggs
+
+
+D:\MCA-III\java>java Choiceeg_1
+Your breakfast choice is Cereal
+
+*****************************************************************************************************************************************
+Q(30.B.)	When testing whether an integer is a prime, it is sufficient to try to divide by integers up to 
+	the square root of the number being tested. Rewrite the program example from this chapter to use
+	this approach .
+*****************************************************************************************************************************************
+
+public class Prime_eg2{
+	public static void main(String[] args) {
+		int n , i = 2 , sqrt = 0; 
+		boolean isprime = true ;
+		n = Integer.parseInt(args[0]);
+		sqrt = (int)Math.sqrt(n) + 1 ;
+		for(i = 2 ; i <= sqrt ; i++){
+			if(n % i == 0){
+				isprime = false ;
+				break;
+			}
+		}
+		if(isprime)
+			System.out.println("The no " + n + " is Prime : ");
+		else
+			System.out.println("The no " + n + " is not Prime : ");
+	}	
+}
+
+*****************************************************************************************************************************************
+OUTPUT:
+
+
+D:\MCA-III\java>javac Prime_eg2.java
+
+D:\MCA-III\java>java Prime_eg2 13
+The no 13 is Prime :
+
+D:\MCA-III\java>java Prime_eg2 25
+The no 25 is not Prime :
+*****************************************************************************************************************************************
+Q(30.C.)	A lottery requires that you select six different numbers from the integers 1 to 49. Write a 
+	program to do this for you and generate five sets of entries.
+*****************************************************************************************************************************************
+
+class NumberSet
+{
+	public static void main(String[] args)
+	{
+		int x;
+		int a[]=new int[6];
+		for(int i=0;i<5;i++)
+		{
+			for(int j=0;j<6;)
+			{
+				x=(int)(Math.random()*49+1);//to select random num between 1-49
+				for(int k=0;k<j;k++)
+				{
+				if(x==a[k]) //if number is already selected then we have to select again
+				{
+					x=(int)(Math.random()*49+1);
+					k--;
+				}
+				}
+				a[j]=x;
+				j++;
+				if(x<10) //to print single and double digits with same space
+					System.out.print(x + " ");
+				else
+					System.out.print(x + " ");
+			}
+			System.out.println("\n");
+		}
+		}
+}
+
+****************************************************************************************************************************************
+OUTPUT:
+
+D:\MCA-III\java>javac NumberSet.java
+
+D:\MCA-III\java>java NumberSet
+20 40 17 21 46 43
+
+47 29 43 35 13 41
+
+4 21 19 16 8 42
+
+9 23 4 7 31 34
+
+7 31 24 9 32 18
+
+*****************************************************************************************************************************************
+Q(30.D.)	Write a program to generate a random sequence of capital letters that does not include vowels.
+*****************************************************************************************************************************************
+
+class CharSet
+{
+	public static void main(String[] args)
+	{
+	char ch;
+	int a[]=new int[6];
+	ch=(char)(Math.random()*21+65);//to select random character from A-V as we will print 5 letters
+	System.out.println("Random sequence of capital letters without vowel: ");
+	for(int i=0;i<5;i++)
+	{
+		if(ch == 'A' ||ch == 'E' ||ch == 'I' ||ch == 'O' ||ch == 'U')
+		{
+			ch++;
+			i--;
+		}
+		else
+		{
+			System.out.print(ch+" ");
+			ch++;
+		}
+	}
+	}
+}
+
+*****************************************************************************************************************************************
+OUTPUT:
+
+D:\MCA-III\java>javac CharSet.java
+
+D:\MCA-III\java>java CharSet
+Random sequence of capital letters without vowel:
+P Q R S T
+*****************************************************************************************************************************************
+
+					Part - III
+
+*****************************************************************************************************************************************
+Q(31.)	Help3.java
+*****************************************************************************************************************************************
+
+public class Help{
+    public static void main(String[] args)
+        throws java.io.IOException{
+            char choice ; 
+            System.out.println("Help on : ");
+            System.out.println("1. IF");
+            System.out.println("2. Switch ");
+            System.out.println("Choose one : ");
+            choice = (char) System.in.read();
+
+            System.out.println("\n");
+
+            switch(choice) {
+                case '1' :
+                    System.out.println("The if : \n");
+                    System.out.println("if(condition) statement;");
+                    System.out.println("else statement;");
+                    break;
+                case '2': 
+                    System.out.println("The Switch : \n");
+                    System.out.println("switch(expression) { ");
+                    System.out.println("case constant : ");
+                    System.out.println("statement sequence");
+                    System.out.println("break;");
+                    System.out.println("  // ...");
+                    System.out.println("}");
+                    break;
+                default:
+                    System.out.println("Selection not found : ");
+            }
+        }   
+    
+
+*****************************************************************************************************************************************
+OUTPUT:
+
+D:\MCA-III\java>javac Help.java
+
+D:\MCA-III\java>java Help
+Help on :
+1. IF
+2. Switch
+Choose one :
+1
+
+
+The if :
+
+if(condition) statement;
+else statement;
+
+*****************************************************************************************************************************************
+Q(32.)	Rounding Errors
+*****************************************************************************************************************************************
+
+public class Sqrroot{
+	public static void main(String[] args) {
+		{
+			double num,sroot,rerr;
+			for (num = 1.0 ; num < 100.0 ; num++ ) {
+				sroot = Math.sqrt(num);
+				System.out.println("Square root of " + num + "is : " + sroot );
+
+				rerr = num - (sroot * sroot );
+				System.out.println("Rounding error is : " + rerr );
+				System.out.println();
+			}
+
+		}
+	}
+}
+
+
+*****************************************************************************************************************************************
+OUTPUT:
+
+D:\MCA-III\java>javac Sqrroot.java
+
+D:\MCA-III\java>java Sqrroot
+Square root of 1.0is : 1.0
+Rounding error is : 0.0
+
+Square root of 2.0is : 1.4142135623730951
+Rounding error is : -4.440892098500626E-16
+
+Square root of 3.0is : 1.7320508075688772
+Rounding error is : 4.440892098500626E-16
+
+Square root of 4.0is : 2.0
+Rounding error is : 0.0
+
+Square root of 5.0is : 2.23606797749979
+Rounding error is : -8.881784197001252E-16
+
+Square root of 6.0is : 2.449489742783178
+Rounding error is : 8.881784197001252E-16
+
+Square root of 7.0is : 2.6457513110645907
+Rounding error is : -8.881784197001252E-16
+
+Square root of 8.0is : 2.8284271247461903
+Rounding error is : -1.7763568394002505E-15
+
+Square root of 9.0is : 3.0
+Rounding error is : 0.0
+
+Square root of 10.0is : 3.1622776601683795
+Rounding error is : -1.7763568394002505E-15
+
+Square root of 11.0is : 3.3166247903554
+Rounding error is : 0.0
+
+Square root of 12.0is : 3.4641016151377544
+Rounding error is : 1.7763568394002505E-15
+
+Square root of 13.0is : 3.605551275463989
+Rounding error is : 1.7763568394002505E-15
+
+Square root of 14.0is : 3.7416573867739413
+Rounding error is : 0.0
+
+Square root of 15.0is : 3.872983346207417
+Rounding error is : -1.7763568394002505E-15
+
+Square root of 16.0is : 4.0
+Rounding error is : 0.0
+
+Square root of 17.0is : 4.123105625617661
+Rounding error is : 0.0
+
+Square root of 18.0is : 4.242640687119285
+Rounding error is : 3.552713678800501E-15
+
+Square root of 19.0is : 4.358898943540674
+Rounding error is : -3.552713678800501E-15
+
+Square root of 20.0is : 4.47213595499958
+Rounding error is : -3.552713678800501E-15
+
+Square root of 21.0is : 4.58257569495584
+Rounding error is : 0.0
+
+Square root of 22.0is : 4.69041575982343
+Rounding error is : 0.0
+
+Square root of 23.0is : 4.795831523312719
+Rounding error is : 3.552713678800501E-15
+
+Square root of 24.0is : 4.898979485566356
+Rounding error is : 3.552713678800501E-15
+
+Square root of 25.0is : 5.0
+Rounding error is : 0.0
+
+Square root of 26.0is : 5.0990195135927845
+Rounding error is : 3.552713678800501E-15
+
+Square root of 27.0is : 5.196152422706632
+Rounding error is : 0.0
+
+Square root of 28.0is : 5.291502622129181
+Rounding error is : -3.552713678800501E-15
+
+Square root of 29.0is : 5.385164807134504
+Rounding error is : 3.552713678800501E-15
+
+*****************************************************************************************************************************************
+Q(33.)	Loop until S is typed
+*****************************************************************************************************************************************
+
+public class ForTest{
+    public static void main(String[] args) 
+        throws java.io.IOException{
+            int i = 0;
+            char ignore;
+            System.out.println("Press S to stop : ");
+            for(i=0;(char)System.in.read() != 'S' ; i++){
+               do{
+                   ignore = (char) System.in.read();
+               } while(ignore != '\n');
+               System.out.println("Pass #" + i );
+            }
+        }
+}
+
+*****************************************************************************************************************************************
+OUTPUT:
+
+D:\MCA-III\java>javac ForTEst.java
+
+D:\MCA-III\java>javac ForTest.java
+
+D:\MCA-III\java>java ForTest
+Press S to stop :
+a
+Pass #0
+s
+Pass #1
+S
+
+*****************************************************************************************************************************************
+Q(34.)	While demo 
+*****************************************************************************************************************************************
+
+public class WhileDemo{
+    public static void main(String[] args){
+        char ch ;
+
+        //print alphabet using a while loop 
+
+        ch = 'a';
+        while(ch <= 'z'){
+            System.out.println(ch);
+            ch++;
+        }
+    }
+}
+
+*****************************************************************************************************************************************
+OUTPUT:
+
+D:\MCA-III\java>javac WhileDemo.java
+
+D:\MCA-III\java>java WhileDemo
+a
+b
+c
+d
+e
+f
+g
+h
+i
+j
+k
+l
+m
+n
+o
+p
+q
+r
+s
+t
+u
+v
+w
+x
+y
+z
+*****************************************************************************************************************************************
+Q(35.)	Do while demo
+*****************************************************************************************************************************************
+
+public class ForTest{
+    public static void main(String[] args) 
+        throws java.io.IOException{
+            int i = 0;
+            char ignore;
+            System.out.println("Press S to stop : ");
+            for(i=0;(char)System.in.read() != 'S' ; i++){
+               do{
+                   ignore = (char) System.in.read();
+               } while(ignore != '\n');
+               System.out.println("Pass #" + i );
+            }
+        }
+}
+
+*****************************************************************************************************************************************
+OUTPUT:
+
+D:\MCA-III\java>javac ForTest.java
+
+D:\MCA-III\java>java ForTest
+Press S to stop :
+a
+Pass #0
+s
+Pass #1
+S
+
+D:\MCA-III\java>javac ForTEst.java
+
+*****************************************************************************************************************************************
+Q(36.)	Guess the letter game
+*****************************************************************************************************************************************
+
+public class Guess{
+    public static void main(String[] args)
+    throws java.io.IOException{
+        char ch,ignore,answer = 'N';
+        do{
+            System.out.println("I'm thinking of a letter between A and Z.");
+            System.out.println("Can you guess it ? :");
+
+            //Read a character 
+            ch = (char) System.in.read();
+
+            //discard any other character in input buffer 
+
+            do{
+                ignore = (char)System.in.read();
+            }while(ignore != '\n');
+
+            if(ch == answer)    System.out.println("***Right***");
+            else{
+                System.out.println("....Sorry you are ");
+                if(ch < answer)     System.out.println("too low ");
+                else                System.out.println("too high ");
+            System.out.println("Try Again");
+            } 
+        }while(answer != ch);
+    }
+}
+
+*****************************************************************************************************************************************
+OUTPUT:
+
+D:\MCA-III\java>javac Guess.java
+
+D:\MCA-III\java>java Guess
+I'm thinking of a letter between A and Z.
+Can you guess it ? :
+A
+....Sorry you are
+too low
+Try Again
+I'm thinking of a letter between A and Z.
+Can you guess it ? :
+Z
+....Sorry you are
+too high
+Try Again
+I'm thinking of a letter between A and Z.
+Can you guess it ? :
+N
+***Right***
+
+D:\MCA-III\java>
+
+*****************************************************************************************************************************************
+Q(37.)	The ASCII lowercase letters are separated from the uppercase letters by 32. Thus, to convert
+	a lowercase letter to uppercase, subtract 32 from it. Use this information to write a program that
+	reads characters from the keyboard. Have it convert all lowercase letters to uppercase, and
+	all uppercase letters to lowercase, displaying the result. Make no changes to any other
+	character. Have the program stop when the user enters a period. At the end, have the
+	program display the number of case changes that have taken place.	
+*****************************************************************************************************************************************
+
+
+public class conv_l_u{
+    public static void main(String args[]) 
+    throws java.io.IOException{
+        char ch,ignore;
+        do{
+            System.out.println("Enter a character enter '$' to stop : ") ;
+            ch = (char)System.in.read();   
+            if(ch >= 'A' && ch <= 'Z' ){
+                ch+=32;
+                System.out.println("Converted character is : " + ch);
+            }
+            else if(ch >= 'a' && ch <= 'z'){
+                ch-=32;
+                System.out.println("Converted character is : " + ch);
+            }
+            do{
+                ignore = (char)System.in.read();
+            }while(ignore != '\n');
+        }while(ch != '$');
+    }
+}
+
+*****************************************************************************************************************************************
+OUTPUT:
+
+
+D:\MCA-III\java>java conv_l_u
+Enter a character :
+a
+Converted character is : A
+Enter a character :
+V
+Converted character is : v
+Enter a character :
+$
+
+*****************************************************************************************************************************************
+
+

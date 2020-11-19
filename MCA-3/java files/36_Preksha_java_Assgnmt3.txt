@@ -1,0 +1,2698 @@
+*****************************************************************************************************************************************
+NAME    : Preksha Sheth
+ROLL NO : 36
+CLASS   : MCA-III
+SUBJECT : JAVA
+*****************************************************************************************************************************************
+
+					 	ASSIGNMENT - 3
+
+*****************************************************************************************************************************************
+Q1: Assertion 1
+*****************************************************************************************************************************************
+class Assertion1 {
+	public static void main(String args[]) throws java.io.IOException
+	{	
+		int value=18;
+		
+		assert value>=20 : "Eligible";
+		System.out.println("Value:" + value);
+	}
+}
+
+*****************************************************************************************************************************************
+OUTPUT:
+
+D:\MCA-III\java>java Assertion1
+Value:18
+*****************************************************************************************************************************************
+Q2: Assertion 2
+*****************************************************************************************************************************************
+import java.util.Scanner;
+
+class Assertion2{
+	public static void main(String args[]) throws java.io.IOException
+	{	
+		Scanner scanner = new Scanner(System.in);
+		System.out.print("Enter Your Age ");
+		int value = scanner.nextInt();
+		
+		assert value>=18 : "Not Valid";
+		System.out.println("Value:" + value);
+	}
+}
+*****************************************************************************************************************************************
+OUTPUT:
+D:\MCA-III\java>java Assertion2
+Enter Your Age 21
+Value:21
+*****************************************************************************************************************************************
+Q3:Example of Scanner..
+*****************************************************************************************************************************************
+import java.util.Scanner;
+class Scanner_test{
+	public static void main(String args[]){
+		Scanner scn = new Scanner(System.in);
+		System.out.print("Enter your name, age, salary :");
+
+		String name = scn.nextLine();
+
+		int age = scn.nextInt();
+
+		double salary = scn.nextDouble();
+
+		System.out.println("Name = "+name);
+		System.out.println("Age = "+age);
+		System.out.println("Salary = "+salary);
+	}
+}
+*****************************************************************************************************************************************
+OUTPUT:
+
+D:\MCA-III\java>java Scanner_test
+Enter your name, age, salary :preksha
+21
+30000
+Name = preksha
+Age = 21
+Salary = 30000.0
+*****************************************************************************************************************************************
+Q4:Systems properties..
+*****************************************************************************************************************************************
+import java.util.*;
+
+class TryPro {
+	public static void main(String[] args) {
+		Properties properties = System.getProperties();
+		properties.list(System.out);
+		}
+}
+*****************************************************************************************************************************************
+OUTPUT:
+
+D:\MCA-III\java>java TryPro
+-- listing properties --
+java.specification.version=14
+sun.cpu.isalist=amd64
+sun.jnu.encoding=Cp1252
+java.class.path=.
+java.vm.vendor=Oracle Corporation
+sun.arch.data.model=64
+user.variant=
+java.vendor.url=https://java.oracle.com/
+java.vm.specification.version=14
+os.name=Windows 10
+sun.java.launcher=SUN_STANDARD
+user.country=US
+sun.boot.library.path=C:\Program Files\Java\jdk-14.0.2\bin
+sun.java.command=TryPro
+jdk.debug=release
+sun.cpu.endian=little
+user.home=C:\Users\preksha
+user.language=en
+sun.stderr.encoding=cp437
+java.specification.vendor=Oracle Corporation
+java.version.date=2020-07-14
+java.home=C:\Program Files\Java\jdk-14.0.2
+file.separator=\
+java.vm.compressedOopsMode=32-bit
+line.separator=
+
+sun.stdout.encoding=cp437
+java.vm.specification.vendor=Oracle Corporation
+java.specification.name=Java Platform API Specification
+user.script=
+sun.management.compiler=HotSpot 64-Bit Tiered Compilers
+java.runtime.version=14.0.2+12-46
+user.name=preksha
+path.separator=;
+os.version=10.0
+java.runtime.name=Java(TM) SE Runtime Environment
+file.encoding=Cp1252
+java.vm.name=Java HotSpot(TM) 64-Bit Server VM
+java.vendor.url.bug=https://bugreport.java.com/bugreport/
+java.io.tmpdir=C:\Users\preksha\AppData\Local\Temp\
+java.version=14.0.2
+user.dir=D:\MCA-III\javasessional2
+os.arch=amd64
+java.vm.specification.name=Java Virtual Machine Specification
+sun.os.patch.level=
+java.library.path=C:\Program Files\Java\jdk-14.0.2\bin;...
+java.vm.info=mixed mode, sharing
+java.vendor=Oracle Corporation
+java.vm.version=14.0.2+12-46
+sun.io.unicode.encoding=UnicodeLittle
+java.class.version=58.0
+*****************************************************************************************************************************************
+Q5:2-d Array.
+*****************************************************************************************************************************************
+class twoDArray{
+	public static void main(String args[]){
+		int arr[][] = {{2,7,9},{3,6,1},{7,4,2}};
+
+		for(int i = 0; i < 3; i++)
+		{
+			for(int j = 0; j < 3; j++)
+			{
+				System.out.print(arr[i][j] + "  ");
+			}
+			System.out.println();
+		}
+	}
+}
+*****************************************************************************************************************************************
+OUTPUT:
+
+D:\MCA-III\java>java twoDArray
+2  7  9
+3  6  1
+7  4  2
+*****************************************************************************************************************************************
+Q6:3-d Array..
+*****************************************************************************************************************************************
+class threeDArray{
+	public static void main(String args[]){
+		int arr[][][] = {{
+							{2,7,9},
+							{3,6,1},
+							{7,4,2} },
+					   {
+					  		{1,2,3},
+					  		{4,5,6},
+					  		{7,8,9} }, 
+					  };
+
+		for(int i = 0; i < 2; i++)
+		{
+			for(int j = 0; j < 3; j++)
+			{
+				for(int k = 0; k < 3; k++)
+				{
+					System.out.print(arr[i][j][k] + "  ");
+				}
+			}
+			System.out.println();
+		}
+	}
+}
+*****************************************************************************************************************************************
+OUTPUT:
+
+D:\MCA-III\java>java threeDArray
+2  7  9  3  6  1  7  4  2
+1  2  3  4  5  6  7  8  9
+
+*****************************************************************************************************************************************
+Q7:JAGGED Array.
+*****************************************************************************************************************************************
+import java.util.*;
+
+class jaggedArray {
+	public static void main(String[] args) {
+		int arr[][] = new int[2][];
+		
+		//first row has three columns
+		arr[0]= new int[3];
+		
+		//secound row has 2 columns
+		arr[1] =new int[2];
+		
+		int count =0;
+		for(int i=0;i<arr.length; i++)
+		{
+			for(int j=0;j<(arr[i].length); j++)
+			{
+				arr[i][j] = count++;
+			}
+		}			
+		System.out.println("Contents of 2D jagged Array");
+		for(int i=0;i<arr.length;i++)
+		{
+			for(int j=0;j<arr[i].length;j++)
+				System.out.print(arr[i][j] + " ");
+			System.out.println();
+		}
+	
+	}
+}
+*****************************************************************************************************************************************
+OUTPUT:
+
+D:\MCA-III\java>java jaggedArray
+Contents of 2D jagged Array
+0 1 2
+3 4
+*****************************************************************************************************************************************
+Q8:Array1 example..
+*****************************************************************************************************************************************
+import java.util.*;
+
+class Array1 {
+	public static void main(String[] args) {
+		int arr[]=new int [5];
+		
+		for(int i=5;i>0;i--)
+			arr[5-i] = i;
+		
+		Arrays.sort(arr);
+		
+		for(int i=0;i<5;++i)
+			System.out.print(arr[i]);
+	}
+} 
+*****************************************************************************************************************************************
+OUTPUT:
+
+D:\MCA-III\java>java Array1
+12345
+*****************************************************************************************************************************************
+Q9:String Collection./ count the number of vowels..
+*****************************************************************************************************************************************
+import java.util.*;
+
+class StringCollection {
+	public static void main(String[] args) {
+		
+		String phrase = "The Quick";
+		int vowels = 0;
+		
+		
+		for(char ch : phrase.toCharArray())
+		{
+			ch = Character.toLowerCase(ch);
+			if( ch== 'a' || ch== 'e' || ch== 'i' || ch== 'o' || ch== 'u')
+			{
+				++vowels;
+				
+			}	
+		}
+System.out.println("The Phrase contains " + vowels + " vowels.");				
+		
+	}
+}
+*****************************************************************************************************************************************
+OUTPUT:
+
+D:\MCA-III\java>java StringCollection
+The Phrase contains 3 vowels.
+
+*****************************************************************************************************************************************
+Q11: Test String.
+*****************************************************************************************************************************************
+import java.util.*;
+
+class TestString {
+	public static void main(String[] args) {
+		
+		String s1 = "Test";
+		String s2 = "Test";
+		String s3 = new String("Test");
+		final String s4 = s3.intern();
+		System.out.println(s1==s2);				
+		System.out.println(s2==s3);
+		System.out.println(s3==s4);
+		System.out.println(s1==s3);
+		System.out.println(s1==s4);
+		System.out.println(s1.equals(s2));					
+		System.out.println(s2.equals(s3));					
+		System.out.println(s3.equals(s4));					
+		System.out.println(s1.equals(s4));					
+		System.out.println(s1.equals(s3));					
+		
+	}
+}
+*****************************************************************************************************************************************
+OUTPUT:
+
+D:\MCA-III\java>java TestString
+true
+false
+false
+false
+true
+true
+true
+true
+true
+true
+
+*****************************************************************************************************************************************
+Q12:Lucky Stars  (pg. 156 - Ivor horton) 
+*****************************************************************************************************************************************
+import java.util.*;
+
+class LuckyStars {
+	public static void main(String[] args) {
+		
+	String[] stars = {
+		"Robert Redford"  , "Marilyn Monroe", "Boris Karloff"   , "Lassie", "Hopalong Cassidy", "Trigger"		
+	};
+	
+	System.out.println("Your Luckey Stars for today is " + stars[(int)(stars.length * Math.random())]);
+		
+	}
+}
+*****************************************************************************************************************************************
+OUTPUT:
+
+D:\MCA-III\java>java LuckyStars
+Your Luckey Stars for today is Boris Karloff
+
+*****************************************************************************************************************************************
+Q13:Try It Out : String Concatenation page no : 189/158 
+*****************************************************************************************************************************************
+
+public class joinstring {
+  public static void main(String[] args) {
+      String firststring = "Many" ;
+      String secondstring = "hands" ;
+      String thirdstring = "make light work" ;
+
+      String mystring ; //variable to store results 
+
+      //join three strings and store the results 
+      mystring = firststring +  " " +secondstring +  " " + thirdstring ;
+      System.out.println(mystring);
+
+     //convert an integer to string and join with two other string 
+     int num = 99 ;
+     mystring = num + " " + secondstring + " "+ thirdstring ;
+     System.out.println(mystring);
+
+     //combining a string and integers 
+
+     mystring = "fifty five is " + 5 + 5 ;
+     System.out.println(mystring);
+
+     //combining a integer and string 
+
+     mystring = 5 + 5 + " is ten ";
+     System.out.println(mystring);
+  }  
+}
+
+*****************************************************************************************************************************************
+OUTPUT:
+
+D:\MCA-III\java>java joinstring   
+Many hands make light work
+99 hands make light work
+fifty five is 55
+10 is ten
+
+*****************************************************************************************************************************************
+Q14:Try It Out : String Identity page no : 194 / 163
+*****************************************************************************************************************************************
+
+public class matchstring {
+    public static void main(String[] args) {
+        String string1 = "Too many";
+        String string2 = " cooks";
+        String string3 = "Too many cooks";
+
+        string1 += string2 ; 
+
+        //Doisplay the concates of the strings 
+
+        System.out.println("\nTest 1 ");
+        System.out.println("String 3 is now : " + string3);
+        System.out.println("String 1 is now  : " + string1);
+
+        //Testing the equality 
+
+        if(string1.equals(string3)){
+            System.out.println("\nSTring 1 and string 3 is equal ");
+        }
+        else{
+            System.out.println("\nSTring 1 and string 3 is not equal "); 
+        }
+        
+        //changing the case and checking the methods are equal or not 
+        string3 = "TOO many cooks" ; 
+
+        System.out.println("\nTest 2 ");
+        System.out.println("String 3 is now : " + string3);
+        System.out.println("String 1 is now  : " + string1);
+
+        if(string1.equals(string3)){
+            System.out.println("\nSTring 1 and string 3 is equal comparing the case ");
+        }
+        else{
+            System.out.println("\nSTring 1 and string 3 is not equal comparing the case"); 
+        }
+
+        if(string1.equalsIgnoreCase(string3)){
+            System.out.println("\nSTring 1 and string 3 is equal comparing the case ");
+        }
+        else{
+            System.out.println("\nSTring 1 and string 3 is not equal comparing the case"); 
+        }
+    }
+}
+
+*****************************************************************************************************************************************
+OUTPUT:
+
+D:\MCA-III\java>javac matchstring.java
+
+D:\MCA-III\java>java matchstring  
+
+Test 1
+String 3 is now : Too many cooks
+String 1 is now  : Too many cooks
+
+STring 1 and string 3 is equal
+
+Test 2
+String 3 is now : TOO many cooks
+String 1 is now  : Too many cooks
+
+STring 1 and string 3 is not equal comparing the case
+
+STring 1 and string 3 is equal comparing the case
+
+*****************************************************************************************************************************************
+Q16: Some string operation from java a book page no 184
+*****************************************************************************************************************************************
+
+public class strops {
+    public static void main(String[] args) {
+        String str1 = "When it comes to web programming , Java is #1.";
+        String str2 = new String(str1);
+        String str3 = "Java strings are powerful.";
+
+        int result,idx;
+        char ch;
+        System.out.println("Length of str1 : " + str1.length());
+
+        //display str1, one char at a time 
+
+        for(int i = 0 ; i < str1.length() ; i++){
+            System.out.print(str1.charAt(i));
+        }
+        System.out.println();
+
+        if(str1.equals(str2)){
+            System.out.println("str1 equals str2 ");
+        }
+        else{
+            System.out.println("str1 does not equals str2");
+        }
+
+        if(str1.equals(str3)){
+            System.out.println("str1 equals str3 ");
+        }
+        else{
+            System.out.println("str1 does not equals str3");
+        }
+
+        //compare two strings 
+
+        result = str1.compareTo(str3) ;
+
+        if(result == 0){
+            System.out.println("str1 and str3 are equals ");
+        }
+        else if(result < 0 ){
+            System.out.println("str1 is less than str3 ");
+        }
+        else{
+            System.out.println("str1 is greater than str3");
+        }
+
+        //assigning a new string t str2
+
+        str2 = "One Two Three One";
+
+        // returning the index of the given word 
+
+        idx = str2.indexOf("One");
+        System.out.println("Index of the first occurence of one : "+ idx);
+
+        idx = str2.lastIndexOf("One");
+        System.out.println("Index of the last occurence of one : "+ idx);
+
+    }
+}
+
+*****************************************************************************************************************************************
+OUTPUT:
+
+D:\MCA-III\java>java strops       
+Length of str1 : 46
+When it comes to web programming , Java is #1.
+str1 equals str2
+str1 does not equals str3
+str1 is greater than str3
+Index of the first occurence of one : 0
+Index of the last occurence of one : 14
+
+*****************************************************************************************************************************************
+Q17: Arrays of Strings page no 185 of java A 
+*****************************************************************************************************************************************
+
+public class stringarray {
+    public static void main(String[] args) {
+        String str[] = { "This" , "is" , "a" ,"test ."};
+        
+        System.out.println("Original Array : "); 
+        
+        for(String s : str){
+            System.out.print(s + " ");
+        }
+
+        System.out.println("\n");
+
+        //change the string 
+
+        str[1] = "was";
+        str[3] = "test, too!";
+
+        System.out.println("Modified Array : "); 
+        
+        for(String s : str){
+            System.out.print(s + " ");
+        }
+    }
+}
+
+*****************************************************************************************************************************************
+OUTPUT:
+
+D:\MCA-III\java>java stringarray  
+Original Array :
+This is a test .
+
+Modified Array :
+This was a test, too!
+
+*****************************************************************************************************************************************
+Q18:Use substring from java A page no 187 
+*****************************************************************************************************************************************
+
+public class substr {
+    public static void main(String[] args) {
+        String orgstr = "Java makes the Web move";
+
+        // construct a substring 
+
+        String substr = orgstr.substring(5,18);
+
+        System.out.println("Orgstr : " + orgstr);
+        System.out.println("substr : " + substr);
+        
+    }
+}
+
+*****************************************************************************************************************************************
+OUTPUT:
+
+D:\MCA-III\java>javac substr.java 
+
+D:\MCA-III\java>java substr       
+Orgstr : Java makes the Web move
+substr : makes the Web
+
+*****************************************************************************************************************************************
+Q19: Use a string to control a switch statement from java A book page no 188 
+*****************************************************************************************************************************************
+
+public class stringswitch {
+    public static void main(String[] args) {
+        String command = "cancel";
+
+        switch(command){
+            case "connect":
+                System.out.println("connecting");
+                break;
+            case "cancel":
+                System.out.println("canceling");
+                break;
+            case "disconnect":
+                System.out.println("disconnecting");
+                break;
+            default:
+                System.out.println("Command Error!");
+                break;
+        }
+    }
+}
+
+*****************************************************************************************************************************************
+OUTPUT:
+
+D:\MCA-III\java>java stringswitch 
+canceling
+
+*****************************************************************************************************************************************
+Q20: Using a StringBuffer Object to Assemble a String  from ivor horton page 226 
+*****************************************************************************************************************************************
+
+public class userstringbuffer {
+    public static void main(String[] args) {
+        StringBuffer sentence = new StringBuffer(20);
+
+        System.out.println("\nString buffer objects capacity is " + sentence.capacity() + " and string length is : " + sentence.length());
+
+        //Append all the words to the StringBuffer object 
+
+        String[] words = {"too" ,"many" ,"cooks", "spoil" , "the" ,"broth"};
+
+        sentence.append(words[0]);
+
+        for(int i = 1; i < words.length ;i++){
+            sentence.append(' ').append(words[i]);
+        }
+
+        //Show the result
+
+        System.out.println("\n stringin string buffer object is : \n" + sentence.toString());
+
+        System.out.println("\nString buffer objects capacity is " + sentence.capacity() + " and string length is : " + sentence.length());
+
+        sentence.insert(sentence.lastIndexOf("cooks")+4,"ie");
+        sentence.insert(sentence.lastIndexOf("broth")+5,"er");
+
+        System.out.println("\n stringin string buffer object is : \n" + sentence);
+        
+        System.out.println("\nString buffer objects capacity is " + sentence.capacity() + " and string length is : " + sentence.length());
+
+    }
+}
+
+*****************************************************************************************************************************************
+OUTPUT:
+
+D:\MCA-III\java>java userstringbuffer
+
+String buffer objects capacity is 20 and string length is : 0     
+
+ stringin string buffer object is :
+too many cooks spoil the broth
+
+String buffer objects capacity is 42 and string length is : 30    
+
+ stringin string buffer object is :
+too many cookies spoil the brother
+
+String buffer objects capacity is 42 and string length is : 34    
+
+*****************************************************************************************************************************************
+Q21:Exciting Concordance Entries (pg. 205-Ivor Horton)
+*****************************************************************************************************************************************
+
+public class excorentri
+{
+    public static void main(String[] args)
+    {
+        // Text string to be analyzed
+        String text = "To be or not to be, that is the question;"
+                    + " Whether ‘tis nobler in the mind to suffer"
+                    + " the slings and arrows of outrageous fortune,"
+                    + " or to take arms against a sea of troubles,"
+                    + " and by opposing end them?";
+
+        int andCount = 0;
+        // Number of and’s
+        int theCount = 0;
+        // Number of the’s
+        int index = -1;
+        // Current index position
+        String andStr = "and";
+        // Search substring
+        String theStr = "the";
+        // Search substring
+        // Search forwards for “and”
+        index = text.indexOf(andStr);
+        // Find first ‘and’
+        while(index >= 0)
+        {
+            ++andCount;
+            index += andStr.length();
+            // Step to position after last ‘and’
+            index = text.indexOf(andStr, index);
+        }
+        // Search backwards for “the”
+        index = text.lastIndexOf(theStr);
+        // Find last ‘the’
+        while(index >= 0)
+        {
+            ++theCount;
+            index -= theStr.length();
+        // Step to position before last ‘the’
+            index = text.lastIndexOf(theStr, index);
+        }
+        System.out.println("The text contains " + andCount + " and's\n " + "The text contains "  + theCount + " the's ");
+    }
+}
+*****************************************************************************************************************************************
+OUTPUT :
+D:\MCA-III\java>java excorentri.java
+The text contains 2 and's
+The text contains 5 the's
+*****************************************************************************************************************************************
+Q22:StringTokenizing (pg. 211 - Ivor Horton)
+*****************************************************************************************************************************************
+
+ class StringTokenizing
+{
+    public static void main(String[] args)
+    {
+        String text = "To be or not to be, that is the question."; // String to segment
+        String delimiters = "[, .]";
+        // Delimiters are comma, space, and period
+        int[] limits = {0, -1};
+        // Limit values to try
+        // Analyze the string
+        for(int limit : limits)
+        {
+            System.out.println("\nAnalysis with limit = " + limit);
+            String[] tokens = text.split(delimiters, limit);
+            System.out.println("Number of tokens: " + tokens.length);
+            for(String token : tokens)
+            {
+                System.out.println(token);
+            }
+        }
+    }
+}
+
+
+*****************************************************************************************************************************************
+OUTPUT :
+D:\MCA-III\java>java StrToken.java
+
+Analysis with limit = 0
+Number of tokens: 11
+To
+be
+or
+not
+to
+be
+
+that
+is
+the
+question
+
+Analysis with limit = -1
+Number of tokens: 12
+To
+be
+or
+not
+to
+be
+
+that
+is
+the
+question
+*****************************************************************************************************************************************
+Q23:Exercise 1 to 5 (pg. 229 - Ivor Horton)
+*****************************************************************************************************************************************
+Exercise 1:
+Create an array of String variables and initialize the array with the names of the months
+ from January to December. Create an array containing 12 random decimal values between 0.0 and 100.0.
+ Display the names of each month along with the corresponding decimal value. Calculateand display 
+the average of the 12 decimal values.
+
+**************
+class exe1
+{
+   public static void main(String a[])
+   {
+	 String[] mon={"January","Febuary","March","April","May","June","July","August","september","October","November","December"}; 
+	 int i;
+	 double sum=0; 
+	 double n[]=new double[12];
+	 System.out.println("Random number");
+	 
+	 for(i=0;i<12;i++)
+	 {
+	  n[i]=((100.00*Math.random())+1);
+	 }
+	 
+	 for(i=0;i<12;i++)
+	 {
+	  System.out.println(mon[i] + " = " + n[i]);
+	  sum=sum+n[i];
+	 }  
+	 
+	 System.out.println("\nSum of 12 numbers: " + sum); 
+	 System.out.println("\nAverage: " + (sum/12));
+   }
+}
+*******************
+OUTPUT:
+D:\MCA-III\java>java exe1.java
+Random number
+January = 94.52241670312551
+Febuary = 89.39170859965351
+March = 40.21344435055979
+April = 74.64293325060996
+May = 16.26759816159322
+June = 80.23278555025085
+July = 58.97976332531272
+August = 39.63218922780596
+september = 9.187500660159497
+October = 25.968463967491704
+November = 96.473679603194
+December = 27.642501384685268
+
+Sum of 12 numbers: 653.154984784442
+
+Average: 54.42958206537017
+
+
+*****************************************************************************************************************************************
+Exercise 2:
+Write a program to create a rectangular array containing a multiplication table from 1 * 1 up to 12 * 12.
+ Output the table as 13 columns with the numeric values right-aligned in columns. (Thefirst line of output 
+will be the column headings, the first column with no heading, then the numbers 1 to 12 for the remaining columns.
+ The first item in each of the succeeding lines is therow heading, which ranges from 1 to 12.)
+
+**************
+public class exe2 
+{
+  public static void main(String[]args) 
+  {
+    final int TABLE_SIZE = 12;
+
+    int[][] table = new int[TABLE_SIZE][TABLE_SIZE];
+ 
+    for(int i = 0 ; i < table.length ; ++i) 
+	{
+      for(int j = 0 ; j < table[i].length ; ++j) 
+	  {
+        table[i][j] = (i+1)*(j+1);
+      }
+    }
+ 
+    System.out.print("      :");             
+    for(int j = 1 ; j <= table[0].length ; ++j) 
+	{
+      System.out.print((j<10 ? "   ": "  ") + j);
+    }
+    System.out.println("\n-------------------------------------------------------");
+ 
+    for(int i = 0 ; i < table.length ; ++i) {
+      System.out.print("Row" + (i<9 ? "  ":" ") + (i+1) + ":");
+ 
+      for(int j = 0; j < table[i].length; ++j) {
+        System.out.print((table[i][j] < 10 ? "   " : table[i][j] < 100 ? "  " : " ") + table[i][j]);
+      }
+      System.out.println();
+    }
+  }
+}
+
+******************
+OUTPUT:
+D:\MCA-III\java>java exe2.java
+
+      :   1   2   3   4   5   6   7   8   9  10  11  12
+-------------------------------------------------------
+Row  1:   1   2   3   4   5   6   7   8   9  10  11  12
+Row  2:   2   4   6   8  10  12  14  16  18  20  22  24
+Row  3:   3   6   9  12  15  18  21  24  27  30  33  36
+Row  4:   4   8  12  16  20  24  28  32  36  40  44  48
+Row  5:   5  10  15  20  25  30  35  40  45  50  55  60
+Row  6:   6  12  18  24  30  36  42  48  54  60  66  72
+Row  7:   7  14  21  28  35  42  49  56  63  70  77  84
+Row  8:   8  16  24  32  40  48  56  64  72  80  88  96
+Row  9:   9  18  27  36  45  54  63  72  81  90  99 108
+Row 10:  10  20  30  40  50  60  70  80  90 100 110 120
+Row 11:  11  22  33  44  55  66  77  88  99 110 121 132
+Row 12:  12  24  36  48  60  72  84  96 108 120 132 144
+
+*****************************************************************************************************************************************
+Exercise 3:
+
+Write a program that sets up a String variable containing a paragraph of text of your choice.
+ Extract the words from the text and sort them into alphabetical order. Display the sorted list of words.
+ You could use a simple sorting method called the bubble sort.
+
+**************
+
+import java.util.*;
+
+class exe3
+{
+	public static void main(String[] args)
+	{
+		int i,j;
+		Scanner sc=new Scanner(System.in);
+		System.out.print("\n\nEnter a String: ");
+		String sent=sc.nextLine();
+		String temp;
+		
+		String[] arr=sent.split(" ");
+		
+		for(i=0; i<arr.length-1; i++)
+		{
+			for(j=0; j<arr.length-i-1; j++)
+			{
+				if(arr[j].toUpperCase().compareTo(arr[j+1].toUpperCase())>0)
+				{
+					temp=arr[j];
+					arr[j]=arr[j+1];
+					arr[j+1]=temp;
+				}
+			}
+		}
+		
+		System.out.println("\nSorted Order:-\n");
+		
+		for(i=0; i<arr.length; i++)
+		{
+			System.out.println("String " + (i+1) + ": " + arr[i]);
+		}
+		
+	}
+}
+*******************
+OUTPUT:
+D:\MCA-III\java>java exe3.java
+Enter a String: Presha Jumps Over a Brown Fox
+
+Sorted Order:-
+
+String 1: a
+String 2: Brown
+String 3: Fox
+String 4: Jumps
+String 5: Over
+String 6: Presha
+
+*****************************************************************************************************************************************
+Exercise 4:
+**************
+
+*****************************************************************************************************************************************
+Exercise 5:
+ Write a program that will reverse the sequence of letters in each word of your chosen paragraph from Exercise 3. 
+For instance, "To be or not to be." would become "oT eb ro ton ot eb."
+
+**************
+import java.util.*;
+
+class exe5
+{
+	public static void main(String[] args)
+	{
+		int i,j;
+		Scanner sc=new Scanner(System.in);
+		System.out.print("\n\nEnter a String: ");
+		String sent=sc.nextLine();
+		String temp;
+		
+		String[] arr=sent.split(" ");
+		
+		StringBuffer input1 = new StringBuffer();
+        
+		System.out.print("\n\nOutput: ");
+		
+		for(i=0; i<arr.length; i++)
+		{
+			input1.setLength(0);
+			
+			input1=input1.append(arr[i]);
+ 
+			input1 = input1.reverse();
+			
+			System.out.print(input1.toString() + " ");
+		}
+		
+	}
+}
+
+
+*******************
+OUTPUT:
+D:\MCA-III\java>java exe5.java
+Enter a String: Presha Jumps Over a Brown Fox
+
+Output: ahserP spmuJ revO a nworB xoF
+
+*****************************************************************************************************************************************
+Q24:AssignAref (pg. 169 A java book)
+*****************************************************************************************************************************************
+
+class AssignAref
+{
+    public static void main(String args[])
+    {
+        int i;
+        int n1[] = new int[10];
+        int n2[] = new int[10];
+
+        for(i=0;i<10;i++)
+            n2[i] = i;
+        for(i=0;i<10;i++)
+            n2[i] = -i;
+        System.out.println("Here is n1 : ");
+        for(i=0;i<10;i++)
+            System.out.println(n1[i] + " ");
+        System.out.println();
+
+        System.out.println("Here is n2 : ");
+        for(i=0;i<10;i++)
+            System.out.println(n2[i] + " ");
+        System.out.println();
+
+        n2 = n1;
+
+        System.out.println("Here is n2 after assignment : ");
+         for(i=0;i<10;i++)
+            System.out.println(n2[i] + " ");
+        System.out.println();
+
+        n2[3] = 99;
+        System.out.println("Here is n1 after assignment : ");
+         for(i=0;i<10;i++)
+            System.out.println(n1[i] + " ");
+        System.out.println();
+    };
+}
+
+
+*****************************************************************************************************************************************
+OUTPUT :
+
+D:\MCA-III\java>java assignAref.java
+Here is n1 :
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+
+Here is n2 :
+0
+-1
+-2
+-3
+-4
+-5
+-6
+-7
+-8
+-9
+
+Here is n2 after assignment :
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+
+Here is n1 after assignment :
+0
+0
+0
+99
+0
+0
+0
+0
+0
+0
+
+*****************************************************************************************************************************************
+Q25:Queue.java , QueueDemo.java (pg. 174 A java book)
+*****************************************************************************************************************************************
+
+class queue
+{
+    char q[];
+    int putloc,getloc;
+
+    queue(int size)
+    {
+        q = new char[size];
+        putloc = getloc = 0;
+    }
+    void put(char ch)
+    {
+        if(putloc == q.lenth)
+        {
+            System.out.println(" -> Queue is full ");
+            return;
+        }
+        q[putloc++] = ch;
+        char get();
+        {
+            if(getloc == putloc)
+            {
+                System.out.println(" -> Queue is full ");
+                return (char) 0 ;
+            }
+            return q[getloc++];
+        }
+    }
+    class QueueDemo
+    {
+        public static void main(String[] args)
+        {
+            queue bigQ = new queue(100);
+            queue smallQ = new queue(4);
+            char ch;
+            int i;
+
+            System.out.println("Using bigQ to store the alphabet");
+            for(i=0;i<26;i++)
+                bigQ.put((char) ('A' + i));
+
+            System.out.println("Contents of bigQ : ");
+            for(i=0;i<26;i++)
+            {
+                ch = bigQ.get();
+                if( ch != (char) 0 )
+                    System.out.println(ch);
+            }
+            System.out.println("\n");
+
+            System.out.println("Using smallQ to store the alphabet");
+            for(i=0;i<5;i++)
+            {
+                 System.out.println(" Attempting to store " + (char) ('Z' - i));
+                smallQ.put((char) ('Z' - i));
+                System.out.println();
+            }
+            System.out.println("Contents of smallQ : ");
+            for(i=0;i<5;i++)
+            {
+                ch = smallQ.get();
+                if( ch != (char) 0 )
+                    System.out.println(ch);
+            }
+            //System.out.println("\n");
+        }
+    }
+}
+
+*****************************************************************************************************************************************
+OUTPUT :
+
+D:\MCA-III\java>java queue.java
+Using bigQ to store the alphabet
+Contents of bigQ : ABCDEFGHIJKLMNOPQRSTUVWXYZ
+
+Using smallQ to generate errors.
+
+Attempting to store Z
+Attempting to store Y
+Attempting to store X
+Attempting to store W
+Attempting to store V - Queue is full
+
+Contents of smallQ : ZYXW - Queue is empty
+
+
+*****************************************************************************************************************************************
+Q26:TryGeometry (pg. 263-Ivor Horton)
+*****************************************************************************************************************************************
+
+class TryGeometry
+{
+    public static void main(String[] args)
+    {
+        // Create two points and display them
+        Point start = new Point(0.0, 1.0);
+        Point end = new Point(5.0, 6.0);
+        System.out.println("Points created are " + start + " and " + end);
+        // Create two lines and display them
+        Line line1 = new Line(start, end);
+        Line line2 = new Line(0.0, 3.0, 3.0, 0.0);
+        System.out.println("Lines created are " + line1 + " and " + line2);
+        // Display the intersection
+        System.out.println("Intersection is " + line2.intersects(line1));
+        // Now move the end point of line1 and show the new intersection
+        end.move(1.0, -5.0);
+        System.out.println("Intersection is " + line1.intersects(line2));
+    }
+}
+
+
+*****************************************************************************************************************************************
+OUTPUT  :
+
+D:\MCA-III\java>java trygeom.java
+
+Points created are 0.0, 1.0 and 5.0, 6.0
+Lines created are (0.0, 1.0):(5.0, 6.0) and (0.0, 3.0):(3.0, 0.0)
+Intersection is 1.0, 2.0
+Intersection is 1.0, 2.0
+
+*****************************************************************************************************************************************
+Q27:Rabbit Out of hats (pg. 290-Ivor Horton)
+*****************************************************************************************************************************************
+MagicHat.java
+
+import java.util.Random;
+public class MagicHat { 
+	static int maxRabbits = 5; 
+	static Random select = new Random();
+	public MagicHat(String hatName) {
+		this.hatName = hatName; 
+		rabbits = new Rabbit[1+select.nextInt(maxRabbits)];
+
+		for(int i = 0; i < rabbits.length; i++) { 
+		rabbits[i] = new Rabbit();            
+		}
+	}
+	// String representation of a hat 
+	public String toString() { 
+		String hatString = "\n" + hatName + " contains:\n";
+		for(Rabbit rabbit : rabbits) { 
+			hatString += "   " + rabbit;             
+			}
+			return hatString;
+	}
+	private String hatName; 
+	private Rabbit rabbits[];
+	
+	static class Rabbit { 
+		static private String[] rabbitNames = {"Floppsy", "Moppsy", "Gnasher", "Thumper"};
+		static private int[] rabbitNamesCount = new int[rabbitNames.length];
+		private String name;
+
+		public Rabbit() { 
+			int index = select.nextInt(rabbitNames.length);
+			name = rabbitNames[index] + (++rabbitNamesCount[index]); }
+		public String toString() { return name; }
+	}
+}
+
+
+TryNestedClass.java
+
+
+public class TryNestedClass { 
+	static public void main(String[] args) { 
+	// Create three magic hats and output them 
+	System.out.println(new MagicHat("Gray Topper")); 
+	System.out.println(new MagicHat("Black Topper")); 
+	System.out.println(new MagicHat("Baseball Cap")); 
+	} 
+}
+
+*****************************************************************************************************************************************
+OUTPUT:
+
+D:\MCA-III\java>java TryNestedClass.java
+
+Gray Topper contains:
+   Thumper1   Floppsy1   Thumper2   Thumper3
+
+Black Topper contains:
+   Floppsy2   Thumper4
+
+Baseball Cap contains:
+   Thumper5   Thumper6   Moppsy1
+
+
+*****************************************************************************************************************************************
+Q28:Nestedclassdemo.java (pg. 238 A java book)
+*****************************************************************************************************************************************
+
+class Outer{
+  int nums[];
+  Outer(int n[]){
+	  nums=n;
+  }
+  void analyze(){
+	  Inner inob = new Inner();
+	  System.out.println("Minimum : "+inob.min());
+	  System.out.println("Maximum: "+inob.max());
+	   System.out.println("Average : "+inob.avg());
+  }
+  class Inner{
+	  int min(){
+		  int m = nums[0];
+		  for(int i =1; i<nums.length; i++)
+			  if(nums[i] < m) m = nums[i];
+		        return m;
+	  }
+	  int max(){
+		  int m = nums[0];
+		  for(int i =1; i<nums.length; i++)
+			  if(nums[i] > m) m = nums[i];
+		        return m;
+	  }
+	  int avg(){
+		  int a = 0;
+		  for(int i =1; i<nums.length; i++)
+			a += nums[i];
+
+           return a/nums.length;		
+		  }
+  }
+}
+public class NestedClassDemo{
+	public static void main(String args[]){
+		int x[] = {3,2,1,5,6,9,7,8};
+		Outer outob = new Outer(x);
+		outob.analyze();
+		
+	}
+}
+
+*****************************************************************************************************************************************
+OUTPUT :
+
+D:\MCA-III\java>java NestedClassDemo.java
+
+Minimum : 1
+Maximum: 9
+Average : 4
+
+*****************************************************************************************************************************************
+Q 29 : Implementing an interface 
+*****************************************************************************************************************************************
+Conversions.java
+
+public interface Conversions { 
+	double inchesToMillimeters (double inches); 
+	double ouncesToGrams(double ounces); 
+	double poundsToGrams(double pounds); 
+	double hpToWatts(double hp); 
+	double wattsToHP(double watts);
+}
+
+
+ ConversionFactors.java
+
+
+package conversions;                      
+public class ConversionFactors { 
+	public static final double INCH_TO_MM = 25.4; 
+	public static final double OUNCE_TO_GRAM = 28.349523125; 
+	public static final double POUND_TO_GRAM = 453.5924; 
+	public static final double HP_TO_WATT = 745.7; 
+	public static final double WATT_TO_HP = 1.0/HP_TO_WATT; 
+}
+
+
+
+TryConversions.java
+
+
+
+import static conversions.ConversionFactors.*;
+interface Conversions { 
+	double inchesToMillimeters (double inches); 
+	double ouncesToGrams(double ounces); 
+	double poundsToGrams(double pounds); 
+	double hpToWatts(double hp); 
+	double wattsToHP(double watts);
+}
+public class TryConversions implements Conversions { 
+	public double wattsToHP (double watts) { 
+		return watts*WATT_TO_HP;  
+	} 
+	public double hpToWatts (double hp) { 
+		return hp*HP_TO_WATT;  
+	}
+	public double ouncesToGrams(double ounces) { 
+		return ounces*OUNCE_TO_GRAM;  
+	}
+	public double poundsToGrams(double pounds) { 
+		return pounds*POUND_TO_GRAM;  
+	}
+	public double inchesToMillimeters(double inches) { 
+		return inches*INCH_TO_MM;  
+	}
+	public static void main(String args[]) { 
+		int myWeightInPounds = 180; 
+		int myHeightInInches = 75;
+		TryConversions converter = new TryConversions();
+		System.out.println("My weight in pounds: " +myWeightInPounds + " \t-in grams: "+ (int)converter.poundsToGrams(myWeightInPounds));
+		System.out.println("My height in inches: " + myHeightInInches + " \t-in millimeters: " + (int)converter.inchesToMillimeters(myHeightInInches));
+	}
+}
+
+*****************************************************************************************************************************************
+OUTPUT: 
+
+D:\MCA-III\java>javac TryConversions.java
+
+D:\MCA-III\java>java TryConversions
+My weight in pounds: 180        -in grams: 81646
+My height in inches: 75         -in millimeters: 1905
+
+*****************************************************************************************************************************************
+Q 30: Defining Interface  
+
+*****************************************************************************************************************************************
+TV.java
+
+
+import static java.lang.Math.max;
+import static java.lang.Math.min;
+
+public class TV implements RemoteControl { 
+	public TV(String make, int screensize) { 
+		this.make = make; 
+		this.screensize = screensize; 
+	}
+	public boolean powerOnOff() { 
+		power = !power; 
+		System.out.println(make + " "+ screensize + " inch TV power " + (power ? "on.":"off."));
+		return power;
+	}
+	public int volumeUp(int increment) { 
+		if(!power) {
+			return 0;                     
+	}
+	volume += increment; 
+	volume = min(volume, MAX_VOLUME);
+	System.out.println(make + " "+ screensize + " inch TV volume level: " + volume);
+	return volume;
+}
+public int volumeDown(int decrement) { 
+	if(!power) {                     
+		return 0;                       
+	}
+	volume -= decrement;
+	volume = max(volume, MIN_VOLUME);
+	System.out.println(make + " "+ screensize + " inch TV volume level: " + volume);
+	return volume;
+}
+public void mute() { 
+	if(!power) {
+		return;                         
+	}
+	volume = MIN_VOLUME;
+	System.out.println(make + " " + screensize + " inch TV volume level: " + volume);
+}
+public int setChannel(int newChannel) { 
+	if(!power) {   
+		return 0;                        // Nothing works
+	}
+	if(newChannel>=MIN_CHANNEL && newChannel<=MAX_CHANNEL) 
+		channel = newChannel;
+		System.out.println(make + " "+ screensize + " inch TV tuned to channel: " + channel);
+		return channel;
+}
+public int channelUp() { 
+	if(!power) {                      
+		return 0;                     
+	}
+	channel = channel<MAX_CHANNEL ? ++channel : MIN_CHANNEL;
+	System.out.println(make + " "+ screensize + " inch TV tuned to channel: " + channel);
+	return channel;
+}
+public int channelDown() { 
+	if(!power)  {                      
+		return 0;                        
+	}
+	channel = channel>MIN_CHANNEL ? --channel : MAX_CHANNEL;
+	System.out.println(make + " "+ screensize + " inch TV tuned to channel: " + channel);
+	return channel;
+}
+private String make = null;
+private int screensize = 0;
+private boolean power = false;
+private int MIN_VOLUME = 0;
+ private int MAX_VOLUME = 100;
+ private int volume = MIN_VOLUME;
+private int MIN_CHANNEL = 0;
+ private int MAX_CHANNEL = 999;
+ private int channel = 0;
+}
+
+
+VCR.java
+
+import static java.lang.Math.max;
+import static java.lang.Math.min;
+public class VCR implements RemoteControl { 
+	public VCR(String make) { 
+		this.make = make; 
+	}
+	public boolean powerOnOff() { 
+		power = !power; 
+		System.out.println(make + " VCR power "+ (power ? "on.":"off."));
+		return power;
+	}
+	public int volumeUp(int increment) { 
+		if(!power) {  
+			return 0;                     
+		}
+	volume += increment;
+	volume = min(volume, MAX_VOLUME);
+	System.out.println(make + " VCR volume level: "+ volume);
+	return volume;
+}
+public int volumeDown(int decrement) { 
+	if(!power) {                     
+		return 0;                      
+	}     
+	volume -= decrement;
+	volume = max(volume, MIN_VOLUME);
+	System.out.println(make + " VCR volume level: "+ volume);
+	return volume;
+}
+public void mute() { 
+	if(!power) {                   
+		return;                     
+	} 
+	volume = MIN_VOLUME;
+	System.out.println(make + " VCR volume level: "+ volume);
+}
+public int setChannel(int newChannel) { 
+	if(!power) {                     
+		return 0;                      
+	}
+	if(newChannel>=MIN_CHANNEL && newChannel<=MAX_CHANNEL) {
+		channel = newChannel; 
+	}
+	System.out.println(make + " VCR tuned to channel: "+ channel);
+	return channel;
+}
+public int channelUp() { 
+	if(!power) {                    
+		return 0;                   
+	}
+	channel = channel<MAX_CHANNEL ? ++channel : MIN_CHANNEL;
+	System.out.println(make + " VCR tuned to channel: "+ channel);
+	return channel;
+}
+public int channelDown() { 
+	if(!power) {               
+		return 0;                       
+	}
+	channel = channel>MIN_CHANNEL ? --channel : MAX_CHANNEL;  
+	System.out.println(make + " VCR tuned to channel: "+ channel);
+	return channel;
+}
+private String make = null;
+private boolean power = false;
+private int MIN_VOLUME = 0;
+ private int MAX_VOLUME = 100;
+ private int volume = MIN_VOLUME;
+private int MIN_CHANNEL = 0;
+ private int MAX_CHANNEL = 99;
+ private int channel = 0;
+}
+
+
+remotecontrol.java
+
+
+public interface RemoteControl { 
+	boolean powerOnOff();                
+	int volumeUp(int increment);        
+	int volumeDown(int decrement);      
+	void mute();
+	int setChannel(int channel);         // Set the channel number and return it
+	int channelUp();                     // Returns new channel number int channelDown();                   // Returns new channel number
+}
+
+
+
+TryRemoteControl .java
+
+
+
+
+import static java.lang.Math.random;
+public class TryRemoteControl { 
+	public static void main(String args[]) { 
+		RemoteControl remote = null;
+		for(int i = 0 ; i<5 ; i++) { 
+			if(random()<0.5) // Random choice of TV make and screen size 
+				remote = new TV(random()<0.5 ? "Sony" : "Hitachi", random()<0.5 ? 32 : 28);
+			else 
+				remote = new VCR(random()<0.5 ? "Panasonic": "JVC"); 
+			remote.powerOnOff();   
+			remote.channelUp();                       
+			remote.volumeUp(10);  
+		}
+	}
+}
+
+
+
+
+
+
+
+*****************************************************************************************************************************************
+
+OUTPUT :
+
+D:\MCA-III\java>java TryRemoteControl.java
+Sony 32 inch TV power on.
+Sony 32 inch TV tuned to channel: 1
+Sony 32 inch TV volume level: 10
+JVC VCR power on.
+JVC VCR tuned to channel: 1
+JVC VCR volume level: 10
+Panasonic VCR power on.
+Panasonic VCR tuned to channel: 1
+Panasonic VCR volume level: 10
+JVC VCR power on.
+JVC VCR tuned to channel: 1
+JVC VCR volume level: 10
+Panasonic VCR power on.
+Panasonic VCR tuned to channel: 1
+Panasonic VCR volume level: 10
+
+*****************************************************************************************************************************************
+Q 31:Queue Interface.
+*****************************************************************************************************************************************
+interface ICharQ 
+{
+    void put(char ch);
+    char get();
+}
+
+
+class FixedQueue implements ICharQ 
+{
+    private char q[];
+    private int putloc,getloc;
+
+    public FixedQueue(int size) 
+    {
+        q = new char[size];
+        putloc = getloc = 0;
+    }
+    public void put(char ch)
+    {
+        if(putloc == q.length)
+        {
+            System.out.println("-- Queue is full--");
+            return;
+        }
+        q[putloc++] = ch;
+    }
+
+    public char get() 
+    {
+        if(getloc == putloc) 
+        {
+            System.out.println("-- Queue is empty--");
+            return (char) 0;
+        }
+        return  q[getloc++];
+    }
+}
+
+class CirculerQueue implements ICharQ 
+{
+    private char q[];
+    private int putloc, getloc;
+
+    public CirculerQueue(int size) 
+    {
+        q = new char[size + 1];
+        putloc = getloc = 0;
+    }
+    public void put(char ch)
+    {
+        if(putloc+1 == getloc | ((putloc == q.length -1) & (getloc == 0)))
+        {
+            System.out.println("-- Queue is full--");
+            return;
+        }
+        q[putloc++] = ch;
+        if(putloc == q.length) putloc = 0;
+    }
+
+    public char get() 
+    {
+        
+        if(getloc == putloc) 
+        {
+            System.out.println("-- Queue is empty--");
+            return (char) 0;
+        }
+
+        char ch = q[getloc++];
+        if(getloc == q.length) getloc = 0;
+            return ch;
+    }
+}
+
+
+class DynQueue implements ICharQ 
+{
+    private char q[];
+    private int putloc, getloc;
+
+    public DynQueue(int size)
+    {
+        q = new char[size + 1];
+        putloc = getloc = 0;
+    }
+    public void put(char ch)
+    {
+        if(putloc == q.length)
+        {
+            char t[] = new char[q.length * 2];
+
+            for(int i=0;i<q.length; i++)
+                t[i] = q[i];
+
+            q=t;
+        }
+        q[putloc++] = ch;
+    }
+
+    public char get() 
+    {
+        if(getloc == putloc) 
+        {
+            System.out.println("-- Queue is empty--");
+            return (char) 0;
+        }
+        return  q[getloc++];
+        
+    }
+}
+
+public class IQDemo 
+{
+    public static void main(String[] args) 
+    {
+        FixedQueue q1 = new FixedQueue(10);
+        DynQueue q2 = new DynQueue(5);
+        CirculerQueue q3 = new CirculerQueue(10);
+        ICharQ iQ;
+        char ch;
+        int i;
+
+        iQ =q1;
+        for(i=0;i<10;i++)
+            iQ.put((char) ('A' + i));
+        
+        System.out.println("Conntent of fixed Queue");
+        for(i=0;i<10;i++)
+        {
+            ch = iQ.get();
+            System.out.print(ch);
+        }
+        System.out.println();
+
+
+        iQ =q2;
+        for(i=0;i<10;i++)
+            iQ.put((char) ('Z' - i));
+        
+        System.out.println("Conntent of dynamic Queue");
+        for(i=0;i<10;i++)
+        {
+            ch = iQ.get();
+            System.out.print(ch);
+        }
+        System.out.println();
+
+        
+        iQ =q3;
+        for(i=0;i<10;i++)
+            iQ.put((char) ('A' + i));
+        
+        System.out.println("Conntent of ciruler Queue");
+        for(i=0;i<10;i++)
+        {
+            ch = iQ.get();
+            System.out.print(ch);
+        }
+        System.out.println();
+
+
+        for(i=10;i<20;i++)
+            iQ.put((char) ('A' + i));
+
+        System.out.println("Conntent of circuler Queue");
+        for(i=0;i<10;i++)
+        {
+            ch = iQ.get();
+            System.out.print(ch);
+        }
+        System.out.println("\n Store  and consume from " + " Circuler Queue");
+
+    
+        for(i=0;i<20;i++)
+        {
+            iQ.put((char) ('A' + i));
+            ch = iQ.get();
+            System.out.print(ch);
+        }
+    }
+}
+
+*****************************************************************************************************************************************
+OUTPUT :
+
+D:\MCA-III\java>java IQDemo 
+
+Conntent of fixed Queue
+ABCDEFGHIJ
+Conntent of dynamic Queue
+ZYXWVUTSRQ
+Conntent of ciruler Queue
+ABCDEFGHIJ
+Conntent of circuler Queue
+KLMNOPQRST
+ Store  and consume from  Circuler Queue
+ABCDEFGHIJKLMNOPQRST
+
+*****************************************************************************************************************************************
+Q 32: Generic Functional Interface
+*****************************************************************************************************************************************
+interface SomeTest<T>{
+	boolean test(T n,T m);
+}
+class GenericFunctionalInterfaceDemo{
+	public static void main(String args[]){
+		SomeTest<Integer> isFactor=(n,d) -> (n%d)==0;
+		if(isFactor.test(10,2))
+			System.out.println("2 is a factor of 10");
+		System.out.println();
+		
+		SomeTest<Double> isFactorD = (n,d) -> (n%d)==0;
+		if(isFactorD.test(212.0,4.0))
+			System.out.println("4.0 is a factor of 212.0");
+		System.out.println();
+		
+		SomeTest<String> isIn=(a,b) -> a.indexOf(b) !=-1;
+		String str="Generic Functional Interface";
+		
+		System.out.println("Testing String: "+str);
+		
+		if(isIn.test(str,"face"))
+			System.out.println("'face' is found.");
+		else
+			System.out.println("'face' not found.");
+	}
+}
+
+*****************************************************************************************************************************************
+OUTPUT :
+
+D:\MCA-III\java>java GenericFunctionalInterfaceDemo
+2 is a factor of 10
+
+4.0 is a factor of 212.0
+
+Testing String: Generic Functional Interface
+'face' is found.
+
+*****************************************************************************************************************************************
+Q33: write an example of lambda_argument_demo
+*****************************************************************************************************************************************
+
+public class LambdaArgumentDemo {
+    static String changeStr(StringFunc sf, String s) {
+        return sf.func(s);
+    }
+
+    public static void main(String args[]) {
+        String inStr = "Lambda Expression Expand Java";
+        String outStr;
+
+        System.out.println("Here is input string : " + inStr);
+        
+        StringFunc reverse = (str) -> {
+            String result = "";
+            for (int i = str.length()-1; i >= 0; i--) 
+                result += str.charAt(i);
+
+            return result;
+        };
+
+        outStr = changeStr(reverse, inStr);
+        System.out.println("The string reversed : " + outStr);
+
+        outStr = changeStr((str) -> str.replace(' ', '-'), inStr);
+        System.out.println("The string with spaces replaced : " + outStr);
+
+        outStr = changeStr((str) -> {
+                String result = "";
+                char ch;
+
+                for (int i = 0; i < str.length(); i++) {
+                    ch = str.charAt(i);
+                    if(Character.isUpperCase(ch))
+                        result += Character.toLowerCase(ch);
+                    else    
+                        result += Character.toUpperCase(ch);
+                }
+                return result;
+        }, inStr);
+        System.out.println("The string in reversed case : " + outStr);
+    }
+
+
+}
+
+
+interface StringFunc {
+    String func(String str);
+}
+
+*****************************************************************************************************************************************
+ 
+OUTPUT :
+
+D:\MCA-III\java>javac LambdaArgumentDemo.java
+
+D:\MCA-III\java>java LambdaArgumentDemo
+Here is input string : Lambda Expression Expand Java
+The string reversed : avaJ dnapxE noisserpxE adbmaL
+The string with spaces replaced : Lambda-Expression-Expand-Java
+The string in reversed case : lAMBDA eXPRESSION eXPAND jAVA
+
+*****************************************************************************************************************************************
+Q34:  write an example lambdaexceptiondemo
+*****************************************************************************************************************************************
+
+import java.io.*;
+interface MyIOAction{
+   boolean ioAction(Reader rdr) throws IOException;
+   }
+  class LambdsExceptionDemo{
+    public static void main(String args[])
+	{
+		double[] values = {1.0,2.0,3.0,4.0};
+		MyIOAction myIO = (rdr) -> {
+			  int ch = rdr.read();
+			  return true;
+		};
+	}
+  }
+
+
+*****************************************************************************************************************************************
+ 
+OUTPUT :
+
+D:\MCA-III\java>javac LambdsExceptionDemo.java
+
+D:\MCA-III\java>java LambdsExceptionDemo
+
+*****************************************************************************************************************************************
+Q35:  write a program to find sqaure root of a number using package  
+*****************************************************************************************************************************************
+
+ExtInterface.java
+
+package extInterface;
+public interface ExtInterface {
+    public void method1();
+    public void method2();
+    
+}
+
+TestExtInterface.java
+
+package extInterface;
+
+import java.util.Scanner;
+
+class TestExtInterface implements ExtInterface{
+    public void method1() {
+        System.out.println("Implementation of Method1");
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter number to find the Square root in java:");
+        double square = sc.nextDouble();
+        double squareRoot = Math.sqrt(square);
+        System.out.printf("Square root of number: %f is -> %f",square,squareRoot);
+        
+    }
+    public void method2() {
+        System.out.println("Implementation of method2");
+    }
+    public static void main(String[] args) {
+        ExtInterface obj  = new TestExtInterface();
+        obj.method1();
+    }
+}
+
+
+*****************************************************************************************************************************************
+ 
+OUTPUT :
+
+D:\MCA-III\java>javac -d . ExtInterface.java
+
+D:\MCA-III\java>javac -d . TestExtInterface.java
+
+D:\MCA-III\java>java extInterface.TestExtInterface
+Implementation of Method1
+Enter number to find the Square root in java:
+4
+Square root of number: 4.000000 is -> 2.000000
+
+*****************************************************************************************************************************************
+Q36:  write an example of arithmetic operations and method overriding using package
+*****************************************************************************************************************************************
+maths.java
+
+package basicoperations;
+
+public interface maths{
+    public void add();
+    public void sub();
+    public void mul();
+    public void div();
+}
+
+studen1.java
+
+package basicoperations;
+import java.util.Scanner;
+
+public class studen1 implements maths
+{
+    @Override
+    public void add()
+    {
+        Scanner kb = new Scanner(System.in);
+        System.out.println("-----------------------------");
+        System.out.println("Addition");
+        System.out.println("-----------------------------");
+        System.out.println("Enter any two integer values:");
+        int no1 = kb.nextInt();
+        int no2 = kb.nextInt();
+        int sum = no1 + no2;
+        System.out.println("sum of " + no1 + " and " + no2 + " is " + sum);
+    }
+    @Override
+    public void sub()
+    {
+        Scanner kb = new Scanner(System.in);
+        System.out.println("-----------------------------");
+        System.out.println("Substraction");
+        System.out.println("-----------------------------");
+        System.out.println("Enter any two integer values:");
+        int no1 = kb.nextInt();
+        int no2 = kb.nextInt();
+        int sum = no1 - no2;
+        System.out.println("substraction of " + no1 + " and " + no2 + " is " + sum);
+    }
+    @Override
+    public void mul()
+    {
+        Scanner kb = new Scanner(System.in);
+        
+        System.out.println("-----------------------------");
+        System.out.println("Multiplication");
+        System.out.println("-----------------------------");
+        System.out.println("Enter any two integer values:");
+        int no1 = kb.nextInt();
+        int no2 = kb.nextInt();
+        int sum = no1 * no2;
+        System.out.println("multiplication of " + no1 + " and " + no2 + " is " + sum);
+    }
+    @Override
+    public void div()
+    {
+        Scanner kb = new Scanner(System.in);
+        
+        System.out.println("-----------------------------");
+        System.out.println("Division");
+        System.out.println("-----------------------------");
+        System.out.println("Enter any two integer values:");
+        int no1 = kb.nextInt();
+        int no2 = kb.nextInt();
+        int sum = no1 / no2;
+        System.out.println("division of " + no1 + " and " + no2 + " is " + sum);
+    }
+    public static void main(String[] args)
+    {
+        studen1 student = new studen1();
+        student.add();
+        student.sub();
+        student.mul();
+        student.div();
+    }
+}
+
+
+
+*****************************************************************************************************************************************
+ 
+OUTPUT :
+
+D:\MCA-III\java>javac -d . maths.java
+
+D:\MCA-III\java>javac -d . studen1.java
+
+D:\MCA-III\java>java basicoperations.studen1
+-----------------------------
+Addition
+-----------------------------
+Enter any two integer values:
+5
+7
+sum of 5 and 7 is 12
+-----------------------------
+Substraction
+-----------------------------
+Enter any two integer values:
+8
+9
+substraction of 8 and 9 is -1
+-----------------------------
+Multiplication
+-----------------------------
+Enter any two integer values:
+2
+5
+multiplication of 2 and 5 is 10
+-----------------------------
+Division
+-----------------------------
+Enter any two integer values:
+4
+7
+division of 4 and 7 is 0
+
+*****************************************************************************************************************************************
+Q37: write an example of package
+*****************************************************************************************************************************************
+
+ClassA.java
+
+package MCA;
+public class classA implements solution {
+    public void Hello()
+    {
+        System.out.println("Hello world");
+    }
+    public void Welcome()
+    {
+        System.out.println("Welcome MCAIII");
+    }
+
+    public static void main(String[] args)
+    {
+
+        classA test = new classA();
+        test.Hello();
+        test.Welcome();
+    }
+}
+
+Solution.java
+
+package MCA;
+public interface solution{
+    public void Hello();
+    public void Welcome();
+}
+
+*****************************************************************************************************************************************
+ 
+OUTPUT :
+
+D:\MCA-III\java>javac -d . solution.java
+
+D:\MCA-III\java>javac -d . ClassA.java
+
+D:\MCA-III\java>java MCA.ClassA
+Hello world
+Welcome MCAIII
+*****************************************************************************************************************************************
+Q38: write an example of book package
+*****************************************************************************************************************************************
+
+books.java
+
+package bookpack;
+
+public class books
+{
+    //these are protected members
+    protected String title;
+    protected String author;
+    protected int pubDate;
+
+    public books(String t, String a, int d)
+    {
+        title = t;
+        author = a;
+        pubDate = d;
+    }
+
+    public void show()
+    {
+        System.out.println(title);
+        System.out.println(author);
+        System.out.println(pubDate);
+        System.out.println();
+    }
+}
+
+UseBooks.java
+
+package bookpackext;
+import bookpack.*;
+
+class UseBook
+{
+    public static void main(String args[])
+    {
+        books book[] = new books[5];
+        book[0] = new books("Java: A Beginner's Guide","Schildt",2014);
+
+        book[1] = new books("Java: The Complete Reference","Schildt",2014);
+
+        book[2] = new books("The Art of Java","Schildt and Holmes",2003);
+
+        book[3] = new books("Red Storm Raising","Clancy",1986);
+
+        book[4] = new books("On The Road","Kerouac",1955);
+
+        for(int index = 0; index < book.length;index++) book[index].show();
+    }
+}
+
+ProtectDemo.java
+
+package bookpackext;
+
+class ExtBook extends bookpack.books
+{
+    private String publisher;
+    public ExtBook(String t,String a, int d,String p)
+    {
+        super(t,a,d);
+        publisher = p;
+    }
+
+    public void show()
+    {
+        super.show();
+        System.out.println(publisher);
+        System.out.println();
+    }
+
+    public String getPublisher() { return publisher; }
+    public void setPublisher(String p) { publisher = p; }
+
+    public String getTitle() { return title; }
+    public void setTitle(String t) { title = t; }
+
+    public String getAuthor() { return author; }
+    public void setAuthor(String a) { author = a; }
+
+    public int getPubDate() { return pubDate; }
+    public void setTitle(int d) { pubDate = d; }
+
+}
+
+class ProtectDemo
+{
+    public static void main(String[] args)
+    {
+        ExtBook books[] = new ExtBook[5];
+        books[0] = new ExtBook("Java: A Beginner's Guide","Schildt",2014,"McGrew-Hill Professional");
+
+        books[1] = new ExtBook("Java: The Complete Reference","Schildt",2014,"McGrew-Hill Professional");
+
+        books[2] = new ExtBook("The Art of Java","Schildt and Holmes",2003,"McGrew-Hill Professional");
+
+        books[3] = new ExtBook("Red Storm Raising","Clancy",1986,"Putham");
+
+        books[4] = new ExtBook("On The Road","Kerouac",1955,"Viking");
+
+        for(int index = 0; index < books.length; index++)
+        {
+            books[index].show();
+        }
+
+        System.out.println("Showing all books by schildt.");
+        for(int index=0;index<books.length;index++)
+        {
+            if(books[index].getAuthor() == "Schildt")
+            {
+                System.out.println(books[index].getTitle());
+            }
+            //books[index].title = "test title"; error by accessing protected
+        }
+    }
+}
+
+*****************************************************************************************************************************************
+ 
+OUTPUT :
+
+D:\MCA-III\java>javac -d . books.java
+
+D:\MCA-III\java>javac -d . UseBook.java
+
+D:\MCA-III\java>javac -d . ProtectDemo.java
+
+D:\MCA-III\java>java bookpackext.ProtectDemo
+Java: A Beginner's Guide
+Schildt
+2014
+
+McGrew-Hill Professional
+
+Java: The Complete Reference
+Schildt
+2014
+
+McGrew-Hill Professional
+
+The Art of Java
+Schildt and Holmes
+2003
+
+McGrew-Hill Professional
+
+Red Storm Raising
+Clancy
+1986
+
+Putham
+
+On The Road
+Kerouac
+1955
+
+Viking
+
+Showing all books by schildt.
+Java: A Beginner's Guide
+Java: The Complete Reference
+
+*****************************************************************************************************************************************
+Q39: write an example of series program
+*****************************************************************************************************************************************
+
+Series.java
+
+public interface Series
+{
+    int getNext();
+    void reset();
+    void setStart(int x);
+}
+
+SeriesDemo.java
+
+class ByTwos implements Series
+{
+    int start;
+    int val;
+
+    ByTwos() {
+        start = 0;
+        val = 0;
+    }
+
+    public int getNext() {
+        val += 2;
+        return val;
+    }
+
+    public void reset()
+    {
+        val = start;
+    }
+
+    public void setStart(int x)
+    {
+        start = x;
+        val = x;
+    }
+}
+
+class ByThrees implements Series
+{
+    int start;
+    int val;
+
+    ByThrees() {
+        start = 0;
+        val = 0;
+    }
+
+    public int getNext() {
+        val += 3;
+        return val;
+    }
+
+    public void reset()
+    {
+        val = start;
+    }
+
+    public void setStart(int x)
+    {
+        start = x;
+        val = x;
+    }
+}
+
+class SeriesDemo
+{
+    public static void main(String args[])
+    {
+        ByTwos twoOb = new ByTwos();
+        ByThrees threeOb = new ByThrees();
+        Series ob;
+
+        for(int i=0; i < 5; i++)
+        {
+            ob = twoOb;
+            System.out.println("Next ByTwos value is " + ob.getNext());
+
+            ob = threeOb;
+            System.out.println("Next ByThrees value is " + ob.getNext());
+        }
+
+        /*for(int i=0; i < 5; i++)
+            System.out.println("Next value is " + ob.getNext());
+        
+        System.out.println("\nResetting");
+        ob.reset();
+        for(int i=0;i<5;i++)
+            System.out.println("Next value is "+ob.getNext());
+        
+        System.out.println("\nStarting at 100");
+        ob.setStart(100);
+        for(int i=0;i<5;i++)
+            System.out.println("Next value is "+ob.getNext());*/
+    }
+}
+
+
+*****************************************************************************************************************************************
+ 
+OUTPUT :
+
+D:\MCA-III\java>javac Series.java
+
+D:\MCA-III\java>javac SeriesDemo.java
+
+D:\MCA-III\java>java SeriesDemo
+Next ByTwos value is 2
+Next ByThrees value is 3
+Next ByTwos value is 4
+Next ByThrees value is 6
+Next ByTwos value is 6
+Next ByThrees value is 9
+Next ByTwos value is 8
+Next ByThrees value is 12
+Next ByTwos value is 10
+Next ByThrees value is 15
+
+*****************************************************************************************************************************************
+Q40: write an example of lambda displayable
+*****************************************************************************************************************************************
+public class LambdaDisplayable implements displayble {
+    public void display(String msg){
+        System.out.println(msg);
+    }
+    public static void main(String[] args) {
+        LambdaDisplayable dis = new LambdaDisplayable();
+        dis.display("Welcome to the World.");
+        
+    }
+        
+}
+interface displayble {
+    void display(String  msg); 
+
+}
+
+
+*****************************************************************************************************************************************
+ 
+OUTPUT :
+
+D:\MCA-III\java>javac LambdaDisplayable.java
+
+D:\MCA-III\java>java LambdaDisplayable
+Welcome to the World.
+
+*****************************************************************************************************************************************
+Q41:  write an example of lambda using functional interface
+*****************************************************************************************************************************************
+interface FuncInterface
+{
+    void abstractFun(int x);
+
+    default void normalFun()
+    {
+        System.out.println("Hello");
+    }
+}
+
+class Test
+{
+    public static void main(String[] args)
+    {
+        FuncInterface fobj  = (int x) -> System.out.println(2*x);
+        fobj.abstractFun(5);
+    }
+}
+
+
+***************************************************************************************************************************************** 
+OUTPUT :
+
+D:\MCA-III\java>javac Test.java
+
+D:\MCA-III\java>java Test
+10
+
+*****************************************************************************************************************************************
+Q42:  write an example of calculator using lambda
+*****************************************************************************************************************************************
+
+public class Calculator
+{
+    interface IntegerMath
+    {
+        int operation(int a,int b);
+    }
+
+    public int OperateBinary(int a,int b,IntegerMath op){
+        return op.operation(a,b);
+    }
+
+    public static void main(String[] args)
+    {
+        Calculator myApp = new Calculator();
+        IntegerMath addition = (a,b) -> a + b;
+        IntegerMath substraction = (a,b) -> a-b;
+        System.out.println("40 + 2 = " + myApp.OperateBinary(40,2,addition));
+
+        System.out.println("20 - 10 = " + myApp.OperateBinary(20,10,substraction));
+    }
+}
+
+
+*****************************************************************************************************************************************
+ 
+OUTPUT :
+
+D:\MCA-III\java>javac Calculator.java
+
+D:\MCA-III\java>java Calculator
+40 + 2 = 42
+20 - 10 = 10
+
+
+*****************************************************************************************************************************************
+Q43:  write a program to implement uber using interface, anonymous class and lambda expression
+*****************************************************************************************************************************************
+Uber1.java
+
+@FunctionalInterface
+interface Cab {
+    void bookCab();
+}
+
+class UberX1 implements Cab {
+    public void bookCab() {
+        System.out.println("UberX Booked!! Arriving Soon !!");
+    }
+}
+
+public class Uber1 {
+    public static void main(String[] args) {
+        Cab cab = new UberX1();
+        cab.bookCab();
+    }
+}
+
+Uber2.java
+
+@FunctionalInterface
+interface Cab {
+    void bookCab();
+}
+
+public class Uber2 {
+    public static void main(String[] args) {
+        Cab cab = new Cab() {
+            
+            @Override
+            public void bookCab() {
+                System.out.println("UberX Booked!! Arriving Soon !!");
+            }
+        };
+
+        cab.bookCab();
+    }
+}
+
+
+Uber3.java
+
+@FunctionalInterface
+interface Cab {
+    void bookCab();
+}
+
+public class Uber3 {
+    public static void main(String[] args) {
+        Cab cab = () -> System.out.println("UberX Booked!! Arriving Soon !!");
+        cab.bookCab();
+    }
+}
+
+*****************************************************************************************************************************************
+ 
+OUTPUT :
+
+D:\MCA-III\java>javac Uber1.java
+
+D:\MCA-III\java>java Uber1
+UberX Booked!! Arriving Soon !!
+
+D:\MCA-III\java>javac Uber2.java
+
+D:\MCA-III\java>java Uber2
+UberX Booked!! Arriving Soon !!
+
+D:\MCA-III\java>javac Uber3.java
+
+D:\MCA-III\java>java Uber3
+UberX Booked!! Arriving Soon !!
+
+
+*****************************************************************************************************************************************
