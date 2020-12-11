@@ -1,0 +1,382 @@
+#include<stdio.h>
+#include<conio.h>
+#include<graphics.h>
+#include<math.h>
+#define size 30
+#define Round(a) ((int)(a+0.5))
+int free1=1,op,erase_flag=1;
+float hs,he,ws,we,h,w,x,y,df_op[size],df_x[size],df_y[size],df_pen_x,df_pen_y,frame_pen_x=0,frame_pen_y=0,xchrsp,ychrsp,cw,ch,char_sep;
+void gentle(int xa,int ya,int xb,int yb){
+	int dx,dy,x,y,xend;
+	int p,twody,twodydx;
+	float m;
+	dx=abs(xa-xb);
+	dy=abs(ya-yb);
+	if(dx==0){
+		m=(float)(dy);
+	}
+	else{
+		m=(float)(dy/dx);
+	}
+	p=2*dy-dx;
+	twody=2*dy;
+	twodydx=2*(dy-dx);
+	if(xa>xb){
+		x=xb;
+		y=yb;
+		xend=xa;
+	}
+	else{
+		x=xa;
+		y=ya;
+		xend=xb;
+	}
+	putpixel(x,y,1);
+	while(x<xend){
+		x++;
+		if(p<0){
+			p=p+twody;
+		}
+		else{
+			if(m>0 && m<1){
+				y++;
+			}
+			else if(m<0 && m>-1){
+				y--;
+			}
+			p=p+twodydx;
+
+		}
+		putpixel(x,y,1);
+	}
+
+}
+void steep(int xa,int ya,int xb,int yb){
+	int dx,dy,x,y,yend;
+	int p,twodx,twodxdy;
+	float m;
+	dx=abs(xa-xb);
+	dy=abs(ya-yb);
+	if(dx==0){
+		m=(float)(dy);
+	}
+	else{
+		m=((yb-ya)/(xb-xa));
+	}
+	p=2*dx-dy;
+	twodx=2*dx;
+	twodxdy=2*(dx-dy);
+	if(ya>yb){
+		x=xb;
+		y=yb;
+		yend=ya;
+	}
+	else{
+		x=xa;
+		y=ya;
+		yend=yb;
+	}
+	putpixel(x,y,1);
+	while(y<yend){
+		y++;
+		if(p<0){
+			p=p+twodx;
+		}
+		else{
+			if(m>=1){
+				x++;
+			}
+			else if(m<=-1){
+				x--;
+			}
+			p=p+twodxdy;
+
+		}
+		putpixel(x,y,1);
+	}
+
+}
+void putpoint(int op1,float x1,float y1){
+	if(free1>size){
+		printf("\n DISPLAY FILE IS FULL");
+	}
+	else{
+		df_op[free1]=op1;
+		df_x[free1]=x1;
+		df_y[free1]=y1;
+		free1++;
+		//printf("\n%d %f %f",op1,x1,y1);
+	}
+
+}
+void display_file_enter(int op1){
+	putpoint(op1,df_pen_x,df_pen_y);
+}
+void getpoint(int n){
+
+	op=df_op[n];
+	x=df_x[n];
+	y=df_y[n];
+
+}
+
+void move_abs(float x1,float y1){
+	df_pen_x=x1;
+	df_pen_y=y1;
+	//printf("%f %f",df_pen_x,df_pen_y);
+	display_file_enter(1);
+}
+void move_rel(float dx,float dy){
+	df_pen_x+=dx;
+	df_pen_y+=dy;
+	display_file_enter(1);
+}
+void line_abs(float x1,float y1){
+	df_pen_x=x1;
+	df_pen_y=y1;
+	display_file_enter(2);
+}
+void line_rel(float dx,float dy){
+	df_pen_x+=dx;
+	df_pen_y+=dy;
+	display_file_enter(2);
+
+}
+float max(float x1,float y1){
+	if(x1>y1){
+		return x1;
+	}
+	else{
+		return y1;
+	}
+}
+float min(float x1,float y1){
+	if(x1<y1){
+		return x1;
+	}
+	else{
+		return y1;
+	}
+}
+void domove(float x1,float y1){
+       //	printf("\n%f %f",x1,y1);
+	frame_pen_x=max(ws,min(we,(x1*w+ws)));
+	frame_pen_y=max(hs,min(he,(y1*h+hs)));
+       //	printf("\n %f %f",frame_pen_x,frame_pen_y);
+}
+void doline(float x2,float y2){
+	float x1=frame_pen_x,y1=frame_pen_y;
+	int dx,dy;
+	frame_pen_x=max(ws,min(we,(x2*w+ws)));
+	frame_pen_y=max(hs,min(he,(y2*h+hs)));
+       //	printf("\n %f %f",frame_pen_x,frame_pen_y);
+	dx=(int)((abs)(x1-frame_pen_x));
+	dy=(int)((abs)(y1-frame_pen_y));
+	if(dx>dy){
+	gentle((int)(x1+0.5),(int)(y1+0.5),(int)(frame_pen_x+0.5),(int)(frame_pen_y+0.5));
+	}
+	else{
+	steep((int)(x1+0.5),(int)(y1+0.5),(int)(frame_pen_x+0.5),(int)(frame_pen_y+0.5));
+	}
+
+
+}
+void gen(int arr[][11],int x,int y){
+	int z=y;
+	int i,j;
+	for(i=0;i<11;i++){
+		y=z;
+		for(j=0;j<11;j++,y++){
+			if(arr[i][j]==1){
+			putpixel(y,x,YELLOW);
+			}
+
+		}
+		x++;
+	}
+
+}
+void genH(int x1,int y1){
+int h[11][11]={
+	{1,1,0,0,0,0,0,0,0,1,1},
+	{1,1,0,0,0,0,0,0,0,1,1},
+	{1,1,0,0,0,0,0,0,0,1,1},
+	{1,1,1,1,1,1,1,1,1,1,1},
+	{1,1,1,1,1,1,1,1,1,1,1},
+	{1,1,0,0,0,0,0,0,0,1,1},
+	{1,1,0,0,0,0,0,0,0,1,1},
+	{1,1,0,0,0,0,0,0,0,1,1},
+	{1,1,0,0,0,0,0,0,0,1,1},
+	{1,1,0,0,0,0,0,0,0,1,1}};
+	gen(h,x1,y1);
+}
+void genE(int x1,int y1){
+	int e[11][11]={
+	{1,1,1,1,1,1,1,1,1,0,0},
+	{1,1,1,1,1,1,1,1,1,0,0},
+	{1,1,0,0,0,0,0,0,0,0,0},
+	{1,1,0,0,0,0,0,0,0,0,0},
+	{1,1,1,1,1,1,1,1,1,0,0},
+	{1,1,1,1,1,1,1,1,1,0,0},
+	{1,1,0,0,0,0,0,0,0,0,0},
+	{1,1,0,0,0,0,0,0,0,0,0},
+	{1,1,1,1,1,1,1,1,1,0,0},
+	{1,1,1,1,1,1,1,1,1,0,0}};
+		gen(e,x1,y1);
+}
+void genL(int x1,int y1){
+	int l[11][11]={
+	{1,1,0,0,0,0,0,0,0,0,0},
+	{1,1,0,0,0,0,0,0,0,0,0},
+	{1,1,0,0,0,0,0,0,0,0,0},
+	{1,1,0,0,0,0,0,0,0,0,0},
+	{1,1,0,0,0,0,0,0,0,0,0},
+	{1,1,0,0,0,0,0,0,0,0,0},
+	{1,1,0,0,0,0,0,0,0,0,0},
+	{1,1,0,0,0,0,0,0,0,0,0},
+	{1,1,1,1,1,1,1,1,1,0,0},
+	{1,1,1,1,1,1,1,1,1,0,0}};
+		gen(l,x1,y1);
+}
+void genO(int x1,int y1){
+	int o[11][11]={
+	{1,1,1,1,1,1,1,1,1,1,1},
+	{1,1,1,1,1,1,1,1,1,1,1},
+	{1,1,0,0,0,0,0,0,0,1,1},
+	{1,1,0,0,0,0,0,0,0,1,1},
+	{1,1,0,0,0,0,0,0,0,1,1},
+	{1,1,0,0,0,0,0,0,0,1,1},
+	{1,1,0,0,0,0,0,0,0,1,1},
+	{1,1,0,0,0,0,0,0,0,1,1},
+	{1,1,1,1,1,1,1,1,1,1,1},
+	{1,1,1,1,1,1,1,1,1,1,1}};
+		gen(o,x1,y1);
+}
+void do_char(float x1,float y1){
+	char ch;
+	frame_pen_x=max(ws,min(we,x1*w+ws));
+	frame_pen_y=max(hs,min(he,y1*h+hs));
+	op=-op;
+	ch=op;
+	switch(ch){
+		case 'H':genH(frame_pen_x,frame_pen_y);
+			break;
+		case 'E':genE(frame_pen_x,frame_pen_y);
+			break;
+		case 'L':genL(frame_pen_x,frame_pen_y);
+			break;
+
+		case 'O':genO(frame_pen_x,frame_pen_y);
+			break;
+		default:
+			printf("\nINVALID");
+
+	}
+}
+void text(char a[]){
+	int len=strlen(a),i;
+	char chr;
+	x=df_pen_x;
+	y=df_pen_y;
+	for(i=0;i<len;i++){
+		chr=a[i];
+		op=chr;
+		op=-op;
+		display_file_enter(op);
+		df_pen_x+=xchrsp;
+		df_pen_y+=ychrsp;
+
+	}
+	move_abs(x,y);
+}
+void setcharup(float dx,float dy){
+	float s=sqrt(pow(dx,2)+pow(dy,2)),ds,ts;
+	float cwdy=(cw*dy);
+	float chdx=(ch*dx);
+
+
+	if(cwdy<0)
+		cwdy=-cwdy;
+	if(chdx<0)
+		chdx=-chdx;
+	ds=(cwdy+chdx)/s;
+	ts=ds*(1+char_sep);
+	xchrsp=ts*(dy/s);
+	ychrsp=ts*(dx/s);
+}
+
+void interpret(int start,int count){
+	int n;
+	for(n=start;n<=count;n++){
+		getpoint(n);
+
+		if(op==1){
+			domove(x,y);
+		}
+		else if(op==2){
+			doline(x,y);
+		}
+		else if(op<-31 && op>-127){
+			do_char(x,y);
+
+		}
+	}
+}
+void new_frame(){
+	erase_flag=1;
+}
+void erase(){
+	int i,j;
+	for(i=0;i<getmaxx();i++){
+		for(j=0;j<getmaxy();j++){
+			putpixel(i,j,0);
+		}
+	}
+}
+void make_picture_current(){
+	if(erase_flag==1){
+		erase();
+	}
+	erase_flag=0;
+	if(free1>1){
+		interpret(1,(free1-1));
+	}
+	free1=1;
+
+}
+
+void initialize(){
+	free1=1,
+	frame_pen_x=0,
+	frame_pen_y=0,
+	df_pen_x=0,
+	df_pen_y=0,
+	hs=0,
+	he=getmaxx(),
+	h=he-hs,
+	ws=0,
+	we=getmaxy(),
+	w=we-ws;
+	cw=0.1;
+	ch=0.1;
+	char_sep=0;
+	setcharup(1,0);
+}
+void main(){
+	int i,gd=DETECT,gm,n=8;
+	char str[]={'H','E','L','L','O'};
+	initgraph(&gd,&gm,"c:/tc/bgi");
+	initialize();
+	new_frame();
+	text(str);
+	setcharup(0,1);
+	text(str);
+	setcharup(1,1);
+	text(str);
+
+	make_picture_current();
+	/*for(i=1;i<free1;i++){
+		printf("\n%f %f %f",df_op[i],df_x[i],df_y[i]);
+	} */
+	getch();
+}

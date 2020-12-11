@@ -1,0 +1,62 @@
+START 100
+
+MACRO
+EVAL &X &Y &Z
+AIF (&Y EQ &X) .ONLY
+MOVER AREG &X
+SUB AREG &Y
+ADD AREG &Z
+AGO .OVER
+.ONLY MOVER AREG &Z
+.OVER MEND
+
+MACRO
+ADDITION &NUM1 &NUM2 &SUM
+MOVER AREG &NUM1
+ADD AREG &NUM2
+MOVEM AREG &SUM
+MEND
+
+MACRO
+CLEARMEN &X &N &REG=AREG
+LCL &M
+&M SET 0
+MOVER &REG ='0'
+.MORE MOVEM &REG &X + &M
+&M SET &M + 1
+AIF (&M NE &N) .MORE
+MEND
+
+MACRO
+CALC &A &B &OP= &LAB= &REG=
+MOVER &REG &A
+&OP &REG &B
+MOVEM &REG &A
+MULT &REG &LAB
+MEND
+
+READ X
+READ Y
+----------------------------------
+ADDITION X Y RESULT
+----------------------------------
+PRINT RESULT
+----------------------------------
+EVAL 10 11 A
+----------------------------------
+MOVEM AREG RESULT
+----------------------------------
+CLEARMEN AREA 10
+----------------------------------
+PRINT RESULT
+----------------------------------
+CALC X Y LAB=10 REG=AREG OP=MULT
+----------------------------------
+ADDITION A B RESULT
+----------------------------------
+PRINT RESULT
+STOP
+X DS 2
+Y DS 2
+RESULT DS 2
+END

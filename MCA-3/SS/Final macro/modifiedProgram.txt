@@ -1,0 +1,45 @@
+START 100
+READ X
+READ Y
+----------------------------------
+MOVER AREG X 
+ADD AREG Y 
+MOVEM AREG RESULT 
+----------------------------------
+PRINT RESULT
+----------------------------------
+MOVER AREG 10 
+SUB AREG 11 
+ADD AREG A 
+----------------------------------
+MOVEM AREG RESULT
+----------------------------------
+MOVER AREG ='0' 
+MOVEM AREG AREA + 0
+MOVEM AREG AREA + 1
+MOVEM AREG AREA + 2
+MOVEM AREG AREA + 3
+MOVEM AREG AREA + 4
+MOVEM AREG AREA + 5
+MOVEM AREG AREA + 6
+MOVEM AREG AREA + 7
+MOVEM AREG AREA + 8
+MOVEM AREG AREA + 9
+----------------------------------
+PRINT RESULT
+----------------------------------
+MOVER AREG X 
+MULT AREG Y
+MOVEM AREG X 
+MULT AREG 10 
+----------------------------------
+MOVER AREG A 
+ADD AREG B 
+MOVEM AREG RESULT 
+----------------------------------
+PRINT RESULT
+STOP
+X DS 2
+Y DS 2
+RESULT DS 2
+END

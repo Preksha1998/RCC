@@ -1,0 +1,918 @@
+Roll No	:32
+Name	:Pushti K. Sampat
+Class	:MCA Sem-3
+Subject	:Data Strucrures
+***********************************************************************
+1. Linear Search
+
+***********************************************************************
+#include<stdio.h>
+void linrsrch(int a[],int n,int ele)
+{
+	int flg=0,i;
+	for(i=0;i<n;i++)
+	{
+		if(a[i]==ele)
+		{
+			flg=1;
+			printf("\n Element Found Successfully\n");
+			break;
+		}
+	}
+	if(flg==0)
+		printf("\n Element Not Found\n");
+}
+void main()
+{
+	int n,i,a[100],ele;
+	printf("\n Enter Number of Elements:");
+	scanf("%d",&n);
+	for(i=0;i<n;i++)
+	{
+		printf("\n Enter Number%d:",i+1);
+		scanf("%d",&a[i]);
+	}
+	printf("\n Enter Search Element:");
+	scanf("%d",&ele);
+	linrsrch(a,n,ele);
+}
+************************************************************************
+Output:
+Enter Number of Elements:5
+
+ Enter Number1:100
+
+ Enter Number2:3
+
+ Enter Number3:6
+
+ Enter Number4:2
+
+ Enter Number5:1
+
+ Enter Search Element:100
+
+ Element Found Successfully
+Press any key to continue . . .
+
+***********************************************************************
+2. Binary Search 
+
+***********************************************************************
+#include<stdio.h>
+void binsrch(int a[],int n,int ele)
+{
+	int l,u,m,flg=1;
+	l=0;
+	u=n-1;
+	
+	while(l<=u)
+	{
+		m=(u+l)/2;
+		if(ele==a[m])
+		{
+			flg=0;
+			printf("\n Element Found successfully\n");
+			break;
+		}
+		else if(ele>a[m])
+			l=m+1;
+		else
+			u=m-1;
+	}
+	if(flg==1)
+		printf("\n Element Not Found\n");
+}
+void main()
+{
+	int n,i,a[100],ele;
+	printf("\n Enter Number of Elements:");
+	scanf("%d",&n);
+	for(i=0;i<n;i++)
+	{
+		printf("\n Enter Number%d:",i+1);
+		scanf("%d",&a[i]);
+	}
+	printf("\n Enter Search Element:");
+	scanf("%d",&ele);
+	binsrch(a,n,ele);
+}
+
+************************************************************************
+Output:
+Enter Number of Elements:5
+
+ Enter Number1:4
+
+ Enter Number2:6
+
+ Enter Number3:8
+
+ Enter Number4:9
+
+ Enter Number5:10
+
+ Enter Search Element:8
+
+ Element Found successfully
+Press any key to continue . . .
+
+***********************************************************************
+3. Expression Tree
+
+***********************************************************************
+#include<stdio.h>
+#include<conio.h>
+#include<stdlib.h>
+
+struct Tree
+{
+	char val;
+	struct Tree *next,*prev;
+};
+void push6(struct Tree *stk[],struct Tree *crnt,int *top)
+{
+	(*top)++;
+	stk[*top]=crnt;
+}
+struct Tree* pop6(struct Tree *stk[],int *top)
+{
+	struct Tree *tmp;
+	tmp=stk[*top];
+	(*top)--;
+	return tmp;
+}
+void inorder_iterative1(struct Tree **root)
+{
+	//LEFT ROOT RIGHT
+	struct Tree *crnt,*stk[100],*tmp;
+	int top=-1;
+	crnt=(*root);
+	if(crnt==NULL)
+		printf("\n No Node of tree is present");
+	else
+	{
+		while(1)
+		{
+			for(;crnt!=NULL;crnt=crnt->prev)
+				push6(stk,crnt,&top);
+			if(stkempty(top))
+				break;
+			crnt=pop6(stk,&top);
+			printf("%c ",crnt->val);
+			crnt=crnt->next;
+		}
+	}
+}
+void createNode6(struct Tree **node)
+{
+	*node = (struct Tree *)malloc(sizeof(struct Tree)) ;
+
+	(*node)->next=(*node)->prev=NULL;
+}
+void expressionTree(char str[])
+{
+	struct Tree *stack[10],*tmp;
+	int top=-1,i;
+
+	for(i=0;str[i]!='\0';i++)
+	{
+		if(str[i] == '/' || str[i] == '*' || str[i] == '+' || str[i] == '-' )
+		{
+			//if any symbol encounters then create node
+			createNode6(&tmp);
+			tmp->val=str[i];
+			tmp->next=pop6(stack,&top);
+			tmp->prev=pop6(stack,&top);
+			push6(stack,tmp,&top);
+		}
+		else
+		{
+			createNode6(&tmp);
+			tmp->val=str[i];
+			push6(stack,tmp,&top);
+		}
+	}
+	tmp=pop6(stack,&top);
+	inorder_iterative1(&tmp);
+}
+void main()
+{
+	char str[20];
+	printf("\n--ENter postfix expression: ");
+	scanf("%s",str);
+	expressionTree(str);
+	//getch();
+}
+
+************************************************************************
+Output:
+--ENter postfix expression: xy+z+ab+c-*
+x + y + z * a + b - c 
+Press any key to continue . . .
+***********************************************************************
+4.Binary Search Tree
+***********************************************************************
+#include<stdio.h>
+struct tree
+{
+	int data;
+	struct tree *left;
+	struct tree *right;
+};
+void create_bst_rec(struct tree **root,int item)
+{	
+	struct tree *nn;
+	nn=(struct tree *)malloc(sizeof(struct tree));
+	nn->left=NULL;
+	nn->right=NULL;
+	nn->data=item;
+	if((*root)==NULL)
+		(*root)=nn;
+	else
+	{
+		if(item<(*root)->data)
+		{
+			if((*root)->left==NULL)
+			{
+				(*root)->left=nn;
+				return;
+			}
+			create_bst_rec(&(*root)->left,item);
+		}
+		else if(item>(*root)->data)
+		{
+			if((*root)->right==NULL)
+			{
+				(*root)->right=nn;
+				return;
+			}
+			create_bst_rec(&(*root)->right,item);
+		}
+	}//else
+}
+void create_bst(struct tree **root)
+{
+	int n,item,i;
+	struct tree *nn,*parent;
+
+	printf("\n Enter number of nodes:");
+	scanf("%d",&n);
+
+	for(i=0;i<n;i++)
+	{
+			nn=(struct tree *)malloc(sizeof(struct tree));
+			nn->left=NULL;
+			nn->right=NULL;
+			printf("\n Enter Number for %d node:",i+1);
+			scanf("%d",&nn->data);
+			
+			if((*root)==NULL)
+				(*root)=nn;
+			else
+			{
+				parent=(*root);
+				while(1)
+				{
+					if(nn->data<parent->data)
+					{
+						if(parent->left==NULL)
+						{
+							parent->left=nn;
+							break;
+						}
+						parent=parent->left;
+				}
+				else if(nn->data>parent->data)
+				{
+					if(parent->right==NULL)
+					{
+						parent->right=nn;
+						break;
+					}
+					parent=parent->right;
+				}
+			}
+		}
+	}
+}
+void insert_leaf(struct tree **root,int num)
+{
+	struct tree *nn,*parent;
+	nn=(struct tree *)malloc(sizeof(struct tree));
+	nn->left=NULL;
+	nn->right=NULL;
+	nn->data=num;
+
+	if((*root)==NULL)
+		(*root)=nn;
+	else
+	{
+		parent=(*root);
+		while(1)
+		{
+			if(num<parent->data)
+			{
+				if(parent->left==NULL)
+				{
+					parent->left=nn;
+					break;
+				}
+				parent=parent->left;
+			}
+			else if(num>parent->data)
+			{
+				if(parent->right==NULL)
+				{
+					parent->right=nn;
+					break;
+				}
+				parent=parent->right;
+			}
+		}
+	}
+}
+
+int srch_recurs(struct tree *root,int num)
+{
+	if(root==NULL)
+		return 0;
+	else if(num<root->data)
+		return (srch_recurs(root->left,num));
+	else if(num>root->data)
+		return (srch_recurs(root->right,num));
+	return 1;//if we get value equal to num then 1 will be returned
+}
+int srch_val(struct tree **root,int num)
+{
+	int flag=0;
+	struct tree *tmp;
+	tmp=(*root);
+
+	if(tmp->data==num)
+		printf("\n Value found");
+	else
+	{
+		while(tmp!=NULL)
+		{
+			if(num<tmp->data)
+				tmp=tmp->left;
+			else if(num>tmp->data)
+				tmp=tmp->right;
+			else
+				return 1;
+		}
+		return 0;
+	}
+}
+void preorder(struct tree **root)
+{
+	if(*root==NULL)
+		return;
+
+	printf("%d ",(*root)->data);
+	preorder(&(*root)->left);
+	preorder(&(*root)->right);
+}
+void postorder(struct tree **root)
+{
+	if(*root==NULL)
+		return;
+	postorder(&(*root)->left);
+	postorder(&(*root)->right);
+	printf("%d ",(*root)->data);
+}
+void inorder(struct tree **root)
+{
+	if(*root==NULL)
+		return;
+
+	inorder(&(*root)->left);
+	printf("%d ",(*root)->data);
+	inorder(&(*root)->right);
+}
+void push5(struct tree *stk[],struct tree *crnt,int *top)
+{
+	(*top)++;
+	stk[*top]=crnt;
+}
+int stkempty(int top)
+{
+	if(top==-1)
+		return 1;
+	else
+		return 0;
+}
+struct tree* pop5(struct tree *stk[],int *top)
+{
+	struct tree *tmp;
+	tmp=stk[*top];
+	(*top)--;
+	return tmp;
+}
+void inorder_iterative(struct tree **root)
+{
+	//LEFT ROOT RIGHT
+	struct tree *crnt,*stk[100],*tmp;
+	int top=-1;
+	crnt=(*root);
+	if(crnt==NULL)
+		printf("\n No Node of tree is present");
+	else
+	{
+		while(1)
+		{
+			for(;crnt!=NULL;crnt=crnt->left)
+				push5(stk,crnt,&top);
+			if(stkempty(top))
+				break;
+			crnt=pop5(stk,&top);
+			printf("%d ",crnt->data);
+			crnt=crnt->right;
+		}
+	}
+}
+void preorder_iterative(struct tree **root)
+{
+	//ROOT LEFT RIGHT
+	struct tree *crnt,*stk[100],*tmp;
+	int top=-1;
+	crnt=(*root);
+	while(1)
+	{
+		for(;crnt!=NULL;crnt=crnt->left)
+		{
+			printf("%d ",crnt->data);
+			push5(stk,crnt,&top);
+		}
+		if(stkempty(top))
+			break;
+		crnt=pop5(stk,&top);
+		crnt=crnt->right;
+	}
+}
+void postorder_iterative(struct tree *root)
+{
+	struct tree *crnt,*stk[100];
+	int top=-1;
+	crnt=root;
+	while(1)
+	{
+		//1.push node till crnt->left!=NULL.
+		for(;crnt!=NULL;crnt=crnt->left)
+			push5(stk,crnt,&top);
+
+		//2.Pop and display until top!=-1 and value of top<0
+		 
+		while(top>-1 && stk[top]->data <0)
+		{
+			crnt=pop5(stk,&top);
+			crnt->data = (crnt->data) * (-1); //As we have made the value negative in third step so before displaying it make it positive
+			printf("%d ",crnt->data );
+		}
+
+		//3.Make value negative(as we traversed the left and go to right of top of stack.
+		if(stkempty(top))
+			break;
+		else
+		{
+			stk[top]->data*=-1;
+			crnt=stk[top]->right;
+		}
+	}
+}
+int min(struct tree **root)
+{
+	struct tree *tmp;
+	for(tmp=(*root);tmp->left!=NULL;tmp=tmp->left);
+		return tmp->data;
+}
+int min_rec(struct tree *root)
+{
+	if(root->left==NULL)
+		return root->data;
+	else
+		min_rec(root->left);
+}
+
+int max(struct tree **root)
+{
+	struct tree *tmp;
+	for(tmp=(*root);tmp->right!=NULL;tmp=tmp->right);
+		return tmp->data;
+}
+int max_rec(struct tree *root)
+{
+	if(root->right==NULL)
+		return root->data;
+	else
+		max_rec(root->right);
+}
+struct tree* delete_rec(struct tree *root,int data) 
+{
+	struct tree *temp;
+	int n;
+	if(root==NULL)
+		printf("\n No Such Element Exists");
+	else if(data>root->data)
+		root->right=delete_rec(root->right,data);
+	else if(data<root->data)
+		root->left=delete_rec(root->left,data);
+ 	else
+	{
+		if(root->left!=NULL && root->right!=NULL)	  //delete a node with 2 child
+		{
+			n=min(&root->right);
+			root->data=n;
+			root->right=delete_rec(root->right,root->data);
+		}
+		else 
+		{
+			temp=root;
+			if(root->left==NULL && root->right==NULL) //delete a node with no child
+				root=NULL;
+			else									  //delete a node with one child
+			{
+				if(root->left==NULL)
+					root=root->right;
+				else if(root->right==NULL)
+					root=root->left;
+			}
+			free(temp);
+		}
+	}
+	return root;
+}
+struct tree* srch_recur2(struct tree *root,int num)
+{
+	if(root==NULL)
+		return NULL;
+	else if(num<root->data)
+		return (srch_recur2(root->left,num));
+	else if(num>root->data)
+		return (srch_recur2(root->right,num));
+	return root;//if we get value equal to num then root will be returned
+}
+int isLeaf(struct tree *temp)
+{
+	if(temp->left==NULL && temp->right==NULL)
+		return 1;
+	else
+		return 0;
+}
+int oneChild(struct tree *t)
+{
+	if( (t->left==NULL && t->right!=NULL) || (t->left!=NULL && t->right==NULL))
+		return 1;
+	else
+		return 0;
+}
+int twochild(struct tree *t)
+{
+	if(t->left!=NULL && t->right!=NULL)
+		return 1;
+	else
+		return 0;
+}
+
+struct tree* getparent(struct tree *root,int val)
+{
+	struct tree *parent=NULL;
+	while(1)
+	{
+		if(val<root->data)
+		{
+			parent=root;
+			root=root->left;
+		}
+		else if(val>root->data)
+		{
+			parent=root;
+			root=root->right;
+		}
+		else
+			return parent;
+	}
+}
+int isRoot(struct tree *root,struct tree *t)
+{
+	if(root==t)
+		return 1;
+	else
+		return 0;
+}
+struct tree* min_addr(struct tree *root)
+{
+	struct tree *tmp;
+	for(tmp=root;tmp->left!=NULL;tmp=tmp->left);
+		return tmp;
+}
+struct tree* del_iter(struct tree *root,int val)
+{
+	struct tree *t,*p,*min;
+	t=srch_recur2(root,val);
+	if(t==NULL)  //Number Entered is not present
+	{
+		printf("\n Value not Found");
+		return root;
+	}
+	else if(isLeaf(t))  //Delete a Node with zero child
+	{
+		p=getparent(root,val);
+		if(p==NULL) //Deletion of root node with zero child
+			root=NULL;
+		else if(p->left!=NULL && p->left->data==t->data) //Make parent->left=NULL if there is deletion of left child of parent 
+			p->left=NULL;
+		else if(p->right!=NULL && p->right->data==t->data)//Make parent->right=NULL if there is deletion of right child of parent
+			p->right=NULL;
+	}
+	else if(oneChild(t))
+	{
+		p=getparent(root,val);
+		if(p==NULL)  //Deletion of root node with one child
+		{
+			if(root->left!=NULL)
+				root=root->left;
+			else if(root->right!=NULL)
+				root=root->right;
+		}
+		else
+		{
+			//Find wheather the parent's left child(first if) is to be deleted.
+
+			if(p->left!=NULL && p->left->data==t->data)
+			{
+				//If Element to be deleted is left child of parent and having right child then parent->left will have right child value of deleteion element.
+				if(t->right!=NULL)
+					p->left=t->right;
+
+				//If Element to be deleted is left child of parent and having left child then parent->left will have left child value of deleteion element.
+				else if(t->left!=NULL)
+					p->left=t->left;
+			}
+
+			//Find wheather the parent's right child is to be deleted.
+			else if(p->right!=NULL && p->right->data==t->data)
+			{
+				//If Element to be deleted is right child of parent and having right child then parent->right will have right child value of deleteion element.
+				if(t->right!=NULL)
+					p->right=t->right;
+
+				//If Element to be deleted is right child of parent and having left child then parent->right will have left child value of deleteion element.
+				else if(t->left!=NULL)
+					p->right=t->left;
+			}
+		}
+	}
+	else if(twochild(t))
+	{
+		min=min_addr(t->right);
+
+		//Deletion of Root Node having 2 childs
+		if(isRoot(root,t))
+		{
+			/*Minimum value from right subtree of root will be replaced with root.
+			  Minimum value will not have left subtree.
+			  If Minimum value will have right subtree then min->right value will be given to p->left or p->right according to condition.
+			  If Minimum value will not have right subtree then value given to p->left or p->right wiil be NULL.
+			  Duplicate Minimum value from right subtree will be deleted. */
+			
+
+			//Parent of minimum value.
+			p=getparent(root,min->data);
+
+			//Setting root value to minimum value(minimum value is from right subtree of root node)
+			root->data=min->data;
+			
+			
+			if(min->right!=NULL)		//eg there are 3 node 16,17,15,18 and delete 16
+			{
+				//Find whether parent's left child is having minimum value or 
+				//parent's right child is having minimum value
+				
+				if(p->left->data==min->data)
+					p->left=min->right;
+				else if(p->right->data==min->data)
+					p->right=min->right;
+			}
+			else if(min->right==NULL)
+			{
+				if(p->left->data==min->data)	//eg there are 5 node 16,17,15,16.5,18 and delete 16
+					p->left=NULL;
+				else if(p->right->data==min->data) //eg there are 3 node 16,17,15 and delete 16
+					p->right=NULL;
+			}
+			free(min);
+			return root;
+		}
+		else
+		{
+			p=getparent(root,val);
+			if(p->left->data==t->data)
+				p->left=min;
+			else if(p->right->data==t->data)
+				p->right=min;
+			min->left=t->left;
+		}
+	}
+	free(t);
+	return root;
+}
+void main()
+{
+	struct tree *root=NULL;
+	int n,item,i,num,num1;
+	do
+	{
+		printf("\n========BST operations\n1-Create With Recursion\n2-Iterative Create \n3-Iterative insert \n4-Preorder traversal\n5-INorder traversal\n6-Postorder traversal");
+		printf("\n7-Preorder traversal recursion\n8-INorder traversal recursion\n9-Postorder traversal recursion\n10-Delete Node Recursively\n11-Search Node");
+		printf("\n12-Search Recursive\n13-Find Minimum Recursivily\n14-Find Maximum Recursivily\n15-Iteratively Find Minimum\n16-Iteratively Find Maximum\n17-Iteratively Delete Node\n18-Exit");
+		printf("\n---ENter your choice: ");
+		scanf("%d",&num);
+		switch(num)
+		{
+		case 1:printf("\n Enter number of nodes:");
+				   scanf("%d",&n);
+
+				   for(i=0;i<n;i++)
+	               {
+					   printf("\n Enter Number for %d node:",i+1);
+						scanf("%d",&item);
+						create_bst_rec(&root,item);
+				   }
+				   break;
+			case 2:create_bst(&root);
+					break;
+			case 3:printf("\n Enter Number to be inserted:");
+				   scanf("%d",&item);
+				   insert_leaf(&root,item);
+				   break;
+			case 4:postorder_iterative(root);
+					break;
+			case 5:inorder_iterative(&root);
+					break;
+			case 6:preorder_iterative(&root);
+					break;
+			case 7:	preorder(&root);
+					break;
+			case 8:inorder(&root);
+					break;
+			case 9:postorder(&root);
+					break;
+			case 10:printf("\n Enter Number to be Deleted:");
+					scanf("%d",&item);
+					root=delete_rec(root,item);
+				//	printf("\n Value deleted successfully");
+					break;
+			case 11:printf("\n Enter Number to be Searched:");
+					scanf("%d",&item);
+					if(srch_val(&root,item))
+						printf("%d value found",item);
+					else
+						printf("%d Not found",item);
+					break;
+			case 12:printf("\n Enter Number to be Searched:");
+					scanf("%d",&item);
+					if(srch_recurs(root,item))
+						printf("%d value found",item);
+					else
+						printf("%d Not found",item);
+					break;
+			case 13:printf("\n Minimum Value is:%d",min_rec(root));
+					break;
+			case 14:printf("\n Maximum Value is:%d",max_rec(root));
+					break;
+			case 15:printf("\n Minimum Value is:%d",min(&root));
+					break;
+			case 16:printf("\n Maximum Value is:%d",max(&root));
+					break;
+			case 17:printf("\n Enter Number to be Deleted:");
+					scanf("%d",&item);
+					root=del_iter(root,item);
+					//printf("\n Value deleted successfully");
+					break;
+			case 18:exit(0);
+			default:printf("\n Invalid Option");
+					break;
+		}
+	}while(1);
+}
+
+
+************************************************************************
+Output:
+
+========BST operations
+1-Create With Recursion
+2-Iterative Create
+3-Iterative insert
+4-Preorder traversal
+5-INorder traversal
+6-Postorder traversal
+7-Preorder traversal recursion
+8-INorder traversal recursion
+9-Postorder traversal recursion
+10-Delete Node Recursively
+11-Search Node
+12-Search Recursive
+13-Find Minimum Recursivily
+14-Find Maximum Recursivily
+15-Iteratively Find Minimum
+16-Iteratively Find Maximum
+17-Iteratively Delete Node
+18-Exit
+---ENter your choice: 1
+
+ Enter number of nodes:3
+
+ Enter Number for 1 node:1
+
+ Enter Number for 2 node:2
+
+ Enter Number for 3 node:3
+
+========BST operations
+1-Create With Recursion
+2-Iterative Create
+3-Iterative insert
+4-Preorder traversal
+5-INorder traversal
+6-Postorder traversal
+7-Preorder traversal recursion
+8-INorder traversal recursion
+9-Postorder traversal recursion
+10-Delete Node Recursively
+11-Search Node
+12-Search Recursive
+13-Find Minimum Recursivily
+14-Find Maximum Recursivily
+15-Iteratively Find Minimum
+16-Iteratively Find Maximum
+17-Iteratively Delete Node
+18-Exit
+---ENter your choice: 4
+3 2 1
+========BST operations
+1-Create With Recursion
+2-Iterative Create
+3-Iterative insert
+4-Preorder traversal
+5-INorder traversal
+6-Postorder traversal
+7-Preorder traversal recursion
+8-INorder traversal recursion
+9-Postorder traversal recursion
+10-Delete Node Recursively
+11-Search Node
+12-Search Recursive
+13-Find Minimum Recursivily
+14-Find Maximum Recursivily
+15-Iteratively Find Minimum
+16-Iteratively Find Maximum
+17-Iteratively Delete Node
+18-Exit
+---ENter your choice: 5
+1 2 3
+========BST operations
+1-Create With Recursion
+2-Iterative Create
+3-Iterative insert
+4-Preorder traversal
+5-INorder traversal
+6-Postorder traversal
+7-Preorder traversal recursion
+8-INorder traversal recursion
+9-Postorder traversal recursion
+10-Delete Node Recursively
+11-Search Node
+12-Search Recursive
+13-Find Minimum Recursivily
+14-Find Maximum Recursivily
+15-Iteratively Find Minimum
+16-Iteratively Find Maximum
+17-Iteratively Delete Node
+18-Exit
+---ENter your choice: 6
+1 2 3
+========BST operations
+1-Create With Recursion
+2-Iterative Create
+3-Iterative insert
+4-Preorder traversal
+5-INorder traversal
+6-Postorder traversal
+7-Preorder traversal recursion
+8-INorder traversal recursion
+9-Postorder traversal recursion
+10-Delete Node Recursively
+11-Search Node
+12-Search Recursive
+13-Find Minimum Recursivily
+14-Find Maximum Recursivily
+15-Iteratively Find Minimum
+16-Iteratively Find Maximum
+17-Iteratively Delete Node
+18-Exit
+---ENter your choice: 18
+Press any key to continue . . .
+

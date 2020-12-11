@@ -1,0 +1,39 @@
+#include<stdio.h>
+#include<conio.h>
+#include<graphics.h>
+#include<math.h>
+draw_circle(int xc,int yc,int x,int y){
+	putpixel(xc+x,yc+y,3);
+	putpixel(xc-x,yc+y,3);
+	putpixel(xc+x,yc-y,3);
+	putpixel(xc-x,yc-y,3);
+	putpixel(xc+y,yc+x,3);
+	putpixel(xc-y,yc+x,3);
+	putpixel(xc+y,yc-x,3);
+	putpixel(xc-y,yc-x,3);
+	return 0;
+}
+midpoint_circle(int xc,int yc,int r){
+	int x=0,y,d;
+	d=1-r;
+	y=r;
+	draw_circle(xc,yc,x,y);
+	while(x<y){
+		x++;
+		if(d<0){
+			d=d+2*x+1;
+		}
+		else if(d>=0){
+			y--;
+			d=d+2*(x-y)+1;
+		}
+		draw_circle(xc,yc,x,y);
+	}
+return 0;
+}
+void main(){
+	int gd=DETECT,gm;
+	initgraph(&gd,&gm,"c:/tc/bgi");
+	midpoint_circle(250,200,80);
+	getch();
+}

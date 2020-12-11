@@ -1,0 +1,111 @@
+#include<stdio.h>
+#include<conio.h>
+#include<math.h>
+#include<graphics.h>
+#define inside(a) (!a)
+#define round(a) ((int)(a+0.5))
+int xwmin=160,xwmax=480,ywmin=80,ywmax=400,x1=50,y1=150,x2=400,y2=300;
+float u1,u2;
+float dx,dy;
+dda(int xa,int ya,int xb,int yb){
+	int dx,dy,steps,xincr,yincr,x,y,i;
+	dx=xb-xa;
+	dy=yb-ya;
+	if(abs(dx)>abs(dy)){
+		steps=dx;
+	}
+	else{
+		steps=dy;
+	}
+	xincr=dx/steps;
+	yincr=dy/steps;
+	x=xa;
+	y=ya;
+	putpixel(x,y,1);
+	for(i=0;i<steps;i++){
+		x=x+xincr;
+		y=y+yincr;
+		putpixel(round(x),round(y),1);
+	}
+	return 0;
+}
+int cliptest(float p,float q){
+	int retvalue=1;
+	float r;
+	if(p<0){
+		r=q/p;
+		if(r>u2){
+			retvalue=0;
+		}
+		else{
+			if(r>u1){
+				u1=r;
+			}
+		}
+	}
+	else if(p>0){
+		r=q/p;
+		if(r<u1){
+			retvalue=0;
+		}
+		else{
+			if(r<u2){
+				u2=r;
+			}
+		}
+	}
+	else{
+		if(q<0){
+			retvalue=0;
+		}
+
+	}
+	return retvalue;
+
+}
+void clipline(){
+	dx=x2-x1;
+	dy=y2-y1;
+	u1=0.0;
+	u2=1.0;
+
+	if(cliptest(-dx,x1-xwmin)){
+		if(cliptest(dx,xwmax-x1)){
+			if(cliptest(-dy,y1-ywmin)){
+				if(cliptest(dy,ywmax-y1)){
+					if(u2<1.0){
+						x2=x1+u2*dx;
+						y2=y1+u2*dy;
+					}
+					if(u1>0.0){
+						x1=x1+u1*dx;
+						y1=y1+u1*dy;
+					}
+					dda(x1,y1,x2,y2);
+				}
+			}
+		}
+	}
+
+}
+void main(){
+	int gd=DETECT,gm;
+	initgraph(&gd,&gm,"c:/tc/bgi");
+       /*	printf("\nENTER CO-ORDINATES FOR TOP-LEFT CORNER OF WINDOW::");
+	scanf("%f %f",&xwmin,&ywmin);
+	printf("\nENTER CO-ORDINATES FOR BOTTOM-RIGHT CORNER OF WINDOW::");
+	scanf("%f %f",&xwmax,&ywmax);
+	printf("\nENTER VALUES FOR CO-ORDINATES::");
+	scanf("%f %f %f %f",&x1,&y1,&x2,&y2);*/
+	setcolor(GREEN);
+	rectangle(xwmin,ywmin,xwmax,ywmax);
+	dda(x1,y1,x2,y2);
+	printf("\n press enter::");
+	getch();
+	cleardevice();
+	setcolor(GREEN);
+	rectangle(xwmin,ywmin,xwmax,ywmax);
+	clipline();
+	getch();
+
+}

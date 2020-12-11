@@ -1,0 +1,10 @@
+public static void main ( String args [ ] )
+{
+int rno = 21 ;
+String name = "Rinkesh" ;
+String name = "Rinkesh" ;
+float hieght = 5.5. ;
+int marks = 450d ;
+int marks = 450d ;
+String class = "MCA3" ;
+}

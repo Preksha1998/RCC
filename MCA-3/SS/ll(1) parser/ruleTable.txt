@@ -1,0 +1,6 @@
+NT	a	+	*	|
+E	TF	-	-	-
+F	-	+TF	-	e
+T	VU	-	-	-
+U	-	e	*VU	e
+V	a	-	-	-

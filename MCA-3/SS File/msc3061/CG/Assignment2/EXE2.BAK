@@ -1,0 +1,59 @@
+#include<stdio.h>
+#include<conio.h>
+#include<graphics.h>
+#include<math.h>
+#define Round(a) ((int)(a+0.5))
+dda(int xa,int ya,int xb,int yb){
+	int dx,dy,i;
+	float steps,xincr,yincr,x=xa,y=ya;
+	dx=xb-xa;
+	dy=yb-ya;
+	if(abs(dx)>abs(dy)){
+		steps=abs(dx);
+	}
+	else{
+		steps=abs(dy);
+	}
+	xincr=dx/steps;
+	yincr=dy/steps;
+	//x=xa;
+	//y=ya;
+	putpixel(x,y,YELLOW);
+	for(i=0;i<steps;i++){
+		x=x+xincr;
+		y=y+yincr;
+		putpixel(Round(x),Round(y),YELLOW);
+	}
+	return 0;
+}
+void main(){
+	int gd=DETECT,gm;
+	initgraph(&gd,&gm,"c:/tc/bgi");
+	dda(150,200,150,250);
+	dda(150,225,200,225);
+	dda(200,200,200,250);
+
+	dda(225,200,220,250);
+	dda(225,200,260,200);
+	dda(225,250,260,250);
+	dda(225,225,260,225);
+
+	dda(300,200,300,250);
+	dda(280,200,320,200);
+
+	dda(340,200,390,250);
+	dda(390,250,430,200);
+
+	dda(450,200,450,250);
+	dda(450,200,480,200);
+	dda(450,225,480,225);
+	dda(450,250,480,250);
+
+	dda(500,200,500,250);
+	dda(500,200,530,200);
+	dda(500,225,530,225);
+	dda(500,250,530,250);
+
+	getch();
+
+}

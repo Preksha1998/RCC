@@ -1,0 +1,5637 @@
+*********************************************************************************************************************************************
+*********************************************************************************************************************************************
+Name: Shaikh Faizan
+Class: MCA -3
+Subject: Data Structure - DS
+RollNo: 25
+*********************************************************************************************************************************************
+*********************************************************************************************************************************************
+Linked List:-
+*********************************************************************************************************************************************
+*********************************************************************************************************************************************
+Q1)
+
+Perform following operations on a singly linked list:
+
+Insert a Node:
+	At Beginning of List.
+	At End of List.
+	After a key value.
+Display the List.
+*********************************************************************************************************************************************
+#include<stdio.h>
+#include<conio.h>
+struct node
+{
+	int v;
+	struct node *next;
+};
+typedef struct node s;
+s* ifirst(s *head,s *new)
+{
+	if (head == NULL)
+	{
+		head = new;
+		head->next=NULL;
+	}
+	else
+	{
+		new->next = head;
+		head = new;
+	}
+	return head;
+}
+s* ilast(s *head, s *new)
+{
+	s* p = NULL;
+	if (head == NULL)
+	{
+		head = new;
+		head->next = NULL;
+	}
+	else
+	{
+		p = head;
+		while (p->next!= NULL)
+		{
+			p = p->next;
+		}
+		p->next = new;
+		new->next = NULL;
+	}
+	return head;
+}
+s* imiddle(s *head, s *new, int val)
+{
+	s *p=NULL, *pp=NULL;
+	if (head== NULL)
+	{
+		head = new;
+		head->next = NULL;
+	}
+	else if (head->v == val)
+	{
+		new->next = head;
+		head = new;
+	}
+	else
+	{
+		p = head->next;
+		pp = head;
+		while (p != NULL && p->v!=val)
+		{
+			pp = p;
+			p = p->next;
+		}
+		pp->next = new;
+		new->next = p;
+	}
+	return head;
+}
+void display(s *head)
+{
+	s *p = NULL;
+	p = head;
+	while (p != NULL)
+	{
+		printf("\n%ld", p->v);
+		p = p->next;
+	}
+}
+void main()
+{
+	s *head=NULL,*new=NULL;
+	int val;
+	char c = 49;
+	do
+	{
+		printf("\nPress 1 to insert in begin: ");
+		printf("\nPress 2 to insert at last: ");
+		printf("\nPress 3 to insert in middle: ");
+		printf("\nPress 4 to display list: ");
+		printf("\nPress any other key to exit!");
+		scanf(" %c", &c);
+		if (c == 49)
+		{
+			new = (s*)malloc(sizeof(s*));
+			printf("\nEnter new value you want to insert at beginning: ");
+			scanf_s(" %ld", &new->v);
+			head = ifirst(head, new);
+		}
+		else if (c == 50)
+		{
+			new = (s*)malloc(sizeof(s*));
+			printf("\nEnter new value you want to insert at last: ");
+			scanf_s(" %ld", &new->v);
+			head = ilast(head, new);
+		}
+		else if (c == 51)
+		{
+			new = (s*)malloc(sizeof(s*));
+			printf("\nEnter new value you want to insert at middle: ");
+			scanf_s(" %ld", &new->v);
+			printf("\nLinked list:-");
+			display(head);
+			printf("\nInsert value before which you want to insert the new node: ");
+			scanf_s(" %ld", &val);
+			head = imiddle(head, new, val);
+		}
+		else if (c == 52)
+		{
+			printf("\nDisplaying Link list: ");
+			display(head);
+		}
+		else
+		{
+			exit(0);
+		}
+	} while (c == 49 || c == 50 || c == 51 || c==52);
+	getch();
+}
+
+*********************************************************************************************************************************************
+								OUTPUT
+*********************************************************************************************************************************************
+
+Press 1 to insert in begin:
+Press 2 to insert at last:
+Press 3 to insert in middle:
+Press 4 to display list:
+Press any other key to exit!1
+
+Enter new value you want to insert at beginning: 10
+
+Press 1 to insert in begin:
+Press 2 to insert at last:
+Press 3 to insert in middle:
+Press 4 to display list:
+Press any other key to exit!1
+
+Enter new value you want to insert at beginning: 20
+
+Press 1 to insert in begin:
+Press 2 to insert at last:
+Press 3 to insert in middle:
+Press 4 to display list:
+Press any other key to exit!1
+
+Enter new value you want to insert at beginning: 30
+
+Press 1 to insert in begin:
+Press 2 to insert at last:
+Press 3 to insert in middle:
+Press 4 to display list:
+Press any other key to exit!1
+
+Enter new value you want to insert at beginning: 40
+
+Press 1 to insert in begin:
+Press 2 to insert at last:
+Press 3 to insert in middle:
+Press 4 to display list:
+Press any other key to exit!1
+
+Enter new value you want to insert at beginning: 50
+
+Press 1 to insert in begin:
+Press 2 to insert at last:
+Press 3 to insert in middle:
+Press 4 to display list:
+Press any other key to exit!2
+
+Enter new value you want to insert at last: 0
+
+Press 1 to insert in begin:
+Press 2 to insert at last:
+Press 3 to insert in middle:
+Press 4 to display list:
+Press any other key to exit!2
+
+Enter new value you want to insert at last: -10
+
+Press 1 to insert in begin:
+Press 2 to insert at last:
+Press 3 to insert in middle:
+Press 4 to display list:
+Press any other key to exit!4
+
+Displaying Link list:
+50
+40
+30
+20
+10
+0
+-10
+Press 1 to insert in begin:
+Press 2 to insert at last:
+Press 3 to insert in middle:
+Press 4 to display list:
+Press any other key to exit!3
+
+Enter new value you want to insert at middle: 5
+
+Linked list:-
+50
+40
+30
+20
+10
+0
+-10
+Insert value before which you want to insert the new node: 0
+
+Press 1 to insert in begin:
+Press 2 to insert at last:
+Press 3 to insert in middle:
+Press 4 to display list:
+Press any other key to exit!4
+
+Displaying Link list:
+50
+40
+30
+20
+10
+5
+0
+-10
+Press 1 to insert in begin:
+Press 2 to insert at last:
+Press 3 to insert in middle:
+Press 4 to display list:
+Press any other key to exit!
+*********************************************************************************************************************************************
+*********************************************************************************************************************************************
+Q2)
+
+Perform following operations on a singly linked list:
+
+Delete a Node:
+	At Beginning of List.
+	At End of List.
+	After a key value.
+Display the List.
+*********************************************************************************************************************************************
+#include<stdio.h>
+#include<conio.h>
+struct node
+{
+	int v;
+	struct node *next;
+};
+typedef struct node s;
+s* insert(s* head, s* new)
+{
+	s *p=NULL;
+	if (head == NULL)
+	{
+		head = new;
+		head->next = NULL;
+	}
+	else
+	{
+		p = head;
+		while (p->next != NULL)
+		{
+			p = p->next;
+		}
+		p->next = new;
+		new->next = NULL;
+	}
+	return head;
+}
+s* dfirst(s* head)
+{
+	s *temp = NULL;
+	temp = head;
+	head = head->next;
+	free(temp);
+	return head;
+}
+s* dlast(s* head)
+{
+	s *temp = NULL,*p=NULL,*pp=NULL;
+	if (head != NULL)
+	{
+
+		p = head;
+		while (p->next != NULL)
+		{
+			pp = p;
+			p = p->next;
+			temp = p;
+		}
+		pp->next = NULL;
+		free(temp);
+	}
+	else
+	{
+		printf("\nLinked list is Empty!");
+	}
+	return head;
+}
+s* dmiddle(s* head)
+{
+	int val;
+	s *p = NULL, *temp = NULL, *pp = NULL;
+	printf("\nLinklist: ");
+	printf("\nEnter value that you want to delete: ");
+	scanf_s(" %ld", &val);
+	if (head != NULL)
+	{
+		if (head->v == val)
+		{
+			temp = head;
+			head = head->next;
+			free(temp);
+		}
+		else
+		{
+			p = head;
+			while (p->next != NULL && p->next->v != val)
+			{
+				pp = p;
+				p = p->next;
+			}
+			if (p->next->v == val)
+			{
+				if (p->next == NULL)
+				{
+					pp->next = NULL;
+					temp = p;
+				}
+				else
+				{
+					temp = p->next;
+					p->next = temp->next;
+				}
+				free(temp);
+			}
+			else
+			{
+				printf("\nValue %ld doesnot exist!", val);
+			}
+		}
+	}
+	else
+	{
+		printf("\nLinked list is Empty!");
+	}
+	return head;
+}
+void display(s *head)
+{
+	s *p = NULL;
+	p = head;
+	while (p != NULL)
+	{
+		printf("\n%ld", p->v);
+		p = p->next;
+	}
+}
+void main()
+{
+	s *head=NULL,*new=NULL;
+	int val;
+	char c = 49;
+	do
+	{
+		printf("\nPress 1 to insert: ");
+		printf("\nPress 2 to delete at beginning: ");
+		printf("\nPress 3 to delete at last: ");
+		printf("\nPress 4 to delete at middle: ");
+		printf("\nPress 5 to display list: ");
+		printf("\nPress any other key to exit!");
+		scanf(" %c", &c);
+		if (c == 49)
+		{
+			new = (s*)malloc(sizeof(s));
+			printf("\nEnter new value you want to insert: ");
+			scanf_s(" %ld", &new->v);
+			head = insert(head, new);
+		}
+		else if (c == 50)
+		{
+			head = dfirst(head);
+		}
+		else if (c == 51)
+		{
+			head = dlast(head);
+		}
+		else if (c == 52)
+		{
+			head = dmiddle(head);
+		}
+		else if (c == 53)
+		{
+			display(head);
+		}
+		else
+		{
+			exit(0);
+		}
+	} while (c == 49 || c == 50 || c == 51 || c==52 || c==53);
+	getch();
+}
+*********************************************************************************************************************************************
+								OUTPUT
+*********************************************************************************************************************************************
+
+Press 1 to insert:
+Press 2 to delete at beginning:
+Press 3 to delete at last:
+Press 4 to delete at middle:
+Press 5 to display list:
+Press any other key to exit!1
+
+Enter new value you want to insert: 10
+
+Press 1 to insert:
+Press 2 to delete at beginning:
+Press 3 to delete at last:
+Press 4 to delete at middle:
+Press 5 to display list:
+Press any other key to exit!1
+
+Enter new value you want to insert: 20
+
+Press 1 to insert:
+Press 2 to delete at beginning:
+Press 3 to delete at last:
+Press 4 to delete at middle:
+Press 5 to display list:
+Press any other key to exit!1
+
+Enter new value you want to insert: 30
+
+Press 1 to insert:
+Press 2 to delete at beginning:
+Press 3 to delete at last:
+Press 4 to delete at middle:
+Press 5 to display list:
+Press any other key to exit!1
+
+Enter new value you want to insert: 40
+
+Press 1 to insert:
+Press 2 to delete at beginning:
+Press 3 to delete at last:
+Press 4 to delete at middle:
+Press 5 to display list:
+Press any other key to exit!1
+
+Enter new value you want to insert: 50
+
+Press 1 to insert:
+Press 2 to delete at beginning:
+Press 3 to delete at last:
+Press 4 to delete at middle:
+Press 5 to display list:
+Press any other key to exit!5
+
+10
+20
+30
+40
+50
+Press 1 to insert:
+Press 2 to delete at beginning:
+Press 3 to delete at last:
+Press 4 to delete at middle:
+Press 5 to display list:
+Press any other key to exit!2
+
+Press 1 to insert:
+Press 2 to delete at beginning:
+Press 3 to delete at last:
+Press 4 to delete at middle:
+Press 5 to display list:
+Press any other key to exit!5
+
+20
+30
+40
+50
+Press 1 to insert:
+Press 2 to delete at beginning:
+Press 3 to delete at last:
+Press 4 to delete at middle:
+Press 5 to display list:
+Press any other key to exit!3
+
+Press 1 to insert:
+Press 2 to delete at beginning:
+Press 3 to delete at last:
+Press 4 to delete at middle:
+Press 5 to display list:
+Press any other key to exit!5
+
+20
+30
+40
+Press 1 to insert:
+Press 2 to delete at beginning:
+Press 3 to delete at last:
+Press 4 to delete at middle:
+Press 5 to display list:
+Press any other key to exit!4
+
+Linklist:
+Enter value that you want to delete: 30
+
+Press 1 to insert:
+Press 2 to delete at beginning:
+Press 3 to delete at last:
+Press 4 to delete at middle:
+Press 5 to display list:
+Press any other key to exit!5
+
+20
+40
+Press 1 to insert:
+Press 2 to delete at beginning:
+Press 3 to delete at last:
+Press 4 to delete at middle:
+Press 5 to display list:
+Press any other key to exit!4
+
+Linklist:
+Enter value that you want to delete: 40
+
+Press 1 to insert:
+Press 2 to delete at beginning:
+Press 3 to delete at last:
+Press 4 to delete at middle:
+Press 5 to display list:
+Press any other key to exit!5
+
+20
+Press 1 to insert:
+Press 2 to delete at beginning:
+Press 3 to delete at last:
+Press 4 to delete at middle:
+Press 5 to display list:
+Press any other key to exit!4
+
+Linklist:
+Enter value that you want to delete: 20
+
+Press 1 to insert:
+Press 2 to delete at beginning:
+Press 3 to delete at last:
+Press 4 to delete at middle:
+Press 5 to display list:
+Press any other key to exit!5
+
+*********************************************************************************************************************************************
+*********************************************************************************************************************************************
+Q3)
+
+Perform following operations on a singly circular linked list:
+
+Insert a Node:
+	At Beginning of List.
+	At End of List.
+	After a key value.
+Display the List.
+*********************************************************************************************************************************************
+#include<stdio.h>
+#include<conio.h>
+struct node
+{
+	int v;
+	struct node *next;
+};
+typedef struct node s;
+s* rlast(s* head)
+{
+	s *last, *p;
+	p = head;
+	do
+	{
+		p = p->next;
+	}while (p->next != head);
+	last = p;
+	return last;
+}
+s* ifirst(s *head,s *new)
+{
+	s *last;
+	if (head == NULL)
+	{
+		head = new;
+		head->next = head;
+	}
+	else
+	{
+		new->next = head;
+		last = rlast(head);
+		head = new;
+		last->next = head;
+	}
+	return head;
+}
+s* ilast(s *head, s *new)
+{
+	s* p = NULL;
+	if (head == NULL)
+	{
+		head = new;
+		head->next =head;
+	}
+	else
+	{
+		p = head;
+		do
+		{
+			p = p->next;
+		} while (p->next != head);
+		p->next = new;
+		new->next = head;
+	}
+	return head;
+}
+s* imiddle(s *head, s *new, int val)
+{
+	s *p=NULL, *pp=NULL,*last=NULL;
+	if (head== NULL)
+	{
+		head = new;
+		head->next =head;
+	}
+	else if (head->v == val)
+	{
+		new->next = head;
+		head = new;
+		last = rlast(head);
+		last->next = head;
+	}
+	else
+	{
+		p = head->next;
+		pp = head;
+		do
+		{
+			pp = p;
+			p = p->next;
+		} while (p != head && p->v != val);
+		if (p ==head)
+		{
+			pp->next = new;
+			new->next = head;
+		}
+		else
+		{
+			pp->next = new;
+			new->next = p;
+		}
+	}
+	return head;
+}
+void display(s *head)
+{
+	s *p = NULL;
+	p = head;
+	do
+	{
+		printf("\n%ld", p->v);
+		p = p->next;
+	} while (p != head);
+}
+void main()
+{
+	s *head=NULL,*new=NULL;
+	int val;
+	char c = 49;
+	do
+	{
+		printf("\nPress 1 to insert in begin: ");
+		printf("\nPress 2 to insert at last: ");
+		printf("\nPress 3 to insert in middle: ");
+		printf("\nPress 4 to display list: ");
+		printf("\nPress any other key to exit!");
+		scanf(" %c", &c);
+		if (c == 49)
+		{
+			new = (s*)malloc(sizeof(s*));
+			printf("\nEnter new value you want to insert at beginning: ");
+			scanf_s(" %ld", &new->v);
+			head = ifirst(head, new);
+		}
+		else if (c == 50)
+		{
+			new = (s*)malloc(sizeof(s*));
+			printf("\nEnter new value you want to insert at last: ");
+			scanf_s(" %ld", &new->v);
+			head = ilast(head, new);
+		}
+		else if (c == 51)
+		{
+			new = (s*)malloc(sizeof(s*));
+			printf("\nEnter new value you want to insert at middle: ");
+			scanf_s(" %ld", &new->v);
+			printf("\nLinked list:-");
+			display(head);
+			printf("\nInsert value before which you want to insert the new node: ");
+			scanf_s(" %ld", &val);
+			head = imiddle(head, new, val);
+		}
+		else if (c == 52)
+		{
+			printf("\nDisplaying Link list: ");
+			display(head);
+		}
+		else
+		{
+			exit(0);
+		}
+	} while (c == 49 || c == 50 || c == 51 || c==52);
+	getch();
+}
+*********************************************************************************************************************************************
+								OUTPUT
+*********************************************************************************************************************************************
+
+Press 1 to insert in begin:
+Press 2 to insert at last:
+Press 3 to insert in middle:
+Press 4 to display list:
+Press any other key to exit!1
+
+Enter new value you want to insert at beginning: 10
+
+Press 1 to insert in begin:
+Press 2 to insert at last:
+Press 3 to insert in middle:
+Press 4 to display list:
+Press any other key to exit!1
+
+Enter new value you want to insert at beginning: 20
+
+Press 1 to insert in begin:
+Press 2 to insert at last:
+Press 3 to insert in middle:
+Press 4 to display list:
+Press any other key to exit!1
+
+Enter new value you want to insert at beginning: 30
+
+Press 1 to insert in begin:
+Press 2 to insert at last:
+Press 3 to insert in middle:
+Press 4 to display list:
+Press any other key to exit!1
+
+Enter new value you want to insert at beginning: 40
+
+Press 1 to insert in begin:
+Press 2 to insert at last:
+Press 3 to insert in middle:
+Press 4 to display list:
+Press any other key to exit!1
+
+Enter new value you want to insert at beginning: 4
+
+Press 1 to insert in begin:
+Press 2 to insert at last:
+Press 3 to insert in middle:
+Press 4 to display list:
+Press any other key to exit!4
+
+Displaying Link list:
+4
+40
+30
+20
+10
+Press 1 to insert in begin:
+Press 2 to insert at last:
+Press 3 to insert in middle:
+Press 4 to display list:
+Press any other key to exit!2
+
+Enter new value you want to insert at last: 5
+
+Press 1 to insert in begin:
+Press 2 to insert at last:
+Press 3 to insert in middle:
+Press 4 to display list:
+Press any other key to exit!4
+
+Displaying Link list:
+4
+40
+30
+20
+10
+5
+Press 1 to insert in begin:
+Press 2 to insert at last:
+Press 3 to insert in middle:
+Press 4 to display list:
+Press any other key to exit!3
+
+Enter new value you want to insert at middle: 25
+
+Linked list:-
+4
+40
+30
+20
+10
+5
+Insert value before which you want to insert the new node: 20
+
+Press 1 to insert in begin:
+Press 2 to insert at last:
+Press 3 to insert in middle:
+Press 4 to display list:
+Press any other key to exit!4
+
+Displaying Link list:
+4
+40
+30
+25
+20
+10
+5
+Press 1 to insert in begin:
+Press 2 to insert at last:
+Press 3 to insert in middle:
+Press 4 to display list:
+Press any other key to exit!
+*********************************************************************************************************************************************
+*********************************************************************************************************************************************
+Q4)
+
+Perform following operations on a singly circular linked list:
+
+Delete a Node:
+	At Beginning of List.
+	At End of List.
+	After a key value.
+Display the List.
+*********************************************************************************************************************************************
+#include<stdio.h>
+#include<conio.h>
+struct node
+{
+	int v;
+	struct node *next;
+};
+typedef struct node s;
+s* rlast(s *head)
+{
+	s *last, *p;
+	p = head;
+	do
+	{
+		p = p->next;
+	}while (p->next != head);
+	last = p;
+	return last;
+}
+s* insert(s* head, s* new)
+{
+	s *p=NULL;
+	if (head == NULL)
+	{
+		head = new;
+		head->next =head;
+	}
+	else
+	{
+		p = head;
+		do
+		{
+			p = p->next;
+		} while (p->next != head);
+		p->next = new;
+		new->next =head;
+	}
+	return head;
+}
+s* dfirst(s* head)
+{
+	s *temp = NULL,*last=NULL;
+	temp = head;
+	last = rlast(head);
+	head = head->next;
+	last->next = head;
+	free(temp);
+	return head;
+}
+s* dlast(s* head)
+{
+	s *temp = NULL,*p=NULL,*pp=NULL;
+	if (head != NULL)
+	{
+		p = head;
+		do
+		{
+			pp = p;
+			p = p->next;
+			temp = p;
+		} while (p->next != head);
+		pp->next = head;
+		free(temp);
+	}
+	else
+	{
+		printf("\nLinked list is Empty!");
+	}
+	return head;
+}
+s* dmiddle(s* head)
+{
+	int val;
+	s *p = NULL, *temp = NULL, *pp = NULL;
+	printf("\nLinklist: ");
+	printf("\nEnter value that you want to delete: ");
+	scanf_s(" %ld", &val);
+	if (head != NULL)
+	{
+		if (head->v == val)
+		{
+			temp = head;
+			head = head->next;
+			free(temp);
+		}
+		else
+		{
+			p = head;
+			if (p->next->v == val)
+			{
+				temp = p->next;
+				p->next = temp->next;
+			}
+			else
+			{
+				do
+				{
+					pp = p;
+					p = p->next;
+				} while (p->next != head && p->next->v != val);
+				if (p->next->v == val)
+				{
+					if (p->next == head)
+					{
+						pp->next = head;
+						temp = p;
+					}
+					else
+					{
+						temp = p->next;
+						p->next = temp->next;
+					}
+					free(temp);
+				}
+				else
+				{
+					printf("\nValue %ld doesnot exist!", val);
+				}
+			}
+		}
+	}
+	else
+	{
+		printf("\nLinked list is Empty!");
+	}
+	return head;
+}
+void display(s *head)
+{
+	s *p = NULL;
+	p = head;
+	do
+	{
+		printf("\n%ld", p->v);
+		p = p->next;
+	} while (p != head);
+}
+void main()
+{
+	s *head=NULL,*new=NULL;
+	int val;
+	char c = 49;
+	do
+	{
+		printf("\nPress 1 to insert: ");
+		printf("\nPress 2 to delete at beginning: ");
+		printf("\nPress 3 to delete at last: ");
+		printf("\nPress 4 to delete at middle: ");
+		printf("\nPress 5 to display list: ");
+		printf("\nPress any other key to exit!");
+		scanf(" %c", &c);
+		if (c == 49)
+		{
+			new = (s*)malloc(sizeof(s));
+			printf("\nEnter new value you want to insert: ");
+			scanf_s(" %ld", &new->v);
+			head = insert(head, new);
+		}
+		else if (c == 50)
+		{
+			head = dfirst(head);
+		}
+		else if (c == 51)
+		{
+			head = dlast(head);
+		}
+		else if (c == 52)
+		{
+			head = dmiddle(head);
+		}
+		else if (c == 53)
+		{
+			display(head);
+		}
+		else
+		{
+			exit(0);
+		}
+	} while (c == 49 || c == 50 || c == 51 || c==52 || c==53);
+	getch();
+}
+*********************************************************************************************************************************************
+								OUTPUT
+*********************************************************************************************************************************************
+
+Press 1 to insert:
+Press 2 to delete at beginning:
+Press 3 to delete at last:
+Press 4 to delete at middle:
+Press 5 to display list:
+Press any other key to exit!1
+
+Enter new value you want to insert: 10
+
+Press 1 to insert:
+Press 2 to delete at beginning:
+Press 3 to delete at last:
+Press 4 to delete at middle:
+Press 5 to display list:
+Press any other key to exit!1
+
+Enter new value you want to insert: 20
+
+Press 1 to insert:
+Press 2 to delete at beginning:
+Press 3 to delete at last:
+Press 4 to delete at middle:
+Press 5 to display list:
+Press any other key to exit!1
+
+Enter new value you want to insert: 30
+
+Press 1 to insert:
+Press 2 to delete at beginning:
+Press 3 to delete at last:
+Press 4 to delete at middle:
+Press 5 to display list:
+Press any other key to exit!1
+
+Enter new value you want to insert: 40
+
+Press 1 to insert:
+Press 2 to delete at beginning:
+Press 3 to delete at last:
+Press 4 to delete at middle:
+Press 5 to display list:
+Press any other key to exit!1
+
+Enter new value you want to insert: 50
+
+Press 1 to insert:
+Press 2 to delete at beginning:
+Press 3 to delete at last:
+Press 4 to delete at middle:
+Press 5 to display list:
+Press any other key to exit!5
+
+10
+20
+30
+40
+50
+Press 1 to insert:
+Press 2 to delete at beginning:
+Press 3 to delete at last:
+Press 4 to delete at middle:
+Press 5 to display list:
+Press any other key to exit!2
+
+Press 1 to insert:
+Press 2 to delete at beginning:
+Press 3 to delete at last:
+Press 4 to delete at middle:
+Press 5 to display list:
+Press any other key to exit!5
+
+20
+30
+40
+50
+Press 1 to insert:
+Press 2 to delete at beginning:
+Press 3 to delete at last:
+Press 4 to delete at middle:
+Press 5 to display list:
+Press any other key to exit!3
+
+Press 1 to insert:
+Press 2 to delete at beginning:
+Press 3 to delete at last:
+Press 4 to delete at middle:
+Press 5 to display list:
+Press any other key to exit!5
+
+20
+30
+40
+Press 1 to insert:
+Press 2 to delete at beginning:
+Press 3 to delete at last:
+Press 4 to delete at middle:
+Press 5 to display list:
+Press any other key to exit!4
+
+Linklist:
+Enter value that you want to delete: 50
+
+Value 50 doesnot exist!
+Press 1 to insert:
+Press 2 to delete at beginning:
+Press 3 to delete at last:
+Press 4 to delete at middle:
+Press 5 to display list:
+Press any other key to exit!4
+
+Linklist:
+Enter value that you want to delete: 30
+
+Press 1 to insert:
+Press 2 to delete at beginning:
+Press 3 to delete at last:
+Press 4 to delete at middle:
+Press 5 to display list:
+Press any other key to exit!5
+
+20
+40
+Press 1 to insert:
+Press 2 to delete at beginning:
+Press 3 to delete at last:
+Press 4 to delete at middle:
+Press 5 to display list:
+Press any other key to exit!
+*********************************************************************************************************************************************
+*********************************************************************************************************************************************
+Q5)
+
+Perform following operations on a doubly linked list:
+
+Insert a Node:
+	At Beginning of List.
+	At End of List.
+	After a key value.
+Display the List.
+*********************************************************************************************************************************************
+#include<stdio.h>
+#include<conio.h>
+struct node
+{
+	int v;
+	struct node *next;
+	struct node *pre;
+};
+typedef struct node s;
+s* ifirst(s *head, s *new)
+{
+	if (head == NULL)
+	{
+		head = new;
+		head->pre = NULL;
+		head->next = NULL;
+	}
+	else
+	{
+		new->pre = NULL;
+		new->next = head;
+		head->pre = new;
+		head = new;
+	}
+	return head;
+}
+s* ilast(s *head, s *new)
+{
+	s* p = NULL;
+	if (head == NULL)
+	{
+		head = new;
+		head->next = NULL;
+		head->pre = NULL;
+	}
+	else
+	{
+		p = head;
+		while (p->next != NULL)
+		{
+			p = p->next;
+		}
+		p->next = new;
+		new->pre = p;
+		new->next = NULL;
+	}
+	return head;
+}
+s* imiddle(s *head, s *new, int val)
+{
+	s *p = NULL, *pp = NULL;
+	if (head == NULL)
+	{
+		head = new;
+		head->next = NULL;
+		head->pre = NULL;
+	}
+	else if (head->v == val)
+	{
+		new->next = head;
+		head->pre = new;
+		head = new;
+	}
+	else
+	{
+		p = head->next;
+		pp = head;
+		while (p != NULL && p->v != val)
+		{
+			pp = p;
+			p = p->next;
+		}
+		pp->next = new;
+		new->pre = pp;
+		new->next = p;
+		p->pre = new;
+	}
+	return head;
+}
+void display(s *head)
+{
+	s *p = NULL;
+	p = head;
+	while (p != NULL)
+	{
+		printf("\n%ld", p->v);
+		p = p->next;
+	}
+}
+s* rlast(s* head)
+{
+	s *last, *p;
+	p = head;
+	while (p->next != NULL)
+	{
+		p = p->next;
+	}
+	last = p;
+	return last;
+}
+void reverse(s *last)
+{
+	s *p;
+	p = last;
+	while (p != NULL)
+	{
+		printf("\n%ld", p->v);
+		p = p->pre;
+	}
+}
+void main()
+{
+	s *head = NULL, *new = NULL,*last=NULL;
+	int val;
+	char c = 49;
+	do
+	{
+		printf("\nPress 1 to insert in begin: ");
+		printf("\nPress 2 to insert at last: ");
+		printf("\nPress 3 to insert in middle: ");
+		printf("\nPress 4 to display list: ");
+		printf("\nPress 5 to display list in reverse: ");
+		printf("\nPress any other key to exit!");
+		scanf(" %c", &c);
+		if (c == 49)
+		{
+			new = (s*)malloc(sizeof(s));
+			printf("\nEnter new value you want to insert at beginning: ");
+			scanf_s(" %ld", &new->v);
+			head = ifirst(head, new);
+		}
+		else if (c == 50)
+		{
+			new = (s*)malloc(sizeof(s*));
+			printf("\nEnter new value you want to insert at last: ");
+			scanf_s(" %ld", &new->v);
+			head = ilast(head, new);
+		}
+		else if (c == 51)
+		{
+			new = (s*)malloc(sizeof(s*));
+			printf("\nEnter new value you want to insert at middle: ");
+			scanf_s(" %ld", &new->v);
+			printf("\nLinked list:-");
+			display(head);
+			printf("\nInsert value before which you want to insert the new node: ");
+			scanf_s(" %ld", &val);
+			head = imiddle(head, new, val);
+		}
+		else if (c == 52)
+		{
+			printf("\nDisplaying Link list: ");
+			display(head);
+		}
+		else if (c == 53)
+		{
+			last = rlast(head);
+			reverse(last);
+		}
+		else
+		{
+			exit(0);
+		}
+	} while (c == 49 || c == 50 || c == 51 || c == 52||c==53);
+	getch();
+}
+*********************************************************************************************************************************************
+								OUTPUT
+*********************************************************************************************************************************************
+Press 1 to insert in begin:
+Press 2 to insert at last:
+Press 3 to insert in middle:
+Press 4 to display list:
+Press 5 to display list in reverse:
+Press any other key to exit!1
+
+Enter new value you want to insert at beginning: 10
+
+Press 1 to insert in begin:
+Press 2 to insert at last:
+Press 3 to insert in middle:
+Press 4 to display list:
+Press 5 to display list in reverse:
+Press any other key to exit!1
+
+Enter new value you want to insert at beginning: 20
+
+Press 1 to insert in begin:
+Press 2 to insert at last:
+Press 3 to insert in middle:
+Press 4 to display list:
+Press 5 to display list in reverse:
+Press any other key to exit!1
+
+Enter new value you want to insert at beginning: 2
+
+Press 1 to insert in begin:
+Press 2 to insert at last:
+Press 3 to insert in middle:
+Press 4 to display list:
+Press 5 to display list in reverse:
+Press any other key to exit!5
+
+10
+20
+2
+Press 1 to insert in begin:
+Press 2 to insert at last:
+Press 3 to insert in middle:
+Press 4 to display list:
+Press 5 to display list in reverse:
+Press any other key to exit!4
+
+Displaying Link list:
+2
+20
+10
+Press 1 to insert in begin:
+Press 2 to insert at last:
+Press 3 to insert in middle:
+Press 4 to display list:
+Press 5 to display list in reverse:
+Press any other key to exit!2
+
+Enter new value you want to insert at last: 5
+
+Press 1 to insert in begin:
+Press 2 to insert at last:
+Press 3 to insert in middle:
+Press 4 to display list:
+Press 5 to display list in reverse:
+Press any other key to exit!5
+
+5
+10
+20
+2
+Press 1 to insert in begin:
+Press 2 to insert at last:
+Press 3 to insert in middle:
+Press 4 to display list:
+Press 5 to display list in reverse:
+Press any other key to exit!1
+
+Enter new value you want to insert at beginning: 15
+
+Press 1 to insert in begin:
+Press 2 to insert at last:
+Press 3 to insert in middle:
+Press 4 to display list:
+Press 5 to display list in reverse:
+Press any other key to exit!5
+
+5
+10
+20
+2
+15
+Press 1 to insert in begin:
+Press 2 to insert at last:
+Press 3 to insert in middle:
+Press 4 to display list:
+Press 5 to display list in reverse:
+Press any other key to exit!4
+
+Displaying Link list:
+15
+2
+20
+10
+5
+Press 1 to insert in begin:
+Press 2 to insert at last:
+Press 3 to insert in middle:
+Press 4 to display list:
+Press 5 to display list in reverse:
+Press any other key to exit!3
+
+Enter new value you want to insert at middle: 25
+
+Linked list:-
+15
+2
+20
+10
+5
+Insert value before which you want to insert the new node: 20
+
+Press 1 to insert in begin:
+Press 2 to insert at last:
+Press 3 to insert in middle:
+Press 4 to display list:
+Press 5 to display list in reverse:
+Press any other key to exit!4
+
+Displaying Link list:
+15
+2
+25
+20
+10
+5
+Press 1 to insert in begin:
+Press 2 to insert at last:
+Press 3 to insert in middle:
+Press 4 to display list:
+Press 5 to display list in reverse:
+Press any other key to exit!
+*********************************************************************************************************************************************
+*********************************************************************************************************************************************
+Q6)
+
+Perform following operations on a doubly linked list:
+
+Delete a Node:
+	At Beginning of List.	
+	At End of List.
+	After a key value.
+Display the List.
+
+*********************************************************************************************************************************************
+#include<stdio.h>
+#include<conio.h>
+struct node
+{
+	int v;
+	struct node *next;
+	struct node *pre;
+};
+typedef struct node s;
+s* insert(s* head, s* new)
+{
+	s *p = NULL;
+	if (head == NULL)
+	{
+		head = new;
+		head->pre = NULL;
+		head->next = NULL;
+	}
+	else
+	{
+		p = head;
+		while (p->next != NULL)
+		{
+			p = p->next;
+		}
+		p->next = new;
+		new->pre = p;
+		new->next = NULL;
+	}
+	return head;
+}
+s* dfirst(s* head)
+{
+	s *temp = NULL;
+	temp = head;
+	head = head->next;
+	head->pre = NULL;
+	free(temp);
+	return head;
+}
+s* dlast(s* head)
+{
+	s *temp = NULL, *p = NULL, *pp = NULL;
+	if (head != NULL)
+	{
+
+		p = head;
+		while (p->next != NULL)
+		{
+			pp = p;
+			p = p->next;
+			temp = p;
+		}
+		pp->next = NULL;
+		free(temp);
+	}
+	else
+	{
+		printf("\nLinked list is Empty!");
+	}
+	return head;
+}
+s* dmiddle(s* head)
+{
+	int val;
+	s *p = NULL, *temp = NULL, *pp = NULL;
+	printf("\nLinklist: ");
+	printf("\nEnter value that you want to delete: ");
+	scanf_s(" %ld", &val);
+	if (head != NULL)
+	{
+		if (head->v == val)
+		{
+			temp = head;
+			head = head->next;
+			head->pre = NULL;
+			free(temp);
+		}
+		else
+		{
+			p = head;
+			while (p->next != NULL && p->next->v != val)
+			{
+				pp = p;
+				p = p->next;
+			}
+			if (p->next->v == val)
+			{
+				if (p->next == NULL)
+				{
+					pp->next = NULL;
+					temp = p;
+				}
+				else
+				{
+					temp = p->next;
+					p->next = temp->next;
+					temp->next->pre = p;
+				}
+				free(temp);
+			}
+			else
+			{
+				printf("\nValue %ld doesnot exist!", val);
+			}
+		}
+	}
+	else
+	{
+		printf("\nLinked list is Empty!");
+	}
+	return head;
+}
+void display(s *head)
+{
+	s *p = NULL;
+	p = head;
+	while (p != NULL)
+	{
+		printf("\n%ld", p->v);
+		p = p->next;
+	}
+}
+void main()
+{
+	s *head = NULL, *new = NULL;
+	int val;
+	char c = 49;
+	do
+	{
+		printf("\nPress 1 to insert: ");
+		printf("\nPress 2 to delete at beginning: ");
+		printf("\nPress 3 to delete at last: ");
+		printf("\nPress 4 to delete at middle: ");
+		printf("\nPress 5 to display list: ");
+		printf("\nPress any other key to exit!");
+		scanf(" %c", &c);
+		if (c == 49)
+		{
+			new = (s*)malloc(sizeof(s));
+			printf("\nEnter new value you want to insert: ");
+			scanf_s(" %ld", &new->v);
+			head = insert(head, new);
+		}
+		else if (c == 50)
+		{
+			head = dfirst(head);
+		}
+		else if (c == 51)
+		{
+			head = dlast(head);
+		}
+		else if (c == 52)
+		{
+			head = dmiddle(head);
+		}
+		else if (c == 53)
+		{
+			display(head);
+		}
+		else
+		{
+			exit(0);
+		}
+	} while (c == 49 || c == 50 || c == 51 || c == 52 || c == 53);
+	getch();
+}
+*********************************************************************************************************************************************
+								OUTPUT
+*********************************************************************************************************************************************
+
+Press 1 to insert:
+Press 2 to delete at beginning:
+Press 3 to delete at last:
+Press 4 to delete at middle:
+Press 5 to display list:
+Press any other key to exit!1
+
+Enter new value you want to insert: 10
+
+Press 1 to insert:
+Press 2 to delete at beginning:
+Press 3 to delete at last:
+Press 4 to delete at middle:
+Press 5 to display list:
+Press any other key to exit!1
+
+Enter new value you want to insert: 20
+
+Press 1 to insert:
+Press 2 to delete at beginning:
+Press 3 to delete at last:
+Press 4 to delete at middle:
+Press 5 to display list:
+Press any other key to exit!1
+
+Enter new value you want to insert: 30
+
+Press 1 to insert:
+Press 2 to delete at beginning:
+Press 3 to delete at last:
+Press 4 to delete at middle:
+Press 5 to display list:
+Press any other key to exit!1
+
+Enter new value you want to insert: 40
+
+Press 1 to insert:
+Press 2 to delete at beginning:
+Press 3 to delete at last:
+Press 4 to delete at middle:
+Press 5 to display list:
+Press any other key to exit!1
+
+Enter new value you want to insert: 50
+
+Press 1 to insert:
+Press 2 to delete at beginning:
+Press 3 to delete at last:
+Press 4 to delete at middle:
+Press 5 to display list:
+Press any other key to exit!5
+
+10
+20
+30
+40
+50
+Press 1 to insert:
+Press 2 to delete at beginning:
+Press 3 to delete at last:
+Press 4 to delete at middle:
+Press 5 to display list:
+Press any other key to exit!1
+
+Enter new value you want to insert: 5
+
+Press 1 to insert:
+Press 2 to delete at beginning:
+Press 3 to delete at last:
+Press 4 to delete at middle:
+Press 5 to display list:
+Press any other key to exit!5
+
+10
+20
+30
+40
+50
+5
+Press 1 to insert:
+Press 2 to delete at beginning:
+Press 3 to delete at last:
+Press 4 to delete at middle:
+Press 5 to display list:
+Press any other key to exit!2
+
+Press 1 to insert:
+Press 2 to delete at beginning:
+Press 3 to delete at last:
+Press 4 to delete at middle:
+Press 5 to display list:
+Press any other key to exit!5
+
+20
+30
+40
+50
+5
+Press 1 to insert:
+Press 2 to delete at beginning:
+Press 3 to delete at last:
+Press 4 to delete at middle:
+Press 5 to display list:
+Press any other key to exit!3
+
+Press 1 to insert:
+Press 2 to delete at beginning:
+Press 3 to delete at last:
+Press 4 to delete at middle:
+Press 5 to display list:
+Press any other key to exit!5
+
+20
+30
+40
+50
+Press 1 to insert:
+Press 2 to delete at beginning:
+Press 3 to delete at last:
+Press 4 to delete at middle:
+Press 5 to display list:
+Press any other key to exit!4
+
+Linklist:
+Enter value that you want to delete: 40
+
+Press 1 to insert:
+Press 2 to delete at beginning:
+Press 3 to delete at last:
+Press 4 to delete at middle:
+Press 5 to display list:
+Press any other key to exit!5
+
+20
+30
+50
+Press 1 to insert:
+Press 2 to delete at beginning:
+Press 3 to delete at last:
+Press 4 to delete at middle:
+Press 5 to display list:
+Press any other key to exit!
+*********************************************************************************************************************************************
+*********************************************************************************************************************************************
+Q7)
+
+Perform following operations on a doubly circular linked list:
+
+Insert a Node:
+	At Beginning of List.
+	At End of List.
+	After a key value.
+Display the List.
+
+*********************************************************************************************************************************************
+#include<stdio.h>
+#include<conio.h>
+struct node
+{
+	int v;
+	struct node *next;
+	struct node *pre;
+};
+typedef struct node s;
+s* rlast(s* head);
+s* ifirst(s *head, s *new)
+{
+	s* last = NULL;
+	if (head == NULL)
+	{
+		head = new;
+		head->pre =head;
+		head->next =head;
+	}
+	else
+	{
+		last = rlast(head);
+		last->next = new;
+		new->pre =last;
+		new->next = head;
+		head->pre = new;
+		head = new;
+	}
+	return head;
+}
+s* ilast(s *head, s *new)
+{
+	s* p = NULL;
+	if (head == NULL)
+	{
+		head = new;
+		head->next =head;
+		head->pre =head;
+	}
+	else
+	{
+		p = head;
+		do
+		{
+			p = p->next;
+		} while (p->next !=head);
+		p->next = new;
+		new->pre = p;
+		new->next =head;
+		head->pre = new;
+	}
+	return head;
+}
+s* imiddle(s *head, s *new, int val)
+{
+	s *p = NULL, *pp = NULL,*last=NULL;
+	if (head == NULL)
+	{
+		head = new;
+		head->next =head;
+		head->pre = head;
+	}
+	else if (head->v == val)
+	{
+		new->next = head;
+		head->pre = new;
+		last = rlast(head);
+		head = new;
+		last->next = head;
+	}
+	else
+	{
+		p = head->next;
+		pp = head;
+		do
+		{
+			pp = p;
+			p = p->next;
+		} while (p != head && p->v != val);
+		pp->next = new;
+		new->pre = pp;
+		new->next = p;
+		if (p != NULL)
+		{
+			p->pre = new;
+		}
+	}
+	return head;
+}
+void display(s *head)
+{
+	s *p = NULL;
+	p = head;
+	do
+	{
+		printf("\n%ld", p->v);
+		p = p->next;
+	} while (p != head);
+}
+s* rlast(s* head)
+{
+	s *last, *p;
+	p = head;
+	do
+	{
+		p = p->next;
+	} while (p->next != head);
+	last = p;
+	return last;
+}
+void reverse(s *last)
+{
+	s *p;
+	p = last;
+	do
+	{
+		printf("\n%ld", p->v);
+		p = p->pre;
+	} while (p !=last);
+}
+void main()
+{
+	s *head = NULL, *new = NULL,*last=NULL;
+	int val;
+	char c = 49;
+	do
+	{
+		printf("\nPress 1 to insert in begin: ");
+		printf("\nPress 2 to insert at last: ");
+		printf("\nPress 3 to insert in middle: ");
+		printf("\nPress 4 to display list: ");
+		printf("\nPress 5 to display list in reverse: ");
+		printf("\nPress any other key to exit!");
+		scanf(" %c", &c);
+		if (c == 49)
+		{
+			new = (s*)malloc(sizeof(s));
+			printf("\nEnter new value you want to insert at beginning: ");
+			scanf_s(" %ld", &new->v);
+			head = ifirst(head, new);
+		}
+		else if (c == 50)
+		{
+			new = (s*)malloc(sizeof(s));
+			printf("\nEnter new value you want to insert at last: ");
+			scanf_s(" %ld", &new->v);
+			head = ilast(head, new);
+		}
+		else if (c == 51)
+		{
+			new = (s*)malloc(sizeof(s));
+			printf("\nEnter new value you want to insert at middle: ");
+			scanf_s(" %ld", &new->v);
+			printf("\nLinked list:-");
+			display(head);
+			printf("\nInsert value before which you want to insert the new node: ");
+			scanf_s(" %ld", &val);
+			head = imiddle(head, new, val);
+		}
+		else if (c == 52)
+		{
+			printf("\nDisplaying Link list: ");
+			display(head);
+		}
+		else if (c == 53)
+		{
+			last = rlast(head);
+			reverse(last);
+		}
+		else
+		{
+			exit(0);
+		}
+	} while (c == 49 || c == 50 || c == 51 || c == 52||c==53);
+	getch();
+}
+*********************************************************************************************************************************************
+								OUTPUT
+*********************************************************************************************************************************************
+
+Press 1 to insert in begin:
+Press 2 to insert at last:
+Press 3 to insert in middle:
+Press 4 to display list:
+Press 5 to display list in reverse:
+Press any other key to exit!1
+
+Enter new value you want to insert at beginning: 10
+
+Press 1 to insert in begin:
+Press 2 to insert at last:
+Press 3 to insert in middle:
+Press 4 to display list:
+Press 5 to display list in reverse:
+Press any other key to exit!1
+
+Enter new value you want to insert at beginning: 20
+
+Press 1 to insert in begin:
+Press 2 to insert at last:
+Press 3 to insert in middle:
+Press 4 to display list:
+Press 5 to display list in reverse:
+Press any other key to exit!4
+
+Displaying Link list:
+20
+10
+Press 1 to insert in begin:
+Press 2 to insert at last:
+Press 3 to insert in middle:
+Press 4 to display list:
+Press 5 to display list in reverse:
+Press any other key to exit!2
+
+Enter new value you want to insert at last: 5
+
+Press 1 to insert in begin:
+Press 2 to insert at last:
+Press 3 to insert in middle:
+Press 4 to display list:
+Press 5 to display list in reverse:
+Press any other key to exit!4
+
+Displaying Link list:
+20
+10
+5
+Press 1 to insert in begin:
+Press 2 to insert at last:
+Press 3 to insert in middle:
+Press 4 to display list:
+Press 5 to display list in reverse:
+Press any other key to exit!1
+
+Enter new value you want to insert at beginning: 30
+
+Press 1 to insert in begin:
+Press 2 to insert at last:
+Press 3 to insert in middle:
+Press 4 to display list:
+Press 5 to display list in reverse:
+Press any other key to exit!1
+
+Enter new value you want to insert at beginning: 40
+
+Press 1 to insert in begin:
+Press 2 to insert at last:
+Press 3 to insert in middle:
+Press 4 to display list:
+Press 5 to display list in reverse:
+Press any other key to exit!3
+
+Enter new value you want to insert at middle: 15
+
+Linked list:-
+40
+30
+20
+10
+5
+Insert value before which you want to insert the new node: 10
+
+Press 1 to insert in begin:
+Press 2 to insert at last:
+Press 3 to insert in middle:
+Press 4 to display list:
+Press 5 to display list in reverse:
+Press any other key to exit!4
+
+Displaying Link list:
+40
+30
+20
+15
+10
+5
+Press 1 to insert in begin:
+Press 2 to insert at last:
+Press 3 to insert in middle:
+Press 4 to display list:
+Press 5 to display list in reverse:
+Press any other key to exit!5
+
+5
+10
+15
+20
+30
+40
+Press 1 to insert in begin:
+Press 2 to insert at last:
+Press 3 to insert in middle:
+Press 4 to display list:
+Press 5 to display list in reverse:
+Press any other key to exit!
+*********************************************************************************************************************************************
+*********************************************************************************************************************************************
+Q8)
+
+Perform following operations on a doubly circular linked list:
+
+Delete a Node:
+	At Beginning of List.
+	At End of List.
+	After a key value.
+Display the List.
+
+*********************************************************************************************************************************************
+#include<stdio.h>
+#include<conio.h>
+struct node
+{
+	int v;
+	struct node *next;
+	struct node *pre;
+};
+typedef struct node s;
+s* rlast(s *head)
+{
+	s *last, *p;
+	p = head;
+	do
+	{
+		p = p->next;
+	}while (p->next != head);
+	last = p;
+	return last;
+}
+s* insert(s* head, s* new)
+{
+	s *p = NULL;
+	if (head == NULL)
+	{
+		head = new;
+		head->pre =head;
+		head->next = head;
+	}
+	else
+	{
+		p = head;
+		while (p->next !=head)
+		{
+			p = p->next;
+		}
+		p->next = new;
+		new->pre = p;
+		new->next =head;
+		head->pre = new;
+	}
+	return head;
+}
+s* dfirst(s* head)
+{
+	s *temp = NULL,*last=NULL;
+	temp = head;
+	last = rlast(head);
+	head = head->next;
+	head->pre =last;
+	last->next = head;
+	free(temp);
+	return head;
+}
+s* dlast(s* head)
+{
+	s *temp = NULL, *p = NULL, *pp = NULL;
+	if (head != NULL)
+	{
+
+		p = head;
+		do
+		{
+			pp = p;
+			p = p->next;
+			temp = p;
+		} while (p->next != head);
+		pp->next = head;
+		head->pre = pp;
+		free(temp);
+	}
+	else
+	{
+		printf("\nLinked list is Empty!");
+	}
+	return head;
+}
+s* dmiddle(s* head)
+{
+	int val;
+	s *p = NULL, *temp = NULL, *pp = NULL,*last=NULL;
+	printf("\nLinklist: ");
+	printf("\nEnter value that you want to delete: ");
+	scanf_s(" %ld", &val);
+	if (head != NULL)
+	{
+		if (head->v == val)
+		{
+			temp = head;
+			last = rlast(head);
+			head = head->next;
+			head->pre =last;
+			free(temp);
+		}
+		else
+		{
+			p = head;
+			while (p->next != head && p->next->v != val)
+			{
+				pp = p;
+				p = p->next;
+			}
+			if (p->next->v == val)
+			{
+				if (p->next == head)
+				{
+					pp->next = head;
+					temp = p;
+				}
+				else
+				{
+					temp = p->next;
+					p->next = temp->next;
+					temp->next->pre = p;
+				}
+				last = rlast(head);
+				head->pre = last;
+				free(temp);
+			}
+			else
+			{
+				printf("\nValue %ld doesnot exist!", val);
+			}
+		}
+	}
+	else
+	{
+		printf("\nLinked list is Empty!");
+	}
+	return head;
+}
+void display(s *head)
+{
+	s *p = NULL;
+	p = head;
+	do
+	{
+		printf("\n%ld", p->v);
+		p = p->next;
+	} while (p != head);
+}
+void main()
+{
+	s *head = NULL, *new = NULL;
+	int val;
+	char c = 49;
+	do
+	{
+		printf("\nPress 1 to insert: ");
+		printf("\nPress 2 to delete at beginning: ");
+		printf("\nPress 3 to delete at last: ");
+		printf("\nPress 4 to delete at middle: ");
+		printf("\nPress 5 to display list: ");
+		printf("\nPress any other key to exit!");
+		scanf(" %c", &c);
+		if (c == 49)
+		{
+			new = (s*)malloc(sizeof(s));
+			printf("\nEnter new value you want to insert: ");
+			scanf_s(" %ld", &new->v);
+			head = insert(head, new);
+		}
+		else if (c == 50)
+		{
+			head = dfirst(head);
+		}
+		else if (c == 51)
+		{
+			head = dlast(head);
+		}
+		else if (c == 52)
+		{
+			head = dmiddle(head);
+		}
+		else if (c == 53)
+		{
+			display(head);
+		}
+		else
+		{
+			exit(0);
+		}
+	} while (c == 49 || c == 50 || c == 51 || c == 52 || c == 53);
+	getch();
+}
+*********************************************************************************************************************************************
+								OUTPUT
+*********************************************************************************************************************************************
+
+Press 1 to insert:
+Press 2 to delete at beginning:
+Press 3 to delete at last:
+Press 4 to delete at middle:
+Press 5 to display list:
+Press any other key to exit!1
+
+Enter new value you want to insert: 10
+
+Press 1 to insert:
+Press 2 to delete at beginning:
+Press 3 to delete at last:
+Press 4 to delete at middle:
+Press 5 to display list:
+Press any other key to exit!1
+
+Enter new value you want to insert: 20
+
+Press 1 to insert:
+Press 2 to delete at beginning:
+Press 3 to delete at last:
+Press 4 to delete at middle:
+Press 5 to display list:
+Press any other key to exit!1
+
+Enter new value you want to insert: 30
+
+Press 1 to insert:
+Press 2 to delete at beginning:
+Press 3 to delete at last:
+Press 4 to delete at middle:
+Press 5 to display list:
+Press any other key to exit!1
+
+Enter new value you want to insert: 40
+
+Press 1 to insert:
+Press 2 to delete at beginning:
+Press 3 to delete at last:
+Press 4 to delete at middle:
+Press 5 to display list:
+Press any other key to exit!1
+
+Enter new value you want to insert: 50
+
+Press 1 to insert:
+Press 2 to delete at beginning:
+Press 3 to delete at last:
+Press 4 to delete at middle:
+Press 5 to display list:
+Press any other key to exit!5
+
+10
+20
+30
+40
+50
+Press 1 to insert:
+Press 2 to delete at beginning:
+Press 3 to delete at last:
+Press 4 to delete at middle:
+Press 5 to display list:
+Press any other key to exit!2
+
+Press 1 to insert:
+Press 2 to delete at beginning:
+Press 3 to delete at last:
+Press 4 to delete at middle:
+Press 5 to display list:
+Press any other key to exit!5
+
+20
+30
+40
+50
+Press 1 to insert:
+Press 2 to delete at beginning:
+Press 3 to delete at last:
+Press 4 to delete at middle:
+Press 5 to display list:
+Press any other key to exit!4
+
+Linklist:
+Enter value that you want to delete: 5
+
+Value 5 doesnot exist!
+Press 1 to insert:
+Press 2 to delete at beginning:
+Press 3 to delete at last:
+Press 4 to delete at middle:
+Press 5 to display list:
+Press any other key to exit!4
+
+Linklist:
+Enter value that you want to delete: 30
+
+Press 1 to insert:
+Press 2 to delete at beginning:
+Press 3 to delete at last:
+Press 4 to delete at middle:
+Press 5 to display list:
+Press any other key to exit!5
+
+20
+40
+50
+Press 1 to insert:
+Press 2 to delete at beginning:
+Press 3 to delete at last:
+Press 4 to delete at middle:
+Press 5 to display list:
+Press any other key to exit!3
+
+Press 1 to insert:
+Press 2 to delete at beginning:
+Press 3 to delete at last:
+Press 4 to delete at middle:
+Press 5 to display list:
+Press any other key to exit!5
+
+20
+40
+Press 1 to insert:
+Press 2 to delete at beginning:
+Press 3 to delete at last:
+Press 4 to delete at middle:
+Press 5 to display list:
+Press any other key to exit!
+*********************************************************************************************************************************************
+*********************************************************************************************************************************************
+Exercises:
+*********************************************************************************************************************************************
+*********************************************************************************************************************************************
+Q1)
+
+Program to create an ordered linked list.
+*********************************************************************************************************************************************
+#include<stdio.h>
+#include<conio.h>
+struct node
+{
+	int v;
+	struct node *next;
+};
+typedef struct node n;
+n* insert(n* head,n *nn)
+{
+	n *p=NULL;
+	if(head==NULL)
+	{
+		head=nn;
+		head->next=NULL;
+	}
+	else if(nn->v<=head->v)
+	{
+		nn->next=head;
+		head=nn;
+	}
+	else
+	{
+		p=head;
+		while(p->next!=NULL && p->next->v<nn->v)
+		{
+			p=p->next;
+		}
+		if(p->next==NULL)
+		{
+			p->next=nn;
+			nn->next=NULL;
+		}
+		else
+		{
+			nn->next=p->next;
+			p->next=nn;
+		}
+	}
+	return head;
+}
+void display(n *head)
+{
+	n *p=NULL;
+	p=head;
+	printf("\nNow displaying Linked list:");
+	while(p!=NULL)
+	{
+		printf(" %ld",p->v);
+		p=p->next;
+	}
+}
+void main()
+{
+	n *head=NULL,*nn=NULL;
+	char c=49;
+	while(c==49)
+	{
+		nn=(n*)malloc(sizeof(n));
+		printf("\nEnter the value of the node  that you want to insert in the link list: ");
+		scanf(" %ld",&nn->v);
+		head=insert(head,nn);
+		printf("\nPress 1 if you want to enter another node  in the list else press any other key to exit: ");
+		scanf(" %c",&c);
+	}
+	display(head);
+	getch();
+}
+*********************************************************************************************************************************************
+								OUTPUT
+*********************************************************************************************************************************************
+
+Enter the value of the node  that you want to insert in the link list: 10
+
+Press 1 if you want to enter another node  in the list else press any other key
+to exit: 1
+
+Enter the value of the node  that you want to insert in the link list: 5
+
+Press 1 if you want to enter another node  in the list else press any other key
+to exit: 1
+
+Enter the value of the node  that you want to insert in the link list: 15
+
+Press 1 if you want to enter another node  in the list else press any other key
+to exit: 1
+
+Enter the value of the node  that you want to insert in the link list: 20
+
+Press 1 if you want to enter another node  in the list else press any other key
+to exit: 1
+
+Enter the value of the node  that you want to insert in the link list: 30
+
+Press 1 if you want to enter another node  in the list else press any other key
+to exit: 1
+
+Enter the value of the node  that you want to insert in the link list: 1
+
+Press 1 if you want to enter another node  in the list else press any other key
+to exit: 2
+
+Now displaying Linked list: 1 5 10 15 20 30
+*********************************************************************************************************************************************
+*********************************************************************************************************************************************
+Q2)
+
+Program to perform intersection of two sets of lists.
+*********************************************************************************************************************************************
+#include<stdio.h>
+#include<conio.h>
+struct node
+{
+	int v;
+	struct node* next;
+};
+typedef struct node nn;
+nn* insert(nn *head)
+{
+	nn *new=NULL,*old=NULL;
+	char c = 49;
+	do
+	{
+		new = (nn*)malloc(sizeof(nn));
+		printf("\nEnter value: ");
+		scanf_s(" %ld", &new->v);
+		new->next = NULL;
+		if (head == NULL)
+		{
+			head = new;
+		}
+		else
+		{
+			old->next = new;
+		}
+		old = new;
+		printf("\nEnter 1 to continue: ");
+		scanf_s(" %c",&c);
+	} while (c == 49);
+	return head;
+}
+void display(nn *head)
+{
+	nn *p=head;
+	while (p != NULL)
+	{
+		printf("\n%ld", p->v);
+		p = p->next;
+	}
+}
+nn* inter(nn *head1, nn *head2)
+{
+	nn *fh = NULL,*p1,*p2,*p3,*temp=NULL,*new;
+	int c = 0;
+	p1 = head1;
+	while (p1 != NULL)
+	{
+		p2 = head2;
+		while (p2 != NULL)
+		{
+			if (p1->v == p2->v)
+			{
+				if (fh == NULL)
+				{
+					new = (nn*)malloc(sizeof(nn));
+					new->v = p1->v;
+					new->next = NULL;
+					fh = new;
+				}
+				else
+				{
+					p3 = fh;
+					c = -1;
+					while (p3 != NULL)
+					{
+						if (p3->v == p1->v)
+						{
+							c = 1;
+							break;
+						}
+						temp = p3;
+						p3 = p3->next;
+					}
+					if (c == -1)
+					{
+						new = (nn*)malloc(sizeof(nn));
+						new->next = NULL;
+						p3 = temp;
+						new->v = p1->v;
+						p3->next =new;
+						p3 =new;
+					}
+				}
+			}
+			p2 = p2->next;
+		}
+		p1 = p1->next;
+	}
+	return fh;
+}
+void main()
+{
+	nn *head1 = NULL,*head2=NULL,*fh=NULL;
+	printf("\nEnter Linked-list 1: \n");
+	head1=insert(head1);
+	display(head1);
+	printf("\nEnter Linked-list 2: \n");
+	head2 = insert(head2);
+	display(head2);
+	fh = inter(head1, head2);
+	printf("\nIntersection of Linked-list 1 and Linked-list 2:- ");
+	display(fh);
+	getch();
+}
+*********************************************************************************************************************************************
+								OUTPUT
+*********************************************************************************************************************************************
+
+Enter Linked-list 1:
+
+Enter value: 10
+
+Enter 1 to continue: 1
+
+Enter value: 20
+
+Enter 1 to continue: 1
+
+Enter value: 30
+
+Enter 1 to continue: 1
+
+Enter value: 40
+
+Enter 1 to continue: 1
+
+Enter value: 50
+
+Enter 1 to continue: 2
+
+10
+20
+30
+40
+50
+Enter Linked-list 2:
+
+Enter value: 5
+
+Enter 1 to continue: 1
+
+Enter value: 10
+
+Enter 1 to continue: 1
+
+Enter value: 15
+
+Enter 1 to continue: 1
+
+Enter value: 20
+
+Enter 1 to continue: 2
+
+5
+10
+15
+20
+Intersection of Linked-list 1 and Linked-list 2:-
+10
+20
+*********************************************************************************************************************************************
+*********************************************************************************************************************************************
+Q3)
+
+Program to perform union of two sets of lists.
+*********************************************************************************************************************************************
+#include<stdio.h>
+#include<conio.h>
+struct node
+{
+	int v;
+	struct node* next;
+};
+typedef struct node nn;
+nn* insert(nn *head)
+{
+	nn *new=NULL,*old=NULL;
+	char c = 49;
+	do
+	{
+		new = (nn*)malloc(sizeof(nn));
+		printf("\nEnter value: ");
+		scanf_s(" %ld", &new->v);
+		new->next = NULL;
+		if (head == NULL)
+		{
+			head = new;
+		}
+		else
+		{
+			old->next = new;
+		}
+		old = new;
+		printf("\nEnter 1 to continue: ");
+		scanf_s(" %c",&c);
+	} while (c == 49);
+	return head;
+}
+void display(nn *head)
+{
+	nn *p=head;
+	while (p != NULL)
+	{
+		printf("\n%ld", p->v);
+		p = p->next;
+	}
+}
+nn* un(nn *head1, nn *head2)
+{
+	nn *fh = NULL,*p1,*p2=NULL,*temp=NULL,*new,*pp=NULL;
+	int c = 0;
+	p1 = head1;
+	p2 = head2;
+	while (p1!= NULL && p2!=NULL)
+	{
+		if (p1->v == p2->v)
+		{
+			new = (nn*)malloc(sizeof(nn));
+			new->v = p1->v;
+			if (fh == NULL)
+			{
+				fh = new;
+				fh->next = NULL;
+				temp = fh;
+			}
+			else
+			{
+				new->next = NULL;
+				temp->next = new;
+				temp = temp->next;
+			}
+		}
+		else
+		{
+			new = (nn*)malloc(sizeof(nn));
+			new->v = p1->v;
+			if (fh == NULL)
+			{
+				fh = new;
+				fh->next = NULL;
+				temp = fh;
+			}
+			else
+			{
+				temp = fh;
+				c = 0;
+				while (temp!= NULL)
+				{
+					if (temp->v == new->v)
+					{
+						c = 1;
+						break;
+					}
+					pp = temp;
+					temp = temp->next;
+				}
+				if (c == 0)
+				{
+					new->next = NULL;
+					pp->next = new;
+				}
+			}
+			new = (nn*)malloc(sizeof(nn));
+			new->v = p2->v;
+			if (fh == NULL)
+			{
+				fh = new;
+				fh->next = NULL;
+				temp = fh;
+			}
+			else
+			{
+				temp = fh;
+				c = 0;
+				while (temp != NULL)
+				{
+					if (temp->v == new->v)
+					{
+						c = 1;
+						break;
+					}
+					pp = temp;
+					temp = temp->next;
+				}
+				if (c == 0)
+				{
+					new->next = NULL;
+					pp->next = new;
+				}
+			}
+		}
+		p1 = p1->next;
+		p2 = p2->next;
+	}
+	if (p1 == NULL)
+	{
+		while (p2 != NULL)
+		{
+			new = (nn*)malloc(sizeof(nn));
+			new->v = p2->v;
+			if (fh == NULL)
+			{
+				fh = new;
+				fh->next = NULL;
+				temp = fh;
+			}
+			else
+			{
+				temp = fh;
+				c = 0;
+				while (temp != NULL)
+				{
+					if (temp->v == new->v)
+					{
+						c = 1;
+						break;
+					}
+					pp = temp;
+					temp = temp->next;
+				}
+				if (c == 0)
+				{
+					new->next = NULL;
+					pp->next = new;
+				}
+			}
+			p2 = p2->next;
+		}
+	}
+	else if (p2 == NULL)
+	{
+		while (p1!= NULL)
+		{
+			new = (nn*)malloc(sizeof(nn));
+			new->v = p1->v;
+			if (fh == NULL)
+			{
+				fh = new;
+				fh->next = NULL;
+				temp = fh;
+			}
+			else
+			{
+				temp = fh;
+				c = 0;
+				while (temp != NULL)
+				{
+					if (temp->v == new->v)
+					{
+						c = 1;
+						break;
+					}
+					pp = temp;
+					temp = temp->next;
+				}
+				if (c == 0)
+				{
+					new->next = NULL;
+					pp->next = new;
+				}
+			}
+			p1 = p1->next;
+		}
+	}
+	return fh;
+}
+void main()
+{
+	nn *head1 = NULL,*head2=NULL,*fh=NULL;
+	printf("\nEnter Linked-list 1: \n");
+	head1=insert(head1);
+	display(head1);
+	printf("\nEnter Linked-list 2: \n");
+	head2 = insert(head2);
+	display(head2);
+	fh =un(head1, head2);
+	printf("\nUnion of Linked-list 1 and Linked-list 2:- ");
+	display(fh);
+	getch();
+}
+*********************************************************************************************************************************************
+								OUTPUT
+*********************************************************************************************************************************************
+
+Enter Linked-list 1:
+
+Enter value: 10
+
+Enter 1 to continue: 1
+
+Enter value: 20
+
+Enter 1 to continue: 1
+
+Enter value: 30
+
+Enter 1 to continue: 1
+
+Enter value: 40
+
+Enter 1 to continue: 2
+
+10
+20
+30
+40
+Enter Linked-list 2:
+
+Enter value: 5
+
+Enter 1 to continue: 1
+
+Enter value: 5
+
+Enter 1 to continue: 1
+
+Enter value: 10
+
+Enter 1 to continue: 1
+
+Enter value: 15
+
+Enter 1 to continue: 1
+
+Enter value: 20
+
+Enter 1 to continue: 1
+
+Enter value: 30
+
+Enter 1 to continue: 1
+
+Enter value: 40
+
+Enter 1 to continue: 1
+
+Enter value: 50
+
+Enter 1 to continue: 2
+
+5
+5
+10
+15
+20
+30
+40
+50
+Union of Linked-list 1 and Linked-list 2:-
+10
+5
+20
+30
+40
+15
+50
+*********************************************************************************************************************************************
+*********************************************************************************************************************************************
+Q4)
+
+Program to reverse a linked list.
+*********************************************************************************************************************************************
+#include<stdio.h>
+#include<conio.h>
+struct node
+{
+	int v;
+	struct node* next;
+};
+typedef struct node nn;
+nn* insert(nn *head)
+{
+	nn *n=NULL,*old=NULL;
+	char c = 49;
+	do
+	{
+		n = (nn*)malloc(sizeof(nn));
+		printf("\nEnter value: ");
+		scanf_s(" %ld", &n->v);
+		n->next = NULL;
+		if (head == NULL)
+		{
+			head = n;
+		}
+		else
+		{
+			old->next = n;
+		}
+		old = n;
+		printf("\nEnter 1 to continue: ");
+		scanf_s(" %c",&c);
+	} while (c == 49);
+	return head;
+}
+void display(nn *head)
+{
+	nn *p=head;
+	while (p != NULL)
+	{
+		printf("\n%ld", p->v);
+		p = p->next;
+	}
+}
+nn* reverse(nn *head1)
+{
+	nn *fh = NULL,*p1=NULL,*p,*p2=NULL,*temp=NULL,*n,*pp=NULL;
+	int c = 0;
+	p = head1;
+	while (p != NULL)
+	{
+		p2 = p1;
+		n = (nn*)malloc(sizeof(nn));
+		n->v = p->v;
+		p1 = n;
+		p1->next = p2;
+		p = p->next;
+	}
+	fh = p1;
+	p = head1;
+	c = 0;
+	p1 = fh;
+	return fh;
+}
+void main()
+{
+	nn *head1 = NULL,*fh=NULL;
+	printf("\nEnter Linked-list 1: \n");
+	head1=insert(head1);
+	display(head1);
+	fh =reverse(head1);
+	printf("\nReverse:- ");
+	display(fh);
+	_getch();
+}
+*********************************************************************************************************************************************
+									OUTPUT
+*********************************************************************************************************************************************
+
+Enter Linked-list 1:
+
+Enter value: 10
+
+Enter 1 to continue: 1
+
+Enter value: 20
+
+Enter 1 to continue: 1
+
+Enter value: 30
+
+Enter 1 to continue: 1
+
+Enter value: 40
+
+Enter 1 to continue: 1
+
+Enter value: 50
+
+Enter 1 to continue: 2
+
+10
+20
+30
+40
+50
+Reverse:-
+50
+40
+30
+20
+10
+*********************************************************************************************************************************************
+*********************************************************************************************************************************************
+Q5)
+
+Program to check whether a linked list is palindrome or not.
+*********************************************************************************************************************************************
+#include<stdio.h>
+#include<conio.h>
+struct node
+{
+	int v;
+	struct node* next;
+};
+typedef struct node nn;
+nn* insert(nn *head)
+{
+	nn *new=NULL,*old=NULL;
+	char c = 49;
+	do
+	{
+		new = (nn*)malloc(sizeof(nn));
+		printf("\nEnter value: ");
+		scanf_s(" %ld", &new->v);
+		new->next = NULL;
+		if (head == NULL)
+		{
+			head = new;
+		}
+		else
+		{
+			old->next = new;
+		}
+		old = new;
+		printf("\nEnter 1 to continue: ");
+		scanf_s(" %c",&c);
+	} while (c == 49);
+	return head;
+}
+void display(nn *head)
+{
+	nn *p=head;
+	while (p != NULL)
+	{
+		printf("\n%ld", p->v);
+		p = p->next;
+	}
+}
+nn* palin(nn *head1)
+{
+	nn *fh = NULL,*p1=NULL,*p,*p2=NULL,*temp=NULL,*new,*pp=NULL;
+	int c = 0;
+	p = head1;
+	
+	while (p != NULL)
+	{
+		p2 = p1;
+		new = (nn*)malloc(sizeof(nn));
+		new->v = p->v;
+		p1 = new;
+		p1->next = p2;
+		p = p->next;
+	}
+	fh = p1;
+	p = head1;
+	c = 0;
+	p1 = fh;
+	while (p != NULL)
+	{
+		if (p->v != p1->v)
+		{
+			printf("\nLinklist is not palindrome!");
+			c = 1;
+			break;
+		}
+		p = p->next;
+		p1 = p1->next;
+	}
+	if (c == 0)
+	{
+		printf("\nLink list is Palindrome!");
+	}
+	return fh;
+}
+void main()
+{
+	nn *head1 = NULL,*fh=NULL;
+	printf("\nEnter Linked-list 1: \n");
+	head1=insert(head1);
+	display(head1);
+	fh =palin(head1);
+	printf("\nReverse:- ");
+	display(fh);
+	getch();
+}
+*********************************************************************************************************************************************
+								OUTPUT
+*********************************************************************************************************************************************
+OUTPUT 1:-
+
+
+Enter Linked-list 1:
+
+Enter value: 10
+
+Enter 1 to continue: 1
+
+Enter value: 20
+
+Enter 1 to continue: 1
+
+Enter value: 30
+
+Enter 1 to continue: 1
+
+Enter value: 40
+
+Enter 1 to continue: 1
+
+Enter value: 50
+
+Enter 1 to continue: 1
+
+Enter value: 60
+
+Enter 1 to continue: 2
+
+10
+20
+30
+40
+50
+60
+Linklist is not palindrome!
+Reverse:-
+60
+50
+40
+30
+20
+10
+
+OUTPUT 2:-
+
+
+Enter Linked-list 1:
+
+Enter value: 10
+
+Enter 1 to continue: 1
+
+Enter value: 20
+
+Enter 1 to continue: 1
+
+Enter value: 30
+
+Enter 1 to continue: 1
+
+Enter value: 40
+
+Enter 1 to continue: 1
+
+Enter value: 30
+
+Enter 1 to continue: 1
+
+Enter value: 20
+
+Enter 1 to continue: 1
+
+Enter value: 10
+
+Enter 1 to continue: 2
+
+10
+20
+30
+40
+30
+20
+10
+Link list is Palindrome!
+Reverse:-
+10
+20
+30
+40
+30
+20
+10
+*********************************************************************************************************************************************
+*********************************************************************************************************************************************
+Q6)
+
+Program to perform addition of two polynomials.
+*********************************************************************************************************************************************
+#include<stdio.h>
+#include<conio.h>
+struct poly
+{
+	int p;
+	double ce;
+	struct poly *next;
+};
+typedef struct poly s;
+s* insert(s *head, s *new) 
+{
+	s *temp = NULL;
+	if (head == NULL)
+	{
+		new->next = NULL;
+		head = new;
+	}
+	else if (new->p >= head->p)
+	{
+		if (new->p > head->p)
+		{
+			new->next = head;
+			head = new;
+		}
+		else
+		{
+			head->ce = head->ce + new->ce;
+		}
+	}
+	else if (new->p < head->p)
+	{
+		temp = head;
+		while (temp->next != NULL && temp->next->p > new->p)
+		{
+			temp = temp->next;
+		}
+		if (temp->next == NULL)
+		{
+			temp->next = new;
+			new->next = NULL;
+		}
+		else if (new->p > temp->next->p)
+		{
+			new->next = temp->next;
+			temp->next = new;
+		}
+		else if (new->p == temp->next->p)
+		{
+			temp->next->ce = temp->next->ce + new->ce;
+		}
+	}
+	return head;
+}
+void display(s *head)
+{
+	s *temp = NULL;
+	temp = head;
+	while (temp != NULL)
+	{
+		if (temp->p != 0)
+		{
+			if (temp->ce >= 0)
+			{
+				if (temp == head)
+				{
+					printf("%lfx^%ld", temp->ce, temp->p);
+				}
+				else
+				{
+					printf("+%lfx^%ld", temp->ce, temp->p);
+				}
+			}
+			else
+			{
+				printf("%lfx^%ld", temp->ce, temp->p);
+			}
+		}
+		else
+		{
+			if (temp->ce >= 0)
+			{
+				if (temp == head)
+				{
+					printf("%lf", temp->ce);
+				}
+				else
+				{
+					printf("+%lf", temp->ce);
+				}
+			}
+			else
+			{
+				printf("%lf", temp->ce);
+			}
+		}
+		temp = temp->next;
+	}
+}
+s* polyadd(s* head, s* head1)
+{
+	s*fhead = NULL, *t=NULL, *t1=NULL,*new=NULL;
+	t = head;
+	t1 = head1;
+	while (t!= NULL && t1!= NULL)
+	{
+		new = (s*)malloc(sizeof(s));
+		if (t->p >t1->p)
+		{
+			new = t;
+			t = t->next;
+		}
+		else if (t->p == t1->p)
+		{
+			new = t;
+			new->ce = new->ce + t1->ce;
+			t = t->next;
+			t1 = t1->next;
+		}
+		else if (t->p < t1->p)
+		{
+			new = t1;
+			t1=t1->next;
+		}
+		fhead = insert(fhead, new);
+	}
+	if (t== NULL)
+	{
+		while (t1 != NULL)
+		{
+			new = (s*)malloc(sizeof(s));
+			fhead = insert(fhead, new);
+			t1 = t1->next;
+		}
+	}
+	else if (t1 == NULL)
+	{
+		while (t != NULL)
+		{
+			new = (s*)malloc(sizeof(s));
+			fhead = insert(fhead, new);
+			t= t->next;
+		}
+	}
+	return fhead;
+}
+void main() 
+{
+	s *head = NULL, *new = NULL,*head1=NULL,*fhead=NULL;
+	char c = 49;
+	printf("\nEnter First Equation: ");
+	do
+	{
+		new = (s*)malloc(sizeof(s));
+		printf("\nEnter Co-efficient: ");
+		scanf_s(" %lf", &new->ce);
+		printf("\nEnter Power: ");
+		scanf_s(" %ld", &new->p);
+		head = insert(head, new);
+		printf("\nPress 1 if you want to enter data again!");
+		scanf(" %c", &c);
+	} while (c == 49);
+	printf("\nFirst Equation:-  ");
+	display(head);
+	printf("\nEnter Second Equation: ");
+	do
+	{
+		new = (s*)malloc(sizeof(s));
+		printf("\nEnter Co-efficient: ");
+		scanf_s(" %lf", &new->ce);
+		printf("\nEnter Power: ");
+		scanf_s(" %ld", &new->p);
+		head1 = insert(head1, new);
+		printf("\nPress 1 if you want to enter data again!");
+		scanf(" %c", &c);
+	} while (c == 49);
+	printf("\nSecond Equation:-  ");
+	display(head1);
+	printf("\nEquation1: ");
+	display(head);
+	printf("\nEquation2: ");
+	display(head1);
+	printf("\nSum: Equation3: ");
+	fhead = polyadd(head, head1);
+	display(fhead);
+	getch();
+}
+*********************************************************************************************************************************************
+								OUTPUT
+*********************************************************************************************************************************************
+
+Enter First Equation:
+Enter Co-efficient: 2
+
+Enter Power: 2
+
+Press 1 if you want to enter data again!1
+
+Enter Co-efficient: -3
+
+Enter Power: 1
+
+Press 1 if you want to enter data again!1
+
+Enter Co-efficient: 5
+
+Enter Power: 0
+
+Press 1 if you want to enter data again!2
+
+First Equation:-  2.000000x^2-3.000000x^1+5.000000
+Enter Second Equation:
+Enter Co-efficient: 5
+
+Enter Power: 1
+
+Press 1 if you want to enter data again!1
+
+Enter Co-efficient: 5
+
+Enter Power: 0
+
+Press 1 if you want to enter data again!2
+
+Second Equation:-  5.000000x^1+5.000000
+Equation1: 2.000000x^2-3.000000x^1+5.000000
+Equation2: 5.000000x^1+5.000000
+Sum: Equation3: 2.000000x^2+2.000000x^1+10.000000
+*********************************************************************************************************************************************
+*********************************************************************************************************************************************
+Q7)
+
+Program to perform multiplication of two polynomials.
+*********************************************************************************************************************************************
+#include<stdio.h>
+#include<conio.h>
+struct poly
+{
+	int p;
+	double ce;
+	struct poly *next;
+};
+typedef struct poly s;
+s* insert(s *head, s *new)
+{
+	s *temp = NULL;
+	if (head == NULL)
+	{
+		new->next = NULL;
+		head = new;
+	}
+	else if (new->p >= head->p)
+	{
+		if (new->p > head->p)
+		{
+			new->next = head;
+			head = new;
+		}
+		else
+		{
+			head->ce = head->ce + new->ce;
+		}
+	}
+	else if (new->p < head->p)
+	{
+		temp = head;
+		while (temp->next != NULL && temp->next->p > new->p)
+		{
+			temp = temp->next;
+		}
+		if (temp->next == NULL)
+		{
+			temp->next = new;
+			new->next = NULL;
+		}
+		else if (new->p > temp->next->p)
+		{
+			new->next = temp->next;
+			temp->next = new;
+		}
+		else if (new->p == temp->next->p)
+		{
+			temp->next->ce = temp->next->ce + new->ce;
+		}
+	}
+	return head;
+}
+void display(s *head)
+{
+	s *temp = NULL;
+	temp = head;
+	while (temp != NULL)
+	{
+		if (temp->p != 0)
+		{
+			if (temp->ce >= 0)
+			{
+				if (temp == head)
+				{
+					printf("%lfx^%ld", temp->ce, temp->p);
+				}
+				else
+				{
+					printf("+%lfx^%ld", temp->ce, temp->p);
+				}
+			}
+			else
+			{
+				printf("%lfx^%ld", temp->ce, temp->p);
+			}
+		}
+		else
+		{
+			if (temp->ce >= 0)
+			{
+				if (temp == head)
+				{
+					printf("%lf", temp->ce);
+				}
+				else
+				{
+					printf("+%lf", temp->ce);
+				}
+			}
+			else
+			{
+				printf("%lf", temp->ce);
+			}
+		}
+		temp = temp->next;
+	}
+}
+s* polymul(s* head, s* head1)
+{
+	s*fhead = NULL, *t = NULL, *t1 = NULL, *new = NULL;
+	t = head;
+	t1 = head1;
+	while (t != NULL)
+	{
+		t1 = head1;
+		while (t1 != NULL)
+		{
+			new = (s*)malloc(sizeof(s));
+			new->p = t->p+t1->p;
+			new->ce = t->ce*t1->ce;
+			fhead = insert(fhead, new);
+			t1 = t1->next;
+		}
+		t = t->next;
+	}
+	return fhead;
+}
+void main()
+{
+	s *head = NULL, *new = NULL, *head1 = NULL, *fhead = NULL;
+	char c = 49;
+	printf("\nEnter First Equation: ");
+	do
+	{
+		new = (s*)malloc(sizeof(s));
+		printf("\nEnter Co-efficient: ");
+		scanf_s(" %lf", &new->ce);
+		printf("\nEnter Power: ");
+		scanf_s(" %ld", &new->p);
+		head = insert(head, new);
+		printf("\nPress 1 if you want to enter data again!");
+		scanf(" %c", &c);
+	} while (c == 49);
+	printf("\nFirst Equation:-  ");
+	display(head);
+	printf("\nEnter Second Equation: ");
+	do
+	{
+		new = (s*)malloc(sizeof(s));
+		printf("\nEnter Co-efficient: ");
+		scanf_s(" %lf", &new->ce);
+		printf("\nEnter Power: ");
+		scanf_s(" %ld", &new->p);
+		head1 = insert(head1, new);
+		printf("\nPress 1 if you want to enter data again!");
+		scanf(" %c", &c);
+	} while (c == 49);
+	printf("\nSecond Equation:-  ");
+	display(head1);
+	printf("\nEquation1: ");
+	display(head);
+	printf("\nEquation2: ");
+	display(head1);
+	printf("\nProduct: Equation3: ");
+	fhead = polymul(head, head1);
+	display(fhead);
+	getch();
+}
+*********************************************************************************************************************************************
+								OUTPUT
+*********************************************************************************************************************************************
+
+Enter First Equation:
+Enter Co-efficient: 2
+
+Enter Power: 1
+
+Press 1 if you want to enter data again!1
+
+Enter Co-efficient: 3
+
+Enter Power: 0
+
+Press 1 if you want to enter data again!2
+
+First Equation:-  2.000000x^1+3.000000
+Enter Second Equation:
+Enter Co-efficient: 3
+
+Enter Power: 1
+
+Press 1 if you want to enter data again!0
+
+Second Equation:-  3.000000x^1
+Equation1: 2.000000x^1+3.000000
+Equation2: 3.000000x^1
+Product: Equation3: 6.000000x^2+9.000000x^1
+*********************************************************************************************************************************************
+*********************************************************************************************************************************************
+Q8)
+
+Program to remove duplicate values from a sINGLY linked list.
+*********************************************************************************************************************************************
+#include<stdio.h>
+#include<conio.h>
+struct node
+{
+	int v;
+	struct node* next;
+};
+typedef struct node nn;
+nn* insert(nn *head)
+{
+	nn *nnn=NULL,*old=NULL;
+	char c = 49;
+	do
+	{
+		nnn = (nn*)malloc(sizeof(nn));
+		printf("\nEnter value: ");
+		scanf_s(" %ld", &nnn->v);
+		nnn->next = NULL;
+		if (head == NULL)
+		{
+			head = nnn;
+		}
+		else
+		{
+			old->next = nnn;
+		}
+		old = nnn;
+		printf("\nEnter 1 to continue: ");
+		scanf(" %c",&c);
+	} while (c == 49);
+	return head;
+}
+void display(nn *head)
+{
+	nn *p=head;
+	while (p != NULL)
+	{
+		printf("\n%ld", p->v);
+		p = p->next;
+	}
+}
+void notsame(nn *head)
+{
+	nn *temp = NULL, *p, *pre,*tt=NULL;
+	int tv=0,c=0;
+	p = head;
+	while (p != NULL)
+	{
+		temp = p;
+		pre = p;
+		tv = p->v;
+		while (p != NULL)
+		{
+			c = 0;
+			if (tv != p->v)
+			{
+				temp->next = p;
+				temp = temp->next;
+			}
+			else if (p->next==NULL)
+			{
+				temp->next = NULL;
+				temp = temp->next;
+			}
+			else if(p!=head && tv==p->v && pre!=p)
+			{
+				if (p->next != NULL)
+				{
+					tt->next = p->next;
+				}
+				else
+				{
+					tt->next = NULL;
+				}
+				tt = p;
+				p = p->next;
+				free(tt);
+				tt = p;
+				continue;
+			}
+			tt = p;
+			p = p->next;
+		}
+		p = pre->next;
+	}
+	printf("\nFInal:");
+	display(head);
+}
+void main()
+{
+	nn *head1 = NULL;
+	printf("\nEnter Linked-list 1: \n");
+	head1=insert(head1);
+	display(head1);
+	notsame(head1);
+	getch();
+}
+*********************************************************************************************************************************************
+								OUTPUT
+*********************************************************************************************************************************************	
+
+Enter Linked-list 1:
+
+Enter value: 10
+
+Enter 1 to continue: 1
+
+Enter value: 20
+
+Enter 1 to continue: 1
+
+Enter value: 30
+
+Enter 1 to continue: 1
+
+Enter value: 40
+
+Enter 1 to continue: 1
+
+Enter value: 30
+
+Enter 1 to continue: 1
+
+Enter value: 30
+
+Enter 1 to continue: 1
+
+Enter value: 20
+
+Enter 1 to continue: 1
+
+Enter value: 40
+
+Enter 1 to continue: 1
+
+Enter value: 50
+
+Enter 1 to continue: 2
+
+10
+20
+30
+40
+30
+30
+20
+40
+50
+FInal:
+10
+20
+30
+40
+50
+*********************************************************************************************************************************************
+*********************************************************************************************************************************************
+Q9)
+
+Program to sort a given linked list.(Use Singly Linked List)
+*********************************************************************************************************************************************
+#include<stdio.h>
+#include<conio.h>
+struct node
+{
+	int v;
+	struct node* next;
+};
+typedef struct node nn;
+nn* insert(nn *head)
+{
+	nn *new=NULL,*old=NULL;
+	char c = 49;
+	do
+	{
+		new = (nn*)malloc(sizeof(nn));
+		printf("\nEnter value: ");
+		scanf_s(" %ld", &new->v);
+		new->next = NULL;
+		if (head == NULL)
+		{
+			head = new;
+		}
+		else
+		{
+			old->next = new;
+		}
+		old = new;
+		printf("\nEnter 1 to continue: ");
+		scanf_s(" %c",&c);
+	} while (c == 49);
+	return head;
+}
+void display(nn *head)
+{
+	nn *p=head;
+	while (p != NULL)
+	{
+		printf("\n%ld", p->v);
+		p = p->next;
+	}
+}
+void sort(nn *head)
+{
+	nn *p=NULL,*sp=NULL,*temp=NULL,*pp=NULL,*nh=NULL,*pre=NULL;
+	int s = 0;
+	p = head;
+	while (p != NULL)
+	{
+		sp = p->next;
+		pre = p;
+		pp = p;
+		temp = p;
+		while (sp != NULL)
+		{
+			if (sp->v<pp->v)
+			{
+				pp = sp;
+				temp = pre;
+			}
+			pre = sp;
+			sp = sp->next;
+		}
+		if (nh == NULL)
+		{
+			if (pp != head)
+			{
+				temp->next = pp->next;
+				pp->next = head;
+			}
+			nh = pp;
+			head = nh;
+		}
+		else
+		{
+			if (p->v != pp->v)
+			{
+				temp->next = pp->next;
+				pp->next = p;
+			}
+			nh->next = pp;
+			nh = nh->next;
+		}
+		p = nh->next;
+	}
+	display(head);
+}
+void main()
+{
+	nn *head1 = NULL;
+	printf("\nEnter Linked-list 1: \n");
+	head1=insert(head1);
+	display(head1);
+	printf("\nSorted Linked list: ");
+	sort(head1);
+	_getch();
+}
+*********************************************************************************************************************************************
+									OUTPUT
+*********************************************************************************************************************************************
+
+Enter Linked-list 1:
+
+Enter value: 10
+
+Enter 1 to continue: 1
+
+Enter value: 30
+
+Enter 1 to continue: 1
+
+Enter value: 20
+
+Enter 1 to continue: 1
+
+Enter value: 50
+
+Enter 1 to continue: 1
+
+Enter value: 40
+
+Enter 1 to continue: 1
+
+Enter value: 25
+
+Enter 1 to continue: 1
+
+Enter value: 15
+
+Enter 1 to continue: 1
+
+Enter value: 5
+
+Enter 1 to continue: 2
+
+10
+30
+20
+50
+40
+25
+15
+5
+Sorted Linked list:
+5
+10
+15
+20
+25
+30
+40
+50
+*********************************************************************************************************************************************
+*********************************************************************************************************************************************
+Q10)
+
+Program to split a given linked list(containing numbers),into two lists of odd and even numbers respectively.(Use Singly Circular Linked List)
+*********************************************************************************************************************************************
+#include<stdio.h>
+#include<conio.h>
+struct node
+{
+	int v;
+	struct node* next;
+};
+typedef struct node nn;
+nn* insert(nn *head)
+{
+	nn *nnn=NULL,*old=NULL;
+	char c = 49;
+	do
+	{
+		nnn = (nn*)malloc(sizeof(nn));
+		printf("\nEnter value: ");
+		scanf_s(" %ld", &nnn->v);
+		nnn->next = NULL;
+		if (head == NULL)
+		{
+			head = nnn;
+		}
+		else
+		{
+			old->next = nnn;
+		}
+		old = nnn;
+		printf("\nEnter 1 to continue: ");
+		scanf(" %c",&c);
+	} while (c == 49);
+	return head;
+}
+void display(nn *head)
+{
+	nn *p=head;
+	while (p != NULL)
+	{
+		printf("\n%ld", p->v);
+		p = p->next;
+	}
+}
+void split(nn *head)
+{
+	nn *p = head,*o=NULL,*e=NULL,*oh=NULL,*eh=NULL,*nnn;
+	while (p != NULL)
+	{
+		nnn = (nn*)malloc(sizeof(nn));
+		if (p->v == 1 || p->v % 2 != 0)
+		{
+			if (oh==NULL)
+			{
+				nnn = p;
+				o = nnn;
+				oh = o;
+			}
+			else
+			{
+				nnn = p;
+				o->next = nnn;
+				o = o->next;
+			}
+		}
+		else
+		{
+			if (eh==NULL)
+			{
+				nnn = p;
+				e = nnn;
+				eh = e;
+			}
+			else
+			{
+				nnn = p;
+				e->next = nnn;
+				e = nnn;
+			}
+		}
+		p = p->next;
+	}
+	e->next = NULL;
+	o->next = NULL;
+	printf("\nOdd Linklist: ");
+	display(oh);
+	printf("\nEven Linklist: ");
+	display(eh);
+}
+void main()
+{
+	nn *head1 = NULL;
+	printf("\nEnter Linked-list 1: \n");
+	head1=insert(head1);
+	display(head1);
+	split(head1);
+	getch();
+}
+*********************************************************************************************************************************************
+								OUTPUT
+*********************************************************************************************************************************************
+
+Enter Linked-list 1:
+
+Enter value: 0
+
+Enter 1 to continue: 1
+
+Enter value: 1
+
+Enter 1 to continue: 1
+
+Enter value: 2
+
+Enter 1 to continue: 1
+
+Enter value: 3
+
+Enter 1 to continue: 1
+
+Enter value: 4
+
+Enter 1 to continue: 1
+
+Enter value: 5
+
+Enter 1 to continue: 1
+
+Enter value: 6
+
+Enter 1 to continue: 1
+
+Enter value: 7
+
+Enter 1 to continue: 1
+
+Enter value: 8
+
+Enter 1 to continue: 1
+
+Enter value: 9
+
+Enter 1 to continue: 1
+
+Enter value: 10
+
+Enter 1 to continue: 2
+
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+Odd Linklist:
+1
+3
+5
+7
+9
+Even Linklist:
+0
+2
+4
+6
+8
+10
+*********************************************************************************************************************************************
+*********************************************************************************************************************************************
+Stack:-
+*********************************************************************************************************************************************
+Q1)
+
+Perform following operations on a stack using Array:
+
+	Push
+	Pop
+	Peek
+*********************************************************************************************************************************************
+#include<stdio.h>
+#include<conio.h>
+int push(int top,int size,int a[],int v)
+{
+	if(top<size-1)
+	{
+		top++;
+		a[top]=v;
+	}
+	else
+	{
+		printf("\nStack is full!");
+	}
+	return top;
+}
+int pop(int top,int a[])
+{
+	if(top!=-1)
+	{
+		printf("\nDeleted/Poped value: %ld",a[top]);
+		top--;
+	}
+	else
+	{
+		printf("\nStack is empty!");
+	}
+	return top;
+}
+int peek(int top,int a[])
+{
+	int v=-1;
+	if(top!=-1)
+	{
+		v=a[top];
+	}
+	else
+	{
+		printf("\nStack is empty!");
+	}
+	return v;
+}
+void display(int top,int a[])
+{
+	int p;
+	p=top;
+	printf("\nElements in the stack are as follows: ");
+	while(p>=0)
+	{
+		printf("\n %ld",a[p]);
+		p--;
+	}
+}
+void main()
+{
+	int top=-1,size=0,a[50],v;
+	char c=49;
+	printf("\nEnter the size  of Stack: ");
+	scanf(" %ld",&size);
+	while(c==49 || c==50 || c==51||c==52)
+	{
+		printf("\nPress 1 if you want to insert a value  in the stack:");
+		printf("\nPress 2 if you want to pop a value from  the stack:");
+		printf("\nPress 3  if you want to peek a value from the top of  the stack:");
+		printf("\nPress 4 if you want to display all the elements  in the stack: ");
+		printf("\nPress any other  key to exit: ");
+		scanf(" %c", &c);
+		if(c==49)
+		{	
+			printf("\nEnter value that you want to insert in stack: ");
+			scanf(" %ld",&v);
+			top=push(top,size,a,v);
+		}
+		else if(c==50)
+		{
+			top=pop(top,a);
+		}
+		else if(c==51)
+		{
+			v=peek(top,a);
+			if(v!=-1)
+			{
+				printf("\nValue at the top of the stack is: %ld",v);
+			}
+		}
+		else if(c==52)
+		{
+			display(top,a);
+		}
+		else
+		{
+			printf("\nExiting!");
+			break;
+		}
+	}
+	getch();
+}
+*********************************************************************************************************************************************
+								OUTPUT
+*********************************************************************************************************************************************
+
+Enter the size  of Stack: 5
+
+Press 1 if you want to insert a value  in the stack:
+Press 2 if you want to pop a value from  the stack:
+Press 3  if you want to peek a value from the top of  the stack:
+Press 4 if you want to display all the elements  in the stack:
+Press any other  key to exit: 1
+
+Enter value that you want to insert in stack: 10
+
+Press 1 if you want to insert a value  in the stack:
+Press 2 if you want to pop a value from  the stack:
+Press 3  if you want to peek a value from the top of  the stack:
+Press 4 if you want to display all the elements  in the stack:
+Press any other  key to exit: 1
+
+Enter value that you want to insert in stack: 20
+
+Press 1 if you want to insert a value  in the stack:
+Press 2 if you want to pop a value from  the stack:
+Press 3  if you want to peek a value from the top of  the stack:
+Press 4 if you want to display all the elements  in the stack:
+Press any other  key to exit: 1
+
+Enter value that you want to insert in stack: 30
+
+Press 1 if you want to insert a value  in the stack:
+Press 2 if you want to pop a value from  the stack:
+Press 3  if you want to peek a value from the top of  the stack:
+Press 4 if you want to display all the elements  in the stack:
+Press any other  key to exit: 1
+
+Enter value that you want to insert in stack: 40
+
+Press 1 if you want to insert a value  in the stack:
+Press 2 if you want to pop a value from  the stack:
+Press 3  if you want to peek a value from the top of  the stack:
+Press 4 if you want to display all the elements  in the stack:
+Press any other  key to exit: 1
+
+Enter value that you want to insert in stack: 50
+
+Press 1 if you want to insert a value  in the stack:
+Press 2 if you want to pop a value from  the stack:
+Press 3  if you want to peek a value from the top of  the stack:
+Press 4 if you want to display all the elements  in the stack:
+Press any other  key to exit: 1
+
+Enter value that you want to insert in stack: 60
+
+Stack is full!
+Press 1 if you want to insert a value  in the stack:
+Press 2 if you want to pop a value from  the stack:
+Press 3  if you want to peek a value from the top of  the stack:
+Press 4 if you want to display all the elements  in the stack:
+Press any other  key to exit: 4
+
+Elements in the stack are as follows:
+ 50
+ 40
+ 30
+ 20
+ 10
+Press 1 if you want to insert a value  in the stack:
+Press 2 if you want to pop a value from  the stack:
+Press 3  if you want to peek a value from the top of  the stack:
+Press 4 if you want to display all the elements  in the stack:
+Press any other  key to exit: 2
+
+Deleted/Poped value: 50
+Press 1 if you want to insert a value  in the stack:
+Press 2 if you want to pop a value from  the stack:
+Press 3  if you want to peek a value from the top of  the stack:
+Press 4 if you want to display all the elements  in the stack:
+Press any other  key to exit: 3
+
+Value at the top of the stack is: 40
+Press 1 if you want to insert a value  in the stack:
+Press 2 if you want to pop a value from  the stack:
+Press 3  if you want to peek a value from the top of  the stack:
+Press 4 if you want to display all the elements  in the stack:
+Press any other  key to exit: 3
+
+Value at the top of the stack is: 40
+Press 1 if you want to insert a value  in the stack:
+Press 2 if you want to pop a value from  the stack:
+Press 3  if you want to peek a value from the top of  the stack:
+Press 4 if you want to display all the elements  in the stack:
+Press any other  key to exit: 2
+
+Deleted/Poped value: 40
+Press 1 if you want to insert a value  in the stack:
+Press 2 if you want to pop a value from  the stack:
+Press 3  if you want to peek a value from the top of  the stack:
+Press 4 if you want to display all the elements  in the stack:
+Press any other  key to exit: 4
+
+Elements in the stack are as follows:
+ 30
+ 20
+ 10
+Press 1 if you want to insert a value  in the stack:
+Press 2 if you want to pop a value from  the stack:
+Press 3  if you want to peek a value from the top of  the stack:
+Press 4 if you want to display all the elements  in the stack:
+Press any other  key to exit:
+*********************************************************************************************************************************************
+*********************************************************************************************************************************************
+Q2)
+
+Perform following operations on a stack using Linked List:
+
+	Push
+	Pop
+	Peek
+*********************************************************************************************************************************************
+#include<stdio.h>
+#include<conio.h>
+struct node
+{
+	int v;
+	struct node *next;
+};
+typedef struct node n;
+n* push(n *head,n *nn)
+{
+	if(head==NULL)
+	{
+		head=nn;
+		head->next=NULL;
+	}
+	else
+	{
+		nn->next=head;
+		head=nn;
+	}
+	return head;
+}
+n* pop(n*head)
+{
+	n *nn=NULL;
+	if(head!=NULL)
+	{
+		printf("\nPoped Value: %ld",head->v);
+		nn=head;
+		head=head->next;
+		free(nn);
+	}
+	else
+	{
+		printf("\nStack is Empty!");
+	}
+	return head;
+}
+n *peek(n *head)
+{
+	n *nn=NULL;
+	if(head!=NULL)
+	{
+		nn=head;
+	}
+	else
+	{
+		printf("\nStack is Empty!");
+	}
+	return nn;
+}
+void display(n *head)
+{
+	n *nn=NULL;
+	nn=head;
+	if(nn!=NULL)
+	{
+		printf("\nDisplaying data of Linklist: ");			
+		while(nn!=NULL)
+		{
+			printf("%ld ",nn->v);
+			nn=nn->next;
+		}
+	}
+	else
+	{
+		printf("\nStack is Empty!");
+	}
+}
+void main()
+{
+	n *nn=NULL,*head=NULL;
+	char c=49;
+	while(c==49 || c==50 || c==51 || c==52)
+	{
+		printf("\nPress 1 if you want to push a value: ");
+		printf("\nPress 2 if you want  to pop a value: ");
+		printf("\nPress 3 if you want to peek a value: ");
+		printf("\nPress 4 if you want to display all the values in the stack: ");
+		printf("\nPress any other key to exit: ");
+		scanf(" %c",&c);
+		if(c==49)
+		{
+			nn=(n*)malloc(sizeof(n));
+			printf("\nEnter  the value that you want to push in stack: ");
+			scanf(" %ld",&nn->v);
+			head=push(head,nn);
+		}
+		else if(c==50)
+		{
+			head=pop(head);
+		}
+		else if(c==51)
+		{
+			nn=peek(head);
+			printf("\nValue at  the top of the Stack is: %ld",nn->v);
+		}
+		else if(c==52)
+		{
+			display(head);
+		}
+		else 
+		{
+			printf("\nExit!");
+			break;
+		}
+	}
+}
+*********************************************************************************************************************************************
+								OUTPUT
+*********************************************************************************************************************************************
+
+Press 1 if you want to push a value:
+Press 2 if you want  to pop a value:
+Press 3 if you want to peek a value:
+Press 4 if you want to display all the values in the stack:
+Press any other key to exit: 1
+
+Enter  the value that you want to push in stack: 10
+
+Press 1 if you want to push a value:
+Press 2 if you want  to pop a value:
+Press 3 if you want to peek a value:
+Press 4 if you want to display all the values in the stack:
+Press any other key to exit: 1
+
+Enter  the value that you want to push in stack: 20
+
+Press 1 if you want to push a value:
+Press 2 if you want  to pop a value:
+Press 3 if you want to peek a value:
+Press 4 if you want to display all the values in the stack:
+Press any other key to exit: 1
+
+Enter  the value that you want to push in stack: 30
+
+Press 1 if you want to push a value:
+Press 2 if you want  to pop a value:
+Press 3 if you want to peek a value:
+Press 4 if you want to display all the values in the stack:
+Press any other key to exit: 1
+
+Enter  the value that you want to push in stack: 40
+
+Press 1 if you want to push a value:
+Press 2 if you want  to pop a value:
+Press 3 if you want to peek a value:
+Press 4 if you want to display all the values in the stack:
+Press any other key to exit: 1
+
+Enter  the value that you want to push in stack: 50
+
+Press 1 if you want to push a value:
+Press 2 if you want  to pop a value:
+Press 3 if you want to peek a value:
+Press 4 if you want to display all the values in the stack:
+Press any other key to exit: 1
+
+Enter  the value that you want to push in stack: 60
+
+Press 1 if you want to push a value:
+Press 2 if you want  to pop a value:
+Press 3 if you want to peek a value:
+Press 4 if you want to display all the values in the stack:
+Press any other key to exit: 4
+
+Displaying data of Linklist: 60 50 40 30 20 10
+Press 1 if you want to push a value:
+Press 2 if you want  to pop a value:
+Press 3 if you want to peek a value:
+Press 4 if you want to display all the values in the stack:
+Press any other key to exit: 2
+
+Poped Value: 60
+Press 1 if you want to push a value:
+Press 2 if you want  to pop a value:
+Press 3 if you want to peek a value:
+Press 4 if you want to display all the values in the stack:
+Press any other key to exit: 3
+
+Value at  the top of the Stack is: 50
+Press 1 if you want to push a value:
+Press 2 if you want  to pop a value:
+Press 3 if you want to peek a value:
+Press 4 if you want to display all the values in the stack:
+Press any other key to exit: 2
+
+Poped Value: 50
+Press 1 if you want to push a value:
+Press 2 if you want  to pop a value:
+Press 3 if you want to peek a value:
+Press 4 if you want to display all the values in the stack:
+Press any other key to exit: 4
+
+Displaying data of Linklist: 40 30 20 10
+Press 1 if you want to push a value:
+Press 2 if you want  to pop a value:
+Press 3 if you want to peek a value:
+Press 4 if you want to display all the values in the stack:
+Press any other key to exit:
+*********************************************************************************************************************************************
+*********************************************************************************************************************************************
+Exercises:-
+*********************************************************************************************************************************************
+Q1)
+
+Check whether a symbol is balanced or not using stack.
+*********************************************************************************************************************************************
+#include<stdio.h>
+#include<conio.h>
+#include<string.h>
+int push(int top,int s,char a[],char v)
+{
+	if (top < s - 1)
+	{
+		top++;
+		a[top] = v;
+	}
+	else
+	{
+		printf("\nStack is full!\n");
+	}
+	return top;
+}
+int pop(int top,char a[])
+{
+	char v;
+	if (top == -1)
+	{
+		printf("\nStack is Empty!\n");
+	}
+	else
+	{
+		v = a[top];
+		top--;
+		printf("\nValue %c got poped!", v);
+	}
+	return top;
+}
+void display(int top, char a[])
+{
+	printf("\nStack data: ");
+	while (top > -1)
+	{
+		printf("\n %c", a[top]);
+		top--;
+	}
+}
+void main()
+{
+	char c = 49,s[50],sa[50];
+	int v,top=-1,l,i;
+	printf("\nEnter String: ");
+	scanf_s(" %s", s, sizeof(s));
+	l = strlen(s);
+	for (i = 0; i < l; i++)
+	{
+		if (s[i] == '(' || s[i] == '{' || s[i] == '[')
+		{
+			top = push(top, l, sa, s[i]);
+		}
+		else
+		{
+			if (s[i] == ')' && sa[top] == '(')
+			{
+				top = pop(top, s);
+			}
+			else if (s[i] == '}' && sa[top] == '{')
+			{
+				top = pop(top, s);
+			}
+			else if (s[i] == ']' && sa[top] == '[')
+			{
+				top = pop(top, s);
+			}
+			else
+			{
+				printf("\nImbalancing SYmbols!");
+				getch();
+				exit(0);
+			}
+		}
+	}
+	printf("\nBalancing Symbols!");
+	getch();
+}
+*********************************************************************************************************************************************
+								OUTPUT
+*********************************************************************************************************************************************
+OUTPUT 1:-
+
+
+Enter String: ({})
+
+Value { got poped!
+Value ( got poped!
+Balancing Symbols!
+
+OUTPUT 2:-
+
+
+Enter String: ({[))
+
+Imbalancing SYmbols!
+*********************************************************************************************************************************************
+*********************************************************************************************************************************************
+Q2)
+
+Convert an infix expression into postfix expression using stack.(without parenthesis)
+*********************************************************************************************************************************************
+#include<stdio.h>
+#include<conio.h>
+#include<string.h>
+int push(int top,char s[],int size,char v)
+{
+	if(top<size-1)
+	{
+		top++;
+		s[top]=v;
+	}
+	else
+	{
+		printf("\nStack is Full!");
+	}
+	return top;
+}
+int peep(int top,char s[])
+{
+	char v;
+	if(top>-1)
+	{
+		v=s[top];
+		top--;
+	}
+	else
+	{
+		printf("\nStack is Empty!");
+	}
+	return top;
+}
+int pr(char v)
+{
+	if(v=='*' || v=='/')
+	{
+		return 2;
+	}
+	else if(v=='+' || v=='-')
+	{
+		return 1;
+	}
+}
+int intopost(char a[],int top,char s[],int size,char o[])
+{
+	int l,i,k=0,rank=0;
+	char v;
+	l=strlen(a);
+	for(i=0; i<l; i++)
+	{
+		if(a[i]=='*' || a[i]=='/' || a[i]=='+' || a[i]=='-')
+		{
+			rank--;
+			if(rank<0 || rank>0)
+			{
+				return 0;
+			}
+			if(top==-1)
+			{
+				top=push(top,s,size,a[i]);
+			}
+			else
+			{
+				while(pr(a[i])<=pr(s[top]) && top!=-1)
+				{
+					v=s[top];
+					top=peep(top,s);
+					o[k]=v;
+					k++;
+				}
+				top=push(top,s,size,a[i]);
+			}
+		}
+		else
+		{
+			if(rank<0 || rank>0)
+			{
+				return 0;
+			}
+			rank++;
+			o[k]=a[i];
+			k++;
+		}
+	}
+		while(top>-1)
+			{
+				v=s[top];
+				top=peep(top,s);
+				o[k]=v;
+				k++;
+			}
+	o[k]=NULL;
+	return 1;
+}
+void main()
+{
+	char in[50],s[50],o[50];
+	int top=-1,size,i=0,r;
+	printf("\nEnter Expression: ");
+	scanf_s(" %s",in,sizeof(in));
+	size=(strlen(in)/2);
+	while(i<50)
+	{
+		o[i]=0;
+		i++;
+	}
+	r=intopost(in,top,s,size,o);
+	if(r==1)
+	{
+	printf("\nOutput: %s",o);
+	}
+	else if(r==0)
+	{
+		printf("\nInvalid expression!");
+	}
+	getch();
+}
+*********************************************************************************************************************************************
+								OUTPUT
+*********************************************************************************************************************************************
+OUTPUT 1:-
+
+Enter Expression: a+b-c*d
+
+Enter Size of Stack: 10
+
+Output: ab+cd*-
+
+OUTPUT 2:-
+
+
+Enter Expression: a+b--c
+
+Enter Size of Stack: 10
+
+Invalid expression!
+*********************************************************************************************************************************************
+*********************************************************************************************************************************************
+Q3)
+
+Convert an infix expression into postfix expression using stack.(with parenthesis)
+*********************************************************************************************************************************************
+#include<stdio.h>
+#include<conio.h>
+#include<string.h>
+int push(int top,char s[],int size,char v)
+{
+	if(top<size-1)
+	{
+		top++;
+		s[top]=v;
+	}
+	else
+	{
+		printf("\nStack is Full!");
+	}
+	return top;
+}
+int peep(int top,char s[])
+{
+	char v;
+	if(top>-1)
+	{
+		v=s[top];
+		top--;
+	}
+	else
+	{
+		printf("\nStack is Empty!");
+	}
+	return top;
+}
+int pr(char v)
+{
+	if(v=='*' || v=='/')
+	{
+		return 2;
+	}
+	else if(v=='+' || v=='-')
+	{
+		return 1;
+	}
+	else if(v=='(' || v==')')
+	{
+		return 0;
+	}
+}
+void display(int top,char s[])
+{
+	int i=top;
+	printf("\n");
+	while(top>=0)
+	{
+		printf("\n%c",s[top]);
+		top--;
+	}
+}
+int intopost(char a[],int top,char s[],int size,char o[])
+{
+	int l,i,k=0,rank=0;
+	char v;
+	l=strlen(a);
+	for(i=0; i<l; i++)
+	{
+		if(a[i]=='*' || a[i]=='/' || a[i]=='+' || a[i]=='-' || a[i]=='(' || a[i]==')')
+		{
+			/*if(a[i]!='(' || a[i]!=')')
+			{
+				rank--;
+				if(rank<0 || rank>0)
+				{
+					return 0;
+				}
+			}	*/		
+			if(top==-1)
+			{
+				top=push(top,s,size,a[i]);
+			}
+			else
+			{
+				
+				while((pr(a[i])<=pr(s[top])|| pr(s[top])==0) && top!=-1)
+				{
+					if(a[i]==')')
+					{
+						if(s[top]=='(')
+						{						
+							top=peep(top,s);
+						}
+						else
+						{						
+							v=s[top];
+							top=peep(top,s);
+							o[k]=v;
+							k++;
+						}
+					}
+					else
+					{		
+						if(a[i]=='(')
+						{
+							break;
+						}
+							v=s[top];
+							top=peep(top,s);
+							if(v!='(')
+							{
+								o[k]=v;
+								k++;
+							}
+							else
+							{
+								break;
+							}
+					}
+				}
+				if(a[i]!=')')
+				{
+				top=push(top,s,size,a[i]);
+				}
+			}
+		}
+		else
+		{
+			/*if(rank<0 || rank>0)
+			{
+				return 0;
+			}*/
+			rank++;
+			o[k]=a[i];
+			k++;
+		}
+	}
+		while(top>-1)
+			{
+				v=s[top];
+				top=peep(top,s);
+				if(v!=')')
+				{
+				o[k]=v;
+				k++;
+				}
+			}
+	o[k]=NULL;
+	return 1;
+}
+void main()
+{
+	char in[50],s[50],o[50];
+	int top=-1,size,i=0,r;
+	printf("\nEnter Expression: ");
+	scanf_s(" %s",in,sizeof(in));/*
+	printf("\nEnter Size of Stack: ");
+	scanf(" %ld",&size);*/
+	size=(strlen(in))/2;
+	while(i<50)
+	{
+		o[i]=0;
+		i++;
+	}
+	r=intopost(in,top,s,size,o);
+	if(r==1)
+	{
+	printf("\nOutput: %s",o);
+	}
+	else if(r==0)
+	{
+		printf("\nInvalid expression!");
+	}
+	getch();
+}
+*********************************************************************************************************************************************
+								OUTPUT
+*********************************************************************************************************************************************
+Enter Expression: (a*b)-(c*d)+(e/f)
+
+Output: ab*cd*-ef/+
+*********************************************************************************************************************************************
+*********************************************************************************************************************************************
+QUEUE:-
+*********************************************************************************************************************************************
+Q1)
+
+Perform following operations on simple queue(use Array)
+A. Insert
+B. Delete
+*********************************************************************************************************************************************
+#include<stdio.h>
+#include<conio.h>
+void insert(int *front,int *rear,int size,int a[])
+{
+	int v,c=0;
+	printf("\nEnter the value that you want to insert in the Queue: ");
+	scanf(" %ld",&v);
+	if(*front==-1)
+	{
+		(*front)++;
+	}
+	else if(*rear==size-1)
+	{
+		printf("\nQueue is Full!");
+		c=1;
+	}
+	if(c!=1)
+	{
+		*rear=*rear+1;
+		a[*rear]=v;
+	}
+}
+void del(int *front,int *rear,int size,int a[])
+{
+	int v;
+	if(*front==-1)
+	{
+		printf("\nQueue is Empty!");
+	}
+	else
+	{
+		v=a[*front];
+		if(*rear==size-1 && *front==*rear)
+		{
+			*front=-1;
+			*rear=-1;
+		}
+		else
+		{
+			(*front)++;
+		}
+		printf("\nDeleted Value: %ld",v);
+	}
+}
+void display(int *front,int *rear,int a[])
+{
+	int p=*front;
+	if(*front!=-1)
+	{
+		printf("\nDisplaying all the elements of the Queue: ");
+		while(p<=*rear)
+		{
+			printf(" %ld",a[p]);
+			p++;
+		}
+	}
+	else
+	{
+		printf("\nQueue is Empty!");
+	}
+}
+void main()
+{
+	int front=-1,rear=-1,size,a[20],v;
+	char c=49;
+	printf("\nEnter size of Queue: ");
+	scanf(" %ld",&size);
+	while(c==49 || c==50 || c==51)
+	{
+		
+		printf("\nPress 1 if you want to enter  another value in Queue: ");
+		printf("\nPress 2 if you want to delete a value from Queue: ");
+		printf("\nPress 3 if you want to display all the elements of the Queue: ");
+		printf("\nPress anyother key to exit!");
+		scanf(" %c",&c);
+		if(c==49)
+		{			
+			insert(&front,&rear,size,a);	
+		}
+		else if(c==50)
+		{
+			del(&front,&rear,size,a);
+		}
+		else if(c==51)
+		{
+			display(&front,&rear,a);
+		}
+		else 
+		{
+			printf("\nExiting!");
+			exit(0);
+		}
+	}
+	getch();
+}
+*********************************************************************************************************************************************
+								OUTPUT
+*********************************************************************************************************************************************
+
+Enter size of Queue: 5
+
+Press 1 if you want to enter  another value in Queue:
+Press 2 if you want to delete a value from Queue:
+Press 3 if you want to display all the elements of the Queue:
+Press anyother key to exit!1
+
+Enter the value that you want to insert in the Queue: 10
+
+Press 1 if you want to enter  another value in Queue:
+Press 2 if you want to delete a value from Queue:
+Press 3 if you want to display all the elements of the Queue:
+Press anyother key to exit!1
+
+Enter the value that you want to insert in the Queue: 20
+
+Press 1 if you want to enter  another value in Queue:
+Press 2 if you want to delete a value from Queue:
+Press 3 if you want to display all the elements of the Queue:
+Press anyother key to exit!1
+
+Enter the value that you want to insert in the Queue: 30
+
+Press 1 if you want to enter  another value in Queue:
+Press 2 if you want to delete a value from Queue:
+Press 3 if you want to display all the elements of the Queue:
+Press anyother key to exit!1
+
+Enter the value that you want to insert in the Queue: 40
+
+Press 1 if you want to enter  another value in Queue:
+Press 2 if you want to delete a value from Queue:
+Press 3 if you want to display all the elements of the Queue:
+Press anyother key to exit!1
+
+Enter the value that you want to insert in the Queue: 50
+
+Press 1 if you want to enter  another value in Queue:
+Press 2 if you want to delete a value from Queue:
+Press 3 if you want to display all the elements of the Queue:
+Press anyother key to exit!1
+
+Enter the value that you want to insert in the Queue: 60
+
+Queue is Full!
+Press 1 if you want to enter  another value in Queue:
+Press 2 if you want to delete a value from Queue:
+Press 3 if you want to display all the elements of the Queue:
+Press anyother key to exit!3
+
+Displaying all the elements of the Queue:  10 20 30 40 50
+Press 1 if you want to enter  another value in Queue:
+Press 2 if you want to delete a value from Queue:
+Press 3 if you want to display all the elements of the Queue:
+Press anyother key to exit!2
+
+Deleted Value: 10
+Press 1 if you want to enter  another value in Queue:
+Press 2 if you want to delete a value from Queue:
+Press 3 if you want to display all the elements of the Queue:
+Press anyother key to exit!2
+
+Deleted Value: 20
+Press 1 if you want to enter  another value in Queue:
+Press 2 if you want to delete a value from Queue:
+Press 3 if you want to display all the elements of the Queue:
+Press anyother key to exit!2
+
+Deleted Value: 30
+Press 1 if you want to enter  another value in Queue:
+Press 2 if you want to delete a value from Queue:
+Press 3 if you want to display all the elements of the Queue:
+Press anyother key to exit!2
+
+Deleted Value: 40
+Press 1 if you want to enter  another value in Queue:
+Press 2 if you want to delete a value from Queue:
+Press 3 if you want to display all the elements of the Queue:
+Press anyother key to exit!2
+
+Deleted Value: 50
+Press 1 if you want to enter  another value in Queue:
+Press 2 if you want to delete a value from Queue:
+Press 3 if you want to display all the elements of the Queue:
+Press anyother key to exit!2
+
+Queue is Empty!
+Press 1 if you want to enter  another value in Queue:
+Press 2 if you want to delete a value from Queue:
+Press 3 if you want to display all the elements of the Queue:
+Press anyother key to exit!3
+
+Queue is Empty!
+Press 1 if you want to enter  another value in Queue:
+Press 2 if you want to delete a value from Queue:
+Press 3 if you want to display all the elements of the Queue:
+Press anyother key to exit!
+*********************************************************************************************************************************************
+*********************************************************************************************************************************************
+Q2)
+
+Perform following operations on circular queue(use Array)
+A. Insert
+B. Delete
+*********************************************************************************************************************************************
+#include<stdio.h>
+#include<conio.h>
+void insert(int *front,int *rear,int size,int a[])
+{
+	int v,c=0;
+	printf("\nEnter the value that you want to insert in the Queue: ");
+	scanf(" %ld",&v);
+	if(*front==-1)
+	{
+		(*front)++;
+	}
+	else if(*front<*rear && *front==0 && *rear==size-1)
+	{
+		printf("\nQueue is Full!");
+		c=1;
+	}
+	else if(*front>*rear && *rear==*front-1)
+	{
+		printf("\nQueue is Full!");
+		c=1;
+	}
+	if(c!=1)
+	{
+		if(*front>0 && *rear==size-1)
+		{
+			*rear=0;
+			a[*rear]=v;
+		}
+		else
+		{
+			(*rear)++;
+		}
+		a[*rear]=v;
+	}
+}
+void del(int *front,int *rear,int size,int a[])
+{
+	int v;
+	if(*front==-1)
+	{
+		printf("\nQueue is Empty!");
+	}
+	else
+	{
+		v=a[*front];
+		if(*front==*rear)
+		{
+			*front=-1;
+			*rear=-1;
+		}
+		else if(*rear<*front && *front==size-1)
+		{
+			*front=0;
+		}
+		else
+		{
+			(*front)++;
+		}
+		printf("\nDeleted Value: %ld",v);
+	}
+}
+void display(int *front,int *rear,int a[],int size)
+{
+	int p;
+	if(*front!=-1)
+	{
+		printf("\nDisplaying all the elements of the Queue: ");
+		if(*front<=*rear)
+		{
+			p=*front;
+			while(p<=*rear)
+			{
+				printf(" %ld",a[p]);
+				p++;
+			}
+		}
+		else 
+		{
+			p=*front;
+			while(p<=size-1)
+			{
+				printf(" %ld",a[p]);
+				p++;
+			}
+			p=0;
+			while(p<=*rear)
+			{
+				printf(" %ld",a[p]);
+				p++;
+			}
+		}
+	}
+	else
+	{
+		printf("\nQueue is Empty!");
+	}
+}
+void main()
+{
+	int front=-1,rear=-1,size,a[20],v;
+	char c=49;
+	printf("\nEnter size of Queue: ");
+	scanf(" %ld",&size);
+	while(c==49 || c==50 || c==51)
+	{
+		
+		printf("\nPress 1 if you want to enter  another value in Queue: ");
+		printf("\nPress 2 if you want to delete a value from Queue: ");
+		printf("\nPress 3 if you want to display all the elements of the Queue: ");
+		printf("\nPress anyother key to exit!");
+		scanf(" %c",&c);
+		if(c==49)
+		{			
+			insert(&front,&rear,size,a);	
+		}
+		else if(c==50)
+		{
+			del(&front,&rear,size,a);
+		}
+		else if(c==51)
+		{
+			display(&front,&rear,a,size);
+		}
+		else 
+		{
+			printf("\nExiting!");
+			exit(0);
+		}
+	}
+	getch();
+}
+*********************************************************************************************************************************************
+								OUTPUT
+*********************************************************************************************************************************************
+Enter size of Queue: 5
+
+Press 1 if you want to enter  another value in Queue:
+Press 2 if you want to delete a value from Queue:
+Press 3 if you want to display all the elements of the Queue:
+Press anyother key to exit!1
+
+Enter the value that you want to insert in the Queue: 10
+
+Press 1 if you want to enter  another value in Queue:
+Press 2 if you want to delete a value from Queue:
+Press 3 if you want to display all the elements of the Queue:
+Press anyother key to exit!1
+
+Enter the value that you want to insert in the Queue: 20
+
+Press 1 if you want to enter  another value in Queue:
+Press 2 if you want to delete a value from Queue:
+Press 3 if you want to display all the elements of the Queue:
+Press anyother key to exit!1
+
+Enter the value that you want to insert in the Queue: 30
+
+Press 1 if you want to enter  another value in Queue:
+Press 2 if you want to delete a value from Queue:
+Press 3 if you want to display all the elements of the Queue:
+Press anyother key to exit!1
+
+Enter the value that you want to insert in the Queue: 40
+
+Press 1 if you want to enter  another value in Queue:
+Press 2 if you want to delete a value from Queue:
+Press 3 if you want to display all the elements of the Queue:
+Press anyother key to exit!1
+
+Enter the value that you want to insert in the Queue: 50
+
+Press 1 if you want to enter  another value in Queue:
+Press 2 if you want to delete a value from Queue:
+Press 3 if you want to display all the elements of the Queue:
+Press anyother key to exit!1
+
+Enter the value that you want to insert in the Queue: 60
+
+Queue is Full!
+Press 1 if you want to enter  another value in Queue:
+Press 2 if you want to delete a value from Queue:
+Press 3 if you want to display all the elements of the Queue:
+Press anyother key to exit!3
+
+Displaying all the elements of the Queue:  10 20 30 40 50
+Press 1 if you want to enter  another value in Queue:
+Press 2 if you want to delete a value from Queue:
+Press 3 if you want to display all the elements of the Queue:
+Press anyother key to exit!2
+
+Deleted Value: 10
+Press 1 if you want to enter  another value in Queue:
+Press 2 if you want to delete a value from Queue:
+Press 3 if you want to display all the elements of the Queue:
+Press anyother key to exit!3
+
+Displaying all the elements of the Queue:  20 30 40 50
+Press 1 if you want to enter  another value in Queue:
+Press 2 if you want to delete a value from Queue:
+Press 3 if you want to display all the elements of the Queue:
+Press anyother key to exit!2
+
+Deleted Value: 20
+Press 1 if you want to enter  another value in Queue:
+Press 2 if you want to delete a value from Queue:
+Press 3 if you want to display all the elements of the Queue:
+Press anyother key to exit!3
+
+Displaying all the elements of the Queue:  30 40 50
+Press 1 if you want to enter  another value in Queue:
+Press 2 if you want to delete a value from Queue:
+Press 3 if you want to display all the elements of the Queue:
+Press anyother key to exit!1
+
+Enter the value that you want to insert in the Queue: 60
+
+Press 1 if you want to enter  another value in Queue:
+Press 2 if you want to delete a value from Queue:
+Press 3 if you want to display all the elements of the Queue:
+Press anyother key to exit!3
+
+Displaying all the elements of the Queue:  30 40 50 60
+Press 1 if you want to enter  another value in Queue:
+Press 2 if you want to delete a value from Queue:
+Press 3 if you want to display all the elements of the Queue:
+Press anyother key to exit!1
+
+Enter the value that you want to insert in the Queue: 70
+
+Press 1 if you want to enter  another value in Queue:
+Press 2 if you want to delete a value from Queue:
+Press 3 if you want to display all the elements of the Queue:
+Press anyother key to exit!3
+
+Displaying all the elements of the Queue:  30 40 50 60 70
+Press 1 if you want to enter  another value in Queue:
+Press 2 if you want to delete a value from Queue:
+Press 3 if you want to display all the elements of the Queue:
+Press anyother key to exit!1
+
+Enter the value that you want to insert in the Queue: 80
+
+Queue is Full!
+Press 1 if you want to enter  another value in Queue:
+Press 2 if you want to delete a value from Queue:
+Press 3 if you want to display all the elements of the Queue:
+Press anyother key to exit!3
+
+Displaying all the elements of the Queue:  30 40 50 60 70
+Press 1 if you want to enter  another value in Queue:
+Press 2 if you want to delete a value from Queue:
+Press 3 if you want to display all the elements of the Queue:
+Press anyother key to exit!2
+
+Deleted Value: 30
+Press 1 if you want to enter  another value in Queue:
+Press 2 if you want to delete a value from Queue:
+Press 3 if you want to display all the elements of the Queue:
+Press anyother key to exit!2
+
+Deleted Value: 40
+Press 1 if you want to enter  another value in Queue:
+Press 2 if you want to delete a value from Queue:
+Press 3 if you want to display all the elements of the Queue:
+Press anyother key to exit!2
+
+Deleted Value: 50
+Press 1 if you want to enter  another value in Queue:
+Press 2 if you want to delete a value from Queue:
+Press 3 if you want to display all the elements of the Queue:
+Press anyother key to exit!2
+
+Deleted Value: 60
+Press 1 if you want to enter  another value in Queue:
+Press 2 if you want to delete a value from Queue:
+Press 3 if you want to display all the elements of the Queue:
+Press anyother key to exit!2
+
+Deleted Value: 70
+Press 1 if you want to enter  another value in Queue:
+Press 2 if you want to delete a value from Queue:
+Press 3 if you want to display all the elements of the Queue:
+Press anyother key to exit!2
+
+Queue is Empty!
+Press 1 if you want to enter  another value in Queue:
+Press 2 if you want to delete a value from Queue:
+Press 3 if you want to display all the elements of the Queue:
+Press anyother key to exit!3
+
+Queue is Empty!
+Press 1 if you want to enter  another value in Queue:
+Press 2 if you want to delete a value from Queue:
+Press 3 if you want to display all the elements of the Queue:
+Press anyother key to exit!
+*********************************************************************************************************************************************
+*********************************************************************************************************************************************

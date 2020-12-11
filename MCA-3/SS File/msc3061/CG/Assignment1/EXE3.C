@@ -1,0 +1,69 @@
+#include<stdio.h>
+#include<conio.h>
+#include<graphics.h>
+#include<math.h>
+#define Round(a) ((int)(a+0.5))
+dda(int xa,int ya,int xb,int yb,int l[]){
+	int dx,dy,steps,xincr,yincr,x,y,i;
+	int cnt=1;
+	dx=xb-xa;
+	dy=yb-ya;
+	if(abs(dx)>abs(dy)){
+		steps=dx;
+	}
+	else{
+		steps=dy;
+	}
+	xincr=dx/steps;
+	yincr=dy/steps;
+	x=xa;
+	y=ya;
+	putpixel(x,y,1);
+	for(i=0;i<steps;i++){
+		x=x+xincr;
+		y=y+yincr;
+		if(l[cnt]==1){
+		putpixel(Round(x),Round(y),YELLOW);
+		}
+		cnt++;
+		if(cnt==10){
+			cnt=1;
+		}
+	}
+	return 0;
+}
+void main(){
+	int gd=DETECT,gm;
+	int end1,end2,end3,end4,a;
+	int dotted[]={1,0,0,1,0,0,1,0,0,1};
+	int dasheddotted[]={1,1,1,0,0,1,0,0,1,1,1,0,0,1,0,0};
+	int dashed[]={1,1,1,0,0,0,0,1,1,1,0,0,0,0};
+	initgraph(&gd,&gm,"c:/tc/bgi");
+	printf("\nEnter 1 FOR DOTTED LINE");
+	printf("\nENTER 2 FOR DASHED-DOTTED LINE");
+	printf("\nENTER 3 FOR DASHED LINE");
+	printf("\nENTER THE VALUE::");
+	scanf("%d",&a);
+	//dda(50,200,250,200);
+	//dda(150,100,50,200);
+	//dda(150,100,250,200);
+	switch(a){
+	case 1:
+		dda(250,200,250,450,dotted);
+		break;
+
+	case 2:
+		dda(250,200,250,450,dasheddotted);
+		break;
+	case 3:
+		dda(250,200,250,450,dashed);
+		break;
+
+	default:
+		printf("\nINVALID");
+		break;
+	}
+
+	getch();
+
+}

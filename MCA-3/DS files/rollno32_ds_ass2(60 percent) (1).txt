@@ -1,0 +1,1922 @@
+Name:Pushti Sampat
+Roll no:32
+Subject:Data structure
+
+***********************************************************************
+evaluate the posfix expression
+
+***********************************************************************
+#include<stdio.h>
+#include<ctype.h>
+#define MAX 100 //max size of stack
+#define PSIZE 100 //max number of characters in postfix expression 
+void push3(int stk[],int n,int *top)
+{
+	(*top)++;
+	stk[*top]=n;
+}
+int pop3(int stk[],int *top)
+{
+	int c;
+	c=stk[*top];
+	(*top)--;
+	return c;
+}
+void ev_postfix(char exp[],int a[])
+{
+	int i,num,op1,op2,stk[MAX],top=-1;
+	for(i=0;exp[i]!='\0';i++)
+	{
+		if(isalpha(exp[i]))
+		{
+			printf("\n Enter the value for %c:",exp[i]);
+			scanf("%d",&num);
+			push3(stk,num,&top);
+		}
+		else if(isdigit(exp[i]))
+			push3(stk,exp[i]-'0',&top);
+		else
+		{
+			op2=pop3(stk,&top);
+			op1=pop3(stk,&top);
+			switch(exp[i])
+			{
+				case '+':push3(stk,op1+op2,&top);break;
+				case '-':push3(stk,op1-op2,&top);break;
+				case '*':push3(stk,op1*op2,&top);break;
+				case '/':push3(stk,op1/op2,&top);break;
+				case '%':push3(stk,op1%op2,&top);break;
+				case '^':push3(stk,op1^op2,&top);break;
+			}
+		}
+	}
+	printf("%d\n",stk[top]);
+}
+void main()
+{
+	char exp[PSIZE];
+	int a[20];
+	printf("\n Enter PostFix Expression:");
+	scanf("%s",exp);
+	ev_postfix(exp,a);
+}
+
+
+************************************************************************
+Output:
+
+Enter PostFix Expression:ab+
+
+ Enter the value for a:12
+
+ Enter the value for b:12
+24
+Press any key to continue . . .
+
+
+***********************************************************************
+Queue using LinkList
+
+***********************************************************************
+#include<stdio.h>
+#define MAX 5
+struct node
+{
+	int data;
+	struct node *nxt;
+}*frt=NULL,*rer=NULL;
+int count=0;
+
+void enque(int x)
+{
+	struct node *nn;
+	nn=(struct node *)malloc(sizeof(struct node));
+	nn->data=x;
+	nn->nxt=NULL;
+	
+	if(frt==NULL && rer==NULL) //queue is empty so insert at 0th position
+		frt=rer=nn;
+	else
+	{
+		rer->nxt=nn;
+		rer=nn;
+	}
+	count++;
+}
+void disp()
+{
+	struct node *tmp;
+	if(frt==NULL && rer==NULL)
+		printf("\n Queue is Empty");
+	else
+	{
+		for(tmp=frt;tmp!=NULL;tmp=tmp->nxt)
+			printf(" %d  ",tmp->data);
+	}
+}
+void deque()
+{
+	struct node *tmp;
+	if(frt==NULL && rer==NULL)
+		printf("\n Queue is Empty");
+	else
+	{
+		tmp=frt;
+		if(frt->nxt!=NULL)
+		{
+			printf("%d is deleted from queue",frt->data);
+			frt=frt->nxt;
+			free(tmp);
+		}
+		else  //if there is only node
+		{
+			printf("%d is deleted from queue",frt->data);
+			free(tmp);
+			frt=rer=NULL;
+		}
+	}
+}
+void peek2()
+{
+	if(frt==NULL && rer==NULL)
+		printf("\n Queue is Empty");
+	else
+		printf("%d is front in queue",frt->data);
+}
+void main()
+{
+	int ch,val;
+    while(1)
+	{
+      printf("\n****** MENU ******\n");
+      printf("1. Insert\n2. Delete\n3. Display\n4. Peek\n5. Exit\n");
+      printf("Enter your choice: ");
+      scanf("%d",&ch);
+      switch(ch)
+	  {
+			case 1: if(count==MAX) //if queue is full when inserting
+				printf("\n OverFlow");
+			  else
+		      {
+				printf("Enter the value to be inserted: ");
+				scanf("%d", &val);
+				enque(val);
+			  }
+			  break;
+			case 2: deque(); break;
+			case 3: disp(); break;
+			case 4: peek2();break;
+			case 5: exit(0);
+			default: printf("\nWrong selection!!! Please try again!!!\n");
+     }
+   }
+}
+
+************************************************************************
+Output:
+
+****** MENU ******
+1. Insert
+2. Delete
+3. Display
+4. Peek
+5. Exit
+Enter your choice: 1
+Enter the value to be inserted: 1
+
+****** MENU ******
+1. Insert
+2. Delete
+3. Display
+4. Peek
+5. Exit
+Enter your choice: 1
+Enter the value to be inserted: 2
+
+****** MENU ******
+1. Insert
+2. Delete
+3. Display
+4. Peek
+5. Exit
+Enter your choice: 3
+ 1   2
+****** MENU ******
+1. Insert
+2. Delete
+3. Display
+4. Peek
+5. Exit
+Enter your choice: 2
+1 is deleted from queue
+****** MENU ******
+1. Insert
+2. Delete
+3. Display
+4. Peek
+5. Exit
+Enter your choice: 3
+ 2
+****** MENU ******
+1. Insert
+2. Delete
+3. Display
+4. Peek
+5. Exit
+Enter your choice: 4
+2 is front in queue
+****** MENU ******
+1. Insert
+2. Delete
+3. Display
+4. Peek
+5. Exit
+Enter your choice: 5
+Press any key to continue . . .
+
+***********************************************************************
+Circular queue using Array
+
+***********************************************************************
+#include<stdio.h>
+#define N 5
+
+int qu[N];
+int frntt=-1,rerr=-1;
+
+void enqu(int x) //insertion in queue through rear
+{
+	if((frntt==0 && rerr==N-1) || (frntt==rerr+1)) //if queue is full when inserting
+		printf("\n OverFlow Is There So Value is NOT Inserted");
+	else 
+	{
+		if(frntt==-1 && rerr==-1) //if queue is Empty so insert at 0th position
+			frntt=rerr=0;
+		else if(rerr==N-1) //if rear is at last block then go to 0th postion for insertion
+			rerr=0;
+		else
+			rerr++;
+		qu[rerr]=x;
+	}
+}
+
+void dqu()
+{
+	if(frntt==-1 && rerr==-1) //if queue is empty when inserting
+		printf("\n UnderFlow");
+
+	else
+	{
+		printf("\n Element deleted from queue is : %d\n", qu[frntt]);
+		if(frntt==rerr) //if there is only 1 element
+			frntt=rerr=-1;
+		else if(frntt==N-1)  //if front is at last block then go to 0th postion for deletion
+			frntt=0;
+		else
+			frntt++;
+	}
+}
+void display6()
+{
+	int f=frntt,r=rerr;
+	if(frntt==-1 && rerr==-1) //if queue is empty when inserting
+		printf("\n UnderFlow");
+
+	else
+	{
+		if(f<=r)
+		{
+			for(;f<=r;f++)
+				printf("%d ",qu[f]);
+		}
+		else
+		{
+			//there will be 2 parts
+			//suppose rear will be at 1 index and front will be at 4 index of array.
+			//it means index 0,1,4 have elements to be displayed.
+			//so firstly 4 index will be displayed with first loop then 0,1 will be displayed in second loop
+			for(;f<=N-1;f++)
+				printf("%d ",qu[f]);
+			f=0;
+			for(;f<=r;f++)
+				printf("%d ",qu[f]);
+		}
+	}
+}
+void main()
+{
+	int ch,n;
+    while(1)
+    {
+        printf("\n 1.Insert element to queue");
+        printf("\n 2.Delete element from queue");
+        printf("\n 3.Display all elements of queue");
+        printf("\n 4.Quit");
+		printf("\nEnter your choice:");
+        scanf("%d", &ch);
+        switch(ch)
+        {
+			case 1:printf("\n Enter Element to be inserted:");
+			       scanf("%d",&n);
+                   enqu(n);
+			       break;
+			case 2:dqu();
+				   break;
+			case 3:display6();
+				   break;
+			case 4:exit(0);
+			default:printf("Wrong choice \n");
+        } 
+    }		
+}
+
+************************************************************************
+Output:
+ 1.Insert element to queue
+ 2.Delete element from queue
+ 3.Display all elements of queue
+ 4.Quit
+Enter your choice:1
+
+ Enter Element to be inserted:1
+
+ 1.Insert element to queue
+ 2.Delete element from queue
+ 3.Display all elements of queue
+ 4.Quit
+Enter your choice:1
+
+ Enter Element to be inserted:2
+
+ 1.Insert element to queue
+ 2.Delete element from queue
+ 3.Display all elements of queue
+ 4.Quit
+Enter your choice:1
+
+ Enter Element to be inserted:3
+
+ 1.Insert element to queue
+ 2.Delete element from queue
+ 3.Display all elements of queue
+ 4.Quit
+Enter your choice:3
+1 2 3
+ 1.Insert element to queue
+ 2.Delete element from queue
+ 3.Display all elements of queue
+ 4.Quit
+Enter your choice:2
+
+ Element deleted from queue is : 1
+
+ 1.Insert element to queue
+ 2.Delete element from queue
+ 3.Display all elements of queue
+ 4.Quit
+Enter your choice:3
+2 3
+ 1.Insert element to queue
+ 2.Delete element from queue
+ 3.Display all elements of queue
+ 4.Quit
+Enter your choice:4
+Press any key to continue . . .
+
+***********************************************************************
+Circular queue using LinkList
+
+***********************************************************************
+#include<stdio.h>
+#define MAXX 5
+struct node
+{
+	int data;
+	struct node *nxt;
+}*f=NULL,*r=NULL;
+int cntt=0;
+
+void enque1(int x)
+{
+	struct node *nn;
+	nn=(struct node *)malloc(sizeof(struct node));
+	nn->data=x;
+	nn->nxt=NULL;
+	if(f==NULL && r==NULL)//queue is empty and inserting first node
+		f=r=nn;
+	else
+	{
+		r->nxt=nn;
+		r=nn;
+	}
+	r->nxt=f;
+	cntt++;
+}
+void deque1()
+{
+	struct node *tmp;
+	if(f==NULL && r==NULL)
+		printf("\n Queue is Empty");
+	else
+	{
+		tmp=f;
+		printf("%d is deleted from queue",f->data);
+		if(f==r) //There is only one node
+			f=r=NULL;
+		else
+		{
+			f=f->nxt;
+			r->nxt=f;
+		}
+		free(tmp);
+		cntt--;
+	}
+}
+void disp1()
+{
+	struct node *tmp=f;
+	if(f==NULL && r==NULL)
+		printf("\n Queue is Empty");
+	else
+	{
+		do
+		{
+			printf(" %d  ",tmp->data);
+			tmp=tmp->nxt;
+		}while(tmp!=f);
+	}
+}
+void peek3()
+{
+	if(f==NULL && r==NULL)
+		printf("\n Queue is Empty");
+	else
+		printf("%d is front in queue",f->data);
+}
+void main()
+{
+	int ch,val;
+    while(1)
+	{
+      printf("\n****** MENU ******\n");
+      printf("1. Insert\n2. Delete\n3. Display\n4. Peek\n5. Exit\n");
+      printf("Enter your choice: ");
+      scanf("%d",&ch);
+      switch(ch){
+	  case 1: if(cntt==MAXX) //if queue is full when inserting
+				printf("\n OverFlow");
+			  else
+		      {	
+				  printf("Enter the value to be inserted: ");
+                  scanf("%d", &val);
+			      enque1(val);
+			  }
+			  break;
+	  case 2: deque1(); break;
+	  case 3: disp1(); break;
+	  case 4: peek3();break;
+      case 5: exit(0);
+      default: printf("\nWrong selection!!! Please try again!!!\n");
+     }
+   }
+}
+
+************************************************************************
+Output:
+
+****** MENU ******
+1. Insert
+2. Delete
+3. Display
+4. Peek
+5. Exit
+Enter your choice: 1
+Enter the value to be inserted: 1
+
+****** MENU ******
+1. Insert
+2. Delete
+3. Display
+4. Peek
+5. Exit
+Enter your choice: 1
+Enter the value to be inserted: 2
+
+****** MENU ******
+1. Insert
+2. Delete
+3. Display
+4. Peek
+5. Exit
+Enter your choice: 1
+Enter the value to be inserted: 3
+
+****** MENU ******
+1. Insert
+2. Delete
+3. Display
+4. Peek
+5. Exit
+Enter your choice: 3
+ 1   2   3
+****** MENU ******
+1. Insert
+2. Delete
+3. Display
+4. Peek
+5. Exit
+Enter your choice: 4
+1 is front in queue
+****** MENU ******
+1. Insert
+2. Delete
+3. Display
+4. Peek
+5. Exit
+Enter your choice: 2
+1 is deleted from queue
+****** MENU ******
+1. Insert
+2. Delete
+3. Display
+4. Peek
+5. Exit
+Enter your choice: 3
+ 2   3
+****** MENU ******
+1. Insert
+2. Delete
+3. Display
+4. Peek
+5. Exit
+Enter your choice: 5
+Press any key to continue . . .
+
+***********************************************************************
+Singly Circular LinkList(All Insertions, All Deletions & Display).
+
+***********************************************************************
+#include<stdio.h>
+struct node
+{
+	int data;
+	struct node *nxt;
+};
+void addtoempty(struct node **last,int val)
+{
+	struct node *nn;
+	nn=(struct node *)malloc(sizeof(struct node));
+	nn->data=val;
+	(*last)=nn;
+	(*last)->nxt=(*last);
+}
+void addtoend(struct node **last,int val)
+{
+	struct node *nn;
+	nn=(struct node *)malloc(sizeof(struct node));
+	nn->data=val;
+	nn->nxt=(*last)->nxt;
+	(*last)->nxt=nn;
+	(*last)=nn;
+}
+void createlist(struct node **last)
+{
+	int i,n,val;
+	printf("\n How many values you want to enter:");
+	scanf("%d",&n);
+	printf("\n Enter first data for the list:");
+	scanf("%d",&val);
+	addtoempty(&(*last),val);
+	for(i=2;i<=n;i++)
+	{
+		printf("\n Enter %d data for the list:",i);
+		scanf("%d",&val);
+		addtoend(&(*last),val);
+	}
+}
+void display7(struct node **last)
+{
+	struct node *tmp;
+	if((*last)==NULL)
+		printf("\n List is Empty");
+	else
+	{
+		tmp=(*last)->nxt;
+		do
+		{
+			printf(" %d ",tmp->data);
+			tmp=tmp->nxt;
+		}while(tmp!=(*last)->nxt);
+	}
+}
+void addatbeg(struct node **last,int n)
+{
+	if((*last)==NULL)
+		addtoempty(&(*last),n);
+	else
+	{
+		struct node *nn;
+		nn=(struct node *)malloc(sizeof(struct node));
+		nn->data=n;
+		nn->nxt=(*last)->nxt;
+		(*last)->nxt=nn;
+	}
+}
+
+void addtoend1(struct node **last,int n) 
+{
+	if((*last)==NULL)
+		addtoempty(&(*last),n);
+	else
+	{
+		struct node *nn;
+		nn=(struct node *)malloc(sizeof(struct node));
+		nn->data=n;
+		nn->nxt=(*last)->nxt;
+		(*last)->nxt=nn;
+		(*last)=nn;
+	}
+}
+void delfrbeg(struct node **last)
+{
+	struct node *tmp;
+	if((*last)==NULL)
+		printf("\n LinkList is Empty");
+	else
+	{
+		tmp=(*last)->nxt;
+		if((*last)->nxt==(*last))
+			*last=NULL;
+		else
+			(*last)->nxt=tmp->nxt;
+		free(tmp);
+	}
+}
+void delfrend(struct node **last)
+{
+	struct node *tmp,*p;
+	if((*last)==NULL)
+		printf("\n LinkList is Empty");
+	else
+	{
+		tmp=*last;
+		if((*last)->nxt==(*last))
+			*last=NULL;
+		else
+		{
+			for(p=(*last)->nxt;p->nxt!=(*last);p=p->nxt);
+			p->nxt=tmp->nxt;
+			(*last)=p;
+		}
+		free(tmp);
+	}
+}
+
+void addafter(struct node **last,int n,int val)
+{
+	struct node *t,*nn;
+	int flag=0;
+	t=(*last)->nxt;
+	do
+	{
+		if(t->data==val)
+		{
+			flag=1;
+			nn=(struct node *)malloc(sizeof(struct node));
+			nn->data=n;
+			nn->nxt=t->nxt;
+			t->nxt=nn;
+			if(t==(*last))
+				(*last)=nn;
+		}
+		t=t->nxt;
+	}while(t!=(*last)->nxt && flag==0);
+	if(flag!=1)
+		printf("\n %d is not present in list",val);
+}
+void addbef(struct node **last,int n,int val)
+{
+	struct node *t,*nn;
+	int flag=0;
+	t=(*last)->nxt;
+	do
+	{
+		if((t->data==val) && (t->nxt=t))
+		{
+			flag=1;
+			nn=(struct node *)malloc(sizeof(struct node));
+			nn->data=n;
+			nn->nxt=(*last);
+			(*last)->nxt=nn;
+		}
+		else if(t->nxt->data==val)
+		{
+			flag=1;
+			nn=(struct node *)malloc(sizeof(struct node));
+			nn->data=n;
+			nn->nxt=t->nxt;
+			t->nxt=nn;
+		}
+		t=t->nxt;
+	}while(t!=(*last)->nxt && flag==0);
+	if(flag!=1)
+		printf("\n %d is not present in list",val);
+}
+void deleteno(struct node **last,int n)
+{
+	struct node *t,*p;
+	int flag=0;
+	t=(*last)->nxt;
+	if(t->data==n && t->nxt==t) //first node is to be deleted
+	{
+			flag=1;
+			*last=NULL;
+			free(t);
+	}
+	else
+	{
+		do
+		{
+			if(t->nxt->data==n && t->nxt==(*last)) //last node is to deleted
+			{
+				flag=1;
+				p=t->nxt;
+				t->nxt=t->nxt->nxt;
+				(*last)=t;
+				free(p);
+			}
+			else if(t->nxt->data==n)
+			{
+				flag=1;
+				p=t->nxt;
+				t->nxt=t->nxt->nxt;
+				free(p);
+			}
+			t=t->nxt;
+		}while(t!=(*last)->nxt && flag==0);
+	}
+	if(flag!=1)
+		printf("\n Number not found");
+}
+void main()
+{
+	int ch,n,val;
+	struct node *last=NULL;
+
+	while(1)
+	{
+		printf("\n 1.Create List");
+		printf("\n 2.Display");
+		printf("\n 3.Add At Beginning");
+		printf("\n 4.Add to End");
+		printf("\n 5.Delete from beginning");
+		printf("\n 6.Delete from end");
+		printf("\n 7.Add After");
+		printf("\n 8.Add Before");
+		printf("\n 9.Delete Any Number");
+		printf("\n 10.Exit");
+		printf("\n Enter Your Choice:");
+		scanf("%d",&ch);
+		switch(ch)
+		{
+			case 1:createlist(&last);
+					break;
+			case 2:display7(&last);
+					break;
+			case 3:printf("\n Enter Number To be Inserted:");
+					scanf("%d",&n);
+					addatbeg(&last,n);
+				    break;
+			case 4:printf("\n Enter Number To be Inserted:");
+					scanf("%d",&n);
+					addtoend1(&last,n);
+					break;
+			case 5:delfrbeg(&last);
+				    break;
+			case 6:delfrend(&last);
+				   break;
+			case 7:if(last==NULL)
+						printf("\n List is Empty");
+					else
+					{
+						printf("\n After which number you want to insert value:");
+						scanf("%d",&val);
+						printf("\n Enter Number To be Inserted:");
+						scanf("%d",&n);	
+						addafter(&last,n,val);
+					}
+					break;
+			case 8:if(last==NULL)
+						printf("\n List is Empty");
+					else
+					{
+						printf("\n Before which number you want to insert value:");
+						scanf("%d",&val);
+						printf("\n Enter Number To be Inserted:");
+						scanf("%d",&n);	
+						addbef(&last,n,val);
+					}
+					break;  
+			case 9:if(last==NULL)
+						printf("\n List is Empty");
+					else
+					{
+						printf("\n Enter Number To be Deleted:");
+						scanf("%d",&n);
+						deleteno(&last,n);
+				    }
+				   break;
+			case 10:exit(0);
+			default:printf("\n Invalid Option");
+		}
+	}
+}
+
+************************************************************************
+Output:
+
+ 1.Create List
+ 2.Display
+ 3.Add At Beginning
+ 4.Add to End
+ 5.Delete from beginning
+ 6.Delete from end
+ 7.Add After
+ 8.Add Before
+ 9.Delete Any Number
+ 10.Exit
+ Enter Your Choice:1
+
+ How many values you want to enter:3
+
+ Enter first data for the list:1
+
+ Enter 2 data for the list:2
+
+ Enter 3 data for the list:3
+
+ 1.Create List
+ 2.Display
+ 3.Add At Beginning
+ 4.Add to End
+ 5.Delete from beginning
+ 6.Delete from end
+ 7.Add After
+ 8.Add Before
+ 9.Delete Any Number
+ 10.Exit
+ Enter Your Choice:2
+ 1  2  3
+ 1.Create List
+ 2.Display
+ 3.Add At Beginning
+ 4.Add to End
+ 5.Delete from beginning
+ 6.Delete from end
+ 7.Add After
+ 8.Add Before
+ 9.Delete Any Number
+ 10.Exit
+ Enter Your Choice:3
+
+ Enter Number To be Inserted:11
+
+ 1.Create List
+ 2.Display
+ 3.Add At Beginning
+ 4.Add to End
+ 5.Delete from beginning
+ 6.Delete from end
+ 7.Add After
+ 8.Add Before
+ 9.Delete Any Number
+ 10.Exit
+ Enter Your Choice:3
+
+ Enter Number To be Inserted:12
+
+ 1.Create List
+ 2.Display
+ 3.Add At Beginning
+ 4.Add to End
+ 5.Delete from beginning
+ 6.Delete from end
+ 7.Add After
+ 8.Add Before
+ 9.Delete Any Number
+ 10.Exit
+ Enter Your Choice:2
+ 12  11  1  2  3
+ 1.Create List
+ 2.Display
+ 3.Add At Beginning
+ 4.Add to End
+ 5.Delete from beginning
+ 6.Delete from end
+ 7.Add After
+ 8.Add Before
+ 9.Delete Any Number
+ 10.Exit
+ Enter Your Choice:5
+
+ 1.Create List
+ 2.Display
+ 3.Add At Beginning
+ 4.Add to End
+ 5.Delete from beginning
+ 6.Delete from end
+ 7.Add After
+ 8.Add Before
+ 9.Delete Any Number
+ 10.Exit
+ Enter Your Choice:6
+
+ 1.Create List
+ 2.Display
+ 3.Add At Beginning
+ 4.Add to End
+ 5.Delete from beginning
+ 6.Delete from end
+ 7.Add After
+ 8.Add Before
+ 9.Delete Any Number
+ 10.Exit
+ Enter Your Choice:2
+ 11  1  2
+ 1.Create List
+ 2.Display
+ 3.Add At Beginning
+ 4.Add to End
+ 5.Delete from beginning
+ 6.Delete from end
+ 7.Add After
+ 8.Add Before
+ 9.Delete Any Number
+ 10.Exit
+ Enter Your Choice:7
+
+ After which number you want to insert value:12
+
+ Enter Number To be Inserted:11
+
+ 12 is not present in list
+ 1.Create List
+ 2.Display
+ 3.Add At Beginning
+ 4.Add to End
+ 5.Delete from beginning
+ 6.Delete from end
+ 7.Add After
+ 8.Add Before
+ 9.Delete Any Number
+ 10.Exit
+ Enter Your Choice:7
+
+ After which number you want to insert value:11
+
+ Enter Number To be Inserted:12
+
+ 1.Create List
+ 2.Display
+ 3.Add At Beginning
+ 4.Add to End
+ 5.Delete from beginning
+ 6.Delete from end
+ 7.Add After
+ 8.Add Before
+ 9.Delete Any Number
+ 10.Exit
+ Enter Your Choice:2
+ 11  12  1  2
+ 1.Create List
+ 2.Display
+ 3.Add At Beginning
+ 4.Add to End
+ 5.Delete from beginning
+ 6.Delete from end
+ 7.Add After
+ 8.Add Before
+ 9.Delete Any Number
+ 10.Exit
+ Enter Your Choice:10
+Press any key to continue . . .
+
+***********************************************************************
+Doubly IinkList(All insertion,All Deletion and Display)
+
+***********************************************************************
+#include<stdio.h>
+struct node1
+{
+	struct node1 *prev;
+	int num;
+	struct node1 *nxt;
+};
+void display8(struct node1 **strt)
+{
+	struct node1 *tmp;
+	if(*strt==NULL)
+		printf("\n List is Empty");
+	for(tmp=*strt;tmp!=NULL;tmp=tmp->nxt)
+		printf(" %d ",tmp->num);
+
+}
+void addbeg(struct node1 **strt,int n)
+{
+	struct node1 *nn;
+	nn=(struct node1 *)malloc(sizeof(struct node1));
+	nn->num=n;
+	nn->prev=NULL;
+	nn->nxt=*strt;
+	if(*strt!=NULL)
+		(*strt)->prev=nn;
+	*strt=nn;
+}
+void addend(struct node1 **strt,int n)
+{
+	struct node1 *nn,*tmp;
+	nn=(struct node1 *)malloc(sizeof(struct node1));
+	nn->num=n;
+	nn->nxt=NULL;
+
+	if(*strt==NULL)
+		addbeg(&(*strt),n);
+	else
+	{
+		for(tmp=(*strt);tmp->nxt!=NULL;tmp=tmp->nxt);
+		nn->prev=tmp;
+		tmp->nxt=nn;
+	}
+}
+void delbeg(struct node1 **strt)
+{
+	struct node1 *tmp;
+	if(*strt==NULL)
+		printf("\n List is Empty");
+	else
+	{
+		tmp=*strt;
+		if(tmp->nxt==NULL)
+			*strt=NULL;
+		else
+		{
+			tmp->nxt->prev=NULL;
+			*strt=tmp->nxt;
+		}
+		free(tmp);
+	}
+}
+void delend(struct node1 **strt)
+{
+	struct node1 *tmp;
+	if(*strt==NULL)
+		printf("\n List is Empty");
+	else
+	{
+		tmp=*strt;
+		if(tmp->nxt==NULL)
+		{
+			*strt=NULL;
+			free(tmp);
+		}
+		else
+		{
+			for(;tmp->nxt->nxt!=NULL;tmp=tmp->nxt);
+				tmp->nxt=NULL;
+				free(tmp->nxt);
+		}
+	}
+}
+struct node1* find(struct node1 *strt,int n)
+{
+	struct node1 *tmp;
+	if(strt==NULL)
+		return (NULL);
+	else
+	{
+		for(tmp=strt;tmp!=NULL;tmp=tmp->nxt)
+		{
+			if(tmp->num==n)
+				return (tmp);
+		}	
+	}
+	return (NULL);
+}
+void adafter(struct node1 **strt,struct node1 *ptr,int n)
+{
+	struct node1 *nn;
+	if(ptr==NULL)
+		printf("\n Number of after Insertion not found");
+	else
+	{
+		nn=(struct node1 *)malloc(sizeof(struct node1));
+		nn->num=n;
+		nn->prev=ptr;
+		nn->nxt=ptr->nxt;
+		if(ptr->nxt!=NULL)
+			ptr->nxt->prev=nn;
+		ptr->nxt=nn;
+	}
+}
+
+void adbef(struct node1 **strt,struct node1 *ptr,int n)
+{
+	struct node1 *nn;
+	if(ptr==NULL)
+		printf("\n Number before Insertion not found");
+	else if(ptr->prev==NULL)
+		addbeg(&(*strt),n);
+	else
+	{
+		nn=(struct node1 *)malloc(sizeof(struct node1));
+		nn->num=n;
+		nn->nxt=ptr->prev->nxt;
+		nn->prev=ptr->prev;
+		ptr->prev->nxt=nn;
+		ptr->prev=nn;
+	}
+}
+void delno(struct node1 **strt,struct node1 *ptr)
+{
+	if(*strt==NULL)
+		printf("\n Linklist is Empty");
+	else if(ptr==NULL)
+		printf("\n Deletion Number is Not Present");
+	else if(ptr->prev==NULL) //deleting first node
+		*strt=ptr->nxt;
+	else
+	{
+		ptr->prev->nxt=ptr->nxt;
+		 if(ptr->nxt!=NULL) //if not last deleting node other than last node
+			 ptr->nxt->prev=ptr->prev;
+	}
+	free(ptr);
+}
+void main()
+{
+	int ch,n,val;
+	struct node1 *strt=NULL;
+	struct node1 *ptr;
+
+	while(1)
+	{
+		printf("\n 2.Display");
+		printf("\n 3.Add At Beginning");
+		printf("\n 4.Add to End");
+		printf("\n 5.Delete from beginning");
+		printf("\n 6.Delete from end");
+		printf("\n 7.Add After");
+		printf("\n 8.Add Before");
+		printf("\n 9.Delete Any Number");
+		printf("\n 10.Exit");
+		printf("\n Enter Your Choice:");
+		scanf("%d",&ch);
+		switch(ch)
+		{
+			case 2:display8(&strt);
+					break;
+			case 3:printf("\n Enter Number To be Inserted:");
+					scanf("%d",&n);
+					addbeg(&strt,n);
+				    break;
+			case 4:printf("\n Enter Number To be Inserted:");
+					scanf("%d",&n);
+					addend(&strt,n);
+					break;
+			case 5:delbeg(&strt);
+				    break;
+			case 6:delend(&strt);
+				   break;
+			case 7:if(strt==NULL)
+						printf("\n List is Empty");
+					else
+					{
+						printf("\n After which number you want to insert value:");
+						scanf("%d",&val);
+						printf("\n Enter Number To be Inserted:");
+						scanf("%d",&n);	
+						ptr=find(strt,val);
+						adafter(&strt,ptr,n);
+					}
+					break;
+			case 8:if(strt==NULL)
+						printf("\n List is Empty");
+					else
+					{
+						printf("\n Before which number you want to insert value:");
+						scanf("%d",&val);
+						printf("\n Enter Number To be Inserted:");
+						scanf("%d",&n);	
+						ptr=find(strt,val);
+						adbef(&strt,ptr,n);
+					}
+					break;  
+			case 9:if(strt==NULL)
+						printf("\n List is Empty");
+					else
+					{
+						printf("\n Enter Number To be Deleted:");
+						scanf("%d",&n);
+						ptr=find(strt,n);
+						delno(&strt,ptr);
+				    }
+				   break;
+			case 10:exit(0);
+			default:printf("\n Invalid Option");
+		}
+	}
+}
+
+************************************************************************
+Output:
+
+ 2.Display
+ 3.Add At Beginning
+ 4.Add to End
+ 5.Delete from beginning
+ 6.Delete from end
+ 7.Add After
+ 8.Add Before
+ 9.Delete Any Number
+ 10.Exit
+ Enter Your Choice:2
+
+ List is Empty
+ 2.Display
+ 3.Add At Beginning
+ 4.Add to End
+ 5.Delete from beginning
+ 6.Delete from end
+ 7.Add After
+ 8.Add Before
+ 9.Delete Any Number
+ 10.Exit
+ Enter Your Choice:3
+
+ Enter Number To be Inserted:1
+
+ 2.Display
+ 3.Add At Beginning
+ 4.Add to End
+ 5.Delete from beginning
+ 6.Delete from end
+ 7.Add After
+ 8.Add Before
+ 9.Delete Any Number
+ 10.Exit
+ Enter Your Choice:4
+
+ Enter Number To be Inserted:2
+
+ 2.Display
+ 3.Add At Beginning
+ 4.Add to End
+ 5.Delete from beginning
+ 6.Delete from end
+ 7.Add After
+ 8.Add Before
+ 9.Delete Any Number
+ 10.Exit
+ Enter Your Choice:7
+
+ After which number you want to insert value:1
+
+ Enter Number To be Inserted:12
+
+ 2.Display
+ 3.Add At Beginning
+ 4.Add to End
+ 5.Delete from beginning
+ 6.Delete from end
+ 7.Add After
+ 8.Add Before
+ 9.Delete Any Number
+ 10.Exit
+ Enter Your Choice:8
+
+ Before which number you want to insert value:12
+
+ Enter Number To be Inserted:13
+
+ 2.Display
+ 3.Add At Beginning
+ 4.Add to End
+ 5.Delete from beginning
+ 6.Delete from end
+ 7.Add After
+ 8.Add Before
+ 9.Delete Any Number
+ 10.Exit
+ Enter Your Choice:2
+ 1  13  12  2
+ 2.Display
+ 3.Add At Beginning
+ 4.Add to End
+ 5.Delete from beginning
+ 6.Delete from end
+ 7.Add After
+ 8.Add Before
+ 9.Delete Any Number
+ 10.Exit
+ Enter Your Choice:9
+
+ Enter Number To be Deleted:12
+
+ 2.Display
+ 3.Add At Beginning
+ 4.Add to End
+ 5.Delete from beginning
+ 6.Delete from end
+ 7.Add After
+ 8.Add Before
+ 9.Delete Any Number
+ 10.Exit
+ Enter Your Choice:2
+ 1  13  2
+ 2.Display
+ 3.Add At Beginning
+ 4.Add to End
+ 5.Delete from beginning
+ 6.Delete from end
+ 7.Add After
+ 8.Add Before
+ 9.Delete Any Number
+ 10.Exit
+ Enter Your Choice:10
+Press any key to continue . . .
+
+***********************************************************************
+Doubly Circular IinkList(All insertion,All Deletion and Display)
+
+***********************************************************************
+#include<stdio.h>
+struct list
+{
+	struct list *prev;
+	int num;
+	struct list *nxt;
+};
+void ad_begg(struct list **lst,int n)
+{
+	struct list *nn;
+	nn=(struct list *)malloc(sizeof(struct list));
+	nn->num=n;
+	if(*lst==NULL)
+	{
+		*lst=nn;
+		nn->prev=nn;
+		nn->nxt=nn;
+	}
+	else
+	{
+		nn->nxt=(*lst)->nxt;
+		nn->prev=(*lst);
+		(*lst)->nxt->prev=nn;
+		(*lst)->nxt=nn;
+	}
+}
+void ad_endd(struct list **lst,int n)
+{
+	struct list *nn;
+	nn=(struct list *)malloc(sizeof(struct list));
+	nn->num=n;
+	if(*lst!=NULL)
+	{
+		nn->prev=*lst;
+		nn->nxt=(*lst)->nxt;
+		(*lst)->nxt=nn;
+		*lst=nn;
+		(*lst)->nxt->prev=nn;
+	}
+	else
+	{
+		*lst=nn;
+		nn->prev=nn;
+		nn->nxt=nn;
+	}
+}
+
+int srch1(struct list *lst,int n)
+{
+	int flag=0;
+	struct list *p;
+	
+	for(p=lst->nxt;p!=lst;p=p->nxt)
+	{
+		if(p->num==n)
+		{
+			flag=1;
+			break;
+		}
+	}
+	if(p->num==n) //checking last node value is equal to n
+			flag=1;
+	if(flag==1)
+		return 1;
+	else
+		return 0;
+}
+
+
+void ad_bf(struct list **lst,int n,int val)
+{
+	struct list *tmp,*nn;
+	if(srch1(*lst,val))
+	{
+		if((*lst)->nxt->num==val)
+			ad_begg(&(*lst),n);
+		else
+		{
+			for(tmp=(*lst)->nxt;tmp->num!=val;tmp=tmp->nxt);
+			nn=(struct list *)malloc(sizeof(struct list));
+			nn->num=n;
+			nn->nxt=tmp;
+			nn->prev=tmp->prev;
+			tmp->prev->nxt=nn;
+			tmp->prev=nn;
+		}
+
+	}
+	else
+		printf("\n Value Before Insertion not found");
+}
+void ad_af(struct list **lst,int n,int val)
+{
+	struct list *tmp,*nn;
+	if(srch1(*lst,val))
+	{
+		if((*lst)->num==val)
+			ad_endd(&(*lst),n);
+		else
+		{
+			for(tmp=(*lst)->nxt;tmp->num!=val;tmp=tmp->nxt);
+			nn=(struct list *)malloc(sizeof(struct list));
+			nn->num=n;
+			nn->prev=tmp;
+			nn->nxt=tmp->nxt;
+			tmp->nxt=nn;
+			tmp->nxt->prev=nn;
+			if(tmp==*lst)
+				(*lst)=nn;
+		}
+	}
+	else
+		printf("\n Value After Insertion not found");
+}
+void dl_begg(struct list **lst)
+{
+	struct list *tmp;
+	
+	if(*lst==NULL)
+		printf("\n LinkList is Empty");
+	else 
+	{
+		tmp=(*lst)->nxt;
+		if((*lst)->nxt==*lst)
+			*lst=NULL;
+		else
+		{
+			(*lst)->nxt=tmp->nxt;
+			tmp->nxt->prev=*lst;
+		}
+		free(tmp);
+	}
+}
+
+void dl_end(struct list **lst)
+{
+	struct list *tmp;
+	
+	if(*lst==NULL)
+		printf("\n LinkList is Empty");
+	else 
+	{
+		tmp=*lst;
+		if((*lst)->nxt==*lst)
+			*lst=NULL;
+		else
+		{
+			(*lst)->prev->nxt=(*lst)->nxt;
+			(*lst)->nxt->prev=(*lst)->prev;
+			*lst=(*lst)->prev;
+		}
+		free(tmp);
+	}	
+
+}
+void dl_val(struct list **lst,int n)
+{
+	struct list *tmp;
+	
+	if(*lst==NULL)
+		printf("\n LinkList is Empty");
+	else if(srch1(*lst,n))
+	{
+		tmp=(*lst)->nxt;
+		if(tmp->num==n && tmp->prev==tmp) //There is only one node in list.deletion of first/last node
+			*lst=NULL;
+		else
+		{
+			for(;tmp->num!=n;tmp=tmp->nxt);
+			tmp->prev->nxt=tmp->nxt;
+			tmp->nxt->prev=tmp->prev;
+			if(tmp==*lst) //deletion of last node
+				*lst=(*lst)->prev;
+		}
+		free(tmp);
+	}
+	else
+		printf("\n Deletion Number is Not Present");
+}
+void cr(struct list **lst)
+{
+	struct list *nn;
+	int i,n,no;
+	printf("\n How Many nodes u want to enter:");
+	scanf("%d",&n);
+
+	for(i=0;i<n;i++)
+	{
+		printf("\n Enter Number:");
+		scanf("%d",&no);
+		ad_endd(&(*lst),no);
+	}
+}
+void dis(struct list **lst)
+{
+	struct list *t;
+	if(*lst==NULL)
+		printf("\n List is Empty");
+	else
+	{
+		for(t=(*lst)->nxt;t!=(*lst);t=t->nxt)
+			printf("%d  ",t->num);
+		printf("%d  ",t->num);
+	}
+}
+
+void main()
+{
+	int ch,n,val;
+	struct list *last=NULL;
+
+	while(1)
+	{
+		printf("\n 1.Create List");
+		printf("\n 2.Display");
+		printf("\n 3.Add At Beginning");
+		printf("\n 4.Add to End");
+		printf("\n 5.Delete from beginning");
+		printf("\n 6.Delete from end");
+		printf("\n 7.Add After");
+		printf("\n 8.Add Before");
+		printf("\n 9.Delete Any Number");
+		printf("\n 10.Exit");
+		printf("\n Enter Your Choice:");
+		scanf("%d",&ch);
+		switch(ch)
+		{
+			case 1:cr(&last);
+					break;
+			case 2:dis(&last);
+					break;
+			case 3:printf("\n Enter Number To be Inserted:");
+					scanf("%d",&n);
+					ad_begg(&last,n);
+				    break;
+			case 4:printf("\n Enter Number To be Inserted:");
+					scanf("%d",&n);
+					ad_endd(&last,n);
+					break;
+			case 5:dl_begg(&last);
+				    break;
+			case 6:dl_end(&last);
+				   break;
+			case 7:if(last==NULL)
+						printf("\n List is Empty");
+					else
+					{
+						printf("\n After which number you want to insert value:");
+						scanf("%d",&val);
+						printf("\n Enter Number To be Inserted:");
+						scanf("%d",&n);	
+						ad_af(&last,n,val);
+					}
+					break;
+			case 8:if(last==NULL)
+						printf("\n List is Empty");
+					else
+					{
+						printf("\n Before which number you want to insert value:");
+						scanf("%d",&val);
+						printf("\n Enter Number To be Inserted:");
+						scanf("%d",&n);	
+						ad_bf(&last,n,val);
+					}
+					break;  
+			case 9:if(last==NULL)
+						printf("\n List is Empty");
+					else
+					{
+						printf("\n Enter Number To be Deleted:");
+						scanf("%d",&n);
+						dl_val(&last,n);
+				    }
+				   break;
+			case 10:exit(0);
+			default:printf("\n Invalid Option");
+		}
+	}
+}
+
+************************************************************************
+Output:
+
+ 1.Create List
+ 2.Display
+ 3.Add At Beginning
+ 4.Add to End
+ 5.Delete from beginning
+ 6.Delete from end
+ 7.Add After
+ 8.Add Before
+ 9.Delete Any Number
+ 10.Exit
+ Enter Your Choice:1
+
+ How Many nodes u want to enter:3
+
+ Enter Number:1
+
+ Enter Number:2
+
+ Enter Number:3
+
+ 1.Create List
+ 2.Display
+ 3.Add At Beginning
+ 4.Add to End
+ 5.Delete from beginning
+ 6.Delete from end
+ 7.Add After
+ 8.Add Before
+ 9.Delete Any Number
+ 10.Exit
+ Enter Your Choice:2
+1  2  3
+ 1.Create List
+ 2.Display
+ 3.Add At Beginning
+ 4.Add to End
+ 5.Delete from beginning
+ 6.Delete from end
+ 7.Add After
+ 8.Add Before
+ 9.Delete Any Number
+ 10.Exit
+ Enter Your Choice:3
+
+ Enter Number To be Inserted:11
+
+ 1.Create List
+ 2.Display
+ 3.Add At Beginning
+ 4.Add to End
+ 5.Delete from beginning
+ 6.Delete from end
+ 7.Add After
+ 8.Add Before
+ 9.Delete Any Number
+ 10.Exit
+ Enter Your Choice:4
+
+ Enter Number To be Inserted:12
+
+ 1.Create List
+ 2.Display
+ 3.Add At Beginning
+ 4.Add to End
+ 5.Delete from beginning
+ 6.Delete from end
+ 7.Add After
+ 8.Add Before
+ 9.Delete Any Number
+ 10.Exit
+ Enter Your Choice:9
+
+ Enter Number To be Deleted:12
+
+ 1.Create List
+ 2.Display
+ 3.Add At Beginning
+ 4.Add to End
+ 5.Delete from beginning
+ 6.Delete from end
+ 7.Add After
+ 8.Add Before
+ 9.Delete Any Number
+ 10.Exit
+ Enter Your Choice:2
+11  1  2  3
+ 1.Create List
+ 2.Display
+ 3.Add At Beginning
+ 4.Add to End
+ 5.Delete from beginning
+ 6.Delete from end
+ 7.Add After
+ 8.Add Before
+ 9.Delete Any Number
+ 10.Exit
+ Enter Your Choice:10
+Press any key to continue . . .
+
+***********************************************************************
+Bubble Sort
+
+***********************************************************************
+#include<stdio.h>
+void bblsrt(int a[],int n)
+{
+	int i,j,flag=0,temp;
+	for(i=0;i<n-1;i++)
+	{
+		flag=0;
+		for(j=0;j<n-i-1;j++)
+		{
+			if(a[j]>a[j+1])
+			{
+				flag=1;
+				temp=a[j];
+				a[j]=a[j+1];
+				a[j+1]=temp;
+			}
+		}
+		if(flag==0)
+				break;
+	}
+}
+void displ(int a[],int n)
+{
+	int i;
+	printf("\n Displaying");
+	for(i=0;i<n;i++)
+		printf(" %d",a[i]);
+	printf("\n");
+}
+void main()
+{
+	int n,i,a[100],ele;
+	printf("\n Enter Number of Elements:");
+	scanf("%d",&n);
+	for(i=0;i<n;i++)
+	{
+		printf("\n Enter Number%d:",i+1);
+		scanf("%d",&a[i]);
+	}
+	bblsrt(a,n);
+	displ(a,n);
+}
+
+************************************************************************
+Output:
+Enter Number of Elements:5
+
+ Enter Number1:4
+
+ Enter Number2:3
+
+ Enter Number3:6
+
+ Enter Number4:2
+
+ Enter Number5:1
+
+ Displaying 1 2 3 4 6
+Press any key to continue . . .
+
+***********************************************************************
+Insertion Sort
+
+***********************************************************************
+#include<stdio.h>
+void insertion(int a[],int n)
+{
+	int i,temp,j;
+	for(i=1;i<n;i++)
+	{
+		temp=a[i];
+		j=i-1;
+
+		while(j>=0 && a[j]>temp)
+		{
+			a[j+1]=a[j];
+			j--;
+		}
+		a[j+1]=temp;
+	}
+}
+void displ2(int a[],int n)
+{
+	int i;
+	printf("\n Displaying");
+	for(i=0;i<n;i++)
+		printf(" %d",a[i]);
+	printf("\n");
+}
+void main()
+{
+	int n,i,a[100],ele;
+	printf("\n Enter Number of Elements:");
+	scanf("%d",&n);
+	for(i=0;i<n;i++)
+	{
+		printf("\n Enter Number%d:",i+1);
+		scanf("%d",&a[i]);
+	}
+	bblsrt(a,n);
+	displ2(a,n);
+}
+
+************************************************************************
+Output:
+ Enter Number of Elements:5
+
+ Enter Number1:5
+
+ Enter Number2:3
+
+ Enter Number3:4
+
+ Enter Number4:2
+
+ Enter Number5:1
+
+ Displaying 1 2 3 4 5
+Press any key to continue . . .
+
+***********************************************************************
+Selection Sort
+
+***********************************************************************
+#include<stdio.h>
+void selection(int a[],int n)
+{
+	int i,min,loc,j,temp;
+	for(i=0;i<n-1;i++)
+	{
+		min=a[i];
+		loc=i;
+
+		for(j=i+1;j<n;j++)
+		{
+			if(a[j]<min)
+			{
+				min=a[j];
+				loc=j;
+			}
+		}
+		temp=a[j];
+		a[j]=a[loc];
+		a[loc]=temp;
+	}
+}
+void displ3(int a[],int n)
+{
+	int i;
+	printf("\n Displaying");
+	for(i=0;i<n;i++)
+		printf(" %d",a[i]);
+	printf("\n");
+}
+void main()
+{
+	int n,i,a[100],ele;
+	printf("\n Enter Number of Elements:");
+	scanf("%d",&n);
+	for(i=0;i<n;i++)
+	{
+		printf("\n Enter Number%d:",i+1);
+		scanf("%d",&a[i]);
+	}
+	bblsrt(a,n);
+	displ3(a,n);
+}
+
+************************************************************************
+Output:
+Enter Number of Elements:5
+
+ Enter Number1:5
+
+ Enter Number2:3
+
+ Enter Number3:4
+
+ Enter Number4:2
+
+ Enter Number5:1
+
+ Displaying 1 2 3 4 5
+Press any key to continue . . .
+

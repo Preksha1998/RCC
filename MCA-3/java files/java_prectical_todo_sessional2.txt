@@ -1,0 +1,40 @@
+lambda expression (beginner book/oracle docs)
+
+generic_fun_interface -> 519
+lambda_argument.java -> 521 
+lambda_exception_demo -> 528
+
+Exception
+
+-> ExcDemo.java
+-> ExcDemo2.java
+-> throw demo or rethrow demo (341-343)(perform any one , one-oracle press)
+-> finallydemo (oracle press 347)
+-> throwdemo (oracle press 349)
+-> multicatch feature (oracle press 350)
+-> custom exceptiondemo (oracle press 353)
+-> 9.1 add exception to queue(oracle press 354)
+-> try it out (ivor horton 366)
+
+
+IO Stream
+
+java 368(show file) program
+oracle press -> 10.2(pg 394)
+ivor -> 456 book page number channel example
+459 ivor horton writing buffers 
+461 ivor horton proverbs (optional)
+464 ivor horton (optional)(imp exam pov)
+exercise 2nd,3rd,4th  (482)
+505 try it out copying file (craeting backup files) ivor horton
+510 read nd write ivor horton 
+exercise 2nd ,6th
+
+
+Thread
+
+beginner book
+pg     UseThread 
+pg 423 sum array for synchronization
+pg 430 clas ticktock 
+pg 436 program 

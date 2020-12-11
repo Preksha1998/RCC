@@ -1,0 +1,51 @@
+#include<stdio.h>
+#include<conio.h>
+#include<graphics.h>
+#include<math.h>
+#define Round(a) ((int)(a+0.5))
+dda(int xa,int ya,int xb,int yb,float w){
+	int dx,dy,steps,xincr,yincr,x,y,i,j;
+	float a,b,c,d,wy;
+	a=pow((xb-xa),2);
+	b=pow((yb-ya),2);
+	c=abs(xb-xa);
+	d=((w-1)/2);
+	if(c!=0){
+	wy=(d)*((sqrt(a+b))/c);
+	}
+
+	dx=xb-xa;
+	dy=yb-ya;
+	if(abs(dx)>abs(dy)){
+		steps=dx;
+	}
+	else{
+		steps=dy;
+	}
+	xincr=dx/steps;
+	yincr=dy/steps;
+	x=xa;
+	y=ya;
+	putpixel(x,y,1);
+
+	for(i=0;i<steps;i++){
+		x=x+xincr;
+		y=y+yincr;
+		for(j=y+wy;j>y-wy;j--){
+		putpixel(Round(x),Round(j),1);
+		}
+	}
+	return 0;
+}
+void main(){
+	int gd=DETECT,gm;
+	initgraph(&gd,&gm,"c:/tc/bgi");
+	//dda(150,100,50,200,9);
+	//dda(150,100,250,200,9);
+	dda(50,200,250,200,9);
+	//dda(50,200,50,450,9);
+	//dda(250,200,250,450,9);
+	//dda(50,450,250,450,9);
+	getch();
+
+}
